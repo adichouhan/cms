@@ -31,6 +31,16 @@ Route::get('/book', 'CategoryController@bookForm');
 //    return view('Book_Complaint');
 //});
 
+Route::post('fill_sub_category',  function(\Illuminate\Http\Request $request){
+     $parent_category=$request->category_id;
+     $subCategory=\App\SubCategory::where('parent_id', $parent_category)->get();
+    $output='';
+    foreach ($subCategory as $item){
+        $output .= '<option value="'.$item["id"].'">'.$item["subcategory_title"].'</option>';
+    }
+    return $output;
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');

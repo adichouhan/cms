@@ -43,7 +43,7 @@
             <div class="col-3"></div>
         </div>
     </div>
-    {{dd($data)}}
+
     <script>
         $(document).ready(function(){
 
@@ -52,37 +52,37 @@
             $(document).on('click', '.add', function(){
                 count++;
                 var html = '';
-                html += '<div><input type="text" name="item_name_issue[]" class="form-control item_name" />';
-                html += '<select name="item_category_issue[]" class="form-control item_category" data-sub_category_id="'+count+'"><option value="">Select Category</option></select></td>';
-                html += '<select name="item_sub_category_issue[]" class="form-control item_sub_category" id="item_sub_category'+count+'"><option value="">Select Sub Category</option></select>';
-                html += '<button type="button" name="remove" class="btn btn-danger btn-xs remove">+</button></div>';
+                html += '<div class="addedSection"><input type="text" name="item_name_issue[]" class="form-control item_name" />';
+                html += '<div><select name="item_category_issue[]" class="form-control item_category" data-sub_category_id="'+count+'"><option value="">Select Category</option>{!! $output !!}</select></td>';
+                html += '<div><select name="item_sub_category_issue[]" class="form-control item_sub_category" id="item_sub_category'+count+'"><option value="">Select Sub Category</option></select></div>';
+                html += '<div><button type="button" name="remove" class="btn btn-danger btn-xs remove"><span class="glyphicon glyphicon-minus"></span></button></div>';
                 $('#addsection').append(html);
             });
 
-            $(document).on('click', '.remove', function(event){
-                $(this).parent().remove();
+            $(document).on('click', '.remove', function(){
+                // $(this).closest('.addedSection').remove();
+                $("div.addedSection").first().remove()
             });
 
             $(document).on('change', '.item_category', function(){
                 var category_id = $(this).val();
+                console.log(category_id);
                 var sub_category_id = $(this).data('sub_category_id');
-               var arrjava =
-                    var html = '<option value="">Select Sub1 Category</option>';
-                    var html = '<option value="">$row->category_title</option>';
-                    html += data;
-                    $('#item_sub_category' + sub_category_id).html(html);
-                }
-                // $.ajax({
-                //     url:"fill_sub_category.php",
-                //     method:"POST",
-                //     data:{category_id:category_id},
-                //     success:function(data)
-                //     {
-                //         var html = '<option value="">Select Sub1 Category</option>';
-                //         html += data;
-                //         $('#item_sub_category'+sub_category_id).html(html);
-                //     }
-                // })
+                $.ajax({
+                    url:"/fill_sub_category",
+                    method:"POST",
+                    data:{"_token": "{{ csrf_token() }}",
+                        "category_id":category_id},
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success:function(data)
+                    {
+                        var html = '<option value="">Select Sub Category</option>';
+                        html += data;
+                        $('#item_sub_category'+sub_category_id).html(html);
+                    }
+                })
             });
             $('#insert_form').on('submit', function(event){
                 event.preventDefault();
