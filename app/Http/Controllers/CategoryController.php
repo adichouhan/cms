@@ -9,6 +9,10 @@ class CategoryController extends Controller
 {
     function bookForm(){
        $data = Category::all();
-        return view('Book_Complaint',['data' => $data]);
+        $output='';
+       foreach ($data as $item){
+           $output .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';
+       }
+        return view('Book_Complaint',['output' => $output]);
     }
 }
