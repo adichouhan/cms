@@ -26,11 +26,13 @@ Route::get('/', function () {
 Route::get('/service', function () {
     return view('service_book');
 })->middleware('auth');
-Route::get('/book', 'CategoryController@bookForm');
-//Route::get('/book', function () {
-//    return view('Book_Complaint');
-//});
-
+// Route::get('/book', 'CategoryController@bookForm');
+Route::get('/book', function () {
+   return view('Book_Complaint');
+});
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');

@@ -43,7 +43,7 @@
             <div class="col-3"></div>
         </div>
     </div>
-    {{dd($data)}}
+  
     <script>
         $(document).ready(function(){
 
