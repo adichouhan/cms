@@ -27,6 +27,7 @@ Route::get('/service', function () {
     return view('service_book');
 })->middleware('auth');
 Route::get('/book', 'CategoryController@bookForm');
+
 Route::post('/register/complaint', 'ComplaintController@postComplaints');
 Route::get('/view_complaints', 'ComplaintController@getViewComplaints');
 Route::get('/admin', function () {
@@ -35,6 +36,14 @@ Route::get('/admin', function () {
 //Route::get('/view_complaints', function () {
 //    return view('viewpages.view_complaint');
 //});
+
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+});
+Route::get('/hello', function () {
+    return view('admin.dashboard');
+});
+
 Route::post('fill_sub_category',  function(\Illuminate\Http\Request $request){
      $parent_category=$request->category_id;
      $subCategory=\App\SubCategory::where('parent_id', $parent_category)->get();
