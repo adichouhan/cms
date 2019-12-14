@@ -14,7 +14,13 @@ class CreateComplaintsTable extends Migration
     public function up()
     {
         Schema::create('complaints', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->text('complaints')->nullable();
+            $table->text('location')->nullable();
+            $table->dateTime('expected_date')->nullable();
+            $table->text('priority')->nullable();
+            $table->text('maerials')->nullable();
+            $table->text('image')->nullable();
             $table->timestamps();
         });
     }

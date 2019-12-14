@@ -33,9 +33,19 @@ class ComplaintController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function postComplaints(Request $request)
     {
-        //
+
+       $objComplaints = new Complaint();
+        $objComplaints->location = $request->location;
+        $objComplaints->expected_date = $request->expdate;
+        $objComplaints->priority = $request->priority;
+        $objComplaints->maerials = $request->material;
+        $objComplaints->complaints  = json_encode($request->get('complaint'));
+        $objComplaints->image       = $request->file('image')->store('product');
+//        dd($objComplaints);
+        $objComplaints->save();
+        return redirect('home')->with('success', 'Data Added successfully.');
     }
 
     /**
@@ -44,9 +54,10 @@ class ComplaintController extends Controller
      * @param  \App\Complaint  $complaint
      * @return \Illuminate\Http\Response
      */
-    public function show(Complaint $complaint)
+    public function getViewComplaints()
     {
-        //
+        $arrObjComplaints = Complaint::all();
+        return view('viewpages.view_complaint',['arrObjComplaints' => $arrObjComplaints]);
     }
 
     /**

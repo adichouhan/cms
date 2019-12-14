@@ -4,7 +4,9 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-7">
-    <form>
+      <form method="post" action="{{ url('register/complaint') }}" enctype="multipart/form-data">
+      <div class="box-body">
+         @csrf
         <div>
             <div id="addsection"></div>
         </div>
@@ -12,32 +14,33 @@
 
         <div class="form-group">
             <label for="location">Location(Branch Name)*</label>
-            <input type="text" class="form-control" id="location" placeholder="">
+            <input type="text" class="form-control" id="location" name="location" placeholder="">
         </div>
         <div class="form-group col-md-4">
             <label for="inputState">Priority</label>
-            <select id="inputState" class="form-control">
-                <option>Low</option>
-                <option>Medium</option>
-                <option>High</option>
+            <select id="inputState" class="form-control" name="priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
             </select>
         </div>
-        <div class="form-group">
-            <label for="location">Location</label>
-            <input type="text" class="form-control" id="location" placeholder="">
-        </div>
 
-        <div class="form-group">
-            <label for="location">Location</label>
-            <input type="datetime-local" class="form-control" id="location" placeholder="">
-        </div>
+          <div class="form-group">
+              <label for="date">Location</label>
+              <input type="datetime-local" class="form-control" name="expdate" id="date" placeholder="">
+          </div>
+          <div class="form-group">
+              <label for="material">Location</label>
+              <input type="text" class="form-control"  name="material" id="material" placeholder="">
+          </div>
 
 
         <div class="form-group">
             <label for="exampleFormControlFile1">Example file input</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1">
         </div>
         <button type="submit" class="btn btn-primary">Sign in</button>
+      </div>
     </form>
             </div>
             <div class="col-3"></div>
@@ -52,9 +55,9 @@
             $(document).on('click', '.add', function(){
                 count++;
                 var html = '';
-                html += '<div class="addedSection"><input type="text" name="item_name_issue[]" class="form-control item_name" />';
-                html += '<div><select name="item_category_issue[]" class="form-control item_category" data-sub_category_id="'+count+'"><option value="">Select Category</option>{!! $output !!}</select></td>';
-                html += '<div><select name="item_sub_category_issue[]" class="form-control item_sub_category" id="item_sub_category'+count+'"><option value="">Select Sub Category</option></select></div>';
+                html += '<div class="addedSection"><input type="text" name="complaint['+count+'][name]" class="form-control item_name" />';
+                html += '<div><select name="complaint['+count+'][main]" class="form-control item_category" data-sub_category_id="'+count+'"><option value="">Select Category</option>{!! $output !!}</select></td>';
+                html += '<div><select name="complaint['+count+'][sub]" class="form-control item_sub_category" id="item_sub_category'+count+'"><option value="">Select Sub Category</option></select></div>';
                 html += '<div><button type="button" name="remove" class="btn btn-danger btn-xs remove"><span class="glyphicon glyphicon-minus"></span></button></div>';
                 $('#addsection').append(html);
             });
