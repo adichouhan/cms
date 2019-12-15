@@ -1,5 +1,17 @@
 @extends('admin.admin_template')
 @section('content')
+    <script>
+        function myFunction() {
+            console.log('here')
+            $('#reject').css({ display: "none" });
+            $('#accept').css({ display: "block" });
+        }
+        function reject() {
+            console.log('there')
+            $('#accept').css({ display: "none" });
+            $('#reject').css({ display: "block" });
+        }
+    </script>
     <div class="container">
         <div class="row">
             <div class="col-2"></div>
@@ -55,7 +67,7 @@
                                              id="item_sub_category{{$count}}">
                                         <option value="">Select Sub Category</option>{!! $selectedSubCat !!}</select>
                                 </div>
-                                '
+
                                 <div><input type="text" name="complaint[{{$count}}][name]"
                                             class="form-control item_name"/></div>
                                 <div>
@@ -115,35 +127,46 @@
                         <img src="{{asset($objComplaints->image)}}" class="img-thumbnail" width="100"/>
                         <input type="hidden" name="hidden_image" value="{{ $objComplaints->image }}"/>
                     </div>
-                    <button  class="btn btn-primary accept">Accept</button>
-                    <button  class="btn btn-primary reject">Reject</button>
 
-                    <div class="form-group" id="reject">
-                        <label for="material">Material(if any)</label>
+                    <button type="button"  class="btn btn-primary" onclick="myFunction()">Accept</button>
+                    <button type="button" class="btn btn-primary reject" onclick="reject()">Reject</button>
+
+                    <div class="form-group" id="reject" style="display:none">
+                        <label for="rejectreason">Reject Reason</label>
                         <input type="text" class="form-control"
-                               value="{{isset($objComplaints->expected_date)?$objComplaints->expected_date:''}}"
-                               name="material" id="material" placeholder="">
+                               value="{{isset($objComplaints->rejectReason)?$objComplaints->rejectReason:''}}"
+                               name="rejectreason" id="rejectreason" placeholder="">
                     </div>
-
-                    <div class="form-group col-md-4">
-                        <label for="inputState">Priority</label>
-                        <select id="inputState" class="form-control" name="priority">
-                            <option
-                                value="low" {{(isset($objComplaints->priority) && $objComplaints->priority=='low')? 'selected':'' }}>
-                                Low
-                            </option>
-                            <option
-                                value="medium" {{(isset($objComplaints->priority) && $objComplaints->priority=='medium')? 'selected':'' }}>
-                                Medium
-                            </option>
-                            <option
-                                value="high" {{(isset($objComplaints->priority) && $objComplaints->priority=='high')? 'selected':'' }}>
-                                High
-                            </option>
-                        </select>
-                    </div>
+                    <div id="accept" style="display: none">
+                         <div class="form-group col-md-4">
+                                                <label for="inputState">Status</label>
+                                                <select id="inputState" class="form-control" name="status">
+                                                    <option
+                                                        value="booked" {{(isset($objComplaints->status) && $objComplaints->priority=='booked')? 'selected':'' }}>
+                                                        Booked
+                                                    </option>
+                                                    <option
+                                                        value="processed" {{(isset($objComplaints->priority) && $objComplaints->priority=='processed')? 'selected':'' }}>
+                                                        Processed
+                                                    </option>
+                                                    <option
+                                                        value="ongoing" {{(isset($objComplaints->priority) && $objComplaints->priority=='ongoing')? 'selected':'' }}>
+                                                        OnGoing
+                                                    </option>
+                                                    <option
+                                                        value="completed" {{(isset($objComplaints->priority) && $objComplaints->priority=='completed')? 'selected':'' }}>
+                                                        Completed
+                                                    </option>
+                                                    <option
+                                                        value="rejected" {{(isset($objComplaints->priority) && $objComplaints->priority=='rejected')? 'selected':'' }}>
+                                                        Rejected
+                                                    </option>
+                                                </select>
+                                            </div>
+                        </div>
 
             </form>
+            </div>
         </div>
         <div class="col-3"></div>
     </div>
@@ -168,6 +191,16 @@
                 $(this).closest('.addedSection').remove();
                 // $("div.addedSection").first().remove()
             });
+
+            $(document).on('click', '.accept', function () {
+
+            },
+
+            $(document).on('click', '.reject', function () {
+                console.log('there')
+                $('#accept').css({ display: "none" });
+                $('#reject').css({ display: "block" });
+            },
 
             $(document).on('change', '.item_category', function () {
                 var category_id = $(this).val();

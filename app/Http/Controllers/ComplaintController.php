@@ -89,7 +89,16 @@ class ComplaintController extends Controller
      */
     public function update(Request $request, Complaint $complaint)
     {
-        //
+        $objComplaints = new Complaint();
+        $objComplaints->location = $request->location;
+        $objComplaints->expected_date = $request->expdate;
+        $objComplaints->priority = $request->priority;
+        $objComplaints->maerials = $request->material;
+        $objComplaints->complaints  = json_encode($request->get('complaint'));
+        $objComplaints->image       = $request->file('image')->store('complaint');
+
+        $objComplaints->save();
+        return redirect('home')->with('success', 'Data Added successfully.');
     }
 
     /**

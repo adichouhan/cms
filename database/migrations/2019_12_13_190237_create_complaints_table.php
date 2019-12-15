@@ -20,6 +20,7 @@ class CreateComplaintsTable extends Migration
             $table->dateTime('expected_date')->nullable();
             $table->text('priority')->nullable();
             $table->text('maerials')->nullable();
+            $table->integer('user_id')->nullable();
             $table->text('image')->nullable();
             $table->timestamps();
         });

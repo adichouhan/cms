@@ -22,13 +22,10 @@ Route::group([ 'prefix' => 'admin' ], function() {
 
     Route::get('/complaints/edit/{complaint}', 'AdminComplaintsController@edit');
 
+    Route::get('/employee/create', 'EmployeeController@create');
 });
 
 
-Route::get('{filename}', function ($filename)
-{
-    return Image::make(storage_path( $filename))->response();
-});
 
 Route::get('/complaints', function () {
     return view('complaints');
@@ -49,9 +46,6 @@ Route::post('/register/complaint', 'ComplaintController@postComplaints');
 
 Route::get('/view_complaints', 'ComplaintController@getViewComplaints');
 
-//Route::get('/view_complaints', function () {
-//    return view('complaints.view_complaint');
-//});
 
 Route::get('/admin', function () {
     return view('admin.admin_template');
