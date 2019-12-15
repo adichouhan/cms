@@ -27,9 +27,12 @@ Route::get('/service', function () {
     return view('service_book');
 })->middleware('auth');
 Route::get('/book', 'CategoryController@bookForm');
-//Route::get('/book', function () {
-//    return view('Book_Complaint');
-//});
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+});
+Route::get('/hello', function () {
+    return view('admin.dashboard');
+});
 
 Route::post('fill_sub_category',  function(\Illuminate\Http\Request $request){
      $parent_category=$request->category_id;

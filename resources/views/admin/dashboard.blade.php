@@ -1,226 +1,252 @@
-@extends('adminlte::page')
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 3 | Dashboard</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="{{asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="{{asset('plugins/jqvmap/jqvmap.min.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.css')}}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
 
-@section('title', 'Dashboard')
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="index3.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Contact</a>
+            </li>
+        </ul>
 
-@section('content_header')
-    <h1>Dashboard</h1>
-@stop
-
-@section('content')
-    <p>Welcome to this beautiful admin panel.</p>
-    <div class="box">
-        <div class="box-header">
-            <h3 class="box-title">Data Table With Full Features</h3>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="dataTables_length" id="example1_length"><label>Show <select name="example1_length"
-                                                                                                aria-controls="example1"
-                                                                                                class="form-control input-sm">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select> entries</label></div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search"
-                                                                                                 class="form-control input-sm"
-                                                                                                 placeholder=""
-                                                                                                 aria-controls="example1"></label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
-                               aria-describedby="example1_info">
-                            <thead>
-                            <tr role="row">
-                                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-sort="ascending"
-                                    aria-label="Rendering engine: activate to sort column descending"
-                                    style="width: 182px;">Rendering engine
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending" style="width: 224px;">
-                                    Browser
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Platform(s): activate to sort column ascending" style="width: 199px;">
-                                    Platform(s)
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Engine version: activate to sort column ascending"
-                                    style="width: 156px;">Engine version
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending" style="width: 112px;">CSS
-                                    grade
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr role="row" class="odd">
-                                <td class="sorting_1">Gecko</td>
-                                <td>Firefox 1.0</td>
-                                <td>Win 98+ / OSX.2+</td>
-                                <td>1.7</td>
-                                <td>A</td>
-                            </tr>
-                            <tr role="row" class="even">
-                                <td class="sorting_1">Gecko</td>
-                                <td>Firefox 1.5</td>
-                                <td>Win 98+ / OSX.2+</td>
-                                <td>1.8</td>
-                                <td>A</td>
-                            </tr>
-                            <tr role="row" class="odd">
-                                <td class="sorting_1">Gecko</td>
-                                <td>Firefox 2.0</td>
-                                <td>Win 98+ / OSX.2+</td>
-                                <td>1.8</td>
-                                <td>A</td>
-                            </tr>
-                            <tr role="row" class="even">
-                                <td class="sorting_1">Gecko</td>
-                                <td>Firefox 3.0</td>
-                                <td>Win 2k+ / OSX.3+</td>
-                                <td>1.9</td>
-                                <td>A</td>
-                            </tr>
-                            <tr role="row" class="odd">
-                                <td class="sorting_1">Gecko</td>
-                                <td>Camino 1.0</td>
-                                <td>OSX.2+</td>
-                                <td>1.8</td>
-                                <td>A</td>
-                            </tr>
-                            <tr role="row" class="even">
-                                <td class="sorting_1">Gecko</td>
-                                <td>Camino 1.5</td>
-                                <td>OSX.3+</td>
-                                <td>1.8</td>
-                                <td>A</td>
-                            </tr>
-                            <tr role="row" class="odd">
-                                <td class="sorting_1">Gecko</td>
-                                <td>Netscape 7.2</td>
-                                <td>Win 95+ / Mac OS 8.6-9.2</td>
-                                <td>1.7</td>
-                                <td>A</td>
-                            </tr>
-                            <tr role="row" class="even">
-                                <td class="sorting_1">Gecko</td>
-                                <td>Netscape Browser 8</td>
-                                <td>Win 98SE+</td>
-                                <td>1.7</td>
-                                <td>A</td>
-                            </tr>
-                            <tr role="row" class="odd">
-                                <td class="sorting_1">Gecko</td>
-                                <td>Netscape Navigator 9</td>
-                                <td>Win 98+ / OSX.2+</td>
-                                <td>1.8</td>
-                                <td>A</td>
-                            </tr>
-                            <tr role="row" class="even">
-                                <td class="sorting_1">Gecko</td>
-                                <td>Mozilla 1.0</td>
-                                <td>Win 95+ / OSX.1+</td>
-                                <td>1</td>
-                                <td>A</td>
-                            </tr>
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th rowspan="1" colspan="1">Rendering engine</th>
-                                <th rowspan="1" colspan="1">Browser</th>
-                                <th rowspan="1" colspan="1">Platform(s)</th>
-                                <th rowspan="1" colspan="1">Engine version</th>
-                                <th rowspan="1" colspan="1">CSS grade</th>
-                            </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-5">
-                        <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10
-                            of 57 entries
-                        </div>
-                    </div>
-                    <div class="col-sm-7">
-                        <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                            <ul class="pagination">
-                                <li class="paginate_button previous disabled" id="example1_previous"><a href="#"
-                                                                                                        aria-controls="example1"
-                                                                                                        data-dt-idx="0"
-                                                                                                        tabindex="0">Previous</a>
-                                </li>
-                                <li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1"
-                                                                      tabindex="0">1</a></li>
-                                <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="2"
-                                                                tabindex="0">2</a></li>
-                                <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="3"
-                                                                tabindex="0">3</a></li>
-                                <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="4"
-                                                                tabindex="0">4</a></li>
-                                <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="5"
-                                                                tabindex="0">5</a></li>
-                                <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="6"
-                                                                tabindex="0">6</a></li>
-                                <li class="paginate_button next" id="example1_next"><a href="#" aria-controls="example1"
-                                                                                       data-dt-idx="7"
-                                                                                       tabindex="0">Next</a></li>
-                            </ul>
-                        </div>
-                    </div>
+        <!-- SEARCH FORM -->
+        <form class="form-inline ml-3">
+            <div class="input-group input-group-sm">
+                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-navbar" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
             </div>
+        </form>
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+            <!-- Messages Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="far fa-comments"></i>
+                    <span class="badge badge-danger navbar-badge">3</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <a href="#" class="dropdown-item">
+                        <!-- Message Start -->
+                        <div class="media">
+                            <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    Brad Diesel
+                                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">Call me whenever you can...</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                        </div>
+                        <!-- Message End -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <!-- Message Start -->
+                        <div class="media">
+                            <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    John Pierce
+                                    <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">I got your message bro</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                        </div>
+                        <!-- Message End -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <!-- Message Start -->
+                        <div class="media">
+                            <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    Nora Silvester
+                                    <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">The subject goes here</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                        </div>
+                        <!-- Message End -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                </div>
+            </li>
+            <!-- Notifications Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="far fa-bell"></i>
+                    <span class="badge badge-warning navbar-badge">15</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <span class="dropdown-item dropdown-header">15 Notifications</span>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> 4 new messages
+                        <span class="float-right text-muted text-sm">3 mins</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-users mr-2"></i> 8 friend requests
+                        <span class="float-right text-muted text-sm">12 hours</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-file mr-2"></i> 3 new reports
+                        <span class="float-right text-muted text-sm">2 days</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
+                    <i class="fas fa-th-large"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="index3.html" class="brand-link">
+            <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                 style="opacity: .8">
+            <span class="brand-text font-weight-light">AdminLTE 3</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block">Alexander Pierce</a>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item">
+                        <a href="{{url('hello')}}" class="nav-link">
+                            <i class="nav-icon fas fa-edit"></i>
+                            <p>
+                                Add and Remove complaints
+                            </p>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
         </div>
-        <!-- /.box-body -->
-    </div>
+        <!-- /.sidebar -->
+    </aside>
 
-@stop
+    <!-- Content Wrapper. Contains page content -->
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
+{{--    <!-- /.content-wrapper -->--}}
+{{--    <footer class="main-footer">--}}
+{{--        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>--}}
+{{--        All rights reserved.--}}
+{{--        <div class="float-right d-none d-sm-inline-block">--}}
+{{--            <b>Version</b> 3.0.1--}}
+{{--        </div>--}}
+{{--    </footer>--}}
 
-@section('js')
-    <script> console.log('Hi!'); </script>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
 
-    <!-- jQuery 3 -->
-    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap 3.3.7 -->
-    <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- DataTables -->
-    <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <!-- SlimScroll -->
-    <script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-    <!-- FastClick -->
-    <script src="../../bower_components/fastclick/lib/fastclick.js"></script>
-    <!-- AdminLTE App -->
-    <script src="{{asset("vendor/adminlte/dist/js/adminlte.min.js")}}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
-    <!-- page script -->
-    <script>
-        $(function () {
-            $('#example1').DataTable()
-            $('#example2').DataTable({
-                'paging': true,
-                'lengthChange': true,
-                'searching': true,
-                'ordering': true,
-                'info': true,
-                'autoWidth': false
-            })
-        })
-    </script>
-@stop
+<!-- jQuery -->
+<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{{asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- ChartJS -->
+<script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
+<!-- Sparkline -->
+<script src="{{asset('plugins/sparklines/sparkline.js')}}"></script>
+<!-- JQVMap -->
+<script src="{{asset('plugins/jqvmap/jquery.vmap.min.js')}}"></script>
+<script src="{{asset('plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
+<!-- jQuery Knob Chart -->
+<script src="{{asset('plugins/jquery-knob/jquery.knob.min.js')}}"></script>
+<!-- daterangepicker -->
+<script src="{{asset('plugins/moment/moment.min.js')}}"></script>
+<script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{{asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+<!-- Summernote -->
+<script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
+<!-- overlayScrollbars -->
+<script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+<!-- AdminLTE App -->
+<script src="{{asset('dist/js/adminlte.js')}}"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{asset('dist/js/demo.js')}}"></script>
+</body>
+</html>
