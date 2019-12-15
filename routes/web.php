@@ -33,16 +33,7 @@ Route::get('/view_complaints', 'ComplaintController@getViewComplaints');
 Route::get('/admin', function () {
     return view('admin.dashboard');
 });
-//Route::get('/view_complaints', function () {
-//    return view('viewpages.view_complaint');
-//});
-
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-});
-Route::get('/hello', function () {
-    return view('admin.dashboard');
-});
+Route::get('edit/{id}', 'ComplaintController@getEditComplain');
 
 Route::post('fill_sub_category',  function(\Illuminate\Http\Request $request){
      $parent_category=$request->category_id;

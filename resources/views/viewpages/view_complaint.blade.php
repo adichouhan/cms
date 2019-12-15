@@ -16,6 +16,7 @@
                 <table>
                     <tr>
                         <th>Compleint ID</th>
+                        <th>Image</th>
                         <th>Compleints</th>
                         <th>Location</th>
                         <th>Expected Date</th>
@@ -26,6 +27,8 @@
                     @foreach($arrObjComplaints as $objComplaint)
                     <tr>
                         <td>{{$objComplaint->id}}</td>
+                        <td><img src="{{ URL::to('/') }}/{{ $objComplaint->image }}" class="img-thumbnail"
+                                      width="75"/></td>
                         <td>
                             @if(json_decode($objComplaint->complaints) != null || json_decode($objComplaint->complaints) != '')
                                 @foreach(json_decode($objComplaint->complaints) as $index =>$objComplaints)
@@ -39,7 +42,7 @@
                         <td>{{$objComplaint->priority}}</td>
                         <td>{{$objComplaint->maerials}}</td>
                         <td><a href="{{url('edit',$objComplaint->id)}}" class="btn btn-warning" title="Edit product"><i
-                                    class="fa fa-edit"></i></a>
+                                    class="fa fa-edit">Edit</i></a>
                         </td>
                     </tr>
                         @endforeach
