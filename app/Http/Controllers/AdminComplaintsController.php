@@ -28,6 +28,7 @@ class AdminComplaintsController extends Controller
     public function edit(Complaint $complaint)
     {
         $data = Category::all();
+
         $output='';
         foreach ($data as $item){
             $output .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';
@@ -45,7 +46,7 @@ class AdminComplaintsController extends Controller
      */
     public function update(Request $request, Complaint $complaint)
     {
-        //
+        dd($request->all());
     }
 
 }

@@ -26,12 +26,13 @@
                 }
                 ?>
 
-                <form method="post" action="{{ url('update/complaint/') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/admin/update/complaint/'.$objComplaints->id) }}" enctype="multipart/form-data">
                     <div class="box-body">
                         @csrf
 
                         @foreach($arrComplaint as $index=>$complaint)
                             <?php
+
                             $count++;
                             $data = \App\Category::all();
                             $selectedCat = '';
@@ -59,7 +60,8 @@
                             }
 
                             ?>
-                            <div class="addedSection"><select name="complaint[{{$count}}][main]"
+                            <div class="addedSection">
+                                <select name="complaint[{{$count}}][main]"
                                                               class="form-control item_category"
                                                               data-sub_category_id="{{$count}}">
                                     <option value="">Select Category</option>{!! $selectedCat !!}</select>
@@ -109,14 +111,14 @@
                     <div class="form-group">
                         <label for="date">Expected Date</label>
                         <input type="datetime-local" class="form-control" name="expdate"
-                               value="{{isset($objComplaints->expected_date)?$objComplaints->expected_date:''}}"
+                               value="{{isset($objComplaints->expected_date)?strtotime($objComplaints->expected_date):''}}"
                                id="date" placeholder="">
                     </div>
 
                     <div class="form-group">
                         <label for="material">Material(if any)</label>
                         <input type="text" class="form-control"
-                               value="{{isset($objComplaints->expected_date)?$objComplaints->expected_date:''}}"
+                               value="{{isset($objComplaints->maerials)?$objComplaints->maerials:''}}"
                                name="material" id="material" placeholder="">
                     </div>
 
@@ -163,7 +165,21 @@
                                                     </option>
                                                 </select>
                                             </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="inputState">Priority</label>
+                            <select id="inputState" class="form-control" name="priority">
+                                <option
+                                    value="low" {{(isset($objComplaints->priority) && $objComplaints->priority=='low')? 'selected':'' }}>
+                                </option>
+                            </select>
                         </div>
+                    </div>
+
+                    <br>
+                    <div class="form-group">
+                        <button type="submit"  class="btn btn-primary" >Submit</button>
+                    </div>
 
             </form>
             </div>

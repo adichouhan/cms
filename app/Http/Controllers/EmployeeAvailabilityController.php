@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
+use App\EmployeeAvailability;
 use Illuminate\Http\Request;
 
-class EmployeeController extends Controller
+class EmployeeAvailabilityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +25,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-       return view('admin.employee.create');
+       $arrEmployee=Employee::all();
+       return view('admin.employee.availability_status', ['arrEmployee'=>$arrEmployee]);
     }
 
     /**
@@ -35,55 +37,55 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $objEmployee=new Employee();
-        $objEmployee->name=$request->name;
-        $objEmployee->role=$request->role;
-        $objEmployee->save();
-        redirect('/admin/employee/create')->with('Employee created successfully');
+        $objAvailability=new EmployeeAvailability();
+        $objAvailability->employee_id=$request->employee;
+        $objAvailability->status=$request->employee;
+        $objAvailability->onWork=$request->onwork_status;
+        $objAvailability->save();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Employee  $employee
+     * @param  \App\EmployeeAvailability  $employeeAvailability
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show(EmployeeAvailability $employeeAvailability)
     {
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Employee  $employee
+     * @param  \App\EmployeeAvailability  $employeeAvailability
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit(EmployeeAvailability $employeeAvailability)
     {
-
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Employee  $employee
+     * @param  \App\EmployeeAvailability  $employeeAvailability
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, EmployeeAvailability $employeeAvailability)
     {
-
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Employee  $employee
+     * @param  \App\EmployeeAvailability  $employeeAvailability
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy(EmployeeAvailability $employeeAvailability)
     {
-
+        //
     }
 }

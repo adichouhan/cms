@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8d281a1-9d22-4a9d-b6b1-4ce46876fa77" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/employee/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/employee/availability_status.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ComplaintController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ComplaintController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_13_190237_create_complaints_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_13_190237_create_complaints_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Employee.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Employee.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminComplaintsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminComplaintsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EmployeeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmployeeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/complaints/complaint_view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/complaints/complaint_view.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/complaints/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/complaints/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/employee/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/employee/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/layout/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/layout/sidebar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -188,7 +191,7 @@
       <workItem from="1576297431296" duration="14394000" />
       <workItem from="1576382844659" duration="11434000" />
       <workItem from="1576410066590" duration="10761000" />
-      <workItem from="1576429182002" duration="5460000" />
+      <workItem from="1576429182002" duration="11951000" />
     </task>
     <servers />
   </component>
@@ -210,10 +213,10 @@
     </state>
     <state x="412" y="114" width="580" height="564" key="MultipleFileMergeDialog/49.27.1317.741@49.27.1317.741" timestamp="1576344361137" />
     <state x="565" y="151" width="580" height="564" key="MultipleFileMergeDialog/49.27.1871.1053@49.27.1871.1053" timestamp="1576414647318" />
-    <state x="503" y="322" width="399" height="149" key="NewPhpFileDialog" timestamp="1576434030732">
+    <state x="503" y="322" width="399" height="149" key="NewPhpFileDialog" timestamp="1576439212067">
       <screen x="49" y="27" width="1317" height="741" />
     </state>
-    <state x="503" y="322" width="399" height="149" key="NewPhpFileDialog/49.27.1317.741@49.27.1317.741" timestamp="1576434030732" />
+    <state x="503" y="322" width="399" height="149" key="NewPhpFileDialog/49.27.1317.741@49.27.1317.741" timestamp="1576439212067" />
     <state x="196" y="31" key="SettingsEditor" timestamp="1576396503883">
       <screen x="49" y="27" width="1317" height="741" />
     </state>
@@ -226,9 +229,10 @@
       <screen x="49" y="27" width="1317" height="741" />
     </state>
     <state x="353" y="132" width="868" height="528" key="find.popup/49.27.1317.741@49.27.1317.741" timestamp="1576394863149" />
-    <state x="648" y="253" key="run.anything.popup" timestamp="1576414848996">
-      <screen x="49" y="27" width="1871" height="1053" />
+    <state x="471" y="186" key="run.anything.popup" timestamp="1576439716262">
+      <screen x="49" y="27" width="1317" height="741" />
     </state>
+    <state x="471" y="186" key="run.anything.popup/49.27.1317.741@49.27.1317.741" timestamp="1576439716262" />
     <state x="648" y="253" key="run.anything.popup/49.27.1871.1053@49.27.1871.1053" timestamp="1576414848996" />
     <state x="505" y="115" width="955" height="964" key="search.everywhere.popup" timestamp="1576411238257">
       <screen x="49" y="27" width="1871" height="1053" />

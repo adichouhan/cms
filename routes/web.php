@@ -21,8 +21,15 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/complaints', 'AdminComplaintsController@index');
 
     Route::get('/complaints/edit/{complaint}', 'AdminComplaintsController@edit');
+    Route::post('/update/complaint/{complaint}', 'AdminComplaintsController@update');
 
     Route::get('/employee/create', 'EmployeeController@create');
+    Route::post('/employee/store', 'EmployeeController@store');
+
+    Route::get('/employee/availability/create', 'EmployeeAvailabilityController@create');
+    Route::post('/employee/availability/store', 'EmployeeAvailabilityController@store');
+
+    Route::get('/employee', 'EmployeeController@index');
 });
 
 

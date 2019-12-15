@@ -46,7 +46,7 @@
                     <a href="{{url('complaints')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            create Quote
+                            Create Quote
                         </p>
                     </a>
                 </li>
@@ -55,7 +55,7 @@
                     <a href="{{url('hello')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            create Bill/Invoice
+                            Create Bill/Invoice
                         </p>
                     </a>
                 </li>
@@ -87,7 +87,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{url('hello')}}" class="nav-link">
+                    <a href="{{url('/admin/employee/create')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Employee Availability
