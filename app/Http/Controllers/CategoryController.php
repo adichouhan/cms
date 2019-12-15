@@ -13,6 +13,6 @@ class CategoryController extends Controller
        foreach ($data as $item){
            $output .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';
        }
-        return view('Book_Complaint',['output' => $output]);
+        return view('Book_Complaint',['output' => $output,'type' => '']);
     }
 }

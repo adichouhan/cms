@@ -4,7 +4,45 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-7">
-      <form method="post" action="{{ url('register/complaint') }}" enctype="multipart/form-data">
+                @if($type == 'edit')
+                    <form method="post" action="{{ url('update/complaint') }}" enctype="multipart/form-data">
+                        <div class="box-body">
+                            @csrf
+                            <div>
+                                <div id="addsection"></div>
+                            </div>
+                            <button type="button" class="btn btn-dark add" >Add Issue</button>
+                            <div class="form-group">
+                                <label for="location">Location(Branch Name)*</label>
+                                <input type="text" class="form-control" id="location" name="location" placeholder="" value="{{$objComplaint->location}}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputState">Priority</label>
+                                <select id="inputState" class="form-control" name="priority">
+                                    <option value="low">Low</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>}
+                            <div class="form-group">
+                                <label for="date">Expected Date</label>
+                                <input type="datetime-local" class="form-control" name="expdate" id="date" placeholder=""  value="{{$objComplaint->expected_date}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="material">Location</label>
+                                <input type="text" class="form-control"  name="material" id="material" placeholder="" value="{{$objComplaint->maerials}}">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1">Example file input</label>
+                                <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Sign in</button>
+                        </div>
+                    </form>
+                    @else
+            <form method="post" action="{{ url('register/complaint') }}" enctype="multipart/form-data">
       <div class="box-body">
          @csrf
         <div>
@@ -42,6 +80,7 @@
         <button type="submit" class="btn btn-primary">Sign in</button>
       </div>
     </form>
+                    @endif
             </div>
             <div class="col-3"></div>
         </div>

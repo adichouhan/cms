@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Complaint;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -67,9 +68,16 @@ class ComplaintController extends Controller
      * @param  \App\Complaint  $complaint
      * @return \Illuminate\Http\Response
      */
-    public function edit(Complaint $complaint)
+    public function getEditComplain($id)
     {
-        //
+       $objComplaint =Complaint::findOrFail($id);
+        $data = Category::all();
+        $output='';
+        foreach ($data as $item){
+            $output .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';
+        }
+        return view('Book_Complaint',['output' => $output,'objComplaint' => $objComplaint,'type'=>'edit']);
+
     }
 
     /**

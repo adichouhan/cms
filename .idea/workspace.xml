@@ -13,8 +13,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Category.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ComplaintController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ComplaintController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/viewpages/view_complaint.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/complaints/view_complaint.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +197,7 @@
       <workItem from="1576168093305" duration="3829000" />
       <workItem from="1576297431296" duration="14394000" />
       <workItem from="1576382844659" duration="11434000" />
-      <workItem from="1576410066590" duration="4428000" />
+      <workItem from="1576410066590" duration="4581000" />
     </task>
     <servers />
   </component>
@@ -216,10 +214,11 @@
       <screen x="49" y="27" width="1317" height="741" />
     </state>
     <state x="490" y="154" width="424" height="484" key="FileChooserDialogImpl/49.27.1317.741@49.27.1317.741" timestamp="1576345806604" />
-    <state x="412" y="114" width="580" height="564" key="MultipleFileMergeDialog" timestamp="1576344361137">
-      <screen x="49" y="27" width="1317" height="741" />
+    <state x="565" y="151" width="580" height="564" key="MultipleFileMergeDialog" timestamp="1576414647318">
+      <screen x="49" y="27" width="1871" height="1053" />
     </state>
     <state x="412" y="114" width="580" height="564" key="MultipleFileMergeDialog/49.27.1317.741@49.27.1317.741" timestamp="1576344361137" />
+    <state x="565" y="151" width="580" height="564" key="MultipleFileMergeDialog/49.27.1871.1053@49.27.1871.1053" timestamp="1576414647318" />
     <state x="503" y="322" width="399" height="149" key="NewPhpFileDialog" timestamp="1576394319857">
       <screen x="49" y="27" width="1317" height="741" />
     </state>
