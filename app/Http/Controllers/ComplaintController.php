@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Complaint;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class ComplaintController extends Controller
 {
@@ -42,7 +43,7 @@ class ComplaintController extends Controller
         $objComplaints->priority = $request->priority;
         $objComplaints->maerials = $request->material;
         $objComplaints->complaints  = json_encode($request->get('complaint'));
-        $objComplaints->image       = $request->file('image')->store('product');
+        $objComplaints->image       = $request->file('image')->store('complaint');
 //        dd($objComplaints);
         $objComplaints->save();
         return redirect('home')->with('success', 'Data Added successfully.');
@@ -57,7 +58,7 @@ class ComplaintController extends Controller
     public function getViewComplaints()
     {
         $arrObjComplaints = Complaint::all();
-        return view('viewpages.view_complaint',['arrObjComplaints' => $arrObjComplaints]);
+        return view('complaints.view_complaint',['arrObjComplaints' => $arrObjComplaints]);
     }
 
     /**

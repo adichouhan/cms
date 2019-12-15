@@ -11,6 +11,25 @@
 |
 */
 
+
+Route::group([ 'prefix' => 'admin' ], function() {
+
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    });
+
+    Route::get('/complaints', 'AdminComplaintsController@index');
+
+    Route::get('/complaints/edit/{complaint}', 'AdminComplaintsController@edit');
+
+});
+
+
+Route::get('{filename}', function ($filename)
+{
+    return Image::make(storage_path( $filename))->response();
+});
+
 Route::get('/complaints', function () {
     return view('complaints');
 })->middleware('auth');
@@ -19,30 +38,26 @@ Route::get('/assets', function () {
     return view('assets');
 })->middleware('auth');
 
-Route::get('/', function () {
-    return view('service_book');
-})->middleware('auth');
 
 Route::get('/service', function () {
     return view('service_book');
 })->middleware('auth');
+
 Route::get('/book', 'CategoryController@bookForm');
 
 Route::post('/register/complaint', 'ComplaintController@postComplaints');
+
 Route::get('/view_complaints', 'ComplaintController@getViewComplaints');
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-});
+
 //Route::get('/view_complaints', function () {
-//    return view('viewpages.view_complaint');
+//    return view('complaints.view_complaint');
 //});
 
 Route::get('/admin', function () {
-    return view('admin.dashboard');
+    return view('admin.admin_template');
 });
-Route::get('/hello', function () {
-    return view('admin.dashboard');
-});
+
+
 
 Route::post('fill_sub_category',  function(\Illuminate\Http\Request $request){
      $parent_category=$request->category_id;

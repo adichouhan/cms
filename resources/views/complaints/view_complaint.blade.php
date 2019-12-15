@@ -15,8 +15,8 @@
 
                 <table>
                     <tr>
-                        <th>Compleint ID</th>
-                        <th>Compleints</th>
+                        <th>Complaint ID</th>
+                        <th>Complaints</th>
                         <th>Location</th>
                         <th>Expected Date</th>
                         <th>Priority</th>
@@ -26,11 +26,14 @@
                     @foreach($arrObjComplaints as $objComplaint)
                     <tr>
                         <td>{{$objComplaint->id}}</td>
-                        <td>
-                            @if(json_decode($objComplaint->complaints) != null || json_decode($objComplaint->complaints) != '')
-                                @foreach(json_decode($objComplaint->complaints) as $index =>$objComplaints)
-                                    <div>{{$index}} {{$objComplaints->name}}{{$objComplaints->main}}{{$objComplaints->sub}}</div>
-
+                        <td>    @if(json_decode($objComplaint->complaints) != null || json_decode($objComplaint->complaints) != '')
+                                @foreach(json_decode($objComplaint->complaints) as $index =>$objComplain)
+                                    {{$index}}
+                                    <?php
+                                    $category=\App\Category::where('id', $objComplain->main)->first();
+                                    $subCategory=\App\SubCategory::where('id', $objComplain->sub)->first();
+                                    ?>
+                                    {{$category->category_title}}:{{$subCategory->subcategory_title}}
                                 @endforeach
                             @endif
                         </td>
@@ -38,8 +41,13 @@
                         <td>{{$objComplaint->expected_date}}</td>
                         <td>{{$objComplaint->priority}}</td>
                         <td>{{$objComplaint->maerials}}</td>
-                        <td><a href="{{url('edit',$objComplaint->id)}}" class="btn btn-warning" title="Edit product"><i
-                                    class="fa fa-edit"></i></a>
+                        <td>
+                            <a href="{{ route('contacts.edit',$contact->id)}}" class="btn btn-primary">Edit</a>
+                            <form action="{{ route('contacts.destroy', $contact->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                            </form>
                         </td>
                     </tr>
                         @endforeach
