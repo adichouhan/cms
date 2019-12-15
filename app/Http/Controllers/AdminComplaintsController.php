@@ -36,4 +36,16 @@ class AdminComplaintsController extends Controller
         return view('admin.complaints.edit', ['objComplaints' => $complaint, 'output' =>$output ]);
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Complaint  $complaint
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Complaint $complaint)
+    {
+        //
+    }
+
 }
