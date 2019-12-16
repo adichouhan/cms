@@ -4,9 +4,9 @@
     <list default="true" id="b8d281a1-9d22-4a9d-b6b1-4ce46876fa77" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/database/migrations/2019_12_15_175005_create_employees_table.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/database/migrations/2019_12_15_183610_create_products_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/assetes/Products/add.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/assetes/Products/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/assetes/Products/list_view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/assets/Products/add.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/assets/Products/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/assets/Products/list_view.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/resources/views/complaints/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Employee.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Employee.php" afterDir="false" />
@@ -18,8 +18,6 @@
       <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_13_190237_create_complaints_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_13_190237_create_complaints_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_15_194311_create_employee_availabilities_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_15_194311_create_employee_availabilities_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/assetes/book_asset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/assetes/book_asset.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/assetes/view_assets.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/assetes/view_assets.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/assets.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/assets.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/complaints.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/complaints.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/complaints/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AssetProductController.php" afterDir="false" />
@@ -151,11 +149,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/admin/assets" />
+      <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/resources/views/admin" />
       <recent name="$PROJECT_DIR$/resources/views/complaints" />
       <recent name="$PROJECT_DIR$/resources/views/admin/complaints" />
-      <recent name="$PROJECT_DIR$/resources/views/admin/layout" />
-      <recent name="$PROJECT_DIR$/resources/views/admin_layouts" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views/admin/complaints" />
@@ -206,7 +204,7 @@
       <workItem from="1576382844659" duration="11434000" />
       <workItem from="1576410066590" duration="10761000" />
       <workItem from="1576429182002" duration="12710000" />
-      <workItem from="1576458815521" duration="7784000" />
+      <workItem from="1576458815521" duration="8842000" />
     </task>
     <servers />
   </component>

@@ -33,12 +33,12 @@ Route::group([ 'prefix' => 'admin' ], function() {
 
 Route::get('/complaints', function () {
     return view('complaints');
-})->middleware('auth');
+});
 
 
 Route::get('/', function () {
     return view('service_book');
-})->middleware('auth');
+});
 
 Route::get('/book', 'CategoryController@bookForm');
 
