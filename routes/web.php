@@ -32,6 +32,11 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/edit/asset/product/{product}', 'AssetProductController@edit');
     Route::post('/edit/asset/product/{product}', 'AssetProductController@update');
 
+    Route::get('/product', 'ProductsController@index');
+    Route::get('/add/product', 'ProductsController@create');
+    Route::post('/add/product', 'ProductsController@store');
+    Route::get('/edit/product/{product}', 'ProductsController@edit');
+    Route::post('/edit/product/{product}', 'ProductsController@update');
 
     Route::get('/documents', 'DocumentController@index');
     Route::get('/documents/create', 'DocumentController@create');

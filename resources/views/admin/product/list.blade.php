@@ -41,18 +41,22 @@
                                 aria-label="Browser: activate to sort column ascending" style="width: 207px;">Product Name
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                aria-label="Browser: activate to sort column ascending" style="width: 207px;">Product Unit
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                 aria-label="Browser: activate to sort column ascending" style="width: 207px;">Action
                             </th>
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach($arrAssetProduct as  $assetProduct)
+                            @foreach($arrObjProduct as  $assetProduct)
                                 <tr>
                                     <td>{{$assetProduct->id}}</td>
-                                    <td>{{$assetProduct->name}}</td>
+                                    <td>{{$assetProduct->product_name}}</td>
+                                    <td>{{$assetProduct->product_unit}}</td>
                                     <td>
-                                        <a href="{{url('admin/assets/product/edit/'.$assetProduct->id)}}" class="btn btn-primary">Edit</a>
-                                        <form action="{{url('admin/assets/product/delete/'.$assetProduct->id)}}" method="post">
+                                        <a href="{{url('admin/product/edit/'.$assetProduct->id)}}" class="btn btn-primary">Edit</a>
+                                        <form action="{{url('admin/product/delete/'.$assetProduct->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger" type="submit">Delete</button>

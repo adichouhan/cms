@@ -10,21 +10,22 @@ class ProductsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        //
+        $arrObjProduct=Products::all();
+        return view('product.list', ['arrObjProduct'=>$arrObjProduct]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        //
+        return view('product.add');
     }
 
     /**
@@ -35,7 +36,10 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $objProduct=new Products();
+        $objProduct->product_name=$request->product_name;
+        $objProduct->product_unit=$request->product_unit;
+        $objProduct->save();
     }
 
     /**
@@ -53,11 +57,13 @@ class ProductsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Products  $products
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Products $products)
+    public function edit($id)
     {
-        //
+        $objProduct=Products::findorfail($id);
+        return view('product.add', ['objProduct'=>$objProduct]);
+
     }
 
     /**
