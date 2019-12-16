@@ -48,6 +48,7 @@ class ComplaintController extends Controller
         $objComplaints->expected_date = $request->expdate;
         $objComplaints->priority = $request->priority;
         $objComplaints->maerials = $request->material;
+        $objComplaints->user_id  = auth()->user()->id;
         $objComplaints->complaints = json_encode($request->get('complaint'));
         $objComplaints->image = $request->file('image')->store('complaint');
         $objComplaints->save();
@@ -62,7 +63,8 @@ class ComplaintController extends Controller
      */
     public function getViewComplaints()
     {
-        $arrObjComplaints = Complaint::all();
+        $userId=auth()->user()->id;
+        $arrObjComplaints = Complaint::where('user_id', $userId)->get();
         return view('complaints.view_complaint', ['arrObjComplaints' => $arrObjComplaints]);
     }
 

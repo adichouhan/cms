@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8d281a1-9d22-4a9d-b6b1-4ce46876fa77" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminComplaintsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/complaints/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminComplaintsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminComplaintsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ComplaintController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ComplaintController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -125,23 +127,24 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers/Admin" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/resources/views/admin/complaints" />
-      <recent name="$PROJECT_DIR$/resources/views" />
-      <recent name="C:\Users\DELL\cms\public" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views/admin/assets" />
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/resources/views/admin" />
       <recent name="$PROJECT_DIR$/resources/views/complaints" />
       <recent name="$PROJECT_DIR$/resources/views/admin/complaints" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Controllers/Admin" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/resources/views/admin/complaints" />
+      <recent name="$PROJECT_DIR$/resources/views" />
+      <recent name="C:\Users\DELL\cms\public" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -196,7 +199,9 @@
       <workItem from="1576479803056" duration="2473000" />
       <workItem from="1576485397668" duration="640000" />
       <workItem from="1576486226223" duration="696000" />
-      <workItem from="1576489277747" duration="2254000" />
+      <workItem from="1576489277747" duration="3145000" />
+      <workItem from="1576496285665" duration="563000" />
+      <workItem from="1576499281847" duration="1547000" />
     </task>
     <servers />
   </component>
