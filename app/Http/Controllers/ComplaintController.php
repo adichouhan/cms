@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Complaint;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 
 class ComplaintController extends Controller
