@@ -34,7 +34,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{url('hello')}}" class="nav-link">
+                    <a href="{{url('admin/assets')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             View/Modify Assets
@@ -43,7 +43,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{url('complaints')}}" class="nav-link">
+                    <a href="{{url('admin/quote')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Create Quote
@@ -52,7 +52,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{url('hello')}}" class="nav-link">
+                    <a href="{{url('invoice')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Create Bill/Invoice
@@ -61,7 +61,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{url('hello')}}" class="nav-link">
+                    <a href="{{url('')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Products

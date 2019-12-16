@@ -21,7 +21,8 @@ class AssetsController extends Controller
      */
     public function index()
     {
-        return view('assets');
+        $arrObjAssets= Assets::all();
+        return view('admin.assets.list', ['arrObjAssets' => $arrObjAssets]);
     }
 
     /**

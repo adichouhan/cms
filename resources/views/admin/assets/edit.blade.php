@@ -5,7 +5,7 @@
             <div class="col-2"></div>
             <div class="col-7">
 
-                <form method="post" action="{{ url('/admin/create/assets/') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/admin/edit/assets/') }}" enctype="multipart/form-data">
                     @csrf
                     <button type="button" class="btn btn-dark add">Add Issue</button>
                     <div class="form-group">

@@ -2,7 +2,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Complaints</h3>
+            <h3 class="card-title">Assets Request</h3>
         </div>
         <div align="left">
             <a href="{{ url('admin/assets/create') }}" class="btn btn-info">Add New </a>
@@ -67,20 +67,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($arrObjComplaints as $objComplaints)
+                            @foreach($arrObjAssets as $objasset)
                                 <tr role="row" class="odd">
-                                    <td class="sorting_1">{{$objComplaints->id}}</td>
+                                    <td class="sorting_1">{{$objasset->id}}</td>
                                     <td>
-                                        {{$objComplaints->products}}
+                                        {{$objasset->products}}
                                     </td>
-                                    <td>{{$objComplaints->location}}</td>
-                                    <td>{{$objComplaints->expected_date}}</td>
-                                    <td>{{$objComplaints->priority}}</td>
-                                    <td>{{$objComplaints->maerials}}</td>
+                                    <td>{{$objasset->location}}</td>
+                                    <td>{{$objasset->expected_date}}</td>
+                                    <td>{{$objasset->priority}}</td>
+                                    <td>{{$objasset->maerials}}</td>
                                     <td>
-                                        <a href="{{url('admin/complaints/edit/'.$objComplaints->id)}}"
+                                        <a href="{{url('admin/complaints/edit/'.$objasset->id)}}"
                                            class="btn btn-primary">Edit</a>
-                                        <form action="{{url('admin/complaints/delete/'.$objComplaints->id)}}"
+                                        <form action="{{url('admin/complaints/delete/'.$objasset->id)}}"
                                               method="post">
                                             @csrf
                                             @method('DELETE')

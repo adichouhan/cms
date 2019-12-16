@@ -2,16 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8d281a1-9d22-4a9d-b6b1-4ce46876fa77" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/product/add.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/product/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/product/list.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Cms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Cms.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/AssetsProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AssetsProduct.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AssetsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AssetsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminComplaintsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminComplaintsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AssetProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AssetProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AssetsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AssetsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ComplaintController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ComplaintController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/2019_12_16_025244_create_aseets_products_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/assets/Products/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/assets/Products/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/assets/Products/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/assets/Products/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/assets/Products/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/assets/Products/list.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/assets/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/assets/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/assets/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/assets/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/assets/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/assets/list.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/complaints/complaint_view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/complaints/complaint_view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/layout/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/layout/sidebar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
@@ -134,24 +146,24 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/zero" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin/product" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/Http/Controllers/Admin" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/resources/views/admin/complaints" />
-      <recent name="$PROJECT_DIR$/resources/views" />
-      <recent name="C:\Users\DELL\cms\public" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views/admin/assets" />
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/resources/views/admin" />
       <recent name="$PROJECT_DIR$/resources/views/complaints" />
       <recent name="$PROJECT_DIR$/resources/views/admin/complaints" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/admin/product" />
+      <recent name="$PROJECT_DIR$/app/Http/Controllers/Admin" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/resources/views/admin/complaints" />
+      <recent name="$PROJECT_DIR$/resources/views" />
     </key>
   </component>
   <component name="RunManager">
@@ -211,7 +223,7 @@
       <workItem from="1576499281847" duration="3744000" />
       <workItem from="1576505164347" duration="97000" />
       <workItem from="1576505269392" duration="497000" />
-      <workItem from="1576511837292" duration="4734000" />
+      <workItem from="1576511837292" duration="8810000" />
     </task>
     <servers />
   </component>
@@ -258,14 +270,18 @@
       <screen x="49" y="27" width="1317" height="741" />
     </state>
     <state x="196" y="31" key="SettingsEditor/49.27.1317.741@49.27.1317.741" timestamp="1576396503883" />
-    <state x="149" y="125" width="1117" height="543" maximized="true" key="VCS.FileHistoryDialog" timestamp="1576460118805">
+    <state x="149" y="125" width="1107" height="543" maximized="true" key="VCS.FileHistoryDialog" timestamp="1576516748044">
       <screen x="49" y="27" width="1317" height="741" />
     </state>
-    <state x="149" y="125" width="1117" height="543" maximized="true" key="VCS.FileHistoryDialog/49.27.1317.741@49.27.1317.741" timestamp="1576460118805" />
+    <state x="149" y="125" width="1107" height="543" maximized="true" key="VCS.FileHistoryDialog/49.27.1317.741@49.27.1317.741" timestamp="1576516748044" />
     <state x="149" y="125" width="1117" height="543" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1576442128849">
       <screen x="49" y="27" width="1317" height="741" />
     </state>
     <state x="149" y="125" width="1117" height="543" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/49.27.1317.741@49.27.1317.741" timestamp="1576442128849" />
+    <state x="149" y="125" width="1117" height="543" maximized="true" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog" timestamp="1576516825188">
+      <screen x="49" y="27" width="1317" height="741" />
+    </state>
+    <state x="149" y="125" width="1117" height="543" maximized="true" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog/49.27.1317.741@49.27.1317.741" timestamp="1576516825188" />
     <state x="363" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1576511846840">
       <screen x="49" y="27" width="1317" height="741" />
     </state>

@@ -83,7 +83,7 @@ class AdminComplaintsController extends Controller
      */
     public function update(Request $request, Complaint $complaint)
     {
-        $objComplaints = new Complaint();
+        $objComplaints = Complaint::findOrFail($request->id);
         $objComplaints->location = $request->location;
         $objComplaints->expected_date = $request->expdate;
         $objComplaints->priority = $request->priority;

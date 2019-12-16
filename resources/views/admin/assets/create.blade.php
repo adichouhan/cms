@@ -73,14 +73,7 @@
                         <input type="file" name="image" />
                     </div>
 
-                    <button type="button"  class="btn btn-primary" onclick="myFunction()">Accept</button>
-                    <button type="button" class="btn btn-primary reject" onclick="reject()">Reject</button>
-
-                    <div class="form-group" id="reject" style="display:none">
-                        <label for="rejectreason">Reject Reason</label>
-                        <input type="text" class="form-control" name="rejectreason" id="rejectreason" placeholder="">
-                    </div>
-                    <div id="accept" style="display: none">
+                    <div id="accept" >
                         <div class="form-group col-md-4">
                             <label for="inputState">Status</label>
                             <select id="inputState" class="form-control" name="status">

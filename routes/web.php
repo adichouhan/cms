@@ -26,13 +26,26 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::post('/employee/availability/store', 'EmployeeAvailabilityController@store');
     Route::get('/employee', 'EmployeeController@index');
 
-    Route::get('/add/asset/product', 'AssetProductController@store');
+    Route::get('/add/asset/product', 'AssetProductController@create');
+    Route::get('/asset/product', 'AssetProductController@index');
+    Route::post('/add/asset/product', 'AssetProductController@store');
+    Route::get('/edit/asset/product/{product}', 'AssetProductController@edit');
+    Route::post('/edit/asset/product/{product}', 'AssetProductController@update');
+
+
     Route::get('/documents', 'DocumentController@index');
     Route::get('/documents/create', 'DocumentController@create');
     Route::post('/documents/create', 'DocumentController@store');
     Route::get('/documents/edit/{document}', 'DocumentController@edit');
     Route::post('/documents/edit/{document}', 'DocumentController@update');
 
+});
+
+Route::group([ 'namespace' => '\App\Http\Controllers\Admin', 'prefix'=>'admin' ], function() {
+    Route::get('/assets', 'AssetsController@index');
+    Route::get('/assets/create', 'AssetsController@create');
+    Route::post('/create/assets', 'AssetsController@store');
+    Route::get('/edit/asset/{asset}', 'AssetsController@edit');
 });
 
 Route::get('/complaints', function () {
