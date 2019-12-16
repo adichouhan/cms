@@ -16,7 +16,7 @@ class ComplaintController extends Controller
      */
     public function index()
     {
-        //
+        return view('complaints.view_complaints');
     }
 
     /**
@@ -26,7 +26,7 @@ class ComplaintController extends Controller
      */
     public function create()
     {
-        //
+        return view('Book_complaint');
     }
 
     /**

@@ -14,10 +14,9 @@ class CreateEmployeesTable extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->unsignedInteger('id');
+            $table->increments('id');
             $table->text('name');
             $table->text('role');
-            $table->foreign('id')->references('employee_id')->on('employee_availabilities');
             $table->timestamps();
         });
     }

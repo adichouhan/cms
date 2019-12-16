@@ -2,29 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8d281a1-9d22-4a9d-b6b1-4ce46876fa77" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_12_15_175005_create_employees_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_12_15_183610_create_products_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/assets/Products/add.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/assets/Products/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/assets/Products/list_view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/complaints/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Cms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Cms.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Employee.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Employee.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/EmployeeAvailability.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/EmployeeAvailability.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminComplaintsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminComplaintsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AssetsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AssetsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ComplaintController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ComplaintController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_13_190237_create_complaints_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_13_190237_create_complaints_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_15_194311_create_employee_availabilities_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_15_194311_create_employee_availabilities_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/assets.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/assets.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_15_175005_create_employees_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_15_175005_create_employees_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/complaints.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/complaints.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/complaints/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AssetProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/service_book.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/service_book.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -143,11 +128,17 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin/complaints" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/resources/views/admin/complaints" />
+      <recent name="$PROJECT_DIR$/resources/views" />
+      <recent name="C:\Users\DELL\cms\public" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views/admin/assets" />
       <recent name="$PROJECT_DIR$/resources/views" />
@@ -155,29 +146,24 @@
       <recent name="$PROJECT_DIR$/resources/views/complaints" />
       <recent name="$PROJECT_DIR$/resources/views/admin/complaints" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/admin/complaints" />
-      <recent name="$PROJECT_DIR$/resources/views" />
-      <recent name="C:\Users\DELL\cms\public" />
-    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -205,11 +191,28 @@
       <workItem from="1576410066590" duration="10761000" />
       <workItem from="1576429182002" duration="12710000" />
       <workItem from="1576458815521" duration="8842000" />
+      <workItem from="1576470843135" duration="659000" />
+      <workItem from="1576471567074" duration="112000" />
+      <workItem from="1576471753712" duration="286000" />
+      <workItem from="1576472621862" duration="1131000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="450" y="27" width="504" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1576466320022">

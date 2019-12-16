@@ -43,10 +43,11 @@ Route::get('/', function () {
 Route::get('/book', 'CategoryController@bookForm');
 
 Route::post('/register/complaint', 'ComplaintController@postComplaints');
+Route::get('/register/complaint', 'ComplaintController@create');
 Route::get('/view_complaints', 'ComplaintController@getViewComplaints');
 Route::get('/complaints/edit/{complaint}', 'ComplaintController@edit');
-Route::post('/update/complaint/{complaint}', 'ComplaintsController@update');
-Route::post('/mycomplaints', 'ComplaintsController@getComplaintsView');
+Route::post('/update/complaint/{complaint}', 'ComplaintController@update');
+Route::get('/mycomplaints', 'ComplaintController@getComplaintsView');
 
 Route::get('/assets', 'AssetsController@index');
 Route::get('/book_asset', 'AssetsController@create');
