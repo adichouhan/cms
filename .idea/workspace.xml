@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8d281a1-9d22-4a9d-b6b1-4ce46876fa77" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/assets/Products/list.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AssetsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/assets/Products/list_view.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/assets/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/assets/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/assets/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/assets/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/assets/view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/assets/list.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -133,19 +130,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/admin/assets" />
-      <recent name="$PROJECT_DIR$/resources/views" />
-      <recent name="$PROJECT_DIR$/resources/views/admin" />
-      <recent name="$PROJECT_DIR$/resources/views/complaints" />
-      <recent name="$PROJECT_DIR$/resources/views/admin/complaints" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Admin" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/resources/views/admin/complaints" />
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="C:\Users\DELL\cms\public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/admin/assets" />
+      <recent name="$PROJECT_DIR$/resources/views" />
+      <recent name="$PROJECT_DIR$/resources/views/admin" />
+      <recent name="$PROJECT_DIR$/resources/views/complaints" />
+      <recent name="$PROJECT_DIR$/resources/views/admin/complaints" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -202,7 +199,9 @@
       <workItem from="1576486226223" duration="696000" />
       <workItem from="1576489277747" duration="3145000" />
       <workItem from="1576496285665" duration="563000" />
-      <workItem from="1576499281847" duration="3656000" />
+      <workItem from="1576499281847" duration="3744000" />
+      <workItem from="1576505164347" duration="97000" />
+      <workItem from="1576505269392" duration="497000" />
     </task>
     <servers />
   </component>

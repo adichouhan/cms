@@ -22,7 +22,7 @@
 
                     <div class="form-group">
                         <label for="inputState">Users</label>
-                        <select id="inputState" class="form-control" name="user">
+                        <select id="inputState" class="form-control" name="product">
                             @foreach($arrObjProduct as $objProduct)
                                 <option
                                     value="{{$objProduct->id}}" >
@@ -71,9 +71,7 @@
                     <div class="form-group">
                         <label for="exampleFormControlFile1">photo upload</label>
                         {{--                        <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1" >--}}
-                        <input type="file" name="image" value="{{ $objComplaints->image }}"/>
-                        <img src="{{asset($objComplaints->image)}}" class="img-thumbnail" width="100"/>
-                        <input type="hidden" name="hidden_image" value="{{ $objComplaints->image }}"/>
+                        <input type="file" name="image" />
                     </div>
 
                     <button type="button"  class="btn btn-primary" onclick="myFunction()">Accept</button>
@@ -81,32 +79,30 @@
 
                     <div class="form-group" id="reject" style="display:none">
                         <label for="rejectreason">Reject Reason</label>
-                        <input type="text" class="form-control"
-                               value="{{isset($objComplaints->rejectReason)?$objComplaints->rejectReason:''}}"
-                               name="rejectreason" id="rejectreason" placeholder="">
+                        <input type="text" class="form-control" name="rejectreason" id="rejectreason" placeholder="">
                     </div>
                     <div id="accept" style="display: none">
                         <div class="form-group col-md-4">
                             <label for="inputState">Status</label>
                             <select id="inputState" class="form-control" name="status">
                                 <option
-                                    value="booked" {{(isset($objComplaints->status) && $objComplaints->priority=='booked')? 'selected':'' }}>
+                                    value="booked" >
                                     Booked
                                 </option>
                                 <option
-                                    value="processed" {{(isset($objComplaints->priority) && $objComplaints->priority=='processed')? 'selected':'' }}>
+                                    value="processed">
                                     Processed
                                 </option>
                                 <option
-                                    value="ongoing" {{(isset($objComplaints->priority) && $objComplaints->priority=='ongoing')? 'selected':'' }}>
+                                    value="ongoing">
                                     OnGoing
                                 </option>
                                 <option
-                                    value="completed" {{(isset($objComplaints->priority) && $objComplaints->priority=='completed')? 'selected':'' }}>
+                                    value="completed" >
                                     Completed
                                 </option>
                                 <option
-                                    value="rejected" {{(isset($objComplaints->priority) && $objComplaints->priority=='rejected')? 'selected':'' }}>
+                                    value="rejected" >
                                     Rejected
                                 </option>
                             </select>
