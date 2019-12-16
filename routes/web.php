@@ -39,6 +39,7 @@ Route::get('/complaints', function () {
     return view('complaints');
 })->middleware('auth');
 
+
 Route::get('/register/user/create', 'RegisterController@create')->middleware('auth');
 
 Route::post('/register/user/create', 'RegisterController@store')->middleware('auth');
