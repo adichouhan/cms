@@ -35,6 +35,9 @@ Route::get('/complaints', function () {
     return view('complaints');
 });
 
+Route::get('/register/user/create', 'RegisterController@create');
+Route::post('/register/user/create', 'RegisterController@store');
+
 
 Route::get('/', function () {
     return view('service_book');
