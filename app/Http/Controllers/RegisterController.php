@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -23,6 +24,11 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-
+            $objUser = new User();
+            $objUser->name=$request->name;
+            $objUser->password=$request->password;
+            $objUser->email=$request->email;
+            $objUser->save();
+            redirect('/')->with('You are registered successfully. You can logged in after verification');
     }
 }
