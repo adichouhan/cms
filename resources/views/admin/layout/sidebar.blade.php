@@ -79,7 +79,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{url('documents')}}" class="nav-link">
+                    <a href="{{url('admin/documents')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Document/Agreement

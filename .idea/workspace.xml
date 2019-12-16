@@ -257,10 +257,10 @@
       <screen x="49" y="27" width="1317" height="741" />
     </state>
     <state x="490" y="154" width="424" height="484" key="FileChooserDialogImpl/49.27.1317.741@49.27.1317.741" timestamp="1576512660944" />
-    <state x="565" y="151" width="580" height="564" key="MultipleFileMergeDialog" timestamp="1576414647318">
-      <screen x="49" y="27" width="1871" height="1053" />
+    <state x="412" y="114" width="580" height="564" key="MultipleFileMergeDialog" timestamp="1576523876409">
+      <screen x="49" y="27" width="1317" height="741" />
     </state>
-    <state x="412" y="114" width="580" height="564" key="MultipleFileMergeDialog/49.27.1317.741@49.27.1317.741" timestamp="1576344361137" />
+    <state x="412" y="114" width="580" height="564" key="MultipleFileMergeDialog/49.27.1317.741@49.27.1317.741" timestamp="1576523876409" />
     <state x="565" y="151" width="580" height="564" key="MultipleFileMergeDialog/49.27.1871.1053@49.27.1871.1053" timestamp="1576414647318" />
     <state x="503" y="322" width="399" height="149" key="NewPhpFileDialog" timestamp="1576465470551">
       <screen x="49" y="27" width="1317" height="741" />
@@ -295,10 +295,10 @@
     </state>
     <state x="471" y="186" key="run.anything.popup/49.27.1317.741@49.27.1317.741" timestamp="1576439716262" />
     <state x="648" y="253" key="run.anything.popup/49.27.1871.1053@49.27.1871.1053" timestamp="1576414848996" />
-    <state x="370" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1576512764342">
+    <state x="370" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1576523796810">
       <screen x="49" y="27" width="1317" height="741" />
     </state>
-    <state x="370" y="89" width="672" height="678" key="search.everywhere.popup/49.27.1317.741@49.27.1317.741" timestamp="1576512764342" />
+    <state x="370" y="89" width="672" height="678" key="search.everywhere.popup/49.27.1317.741@49.27.1317.741" timestamp="1576523796810" />
     <state x="505" y="115" width="955" height="964" key="search.everywhere.popup/49.27.1871.1053@49.27.1871.1053" timestamp="1576411238257" />
   </component>
   <component name="XDebuggerManager">

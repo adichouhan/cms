@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Complaint;
 use App\Document;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class DocumentController extends Controller
@@ -15,8 +15,7 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        $arrObjDocuments = Document::all();
-        return view('admin.documents.list' ,['arrObjDocuments' => $arrObjDocuments]);
+
     }
 
     /**
@@ -26,7 +25,7 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        return view('admin.documents.create');
+        //
     }
 
     /**
@@ -37,13 +36,7 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
-        $objDocument = new Document();
-        $objDocument->name = $request->title;
-        $objDocument->expiry_date = $request->expirydate;
-        $objDocument->file = $request->file('file')->store('document');
-        $objDocument->save();
-        return redirect('/admin/documents')->with('success', 'Data Added successfully.');
+        //
     }
 
     /**
@@ -54,7 +47,7 @@ class DocumentController extends Controller
      */
     public function show(Document $document)
     {
-
+        //
     }
 
     /**
@@ -63,10 +56,9 @@ class DocumentController extends Controller
      * @param  \App\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Document $document)
     {
-       $objDocuments = Document::findOrFail($id);
-        return view('admin.documents.edit',['objDocuments' => $objDocuments]);
+        //
     }
 
     /**
@@ -76,14 +68,9 @@ class DocumentController extends Controller
      * @param  \App\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Document $document)
     {
-        $objDocument = Document::findOrFail($request->id);
-        $objDocument->name = $request->title;
-        $objDocument->expiry_date = $request->expirydate;
-        $objDocument->file = $request->file('file')->store('document');
-        $objDocument->save();
-        return redirect('/admin/documents')->with('success', 'Data Added successfully.');
+        //
     }
 
     /**

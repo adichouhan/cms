@@ -35,9 +35,9 @@ Route::group([ 'prefix' => 'admin' ], function() {
 
     Route::get('/documents', 'DocumentController@index');
     Route::get('/documents/create', 'DocumentController@create');
-    Route::post('/documents/create', 'DocumentController@store');
-    Route::get('/documents/edit/{document}', 'DocumentController@edit');
-    Route::post('/documents/edit/{document}', 'DocumentController@update');
+    Route::post('/document/stored', 'DocumentController@store');
+    Route::get('/document/edit/{document}', 'DocumentController@edit');
+    Route::post('/document/update', 'DocumentController@update');
 
 });
 
