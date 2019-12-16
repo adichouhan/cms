@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Complaint;
+use App\Employee;
+use App\EmployeeAvailability;
 use Illuminate\Http\Request;
 
 class AdminComplaintsController extends Controller
@@ -33,6 +35,8 @@ class AdminComplaintsController extends Controller
         foreach ($data as $item){
             $output .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';
         }
+
+        $arrEmployees=EmployeeAvailability::with('employee')->where('available_status', '1')->where('onWork', '!=', '1')->get();
 
         return view('admin.complaints.edit', ['objComplaints' => $complaint, 'output' =>$output ]);
     }

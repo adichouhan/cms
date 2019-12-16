@@ -20,7 +20,13 @@ class CreateComplaintsTable extends Migration
             $table->dateTime('expected_date')->nullable();
             $table->text('priority')->nullable();
             $table->text('maerials')->nullable();
-            $table->integer('user_id')->nullable();
+            $table->text('work_status')->nullable();
+            $table->text('isCancelled')->nullable();
+            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('employee_id')->nullable();
+//
+//            $table->foreign('employee_id')->references('id')->on('employee');
+//            $table->foreign('user_id')->references('id')->on('users');
             $table->text('image')->nullable();
             $table->timestamps();
         });

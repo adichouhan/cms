@@ -42,6 +42,7 @@ class AssetsController extends Controller
         $objAssest->expected_date = $request->expdate;
         $objAssest->priority = $request->priority;
         $objAssest->maerials = $request->material;
+        $objAssest->user_id = auth()->user()->id;
         $objAssest->products  = '';
         $objAssest->image       = $request->file('image')->store('assets');
         $objAssest->save();
@@ -104,5 +105,10 @@ class AssetsController extends Controller
         $data = Assets::findOrFail($id);
         $data->delete();
         return redirect('assets')->with('success', 'Data Added successfully.');
+    }
+
+
+    public function getAssetView(){
+        return view('assets');
     }
 }

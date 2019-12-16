@@ -13,23 +13,20 @@
 
 
 Route::group([ 'prefix' => 'admin' ], function() {
-
     Route::get('/', function () {
         return view('admin.dashboard');
     });
 
     Route::get('/complaints', 'AdminComplaintsController@index');
-
     Route::get('/complaints/edit/{complaint}', 'AdminComplaintsController@edit');
     Route::post('/update/complaint/{complaint}', 'AdminComplaintsController@update');
-
     Route::get('/employee/create', 'EmployeeController@create');
     Route::post('/employee/store', 'EmployeeController@store');
-
     Route::get('/employee/availability/create', 'EmployeeAvailabilityController@create');
     Route::post('/employee/availability/store', 'EmployeeAvailabilityController@store');
-
     Route::get('/employee', 'EmployeeController@index');
+
+    Route::get('/add/asset/product', 'AssetProductController@store');
 });
 
 
@@ -39,32 +36,31 @@ Route::get('/complaints', function () {
 })->middleware('auth');
 
 
-Route::get('/service', function () {
+Route::get('/', function () {
     return view('service_book');
 })->middleware('auth');
 
 Route::get('/book', 'CategoryController@bookForm');
 
 Route::post('/register/complaint', 'ComplaintController@postComplaints');
-
 Route::get('/view_complaints', 'ComplaintController@getViewComplaints');
-
+Route::get('/complaints/edit/{complaint}', 'ComplaintController@edit');
+Route::post('/update/complaint/{complaint}', 'ComplaintsController@update');
+Route::post('/mycomplaints', 'ComplaintsController@getComplaintsView');
 
 Route::get('/assets', 'AssetsController@index');
-
 Route::get('/book_asset', 'AssetsController@create');
 Route::post('/register/asset', 'AssetsController@store');
 Route::get('/edit/asset/{asset}', 'AssetsController@edit');
 Route::get('/delete/asset/{asset}', 'AssetsController@destroy');
 Route::post('/update/asset', 'AssetsController@update');
 Route::get('/view/assets', 'AssetsController@show');
+Route::get('/myassets', 'AssetsController@getAssetView');
 
 
 Route::get('/admin', function () {
     return view('admin.admin_template');
 });
-
-
 
 Route::post('fill_sub_category',  function(\Illuminate\Http\Request $request){
      $parent_category=$request->category_id;
@@ -78,4 +74,4 @@ Route::post('fill_sub_category',  function(\Illuminate\Http\Request $request){
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/home', 'HomeController@index')->name('home');

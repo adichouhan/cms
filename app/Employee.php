@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
    public function availability(){
-      return $this->hasMany('App/EmployeeAvailability', 'id', 'gi st'
+      return $this->hasMany('App/EmployeeAvailability', 'employee_id', 'id');
    }
 }

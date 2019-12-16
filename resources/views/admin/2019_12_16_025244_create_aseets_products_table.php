@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmployeeAvailabilitiesTable extends Migration
+class CreateAseetsProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateEmployeeAvailabilitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employee_availabilities', function (Blueprint $table) {
+        Schema::create('aseets_products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('employee_id');
-            $table->integer('available_status')->nullable();
-            $table->integer('onWork')->nullable();
+            $table->text('asset_product');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateEmployeeAvailabilitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employee_availabilities');
+        Schema::dropIfExists('aseets_products');
     }
 }

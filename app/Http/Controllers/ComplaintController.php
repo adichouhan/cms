@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Complaint;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 
 class ComplaintController extends Controller
@@ -32,19 +33,19 @@ class ComplaintController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function postComplaints(Request $request)
     {
 
-       $objComplaints = new Complaint();
+        $objComplaints = new Complaint();
         $objComplaints->location = $request->location;
         $objComplaints->expected_date = $request->expdate;
         $objComplaints->priority = $request->priority;
         $objComplaints->maerials = $request->material;
-        $objComplaints->complaints  = json_encode($request->get('complaint'));
-        $objComplaints->image       = $request->file('image')->store('complaint');
+        $objComplaints->complaints = json_encode($request->get('complaint'));
+        $objComplaints->image = $request->file('image')->store('complaint');
         $objComplaints->save();
         return redirect('home')->with('success', 'Data Added successfully.');
     }
@@ -52,39 +53,39 @@ class ComplaintController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Complaint  $complaint
-     * @return \Illuminate\Http\Response
+     * @param \App\Complaint $complaint
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getViewComplaints()
     {
         $arrObjComplaints = Complaint::all();
-        return view('complaints.view_complaint',['arrObjComplaints' => $arrObjComplaints]);
+        return view('complaints.view_complaint', ['arrObjComplaints' => $arrObjComplaints]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Complaint  $complaint
+     * @param \App\Complaint $complaint
      * @return \Illuminate\Http\Response
      */
     public function getEditComplain($id)
     {
-       $objComplaint =Complaint::findOrFail($id);
+        $objComplaint = Complaint::findOrFail($id);
         $data = Category::all();
-        $output='';
-        foreach ($data as $item){
-            $output .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';
+        $output = '';
+        foreach ($data as $item) {
+            $output .= '<option value="' . $item["id"] . '">' . $item["category_title"] . '</option>';
         }
-        return view('Book_Complaint',['output' => $output,'objComplaint' => $objComplaint,'type'=>'edit']);
+        return view('complaints.edit', ['output' => $output, 'objComplaints' => $objComplaint, 'type' => 'edit']);
 
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Complaint  $complaint
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Complaint $complaint
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, Complaint $complaint)
     {
@@ -93,17 +94,23 @@ class ComplaintController extends Controller
         $objComplaints->expected_date = $request->expdate;
         $objComplaints->priority = $request->priority;
         $objComplaints->maerials = $request->material;
-        $objComplaints->complaints  = json_encode($request->get('complaint'));
-        $objComplaints->image       = $request->file('image')->store('complaint');
+        $objComplaints->user_id = auth()->user()->id;
+        $objComplaints->complaints = json_encode($request->get('complaint'));
+        $objComplaints->image = $request->file('image')->store('complaint');
 
         $objComplaints->save();
         return redirect('home')->with('success', 'Data Added successfully.');
     }
 
+    public function getComplaintsView()
+    {
+        return view('complaints');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Complaint  $complaint
+     * @param \App\Complaint $complaint
      * @return \Illuminate\Http\Response
      */
     public function destroy(Complaint $complaint)
