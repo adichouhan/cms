@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8d281a1-9d22-4a9d-b6b1-4ce46876fa77" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Cms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Cms.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/EmployeeAvailability.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/EmployeeAvailability.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminComplaintsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminComplaintsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ComplaintController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ComplaintController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_15_175005_create_employees_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_15_175005_create_employees_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EmployeeAvailabilityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmployeeAvailabilityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Book_Complaint.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Book_Complaint.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/complaints/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/complaints/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/complaints.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/complaints.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/complaints/view_complaint.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/complaints/view_complaint.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -194,7 +197,9 @@
       <workItem from="1576470843135" duration="659000" />
       <workItem from="1576471567074" duration="112000" />
       <workItem from="1576471753712" duration="286000" />
-      <workItem from="1576472621862" duration="1131000" />
+      <workItem from="1576472621862" duration="1206000" />
+      <workItem from="1576476988074" duration="1297000" />
+      <workItem from="1576479803056" duration="2400000" />
     </task>
     <servers />
   </component>

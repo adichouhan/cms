@@ -13,7 +13,7 @@
             <div class="col-3"></div>
             <div class="col-6">
                 <button type="button" class="btn btn-primary btn-lg btn-block"><a href="/register/complaint" class="text-white">Book Complaint/Maintenance call</a></button>
-                <button type="button" class="btn btn-secondary btn-lg btn-block"><a href="/view/complaint" class="text-white">View booked complaints</a></button>
+                <button type="button" class="btn btn-secondary btn-lg btn-block"><a href="/view_complaints" class="text-white">View booked complaints</a></button>
         <button type="button" class="btn btn-primary btn-lg btn-block">View Bills/Invoices</button>
         <button type="button" class="btn btn-secondary btn-lg btn-block">View Quotation </button>
         <button type="button" class="btn btn-primary btn-lg btn-block">Other Request</button>

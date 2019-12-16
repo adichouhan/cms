@@ -39,7 +39,7 @@ class EmployeeAvailabilityController extends Controller
     {
         $objAvailability=new EmployeeAvailability();
         $objAvailability->employee_id=$request->employee;
-        $objAvailability->status=$request->employee;
+        $objAvailability->available_status=$request->employee;
         $objAvailability->onWork=$request->onwork_status;
         $objAvailability->save();
     }

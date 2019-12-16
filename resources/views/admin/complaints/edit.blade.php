@@ -167,11 +167,14 @@
                                             </div>
 
                         <div class="form-group col-md-4">
-                            <label for="inputState">Priority</label>
-                            <select id="inputState" class="form-control" name="priority">
+                            <label for="inputState">Assigned To</label>
+                            <select id="inputState" class="form-control" name="assignedto">
+                                @foreach($arrEmployees as $employees)
                                 <option
-                                    value="low" {{(isset($objComplaints->priority) && $objComplaints->priority=='low')? 'selected':'' }}>
+                                    value="employee" {{(isset($employees->id))? 'selected':'' }}>
+                                    {{$employees->employee->name}}
                                 </option>
+                                 @endforeach
                             </select>
                         </div>
                     </div>

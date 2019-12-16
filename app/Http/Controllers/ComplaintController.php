@@ -26,7 +26,12 @@ class ComplaintController extends Controller
      */
     public function create()
     {
-        return view('Book_complaint');
+        $data = Category::all();
+        $output = '';
+        foreach ($data as $item) {
+            $output .= '<option value="' . $item["id"] . '">' . $item["category_title"] . '</option>';
+        }
+        return view('Book_Complaint', ['output' => $output]);
     }
 
     /**
@@ -46,7 +51,7 @@ class ComplaintController extends Controller
         $objComplaints->complaints = json_encode($request->get('complaint'));
         $objComplaints->image = $request->file('image')->store('complaint');
         $objComplaints->save();
-        return redirect('home')->with('success', 'Data Added successfully.');
+        return redirect('/')->with('success', 'Data Added successfully.');
     }
 
     /**
@@ -96,7 +101,6 @@ class ComplaintController extends Controller
         $objComplaints->user_id = auth()->user()->id;
         $objComplaints->complaints = json_encode($request->get('complaint'));
         $objComplaints->image = $request->file('image')->store('complaint');
-
         $objComplaints->save();
         return redirect('home')->with('success', 'Data Added successfully.');
     }

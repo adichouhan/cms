@@ -42,8 +42,8 @@
                         <td>{{$objComplaint->priority}}</td>
                         <td>{{$objComplaint->maerials}}</td>
                         <td>
-                            <a href="{{ route('contacts.edit',$contact->id)}}" class="btn btn-primary">Edit</a>
-                            <form action="{{ route('contacts.destroy', $contact->id)}}" method="post">
+                            <a href="/complaints/edit/{{$objComplaint}}" class="btn btn-primary">Edit</a>
+                            <form action="" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit">Delete</button>
