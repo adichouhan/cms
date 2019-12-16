@@ -7,7 +7,6 @@
 
                 <form method="post" action="{{ url('/admin/create/assets/') }}" enctype="multipart/form-data">
                     @csrf
-                    <button type="button" class="btn btn-dark add">Add Issue</button>
                     <div class="form-group">
                         <label for="inputState">Users</label>
                         <select id="inputState" class="form-control" name="user">
@@ -21,12 +20,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="inputState">Users</label>
+                        <label for="inputState">Product</label>
                         <select id="inputState" class="form-control" name="product">
                             @foreach($arrObjProduct as $objProduct)
                                 <option
                                     value="{{$objProduct->id}}" >
-                                    {{$objProduct->name}}
+                                    {{$objProduct->product_name}}
                                 </option>
                             @endforeach
                         </select>

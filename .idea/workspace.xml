@@ -2,11 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8d281a1-9d22-4a9d-b6b1-4ce46876fa77" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AssetsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Cms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Cms.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/AssetsProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AssetsProduct.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AssetsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AssetsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ComplaintController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ComplaintController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/2019_12_16_025244_create_aseets_products_table.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/assets/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/assets/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/assets/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/assets/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/complaints/complaint_view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/complaints/complaint_view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,7 +133,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers/Admin" />
+    <property name="last_opened_file_path" value="$USER_HOME$/zero" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
@@ -145,23 +153,23 @@
       <recent name="$PROJECT_DIR$/resources/views/admin/complaints" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -202,6 +210,7 @@
       <workItem from="1576499281847" duration="3744000" />
       <workItem from="1576505164347" duration="97000" />
       <workItem from="1576505269392" duration="497000" />
+      <workItem from="1576511837292" duration="4028000" />
     </task>
     <servers />
   </component>
@@ -226,15 +235,15 @@
       <screen x="49" y="27" width="1317" height="741" />
     </state>
     <state x="450" y="27" width="504" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/49.27.1317.741@49.27.1317.741" timestamp="1576466320022" />
-    <state x="604" y="207" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1576412010747">
-      <screen x="49" y="27" width="1871" height="1053" />
-    </state>
-    <state x="440" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/49.27.1317.741@49.27.1317.741" timestamp="1576397856885" />
-    <state x="604" y="207" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/49.27.1871.1053@49.27.1871.1053" timestamp="1576412010747" />
-    <state x="490" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1576345806604">
+    <state x="440" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1576515198235">
       <screen x="49" y="27" width="1317" height="741" />
     </state>
-    <state x="490" y="154" width="424" height="484" key="FileChooserDialogImpl/49.27.1317.741@49.27.1317.741" timestamp="1576345806604" />
+    <state x="440" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/49.27.1317.741@49.27.1317.741" timestamp="1576515198235" />
+    <state x="604" y="207" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/49.27.1871.1053@49.27.1871.1053" timestamp="1576412010747" />
+    <state x="490" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1576512660944">
+      <screen x="49" y="27" width="1317" height="741" />
+    </state>
+    <state x="490" y="154" width="424" height="484" key="FileChooserDialogImpl/49.27.1317.741@49.27.1317.741" timestamp="1576512660944" />
     <state x="565" y="151" width="580" height="564" key="MultipleFileMergeDialog" timestamp="1576414647318">
       <screen x="49" y="27" width="1871" height="1053" />
     </state>
@@ -256,10 +265,10 @@
       <screen x="49" y="27" width="1317" height="741" />
     </state>
     <state x="149" y="125" width="1117" height="543" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/49.27.1317.741@49.27.1317.741" timestamp="1576442128849" />
-    <state x="363" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1576458814073">
+    <state x="363" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1576511846840">
       <screen x="49" y="27" width="1317" height="741" />
     </state>
-    <state x="363" y="224" key="com.intellij.ide.util.TipDialog/49.27.1317.741@49.27.1317.741" timestamp="1576458814073" />
+    <state x="363" y="224" key="com.intellij.ide.util.TipDialog/49.27.1317.741@49.27.1317.741" timestamp="1576511846840" />
     <state x="353" y="132" width="868" height="528" key="find.popup" timestamp="1576394863149">
       <screen x="49" y="27" width="1317" height="741" />
     </state>
@@ -269,10 +278,20 @@
     </state>
     <state x="471" y="186" key="run.anything.popup/49.27.1317.741@49.27.1317.741" timestamp="1576439716262" />
     <state x="648" y="253" key="run.anything.popup/49.27.1871.1053@49.27.1871.1053" timestamp="1576414848996" />
-    <state x="370" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1576459407126">
+    <state x="370" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1576512764342">
       <screen x="49" y="27" width="1317" height="741" />
     </state>
-    <state x="370" y="89" width="672" height="678" key="search.everywhere.popup/49.27.1317.741@49.27.1317.741" timestamp="1576459407126" />
+    <state x="370" y="89" width="672" height="678" key="search.everywhere.popup/49.27.1317.741@49.27.1317.741" timestamp="1576512764342" />
     <state x="505" y="115" width="955" height="964" key="search.everywhere.popup/49.27.1871.1053@49.27.1871.1053" timestamp="1576411238257" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/AdminComplaintsController.php</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

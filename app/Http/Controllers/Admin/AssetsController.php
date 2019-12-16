@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\AseetsProduct;
 use App\Assets;
+use App\AssetsProduct;
 use App\Category;
 use App\Complaint;
+use App\EmployeeAvailability;
+use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 
 class AssetsController extends Controller
@@ -12,7 +17,7 @@ class AssetsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -22,18 +27,26 @@ class AssetsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        return view('admin.assets.create');
+        $data = Category::all();
+        $arrObjUser = User::where('activation_status', '1')->get();
+        $output = '';
+        foreach ($data as $item) {
+            $output .= '<option value="' . $item["id"] . '">' . $item["category_title"] . '</option>';
+        }
+        $arrObjProduct= AssetsProduct::all();
+        $arrEmployees = EmployeeAvailability::with('employee')->where('available_status', '1')->where('onWork', '!=', '1')->get();
+        return view('admin.assets.create', ['output' => $output, 'arrObjUser' => $arrObjUser, 'arrObjProduct' => $arrObjProduct ,'arrEmployees' => $arrEmployees]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -53,7 +66,7 @@ class AssetsController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Assets  $assets
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Assets $assets)
     {
@@ -65,7 +78,7 @@ class AssetsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Assets  $assets
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
@@ -79,7 +92,7 @@ class AssetsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Assets  $assets
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request)
     {
@@ -98,7 +111,7 @@ class AssetsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Assets  $assets
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {

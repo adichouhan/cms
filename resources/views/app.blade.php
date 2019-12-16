@@ -4,8 +4,8 @@
     @include('includes.head')
 </head>
 <body>
-<div class="container">
 
+<div class="container mt-5">
     <header class="row">
         @include('includes.header')
     </header>

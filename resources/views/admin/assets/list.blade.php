@@ -4,6 +4,9 @@
         <div class="card-header">
             <h3 class="card-title">Complaints</h3>
         </div>
+        <div align="left">
+            <a href="{{ url('admin/assets/create') }}" class="btn btn-info">Add New </a>
+        </div>
         <!-- /.card-header -->
         <div class="card-body">
             <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
