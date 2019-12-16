@@ -17,7 +17,7 @@ class CreateEmployeesTable extends Migration
             $table->unsignedInteger('id');
             $table->text('name');
             $table->text('role');
-//            $table->foreign('id')->references('employee_id')->on('employee_availabilities');
+            $table->foreign('id')->references('employee_id')->on('employee_availabilities');
             $table->timestamps();
         });
     }

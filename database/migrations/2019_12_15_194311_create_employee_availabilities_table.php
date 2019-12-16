@@ -18,6 +18,7 @@ class CreateEmployeeAvailabilitiesTable extends Migration
             $table->unsignedInteger('employee_id');
             $table->integer('available_status')->nullable();
             $table->integer('onWork')->nullable();
+            $table->foreign('employee_id')->references('id')->on('employees');
             $table->timestamps();
         });
     }
