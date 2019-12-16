@@ -32,8 +32,8 @@
                             <td>{{$objAsset->priority}}</td>
                             <td>{{$objAsset->maerials}}</td>
                             <td>
-                                <a href="{{url('edit/asset/',$objAsset->id)}}" class="btn btn-primary">Edit</a>
-                                <a href="{{url('delete/asset/',$objAsset->id)}}" class="btn btn-dark">Delete</a>
+                                <a href="{{url('edit/asset',$objAsset->id)}}" class="btn btn-primary">Edit</a>
+                                <a href="{{url('delete/asset',$objAsset->id)}}" class="btn btn-dark">Delete</a>
 
                             </td>
                         </tr>

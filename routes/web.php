@@ -49,7 +49,7 @@ Route::get('/book_asset', 'AssetsController@create');
 Route::post('/register/asset', 'AssetsController@store');
 Route::get('/edit/asset/{asset}', 'AssetsController@edit');
 Route::get('/delete/asset/{asset}', 'AssetsController@destroy');
-Route::post('/update/assets', 'AssetsController@update');
+Route::post('/update/asset', 'AssetsController@update');
 Route::get('/view/assets', 'AssetsController@show');
 
 

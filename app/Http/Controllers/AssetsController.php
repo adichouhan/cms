@@ -82,9 +82,15 @@ class AssetsController extends Controller
      */
     public function update(Request $request)
     {
-
-//        return view('Book_Complaint',['output' => $output,'objComplaint' => $objComplaint,'type'=>'edit']);
-
+        $objAssest = Assets::findOrFail($request->id);;
+        $objAssest->location = $request->location;
+        $objAssest->expected_date = $request->expdate;
+        $objAssest->priority = $request->priority;
+        $objAssest->maerials = $request->material;
+        $objAssest->products  = '';
+        $objAssest->image       = $request->file('image')->store('assets');
+        $objAssest->save();
+        return redirect('/view/assets')->with('success', 'Data Added successfully.');
     }
 
     /**

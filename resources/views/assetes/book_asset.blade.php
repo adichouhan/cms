@@ -8,6 +8,7 @@
                     <form method="post" action="{{ url('update/asset') }}" enctype="multipart/form-data">
                         <div class="box-body">
                             @csrf
+                            <input type="hidden"  id="id" name="id"  value="{{$objAssets->id}}">
                             <div class="form-group col-md-4">
                                 <label for="inputState">Select Products</label>
                                 <select id="inputState" class="form-control" name="product">
