@@ -31,10 +31,6 @@ Route::get('/complaints', function () {
     return view('complaints');
 })->middleware('auth');
 
-Route::get('/assets', function () {
-    return view('assets');
-})->middleware('auth');
-
 
 Route::get('/service', function () {
     return view('service_book');
@@ -45,6 +41,16 @@ Route::get('/book', 'CategoryController@bookForm');
 Route::post('/register/complaint', 'ComplaintController@postComplaints');
 
 Route::get('/view_complaints', 'ComplaintController@getViewComplaints');
+
+
+Route::get('/assets', 'AssetsController@index');
+
+Route::get('/book_asset', 'AssetsController@create');
+Route::post('/register/asset', 'AssetsController@store');
+Route::get('/edit/asset/{asset}', 'AssetsController@edit');
+Route::get('/delete/asset/{asset}', 'AssetsController@destroy');
+Route::post('/update/assets', 'AssetsController@update');
+Route::get('/view/assets', 'AssetsController@show');
 
 
 Route::get('/admin', function () {

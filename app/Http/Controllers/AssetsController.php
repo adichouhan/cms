@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Assets;
+use App\Category;
+use App\Complaint;
 use Illuminate\Http\Request;
 
 class AssetsController extends Controller
@@ -14,7 +16,7 @@ class AssetsController extends Controller
      */
     public function index()
     {
-        //
+        return view('assets');
     }
 
     /**
@@ -24,7 +26,7 @@ class AssetsController extends Controller
      */
     public function create()
     {
-        //
+        return view('assetes.book_asset',['type' => '']);
     }
 
     /**
@@ -35,7 +37,15 @@ class AssetsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $objAssest = new Assets();
+        $objAssest->location = $request->location;
+        $objAssest->expected_date = $request->expdate;
+        $objAssest->priority = $request->priority;
+        $objAssest->maerials = $request->material;
+        $objAssest->products  = '';
+        $objAssest->image       = $request->file('image')->store('assets');
+        $objAssest->save();
+        return redirect('assets')->with('success', 'Data Added successfully.');
     }
 
     /**
@@ -46,7 +56,8 @@ class AssetsController extends Controller
      */
     public function show(Assets $assets)
     {
-        //
+        $arrObjAssets = Assets::all();
+        return view('assetes.view_assets',['arrObjAssets' => $arrObjAssets]);
     }
 
     /**
@@ -55,9 +66,11 @@ class AssetsController extends Controller
      * @param  \App\Assets  $assets
      * @return \Illuminate\Http\Response
      */
-    public function edit(Assets $assets)
+    public function edit($id)
     {
-        //
+        $objAssets = Assets::findOrFail($id);
+
+        return view('assetes.book_asset',['objAssets' => $objAssets ,'type' => 'edit']);
     }
 
     /**
@@ -67,9 +80,11 @@ class AssetsController extends Controller
      * @param  \App\Assets  $assets
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Assets $assets)
+    public function update(Request $request)
     {
-        //
+
+//        return view('Book_Complaint',['output' => $output,'objComplaint' => $objComplaint,'type'=>'edit']);
+
     }
 
     /**
@@ -78,8 +93,10 @@ class AssetsController extends Controller
      * @param  \App\Assets  $assets
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Assets $assets)
+    public function destroy($id)
     {
-        //
+        $data = Assets::findOrFail($id);
+        $data->delete();
+        return redirect('assets')->with('success', 'Data Added successfully.');
     }
 }

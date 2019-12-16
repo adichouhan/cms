@@ -45,7 +45,6 @@ class ComplaintController extends Controller
         $objComplaints->maerials = $request->material;
         $objComplaints->complaints  = json_encode($request->get('complaint'));
         $objComplaints->image       = $request->file('image')->store('complaint');
-//        dd($objComplaints);
         $objComplaints->save();
         return redirect('home')->with('success', 'Data Added successfully.');
     }

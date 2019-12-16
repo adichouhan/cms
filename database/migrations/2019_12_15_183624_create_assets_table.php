@@ -14,7 +14,14 @@ class CreateAssetsTable extends Migration
     public function up()
     {
         Schema::create('assets', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->text('products')->nullable();
+            $table->text('location')->nullable();
+            $table->dateTime('expected_date')->nullable();
+            $table->text('priority')->nullable();
+            $table->text('maerials')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->text('image')->nullable();
             $table->timestamps();
         });
     }

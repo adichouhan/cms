@@ -6,6 +6,7 @@
             <li><a href="/" class="p-4 m-12">Home</a></li>
             <li><a href="/service" class="p-4 m-12">Service</a></li>
             <li><a href="/book" class="p-4 m-12">Book</a></li>
+            <li><a href="/assets" class="p-4 m-12">Assets</a></li>
             <li><a href="/view_complaints" class="p-4 m-12">View</a></li>
         </ul>
     </div>
