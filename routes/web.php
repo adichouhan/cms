@@ -25,51 +25,62 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/employee/availability/create', 'EmployeeAvailabilityController@create');
     Route::post('/employee/availability/store', 'EmployeeAvailabilityController@store');
     Route::get('/employee', 'EmployeeController@index');
-
     Route::get('/add/asset/product', 'AssetProductController@store');
+    Route::get('/documents', 'DocumentController@index');
+    Route::get('/documents/create', 'DocumentController@create');
+    Route::post('/documents/create', 'DocumentController@store');
+    Route::get('/documents/edit/{document}', 'DocumentController@edit');
+    Route::post('/documents/edit/{document}', 'DocumentController@update');
+
 });
 
 Route::get('/complaints', function () {
     return view('complaints');
-})->auth();
+})->middleware('auth');
 
-Route::get('/register/user/create', 'RegisterController@create')->auth();
+Route::get('/register/user/create', 'RegisterController@create')->middleware('auth');
 
-Route::post('/register/user/create', 'RegisterController@store')->auth();
+Route::post('/register/user/create', 'RegisterController@store')->middleware('auth');
 
 
 Route::get('/', function () {
     return view('service_book');
-})->auth();
+})->middleware('auth');
 
-Route::get('/book', 'CategoryController@bookForm')->auth();
+Route::get('/book', 'CategoryController@bookForm')->middleware('auth');
 
-Route::post('/register/complaint', 'ComplaintController@postComplaints')->auth();
+Route::post('/register/complaint', 'ComplaintController@postComplaints')->middleware('auth');
 
-Route::get('/register/complaint', 'ComplaintController@create')->auth();
+Route::get('/register/complaint', 'ComplaintController@create')->middleware('auth');
 
-Route::get('/view_complaints', 'ComplaintController@getViewComplaints')->auth();
+Route::get('/view_complaints', 'ComplaintController@getViewComplaints')->middleware('auth');
 
-Route::get('/complaints/edit/{complaint}', 'ComplaintController@edit')->auth();
+Route::get('/complaints/edit/{complaint}', 'ComplaintController@edit')->middleware('auth');
 
-Route::post('/update/complaint/{complaint}', 'ComplaintController@update')->auth();
+Route::post('/update/complaint/{complaint}', 'ComplaintController@update')->middleware('auth');
 
-Route::get('/mycomplaints', 'ComplaintController@getComplaintsView')->auth();
+Route::get('/mycomplaints', 'ComplaintController@getComplaintsView')->middleware('auth');
 
-Route::get('/assets', 'AssetsController@index')->auth();
+Route::get('/assets', 'AssetsController@index')->middleware('auth');
 
-Route::get('/book_asset', 'AssetsController@create')->auth();
-Route::post('/register/asset', 'AssetsController@store')->auth();
-Route::get('/edit/asset/{asset}', 'AssetsController@edit')->auth();
-Route::get('/delete/asset/{asset}', 'AssetsController@destroy')->auth();
-Route::post('/update/asset', 'AssetsController@update')->auth();
-Route::get('/view/assets', 'AssetsController@show')->auth();
-Route::get('/myassets', 'AssetsController@getAssetView')->auth();
+Route::get('/book_asset', 'AssetsController@create')->middleware('auth');
+
+Route::post('/register/asset', 'AssetsController@store')->middleware('auth');
+
+Route::get('/edit/asset/{asset}', 'AssetsController@edit')->middleware('auth');
+
+Route::get('/delete/asset/{asset}', 'AssetsController@destroy')->middleware('auth');
+
+Route::post('/update/asset', 'AssetsController@update')->middleware('auth');
+
+Route::get('/view/assets', 'AssetsController@show')->middleware('auth');
+
+Route::get('/myassets', 'AssetsController@getAssetView')->middleware('auth');
 
 
 Route::get('/admin', function () {
     return view('admin.admin_template');
-})->auth();
+})->middleware('auth');
 
 Route::post('fill_sub_category',  function(\Illuminate\Http\Request $request){
      $parent_category=$request->category_id;
