@@ -17,6 +17,7 @@ class CreateDocumentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->dateTime('expiry_date');
+            $table->text('file');
             $table->timestamps();
         });
     }

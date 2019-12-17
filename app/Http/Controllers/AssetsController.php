@@ -83,7 +83,7 @@ class AssetsController extends Controller
      */
     public function update(Request $request)
     {
-        $objAssest = Assets::findOrFail($request->id);;
+        $objAssest = Assets::findOrFail($request->id);
         $objAssest->location = $request->location;
         $objAssest->expected_date = $request->expdate;
         $objAssest->priority = $request->priority;
