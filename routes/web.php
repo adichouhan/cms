@@ -25,6 +25,7 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/employee/availability/create', 'EmployeeAvailabilityController@create');
     Route::post('/employee/availability/store', 'EmployeeAvailabilityController@store');
     Route::get('/employee', 'EmployeeController@index');
+
     Route::get('/add/asset/product', 'AssetProductController@store');
     Route::get('/documents', 'DocumentController@index');
     Route::get('/documents/create', 'DocumentController@create');
