@@ -66,7 +66,8 @@
                                         {{$objDocument->name}}
                                     </td>
                                     <td>{{$objDocument->expiry_date}}</td>
-                                    <td>{{$objDocument->file}}</td>
+                                    <td><a href="{{ URL::to('/') }}/{{ $objDocument->file }}" class="img-thumbnail"
+                                           width="75">{{$objDocument->file}}</a></td>
                                     <td>
                                         <a href="{{url('admin/document/edit/'.$objDocument->id)}}"
                                            class="btn btn-primary">Edit</a>
