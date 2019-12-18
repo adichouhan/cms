@@ -21,6 +21,7 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/complaints/create', 'AdminComplaintsController@create');
     Route::get('/complaints/edit/{complaint}', 'AdminComplaintsController@edit');
     Route::post('/update/complaint/{complaint}', 'AdminComplaintsController@update');
+
     Route::get('/employee/create', 'EmployeeController@create');
     Route::post('/employee/store', 'EmployeeController@store');
     Route::get('/employee/availability/create', 'EmployeeAvailabilityController@create');

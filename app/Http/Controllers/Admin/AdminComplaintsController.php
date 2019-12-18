@@ -31,6 +31,7 @@ class AdminComplaintsController extends Controller
     public function create()
     {
         $arrObjUser = User::where('activation_status','1')->get();
+
         $arrObjEmployee=EmployeeAvailability::with('employee')->where('available_status')->get();
         return view('admin.complaints.create',['arrObjUser' => $arrObjUser, 'arrObjEmployees'=>$arrObjEmployee]);
     }
@@ -69,7 +70,6 @@ class AdminComplaintsController extends Controller
         foreach ($data as $item){
             $output .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';
         }
-
         $arrEmployees=EmployeeAvailability::with('employee')->where('available_status', '1')->where('onWork', '!=', '1')->get();
 
         return view('admin.complaints.edit', ['objComplaints' => $complaint, 'output' =>$output, 'arrEmployees'=>$arrEmployees]);
