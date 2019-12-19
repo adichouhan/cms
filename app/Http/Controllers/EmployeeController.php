@@ -59,9 +59,10 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
-
+        $objEmployee=Employee::findorfail($id)->get();
+        return view('/admin/employee/edit', ['objEmployee'=>$objEmployee]);
     }
 
     /**

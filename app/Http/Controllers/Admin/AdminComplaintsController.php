@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Complaint;
-use App\Employee;
 use App\EmployeeAvailability;
 use App\User;
 use Illuminate\Http\Request;
@@ -31,16 +30,21 @@ class AdminComplaintsController extends Controller
     public function create()
     {
         $arrObjUser = User::where('activation_status','1')->get();
+        $data = Category::all();
+        $output='';
+        foreach ($data as $item){
+            $output .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';
+        }
 
         $arrObjEmployee=EmployeeAvailability::with('employee')->where('available_status')->get();
-        return view('admin.complaints.create',['arrObjUser' => $arrObjUser, 'arrObjEmployees'=>$arrObjEmployee]);
+        return view('admin.complaints.create',['arrObjUser' => $arrObjUser, 'arrObjEmployees'=>$arrObjEmployee, 'output'=>$output]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Complaint  $complaint
-     * @return \Illuminate\View\View
+     * @param Request $request
+     * @return void
      */
     public function store(Request $request)
     {
@@ -65,7 +69,6 @@ class AdminComplaintsController extends Controller
     public function edit(Complaint $complaint)
     {
         $data = Category::all();
-
         $output='';
         foreach ($data as $item){
             $output .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';

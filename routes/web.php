@@ -22,11 +22,13 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/complaints/edit/{complaint}', 'AdminComplaintsController@edit');
     Route::post('/update/complaint/{complaint}', 'AdminComplaintsController@update');
 
-    Route::get('/employee/create', 'EmployeeController@create');
-    Route::post('/employee/store', 'EmployeeController@store');
     Route::get('/employee/availability/create', 'EmployeeAvailabilityController@create');
     Route::post('/employee/availability/store', 'EmployeeAvailabilityController@store');
+
     Route::get('/employee', 'EmployeeController@index');
+    Route::get('/employee/create', 'EmployeeController@create');
+    Route::post('/employee/store', 'EmployeeController@store');
+    Route::post('/employee/edit', 'EmployeeController@store');
 
     Route::get('/add/asset/product', 'AssetProductController@create');
     Route::get('/asset/product', 'AssetProductController@index');
@@ -44,7 +46,7 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/documents/create', 'DocumentController@create');
     Route::post('/document/stored', 'DocumentController@store');
     Route::get('/document/edit/{document}', 'DocumentController@edit');
-    Route::post('/document/update', 'DocumentController@update');
+    Route::post('/document/update/{document}', 'DocumentController@update');
 
 });
 

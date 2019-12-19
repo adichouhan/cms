@@ -85,7 +85,7 @@
                         <div class="form-group col-md-4">
                             <label for="inputState">Assigned To</label>
                             <select id="inputState" class="form-control" name="assignedto">
-                                @foreach($arrEmployees as $employees)
+                                @foreach($arrObjEmployees as $employees)
                                     <option
                                         value="employee" {{(isset($employees->id))? 'selected':'' }}>
                                         {{$employees->employee->name}}
