@@ -8,7 +8,6 @@
                 <form method="post" action="{{ url('/admin/boq/store') }}" enctype="multipart/form-data">
                     @csrf
 
-
                     <div class="form-group">
                         <label for="title">Product Name</label>
                         <input type="text" class="form-control" id="title" name="product_name"

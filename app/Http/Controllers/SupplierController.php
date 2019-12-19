@@ -2,30 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Boq;
+use App\Supplier;
 use Illuminate\Http\Request;
 
-class BoqController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return string
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $arrObjBoq = Boq::all();
-        return view('admin.boq.list', ['arrObjBoq'=>$arrObjBoq]);
+        //
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('admin.boq.create');
+        //
     }
 
     /**
@@ -36,17 +35,16 @@ class BoqController extends Controller
      */
     public function store(Request $request)
     {
-            $objBoq= new Boq();
-            $objBoq->
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Boq  $boq
+     * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function show(Boq $boq)
+    public function show(Supplier $supplier)
     {
         //
     }
@@ -54,10 +52,10 @@ class BoqController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Boq  $boq
+     * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function edit(Boq $boq)
+    public function edit(Supplier $supplier)
     {
         //
     }
@@ -66,10 +64,10 @@ class BoqController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Boq  $boq
+     * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Boq $boq)
+    public function update(Request $request, Supplier $supplier)
     {
         //
     }
@@ -77,10 +75,10 @@ class BoqController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Boq  $boq
+     * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Boq $boq)
+    public function destroy(Supplier $supplier)
     {
         //
     }

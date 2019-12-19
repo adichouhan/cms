@@ -5,7 +5,7 @@
             <h3 class="card-title">Complaints</h3>
         </div>
         <div align="left">
-            <a href="{{ url('admin/documents/create') }}" class="btn btn-info">Add New </a>
+            <a href="{{ url('admin/boq/create') }}" class="btn btn-info">Add New </a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
