@@ -2,14 +2,10 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Assets Request</h3>
+            <h3 class="card-title">Complaints</h3>
         </div>
-        <div >
-            <a href="{{ url('admin/assets/create') }}" class="btn btn-info">Add New </a>
-        </div>
-    
-        <div>
-            <a href="{{ url('admin/asset/product') }}" class="btn btn-info">Add New </a>
+        <div align="left">
+            <a href="{{ url('admin/documents/create') }}" class="btn btn-info">Add New </a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -46,23 +42,15 @@
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">
-                                    Complaints
+                                    Title
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 183px;">
-                                    Location
+                                   Expiry Date
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Engine version: activate to sort column ascending"
-                                    style="width: 135px;">Expected Date
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
-                                    Priority
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
-                                    Material
+                                    style="width: 135px;">File Name
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
@@ -71,25 +59,18 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($arrObjAssets as $objasset)
+                            @foreach($arrObjDocuments as $objDocument)
                                 <tr role="row" class="odd">
-                                    <td class="sorting_1">{{$objasset->id}}</td>
+                                    <td class="sorting_1">{{$objDocument->id}}</td>
                                     <td>
-                                        {{$objasset->products}}
+                                        {{$objDocument->name}}
                                     </td>
-                                    <td>{{$objasset->location}}</td>
-                                    <td>{{$objasset->expected_date}}</td>
-                                    <td>{{$objasset->priority}}</td>
-                                    <td>{{$objasset->maerials}}</td>
+                                    <td>{{$objDocument->expiry_date}}</td>
+                                    <td><a href="{{ URL::to('/') }}/{{ $objDocument->file }}" class="img-thumbnail"
+                                           width="75">{{$objDocument->file}}</a></td>
                                     <td>
-                                        <a href="{{url('admin/complaints/edit/'.$objasset->id)}}"
+                                        <a href="{{url('admin/document/edit/'.$objDocument->id)}}"
                                            class="btn btn-primary">Edit</a>
-                                        <form action="{{url('admin/complaints/delete/'.$objasset->id)}}"
-                                              method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">Delete</button>
-                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -109,8 +90,8 @@
                         <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
                             <ul class="pagination">
                                 <li class="paginate_button page-item previous disabled" id="example1_previous"><a
-                                        href="#" aria-controls="example1" data-dt-idx="0" tabindex="0"
-                                        class="page-link">Previous</a></li>
+                                            href="#" aria-controls="example1" data-dt-idx="0" tabindex="0"
+                                            class="page-link">Previous</a></li>
                                 <li class="paginate_button page-item active"><a href="#" aria-controls="example1"
                                                                                 data-dt-idx="1" tabindex="0"
                                                                                 class="page-link">1</a></li>
