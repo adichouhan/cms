@@ -38,8 +38,9 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td><select name="invoice[0][product]" class="form-control item_category" data-sub_category_id="0"><option value="">Select Category</option></select></td>
-                                <td><select name="invoice[0][product]" class="form-control item_category" data-sub_category_id="0"><option value="">Select Category</option></select></td>
+                                <td><select name="invoice[0][product]" class="form-control item_category0" data-sub_category_id="0"><option value="">Select Category</option></select></td>
+                                <td><input type="number" name="invoice[' + count + '][unit]" class="form-control item_sub_category" id="item_sub_category' + count + '" /></td>'
+                                <td ><input type="number" name="invoice[' + count + '][quantity]" class="form-control item_name" /></td>
                             </tr>
                             </tbody>
                         </table>
@@ -67,45 +68,46 @@
 		$(document).ready(function () {
 			var count = 1;
 			
-			$(document).on('click', '.add', function () {
+			$(document).on('click', '.item_category'+count , function () {
 				count++;
+				if('.item_category'+count--){
 				var html = '';
 				html += '<tr>';
-				html += '<td><select name="invoice[' + count + '][product]" class="form-control item_category" data-sub_category_id="' + count + '"><option value="">Select Category</option></select></td>';
+				html += '<td><select name="invoice[' + count + '][product]" class="form-control item_category' + count + '" data-sub_category_id="' + count + '"><option value="">Select Category</option></select></td>';
 				html += '<td><input type="number" name="invoice[' + count + '][unit]" class="form-control item_sub_category" id="item_sub_category' + count + '" /></td>';
-				html += '<td ><input type="number" name="invoice[' + count + '][quantity]" class="form-control item_name" /></td>';
-				html += '<td ><input type="number" name="invoice[' + count + '][total]" class="form-control item_total" /></td>';
+				html += '<td><input type="number" name="invoice[' + count + '][quantity]" class="form-control item_name" /></td>';
+				html += '<td id="total"'+count+'"></td>';
 				html += '<td><button type="button" name="remove" class="btn btn-danger btn-xs remove">Remove</button></td></tr>';
 				$('tbody').append(html);
+            }
 			});
 			
 			$(document).on('click', '.remove', function () {
 				$(this).closest('.addedSection').remove();
-				// $("div.addedSection").first().remove()
 			});
 			
 			
-			$(document).on('change', '.item_category', function () {
-				var category_id = $(this).val();
-				console.log(category_id);
-				var sub_category_id = $(this).data('sub_category_id');
-				$.ajax({
-					url: "/fill_sub_category",
-					method: "POST",
-					data: {
-						"_token": "{{ csrf_token() }}",
-						"category_id": category_id
-					},
-					headers: {
-						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-					},
-					success: function (data) {
-						var html = '<option value="">Select Sub Category</option>';
-						html += data;
-						$('#item_sub_category' + sub_category_id).html(html);
-					}
-				})
-			});
+			{{--$(document).on('change', '.item_category', function () {--}}
+			{{--	var category_id = $(this).val();--}}
+			{{--	console.log(category_id);--}}
+			{{--	var sub_category_id = $(this).data('sub_category_id');--}}
+			{{--	$.ajax({--}}
+			{{--		url: "/fill_sub_category",--}}
+			{{--		method: "POST",--}}
+			{{--		data: {--}}
+			{{--			"_token": "{{ csrf_token() }}",--}}
+			{{--			"category_id": category_id--}}
+			{{--		},--}}
+			{{--		headers: {--}}
+			{{--			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+			{{--		},--}}
+			{{--		success: function (data) {--}}
+			{{--			var html = '<option value="">Select Sub Category</option>';--}}
+			{{--			html += data;--}}
+			{{--			$('#item_sub_category' + sub_category_id).html(html);--}}
+			{{--		}--}}
+			{{--	})--}}
+			{{--});--}}
 			$('#insert_form').on('submit', function (event) {
 				event.preventDefault();
 				var error = '';
