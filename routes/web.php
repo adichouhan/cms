@@ -28,10 +28,17 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/employee', 'EmployeeController@index');
     Route::get('/employee/create', 'EmployeeController@create');
     Route::post('/employee/store', 'EmployeeController@store');
-    Route::post('/employee/edit', 'EmployeeController@store');
+    Route::get('/employee/edit', 'EmployeeController@edit');
+    Route::post('/employee/edit', 'EmployeeController@update');
 
-    Route::get('/add/asset/product', 'AssetProductController@create');
+    Route::get('/invoice', 'InvoiceController@index');
+    Route::get('/invoice/create', 'InvoiceController@create');
+    Route::post('/invoice/store', 'InvoiceController@store');
+    Route::get('/invoice/edit', 'InvoiceController@edit');
+    Route::post('/invoice/edit', 'InvoiceController@update');
+
     Route::get('/asset/product', 'AssetProductController@index');
+    Route::get('/add/asset/product', 'AssetProductController@create');
     Route::post('/add/asset/product', 'AssetProductController@store');
     Route::get('/edit/asset/product/{product}', 'AssetProductController@edit');
     Route::post('/edit/asset/product/{product}', 'AssetProductController@update');

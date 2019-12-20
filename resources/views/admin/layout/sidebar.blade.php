@@ -52,7 +52,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{url('invoice')}}" class="nav-link">
+                    <a href="{{url('admin/invoice/create')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Create Bill/Invoice
