@@ -8,7 +8,7 @@
 
         <!-- /.box-header -->
         <!-- form start -->
-        <form  method="post" action="/admin/employee/availability/store"  enctype="multipart/form-data">
+        <form  method="post" action="{{url('/admin/employee/availability/store')}}"  enctype="multipart/form-data">
             @csrf
             <div class="box-body">
                 <div class="form-group">

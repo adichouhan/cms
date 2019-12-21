@@ -25,23 +25,12 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/employee/availability/create', 'EmployeeAvailabilityController@create');
     Route::post('/employee/availability/store', 'EmployeeAvailabilityController@store');
 
-    Route::get('/employee', 'EmployeeController@index');
-    Route::get('/employee/create', 'EmployeeController@create');
-    Route::post('/employee/store', 'EmployeeController@store');
-    Route::get('/employee/edit', 'EmployeeController@edit');
-    Route::post('/employee/edit', 'EmployeeController@update');
 
     Route::get('/invoice', 'InvoiceController@index');
     Route::get('/invoice/create', 'InvoiceController@create');
     Route::post('/invoice/store', 'InvoiceController@store');
     Route::get('/invoice/edit', 'InvoiceController@edit');
     Route::post('/invoice/edit', 'InvoiceController@update');
-
-    Route::get('/asset/product', 'AssetProductController@index');
-    Route::get('/add/asset/product', 'AssetProductController@create');
-    Route::post('/add/asset/product', 'AssetProductController@store');
-    Route::get('/edit/asset/product/{product}', 'AssetProductController@edit');
-    Route::post('/edit/asset/product/{product}', 'AssetProductController@update');
 
     Route::get('/product', 'ProductsController@index');
     Route::get('/add/product', 'ProductsController@create');
@@ -60,8 +49,18 @@ Route::group([ 'prefix' => 'admin' ], function() {
 Route::group([ 'namespace' => '\App\Http\Controllers\Admin', 'prefix'=>'admin' ], function() {
     Route::get('/assets', 'AssetsController@index');
     Route::get('/assets/create', 'AssetsController@create');
-    Route::post('/create/assets', 'AssetsController@store');
+    Route::post('/assets/store', 'AssetsController@store');
     Route::get('/edit/asset/{asset}', 'AssetsController@edit');
+    Route::get('/asset/product/create', 'AssetsController@getProductCreate');
+    Route::post('/asset/product/store', 'AssetsController@getProductStrore');
+
+
+    Route::get('/employee', 'EmployeeController@index');
+    Route::get('/employee/create', 'EmployeeController@create');
+    Route::post('/employee/store', 'EmployeeController@store');
+    Route::get('/employee/edit/{id}', 'EmployeeController@edit');
+    Route::post('/employee/update', 'EmployeeController@update');
+    Route::get('/employee/delete/{id}', 'EmployeeController@destroy');
 });
 
 Route::get('/complaints', function () {

@@ -5,32 +5,39 @@
             <h3 class="box-title">Employee Form</h3>
         </div>
 
-        <!-- /.box-header -->
-        <!-- form start -->
-        <form  method="post" action="/admin/employee/store"  enctype="multipart/form-data">
+        <form method="post" action="{{ url('/admin/employee/store') }}" enctype="multipart/form-data">
             @csrf
-            <div class="box-body">
-                <div class="form-group">
-                    <label for="employeename" class="col-sm-2 control-label">Employee Name</label>
-
-                    <div class="col-sm-10">
-                        <input type="text" name="name" class="form-control" id="employeename" placeholder="Name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Select</label>
-                    <select class="form-control" name="role">
-                        <option value="manager">Manager</option>
-                        <option value="employee">Employee</option>
-                    </select>
-                </div>
-
+            <div class="form-group">
+                <label for="date">Employee Name</label>
+                <input type="text" class="form-control" name="name"
+                       id="date" placeholder="enter name here...">
             </div>
-            <!-- /.box-body -->
-            <div class="box-footer">
-                <button  class="btn btn-default">Submit</button>
+            <br>
+            <div class="form-group col-md-4">
+                <label for="inputState">Employee Role</label>
+                <select id="inputState" class="form-control" name="role">
+                    <option value="" >select role</option>
+                    <option value="employee" >Employee</option>
+                    <option value="manager" >Manager</option>
+                </select>
             </div>
-            <!-- /.box-footer -->
+            <br>
+            <div class="form-group">
+                <label for="date">Employee Email Id</label>
+                <input type="email" class="form-control" name="email_id"
+                       id="email" placeholder="Ex. name@gmail.com">
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="mobile_no">Employee Mobile Number</label>
+                <input type="text" class="form-control" name="mobile_no"
+                       id="mobile_no" placeholder="enter name here...">
+            </div>
+            <br>
+            <div class="form-group">
+                <button type="submit"  class="btn btn-primary" >Submit</button>
+            </div>
+
         </form>
     </div>
     @endsection

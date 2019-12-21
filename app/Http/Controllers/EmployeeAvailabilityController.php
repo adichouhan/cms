@@ -37,11 +37,12 @@ class EmployeeAvailabilityController extends Controller
      */
     public function store(Request $request)
     {
-        $objAvailability=new EmployeeAvailability();
+        $objAvailability = new EmployeeAvailability();
         $objAvailability->employee_id=$request->employee;
         $objAvailability->available_status=$request->employee;
         $objAvailability->onWork=$request->onwork_status;
         $objAvailability->save();
+        return redirect('/admin/employee/availability/create')->with('Employee created successfully');
     }
 
     /**
