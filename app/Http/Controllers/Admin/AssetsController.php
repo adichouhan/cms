@@ -125,4 +125,17 @@ class AssetsController extends Controller
     public function getAssetView(){
         return view('assets');
     }
+
+    public function getProductCreate(){
+
+        return view('admin.assets.Products.add');
+    }
+
+    public function getProductStrore(Request $request){
+        $data = new AssetsProduct();
+        $data->product_name = $request->product_name;
+        $data->save();
+        return view('assets');
+    }
+
 }

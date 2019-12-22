@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Employee;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -14,7 +15,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $arrObjEmployee = Employee::all();
+        return view('admin.employee.list',['arrObjEmployee' => $arrObjEmployee]);
     }
 
     /**
@@ -35,11 +37,15 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $objEmployee=new Employee();
-        $objEmployee->name=$request->name;
-        $objEmployee->role=$request->role;
+
+        $objEmployee = new Employee();
+        $objEmployee->name = $request->name;
+        $objEmployee->role = $request->role;
+        $objEmployee->email_id = $request->email_id;
+        $objEmployee->mobile_no = $request->mobile_no;
         $objEmployee->save();
-        redirect('/admin/employee/create')->with('Employee created successfully');
+
+        return redirect('admin/employee')->with('Employee created successfully');
     }
 
     /**
@@ -61,7 +67,7 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        $objEmployee=Employee::findorfail($id)->get();
+        $objEmployee = Employee::findorfail($id);
         return view('/admin/employee/edit', ['objEmployee'=>$objEmployee]);
     }
 
@@ -74,7 +80,13 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-
+        $objEmployee = Employee::findorfail($request->id);
+        $objEmployee->name = $request->name;
+        $objEmployee->role = $request->role;
+        $objEmployee->email_id = $request->email_id;
+        $objEmployee->mobile_no = $request->mobile_no;
+        $objEmployee->save();
+        return redirect('/admin/employee')->with('Employee created successfully');
     }
 
     /**
@@ -83,8 +95,12 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy($id)
     {
-
+        $objEmployee = Employee::findorfail($id);
+        $objEmployee->delete();
+        return redirect('/admin/employee')->with('Employee created successfully');
     }
+
+
 }

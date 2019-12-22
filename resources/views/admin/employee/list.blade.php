@@ -2,14 +2,10 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Assets Request</h3>
+            <h3 class="card-title">Employee List</h3>
         </div>
         <div>
-            <a href="{{ url('admin/assets/create') }}" class="btn btn-info">Add New </a>
-        </div>
-
-        <div>
-            <a href="{{ url('admin/asset/product/create') }}" class="btn btn-info">Add New Product </a>
+            <a href="{{ url('admin/employee/create') }}" class="btn btn-info">Add New </a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -26,10 +22,8 @@
                                 </select> entries</label></div>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search"
-                                                                                                 class="form-control form-control-sm"
-                                                                                                 placeholder=""
-                                                                                                 aria-controls="example1"></label>
+                        <div id="example1_filter" class="dataTables_filter"><label>Search:
+                                <input type="search" class="form-control form-control-sm" aria-controls="example1"></label>
                         </div>
                     </div>
                 </div>
@@ -42,27 +36,23 @@
                                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-sort="ascending"
                                     aria-label="Rendering engine: activate to sort column descending"
-                                    style="width: 160px;">Compleint ID
+                                    style="width: 160px;">Employee ID
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">
-                                    Complaints
+                                    Employee Name
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 183px;">
-                                    Location
+                                    Employee Role
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Engine version: activate to sort column ascending"
-                                    style="width: 135px;">Expected Date
+                                    style="width: 135px;">Employee Email Id
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
-                                    Priority
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
-                                    Material
+                                    Employee Contact No
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
@@ -71,25 +61,18 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($arrObjAssets as $objasset)
+                            @foreach($arrObjEmployee as $data)
                                 <tr role="row" class="odd">
-                                    <td class="sorting_1">{{$objasset->id}}</td>
+                                    <td class="sorting_1">{{$data->id}}</td>
+                                    <td>{{$data->name}}</td>
+                                    <td>{{$data->role}}</td>
+                                    <td>{{$data->email_id}}</td>
+                                    <td>{{$data->mobile_no}}</td>
                                     <td>
-                                        {{$objasset->products}}
-                                    </td>
-                                    <td>{{$objasset->location}}</td>
-                                    <td>{{$objasset->expected_date}}</td>
-                                    <td>{{$objasset->priority}}</td>
-                                    <td>{{$objasset->maerials}}</td>
-                                    <td>
-                                        <a href="{{url('admin/complaints/edit/'.$objasset->id)}}"
-                                           class="btn btn-primary">Edit</a>
-                                        <form action="{{url('admin/complaints/delete/'.$objasset->id)}}"
-                                              method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">Delete</button>
-                                        </form>
+                                        <a href="{{url('admin/employee/edit/'.$data->id)}}"
+                                           class="btn btn-primary"><i class="fa fa-edit">Edit</i></a>
+                                        <a href="{{url('admin/employee/delete/'.$data->id)}}"
+                                           class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -115,24 +98,7 @@
                                     <a href="#" aria-controls="example1"
                                        data-dt-idx="1" tabindex="0"
                                        class="page-link">1</a></li>
-                                <li class="paginate_button page-item "><a href="#" aria-controls="example1"
-                                                                          data-dt-idx="2" tabindex="0"
-                                                                          class="page-link">2</a></li>
-                                <li class="paginate_button page-item "><a href="#" aria-controls="example1"
-                                                                          data-dt-idx="3" tabindex="0"
-                                                                          class="page-link">3</a></li>
-                                <li class="paginate_button page-item "><a href="#" aria-controls="example1"
-                                                                          data-dt-idx="4" tabindex="0"
-                                                                          class="page-link">4</a></li>
-                                <li class="paginate_button page-item "><a href="#" aria-controls="example1"
-                                                                          data-dt-idx="5" tabindex="0"
-                                                                          class="page-link">5</a></li>
-                                <li class="paginate_button page-item "><a href="#" aria-controls="example1"
-                                                                          data-dt-idx="6" tabindex="0"
-                                                                          class="page-link">6</a></li>
-                                <li class="paginate_button page-item next" id="example1_next">
-                                    <a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
-                                </li>
+
                             </ul>
                         </div>
                     </div>
