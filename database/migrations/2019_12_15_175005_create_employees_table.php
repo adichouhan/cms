@@ -20,6 +20,7 @@ class CreateEmployeesTable extends Migration
             $table->text('email_id')->nullable();
             $table->text('mobile_no')->nullable();
             $table->text('type')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

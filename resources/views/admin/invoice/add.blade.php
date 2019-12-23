@@ -39,7 +39,7 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td><input name="invoice[0][product]" class="form-control item_product" data-sub_category_id="0"><option value="check">check</option></input></td>
+                                <td><input name="invoice[0][product]" class="form-control item_product" data-sub_category_id="0"/></td>
                                 <td><input type="number" name="invoice[0][unit]"  data-count="0" class="form-control item_unit calculate price" id="item_sub_category0" value="3" /></td>'
                                 <td><input type="number" name="invoice[0][quantity]" data-count="0" id="calctotal0" class="form-control qty item_quantity calculate" value="12"/></td>
                                 <td>
@@ -52,7 +52,6 @@
                         </table>
                     </div>
                     <button type="button" class="btn btn-dark add">Add Issue</button>
-
                     <div class="row">
                         <div class="col-7"></div>
                         <div class="form-group col-5" id="invoice-total">

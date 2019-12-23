@@ -16,6 +16,7 @@ class CreateAssetsProductsTable extends Migration
         Schema::create('assets_products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('product_name');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

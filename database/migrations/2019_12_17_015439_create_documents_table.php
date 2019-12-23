@@ -18,6 +18,7 @@ class CreateDocumentsTable extends Migration
             $table->string('name');
             $table->dateTime('expiry_date');
             $table->text('file');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

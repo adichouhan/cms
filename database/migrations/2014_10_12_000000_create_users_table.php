@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->json('extra_data')->nullable();
             $table->integer('activation_status')->default(0);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -19,6 +19,7 @@ class CreateEmployeeAvailabilitiesTable extends Migration
             $table->integer('available_status')->nullable();
             $table->integer('onWork')->nullable();
             $table->foreign('employee_id')->references('id')->on('employees');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

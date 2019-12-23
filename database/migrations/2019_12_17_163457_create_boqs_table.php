@@ -18,6 +18,7 @@ class CreateBoqsTable extends Migration
             $table->text('product_name');
             $table->integer('product_unit');
             $table->integer('product_rate');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

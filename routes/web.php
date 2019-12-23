@@ -36,6 +36,14 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/invoice/edit', 'InvoiceController@edit');
     Route::post('/invoice/edit', 'InvoiceController@update');
 
+    Route::get('/quote', 'QuoteController@index');
+    Route::get('/quote/create', 'QuoteController@create');
+    Route::get('/quote/getPdf', 'QuoteController@getPdf');
+    Route::post('/quote/createpdf', 'QuoteController@createpdf');
+    Route::post('/quote/store', 'QuoteController@store');
+    Route::get('/quote/edit', 'QuoteController@edit');
+    Route::post('/quote/edit', 'QuoteController@update');
+
     Route::get('/product', 'ProductsController@index');
     Route::get('/add/product', 'ProductsController@create');
     Route::post('/add/product', 'ProductsController@store');

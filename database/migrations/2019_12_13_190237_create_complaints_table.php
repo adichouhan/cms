@@ -29,6 +29,7 @@ class CreateComplaintsTable extends Migration
 //            $table->foreign('employee_id')->references('id')->on('employee');
 //            $table->foreign('user_id')->references('id')->on('users');
             $table->text('image')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

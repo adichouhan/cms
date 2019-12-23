@@ -22,6 +22,7 @@ class CreateAssetsTable extends Migration
             $table->text('maerials')->nullable();
             $table->integer('user_id')->nullable();
             $table->text('image')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
