@@ -32,7 +32,6 @@
 
                         @foreach($arrComplaint as $index=>$complaint)
                             <?php
-
                             $count++;
                             $data = \App\Category::all();
                             $selectedCat = '';

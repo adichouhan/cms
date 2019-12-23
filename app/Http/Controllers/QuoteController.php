@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Invoice;
 use App\Quote;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 class QuoteController extends Controller
@@ -20,11 +22,12 @@ class QuoteController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        //
+        $quoteIdCount = Quote::all()->count();
+        return  view('admin.quote.add', ['id' => ++$quoteIdCount]);
     }
 
     /**
@@ -47,6 +50,25 @@ class QuoteController extends Controller
     public function show(Quote $quote)
     {
         //
+    }
+
+    public function createPdf(Request $request)
+    {
+        $arrMix=[];
+        $arrMix['quote_id'] = $request->quote_id;
+        $arrMix['quote_date'] = $request->quote_date;
+        $arrMix['quote']      = $request->quote;
+        $arrMix['sub_total']      = $request->sub_total;
+
+        if($request->complaint){
+            $arrMix['complaint'] = $request->complaint;
+        }else{
+            $arrMix['asset'] = $request->asset;
+        }
+        return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
+        $pdf = PDF::loadView('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
+        return $pdf->stream('medium.pdf');
+
     }
 
     /**

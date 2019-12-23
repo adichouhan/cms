@@ -15,8 +15,9 @@ class CreateBoqsTable extends Migration
     {
         Schema::create('boqs', function (Blueprint $table) {
             $table->bigIncrements('id');
-//            $table->text('id');
-//            $table->bigIncrements('id');
+            $table->text('product_name');
+            $table->integer('product_unit');
+            $table->integer('product_rate');
             $table->timestamps();
         });
     }

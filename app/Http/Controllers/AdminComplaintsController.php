@@ -31,9 +31,15 @@ class AdminComplaintsController extends Controller
     public function create()
     {
         $arrObjUser = User::where('activation_status','1')->get();
-        return view('admin.complaints.create',['arrObjUser' => $arrObjUser]);
-    }
+        $data = Category::all();
+        $output='';
+        foreach ($data as $item){
+            $output .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';
+        }
 
+        $arrObjEmployee=EmployeeAvailability::with('employee')->where('available_status')->get();
+        return view('admin.complaints.create',['arrObjUser' => $arrObjUser, 'arrObjEmployees'=>$arrObjEmployee, 'output'=>$output]);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -81,17 +87,20 @@ class AdminComplaintsController extends Controller
      * @param  \App\Complaint  $complaint
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Complaint $complaint)
+    public function update($id, Request $request)
     {
-        $objComplaints = Complaint::findOrFail($request->id);
+        $objComplaints = Complaint::findOrFail($id);
         $objComplaints->location = $request->location;
         $objComplaints->expected_date = $request->expdate;
         $objComplaints->priority = $request->priority;
         $objComplaints->maerials = $request->material;
         $objComplaints->user_id  = $request->user;
         $objComplaints->complaints = json_encode($request->get('complaint'));
-        $objComplaints->image = $request->file('image')->store('complaint');
+        if($request->file('image')){
+            $objComplaints->image = $request->file('image')->store('complaint');
+        }
         $objComplaints->save();
+        return redirect()->back();
     }
 
 }

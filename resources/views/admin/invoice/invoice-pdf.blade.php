@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <!-- load bootstrap from a cdn -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
     <title>Invoice - #123</title>
 
@@ -32,7 +39,7 @@
             margin-left: 15px;
         }
         .information {
-            background-color: #60A7A6;
+            /*background-color: #60A7A6;*/
             color: #FFF;
         }
         .information .logo {
@@ -46,6 +53,7 @@
 </head>
 <body>
 
+<div class="container">
 <div class="information">
     <table width="100%">
         <tr>
@@ -82,63 +90,63 @@ Status: Paid
     </table>
 </div>
 
+    <div class="invoice">
+        <h4>Invoice</h4>
+        <hr>
+        <table>
+            <tr>
+            <td>Invoice number</td>
+            <td>{{$arrMix['invoice_id']}}</td>
+            <td>
+                @if(isset($arrMix['reciepient']))
+                    {{$arrMix['reciepient']}}
+                @endif
+            </td>
+            </tr>
+            <tr>
+            <td>Invoice Date</td>
+            <td>{{$arrMix['invoice_date']}}</td>
+            <td></td>
+            </tr>
+        </table>
+    </div>
+
 
 <br/>
 
-<div class="invoice">
-    <h3>Invoice specification #123</h3>
-    <table width="100%">
+<div class="">
+
+    <table class="w-100 table text-center ">
         <thead>
         <tr>
-            <th>Description</th>
-            <th>Quantity</th>
-            <th>Total</th>
+            <th scope="col">Item</th>
+            <th scope="col">Unit cost</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Item 1</td>
-            <td>1</td>
-            <td align="left">€15,-</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+        @foreach( $arrMix['invoice'] as $index => $invoice)
+            <tr>
+                <td scope="row">{{$invoice['product']}}</td>
+                <td>{{$invoice['unit']}}</td>
+                <td >{{$invoice['quantity']}}</td>
+                <td>{{$invoice['total']}}</td>
+            </tr>
+        @endforeach
         </tbody>
 
         <tfoot>
-        <tr>
-            <td colspan="1"></td>
-            <td align="left">Total</td>
-            <td align="left" class="gray">€15,-</td>
-        </tr>
+            <tr>
+                <td colspan="1"></td>
+                <td colspan="1"></td>
+                <td >Total</td>
+                <td  class="gray">{{$arrMix['sub_total']}}</td>
+            </tr>
         </tfoot>
     </table>
 </div>
-
-<div class="information" style="position: absolute; bottom: 0;">
-    <table width="100%">
-        <tr>
-            <td align="left" style="width: 50%;">
-                &copy; {{ date('Y') }} {{ config('app.url') }} - All rights reserved.
-            </td>
-            <td align="right" style="width: 50%;">
-                Company Slogan
-            </td>
-        </tr>
-
-    </table>
 </div>
+
 </body>
 </html>

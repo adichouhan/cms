@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Complaint;
+use App\Employee;
 use App\EmployeeAvailability;
 use App\User;
 use Illuminate\Http\Request;
@@ -19,6 +20,15 @@ class AdminComplaintsController extends Controller
     {
         $arrObjComplaints = Complaint::all();
         return view('admin.complaints.complaint_view',['arrObjComplaints' => $arrObjComplaints]);
+    }
+
+    public function autocomplete(Request $request)
+    {
+        $search = $request->get('term');
+
+        $result = Complaint::where('complaint', 'LIKE', '%'. $search. '%')->get();
+
+        return response()->json($result);
     }
 
 
@@ -85,8 +95,9 @@ class AdminComplaintsController extends Controller
      * @param  \App\Complaint  $complaint
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Complaint $complaint)
+    public function update($id, Request $request)
     {
+        dd('bill');
         $objComplaints = Complaint::findOrFail($request->id);
         $objComplaints->location = $request->location;
         $objComplaints->expected_date = $request->expdate;

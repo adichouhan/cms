@@ -42,9 +42,10 @@ class ComplaintController extends Controller
      */
     public function postComplaints(Request $request)
     {
-
+        $count = Complaint::all()->count();
         $objComplaints = new Complaint();
         $objComplaints->location = $request->location;
+        $objComplaints->complaints_unique = 'comp';
         $objComplaints->expected_date = $request->expdate;
         $objComplaints->priority = $request->priority;
         $objComplaints->maerials = $request->material;
@@ -93,11 +94,12 @@ class ComplaintController extends Controller
      * @param \App\Complaint $complaint
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, Complaint $complaint)
+    public function update($id, Request $request)
     {
-        $objComplaints = new Complaint();
+        $objComplaints = Complaint::findorfail($id);
         $objComplaints->location = $request->location;
         $objComplaints->expected_date = $request->expdate;
+        $objComplaints->complaints_unique = $request->complaints_unique;
         $objComplaints->priority = $request->priority;
         $objComplaints->maerials = $request->material;
         $objComplaints->user_id = auth()->user()->id;

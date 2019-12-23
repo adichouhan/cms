@@ -5,26 +5,25 @@
             <div class="col-2"></div>
             <div class="col-7">
 
-                <form method="post" action="{{ url('admin/boq/update') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/admin/boq/edit'.$objBoq->product_name) }}" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden"  id="id" name="id"  value="{{$objDocuments->id}}">
                     <div class="form-group">
-                        <label for="title">Document Title</label>
-                        <input type="text" class="form-control" id="title" name="title" value="{{$objDocuments->name}}"
-                               placeholder="Enter title..">
-                    </div>
-                    <div class="form-group">
-                        <label for="expirydate">Expiry Date</label>
-                        <input type="datetime-local" class="form-control" name="expirydate" value="{{$objDocuments->expiry_date}}"
-                               id="expirydate" >
+                        <label for="title">Product Name</label>
+                        <input type="text" class="form-control" id="title" name="product_name"
+                              value="{{$objBoq->product_name}}" placeholder="Enter title..">
                     </div>
 
                     <div class="form-group">
-                        <label for="exampleFormControlFile1">Select File</label>
-                        {{--                        <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1" >--}}
-                        <input type="file" name="file" />
+                        <label for="productunit">Product Unit</label>
+                        <input value="{{$objBoq->product_unit}}" type="number" class="form-control" name="product_unit"
+                               id="productunit" >
                     </div>
 
+                    <div class="form-group">
+                        <label for="productrate">Product Rate</label>
+                        <input value="{{$objBoq->product_rate}}" type="number" class="form-control" name="product_rate"
+                               id="productrate" >
+                    </div>
                     <br>
                     <div class="form-group">
                         <button type="submit"  class="btn btn-primary" >Submit</button>

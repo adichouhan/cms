@@ -19,8 +19,10 @@ Route::group([ 'prefix' => 'admin' ], function() {
 
     Route::get('/complaints', 'AdminComplaintsController@index');
     Route::get('/complaints/create', 'AdminComplaintsController@create');
+    Route::get('/autocomplete/complaint', 'AdminComplaintsController@autocomplete');
     Route::get('/complaints/edit/{complaint}', 'AdminComplaintsController@edit');
     Route::post('/update/complaint/{complaint}', 'AdminComplaintsController@update');
+
 
     Route::get('/employee/availability/create', 'EmployeeAvailabilityController@create');
     Route::post('/employee/availability/store', 'EmployeeAvailabilityController@store');
@@ -28,6 +30,8 @@ Route::group([ 'prefix' => 'admin' ], function() {
 
     Route::get('/invoice', 'InvoiceController@index');
     Route::get('/invoice/create', 'InvoiceController@create');
+    Route::get('/invoice/getPdf', 'InvoiceController@getPdf');
+    Route::post('/invoice/createpdf', 'InvoiceController@createpdf');
     Route::post('/invoice/store', 'InvoiceController@store');
     Route::get('/invoice/edit', 'InvoiceController@edit');
     Route::post('/invoice/edit', 'InvoiceController@update');
@@ -37,6 +41,12 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::post('/add/product', 'ProductsController@store');
     Route::get('/edit/product/{product}', 'ProductsController@edit');
     Route::post('/edit/product/{product}', 'ProductsController@update');
+
+    Route::get('/boq', 'BoqController@index');
+    Route::get('/boq/create', 'BoqController@create');
+    Route::post('/boq/stored', 'BoqController@store');
+    Route::get('/boq/edit/{document}', 'BoqController@edit');
+    Route::post('/boq/update/{document}', 'BoqController@update');
 
     Route::get('/documents', 'DocumentController@index');
     Route::get('/documents/create', 'DocumentController@create');

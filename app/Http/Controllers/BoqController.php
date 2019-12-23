@@ -32,12 +32,16 @@ class BoqController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
             $objBoq= new Boq();
-            $objBoq->
+            $objBoq->product_name=$request->product_name;
+            $objBoq->product_unit=$request->product_unit;
+            $objBoq->product_rate=$request->product_rate;
+            $objBoq->save();
+            return redirect()->back();
     }
 
     /**
@@ -57,9 +61,10 @@ class BoqController extends Controller
      * @param  \App\Boq  $boq
      * @return \Illuminate\Http\Response
      */
-    public function edit(Boq $boq)
+    public function edit($id)
     {
-        //
+        $objBoq = Boq::findorfail($id);;
+        return view('admin.boq.edit', ['objBoq'=>$objBoq]);
     }
 
     /**
@@ -69,9 +74,14 @@ class BoqController extends Controller
      * @param  \App\Boq  $boq
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Boq $boq)
+    public function update($id, Request $request)
     {
-        //
+        $objBoq = Boq::findorfail($id);
+        $objBoq->product_name=$request->product_name;
+        $objBoq->product_unit=$request->product_unit;
+        $objBoq->product_rate=$request->product_rate;
+        $objBoq->save();
+        return redirect()->back();
     }
 
     /**
