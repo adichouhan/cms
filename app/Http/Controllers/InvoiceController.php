@@ -25,7 +25,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        $invoiceIdCount = Invoice::all()->count();
+        $invoiceIdCount = Invoice::withTrashed()->get()->count();
         return  view('admin.invoice.add', ['id' => ++$invoiceIdCount]);
     }
 

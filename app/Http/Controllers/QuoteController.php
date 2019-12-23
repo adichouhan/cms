@@ -26,7 +26,7 @@ class QuoteController extends Controller
      */
     public function create()
     {
-        $quoteIdCount = Quote::all()->count();
+        $quoteIdCount = Quote::withTrashed()->get()->count();
         return  view('admin.quote.add', ['id' => ++$quoteIdCount]);
     }
 
@@ -55,15 +55,15 @@ class QuoteController extends Controller
     public function createPdf(Request $request)
     {
         $arrMix=[];
-        $arrMix['quote_id'] = $request->quote_id;
-        $arrMix['quote_date'] = $request->quote_date;
-        $arrMix['quote']      = $request->quote;
-        $arrMix['sub_total']      = $request->sub_total;
+        $arrMix['quote_id']     = $request->quote_id;
+        $arrMix['quote_date']   = $request->quote_date;
+        $arrMix['quote']        = $request->quote;
+        $arrMix['sub_total']    = $request->sub_total;
 
         if($request->complaint){
             $arrMix['complaint'] = $request->complaint;
         }else{
-            $arrMix['asset'] = $request->asset;
+            $arrMix['asset']     = $request->asset;
         }
         return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
         $pdf = PDF::loadView('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
