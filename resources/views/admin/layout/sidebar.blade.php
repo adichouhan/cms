@@ -34,6 +34,15 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="{{url('admin/employee')}}" class="nav-link">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Employee Details
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="{{url('admin/assets')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
@@ -87,7 +96,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{url('/admin/employee/create')}}" class="nav-link">
+                    <a href="{{url('/admin/employee/availability/create')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Employee Availability
