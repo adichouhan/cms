@@ -5,7 +5,7 @@
             <h3 class="card-title">Complaints</h3>
         </div>
         <div align="left">
-            <a href="{{ url('admin/documents/create') }}" class="btn btn-info">Add New </a>
+            <a href="{{ url('admin/user/create') }}" class="btn btn-info">Add New</a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -38,20 +38,17 @@
                                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-sort="ascending"
                                     aria-label="Rendering engine: activate to sort column descending"
-                                    style="width: 160px;">Compleint ID
+                                    style="width: 160px;">User ID
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">
-                                    Title
+                                    User Name
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 183px;">
-                                   Expiry Date
+                                  Activation Status
                                 </th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Engine version: activate to sort column ascending"
-                                    style="width: 135px;">File Name
-                                </th>
+                                
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
                                     Action
@@ -59,15 +56,14 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($arrObjDocuments as $objDocument)
+                            @foreach($arrObjUsers as $objUser)
                                 <tr role="row" class="odd">
-                                    <td class="sorting_1">{{$objDocument->id}}</td>
+                                    <td class="sorting_1">{{$objUser->id}}</td>
                                     <td>
-                                        {{$objDocument->name}}
+                                        {{$objUser->name}}
                                     </td>
-                                    <td>{{$objDocument->expiry_date}}</td>
-                                    <td><a href="{{ URL::to('/') }}/{{ $objDocument->file }}" class="img-thumbnail"
-                                           width="75">{{$objDocument->file}}</a></td>
+                                    <td>{{$objUser->activation_status}}</td>
+                                    <td></td>
                                     <td>
                                         <a href="{{url('admin/document/edit/'.$objDocument->id)}}"
                                            class="btn btn-primary">Edit</a>
