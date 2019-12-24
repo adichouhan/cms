@@ -15,6 +15,11 @@ class CreateQuotesTable extends Migration
     {
         Schema::create('quotes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->text('quote_id');
+            $table->date('quote_date');
+            $table->text('complaint')->nullable();
+            $table->text('asset')->nullable();
+            $table->text('quote');;
             $table->softDeletes();
             $table->timestamps();
         });

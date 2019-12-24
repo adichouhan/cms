@@ -11,11 +11,12 @@ class InvoiceController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        //
+       $arrObjInvoices=Invoice::all();
+       return view('admin.invoice.list', ['arrObjInvoices'=>$arrObjInvoices]);
     }
 
     /**
@@ -72,7 +73,16 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-
+        $objInvoice = new Invoice();
+        $objInvoice->invoice_id=$request->invoice_id;
+        $objInvoice->invoice_date=$request->invoice_date;
+        if($request->complaint){
+            $objInvoice->complaint=$request->complaint;
+        }else{
+            $objInvoice->asset=$request->asset;
+        }
+        $objInvoice->invoice=json_encode($request->invoice);
+        $objInvoice->save();
 
     }
 
@@ -91,11 +101,12 @@ class InvoiceController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Invoice  $invoice
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Invoice $invoice)
+    public function edit($id)
     {
-        //
+        $objInvoice=Invoice::findorfail($id);
+        return view('admin.invoice.edit',['objInvoice'=>$objInvoice]);
     }
 
     /**
@@ -105,9 +116,18 @@ class InvoiceController extends Controller
      * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Invoice $invoice)
+    public function update($id, Request $request)
     {
-        //
+        $objInvoice = Invoice::findorfail($id);
+        $objInvoice->invoice_id=$request->invoice_id;
+        $objInvoice->invoice_date=$request->invoice_date;
+        if($request->complaint){
+            $objInvoice->complaint=$request->complaint;
+        }else{
+            $objInvoice->asset=$request->asset;
+        }
+        $objInvoice->invoice=json_encode($request->invoice);
+        $objInvoice->save();
     }
 
     /**

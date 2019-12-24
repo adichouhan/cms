@@ -1,4 +1,3 @@
-
 @extends('admin.admin_template')
 @section('content')
 <div class="card">
@@ -35,13 +34,16 @@
                         <tr role="row">
                             <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                 aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
-                                style="width: 160px;">Product ID
+                                style="width: 160px;">Invoice ID
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                aria-label="Browser: activate to sort column ascending" style="width: 207px;">Product Name
+                                aria-label="Browser: activate to sort column ascending" style="width: 207px;">Complaint
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                aria-label="Browser: activate to sort column ascending" style="width: 207px;">Product Unit
+                                aria-label="Browser: activate to sort column ascending" style="width: 207px;">Asset
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                aria-label="Browser: activate to sort column ascending" style="width: 207px;">Invoice Date
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                 aria-label="Browser: activate to sort column ascending" style="width: 207px;">Action
@@ -49,14 +51,16 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach($arrObjProduct as  $assetProduct)
+                            @foreach($arrObjInvoices as  $objInvoice)
                                 <tr>
-                                    <td>{{$assetProduct->id}}</td>
-                                    <td>{{$assetProduct->product_name}}</td>
-                                    <td>{{$assetProduct->product_unit}}</td>
+                                    <td>{{$objInvoice->id}}</td>
+                                    <td>{{isset($objInvoice->complaint)?$objInvoice->complaint:'NA'}}</td>
+                                    <td>{{isset($objInvoice->asset)?$objInvoice->asset:'NA'}}</td>
+                                    <td>{{$objInvoice->asset}}</td>
+                                    <td>{{$objInvoice->date}}</td>
                                     <td>
-                                        <a href="{{url('admin/product/edit/'.$assetProduct->id)}}" class="btn btn-primary">Edit</a>
-                                        <form action="{{url('admin/product/delete/'.$assetProduct->id)}}" method="post">
+                                        <a href="{{url('admin/invoice/edit/'.$objInvoice->id)}}" class="btn btn-primary">Edit</a>
+                                        <form action="{{url('admin/invoice/delete/'.$objInvoice->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger" type="submit">Delete</button>
@@ -72,4 +76,4 @@
         </div>
     </div>
 </div>
-    @stop
+@stop

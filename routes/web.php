@@ -17,6 +17,8 @@ Route::group([ 'prefix' => 'admin' ], function() {
         return view('admin.dashboard');
     });
 
+    Auth::routes();
+
     Route::get('/complaints', 'AdminComplaintsController@index');
     Route::get('/complaints/create', 'AdminComplaintsController@create');
     Route::get('/autocomplete/complaint', 'AdminComplaintsController@autocomplete');
@@ -33,8 +35,8 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/invoice/getPdf', 'InvoiceController@getPdf');
     Route::post('/invoice/createpdf', 'InvoiceController@createpdf');
     Route::post('/invoice/store', 'InvoiceController@store');
-    Route::get('/invoice/edit', 'InvoiceController@edit');
-    Route::post('/invoice/edit', 'InvoiceController@update');
+    Route::get('/invoice/edit/{invoice}', 'InvoiceController@edit');
+    Route::post('/invoice/edit/{invoice}', 'InvoiceController@update');
 
     Route::get('/quote', 'QuoteController@index');
     Route::get('/quote/create', 'QuoteController@create');

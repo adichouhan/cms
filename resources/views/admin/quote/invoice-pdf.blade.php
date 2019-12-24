@@ -9,7 +9,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
-    <title>Invoice - #123</title>
+    <title>quote - #123</title>
 
     <style type="text/css">
         @page {
@@ -32,10 +32,10 @@
             font-weight: bold;
             font-size: x-small;
         }
-        .invoice table {
+        .quote table {
             margin: 15px;
         }
-        .invoice h3 {
+        .quote h3 {
             margin-left: 15px;
         }
         .information {
@@ -90,13 +90,13 @@ Status: Paid
     </table>
 </div>
 
-    <div class="invoice">
-        <h4>Invoice</h4>
+    <div class="quote">
+        <h4>quote</h4>
         <hr>
         <table>
             <tr>
-            <td>Invoice number</td>
-            <td>{{$arrMix['invoice_id']}}</td>
+            <td>quote number</td>
+            <td>{{$arrMix['quote_id']}}</td>
             <td>
                 @if(isset($arrMix['reciepient']))
                     {{$arrMix['reciepient']}}
@@ -104,8 +104,8 @@ Status: Paid
             </td>
             </tr>
             <tr>
-            <td>Invoice Date</td>
-            <td>{{$arrMix['invoice_date']}}</td>
+            <td>quote Date</td>
+            <td>{{$arrMix['quote_date']}}</td>
             <td></td>
             </tr>
         </table>
@@ -126,12 +126,12 @@ Status: Paid
         </tr>
         </thead>
         <tbody>
-        @foreach( $arrMix['invoice'] as $index => $invoice)
+        @foreach( $arrMix['quote'] as $index => $quote)
             <tr>
-                <td scope="row">{{$invoice['product']}}</td>
-                <td>{{$invoice['unit']}}</td>
-                <td >{{$invoice['quantity']}}</td>
-                <td>{{$invoice['total']}}</td>
+                <td scope="row">{{$quote['product']}}</td>
+                <td>{{$quote['unit']}}</td>
+                <td >{{$quote['quantity']}}</td>
+                <td>{{$quote['total']}}</td>
             </tr>
         @endforeach
         </tbody>

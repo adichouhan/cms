@@ -2,9 +2,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-             style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+{{--        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"--}}
+{{--             style="opacity: .8">--}}
+        <span class="brand-text font-weight-light">Dashboard</span>
     </a>
 
     <!-- Sidebar -->
@@ -61,7 +61,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{url('admin/invoice/create')}}" class="nav-link">
+                    <a href="{{url('admin/invoice/')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Create Bill/Invoice
@@ -70,7 +70,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{url('')}}" class="nav-link">
+                    <a href="{{url('admin/product')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Products
@@ -79,7 +79,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{url('hello')}}" class="nav-link">
+                    <a href="{{url('admin/boq')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Service/BOQ
@@ -100,14 +100,6 @@
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Employee Availability
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{url('/admin/employee')}}" class="nav-link">
-                        <i class="nav-icon fas fa-edit"></i>
-                        <p>
-                            Employee
                         </p>
                     </a>
                 </li>

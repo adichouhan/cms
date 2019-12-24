@@ -4,10 +4,10 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-7">
-                <form method="post" action="{{ url('/admin/invoice/createpdf') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/admin/invoice/store') }}" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-4">
-                            <label for="invoice_id">Product name</label>
+                            <label for="invoice_id">Invoice Id</label>
                             <input type="text" class="form-control" name="invoice_id"
                                    id="invoice_id" required value="{{$id}}">
                         </div>
@@ -40,7 +40,7 @@
                             <tbody>
                             <tr>
                                 <td><input name="invoice[0][product]" class="form-control item_product" data-sub_category_id="0"/></td>
-                                <td><input type="number" name="invoice[0][unit]"  data-count="0" class="form-control item_unit calculate price" id="item_sub_category0" value="3" /></td>'
+                                <td><input type="number" name="invoice[0][unit]"  data-count="0" class="form-control item_unit calculate price" id="item_sub_category0" value="3" /></td>
                                 <td><input type="number" name="invoice[0][quantity]" data-count="0" id="calctotal0" class="form-control qty item_quantity calculate" value="12"/></td>
                                 <td>
                                     <input type="number" name="invoice[0][total]" class="form-control item_total" readonly value="36" /></td>
@@ -51,7 +51,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <button type="button" class="btn btn-dark add">Add Issue</button>
                     <div class="row">
                         <div class="col-7"></div>
                         <div class="form-group col-5" id="invoice-total">
@@ -68,6 +67,8 @@
 
                     <br>
                     <div class="form-group">
+                        <a href="/admin/quote/createpdf" class="form_submit btn btn-primary" >Create Pdf</a>
+
                         <button class="form_submit btn btn-primary" >Save</button>
                     </div>
 

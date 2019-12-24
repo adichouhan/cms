@@ -2,7 +2,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Complaints</h3>
+            <h3 class="card-title">Documents/Agreements</h3>
         </div>
         <div align="left">
             <a href="{{ url('admin/documents/create') }}" class="btn btn-info">Add New </a>

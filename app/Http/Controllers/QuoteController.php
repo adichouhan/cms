@@ -12,11 +12,12 @@ class QuoteController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        //
+        $arrObjInvoices=Quote::all();
+        return view('admin.quote.list', ['arrObjInvoices'=>$arrObjInvoices]);
     }
 
     /**
@@ -38,6 +39,16 @@ class QuoteController extends Controller
      */
     public function store(Request $request)
     {
+        $objQuote = new Quote();
+        $objQuote->invoice_id=$request->quote_id;
+        $objQuote->invoice_date=$request->quote_date;
+        if($request->complaint){
+            $objQuote->complaint=$request->complaint;
+        }else{
+            $objQuote->asset=$request->asset;
+        }
+        $objQuote->invoice=json_encode($request->quote);
+        $objQuote->save();
 
     }
 
@@ -75,11 +86,12 @@ class QuoteController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Quote  $quote
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Quote $quote)
+    public function edit($id)
     {
-        //
+        $objInvoice=Quote::findorfail($id);
+        return view('admin.quote.edit',['objInvoice'=>$objInvoice]);
     }
 
     /**
@@ -89,9 +101,18 @@ class QuoteController extends Controller
      * @param  \App\Quote  $quote
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Quote $quote)
+    public function update($id, Request $request)
     {
-        //
+        $objQuote = Quote::findorfail($id);
+        $objQuote->invoice_id=$request->quote_id;
+        $objQuote->invoice_date=$request->quote_date;
+        if($request->complaint){
+            $objQuote->complaint=$request->complaint;
+        }else{
+            $objQuote->asset=$request->asset;
+        }
+        $objQuote->invoice=json_encode($request->quote);
+        $objQuote->save();
     }
 
     /**

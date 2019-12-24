@@ -46,7 +46,7 @@
                             <tbody>
                             <tr>
                                 <td><input name="invoice[0][product]" class="form-control item_product" data-sub_category_id="0"/></td>
-                                <td><input type="number" name="invoice[0][unit]"  data-count="0" class="form-control item_unit calculate price" id="item_sub_category0" value="3" /></td>'
+                                <td><input type="number" name="invoice[0][unit]"  data-count="0" class="form-control item_unit calculate price" id="item_sub_category0" value="3" /></td>
                                 <td><input type="number" name="invoice[0][quantity]" data-count="0" id="calctotal0" class="form-control qty item_quantity calculate" value="12"/></td>
                                 <td>
                                     <input type="number" name="invoice[0][total]" class="form-control item_total" readonly value="36" /></td>
@@ -74,9 +74,8 @@
 
                     <br>
                     <div class="form-group">
-                        <a href="/admin/invoice/createpdf" class="form_submit btn btn-primary" >Save</a>
-                    </div>
-                    <div class="form-group">
+                        <a href="/admin/quote/createpdf" target="_blank" class="form_submit btn btn-primary">Create Pdf</a>
+
                         <button type="submit" class="form_submit btn btn-primary" >Save</button>
                     </div>
 

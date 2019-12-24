@@ -1,31 +1,32 @@
-+@extends('admin.admin_template')
+@extends('admin.admin_template')
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-2"></div>
             <div class="col-7">
                 <form method="post" action="{{ url('/admin/invoice/createpdf') }}" enctype="multipart/form-data">
+                    @csrf
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="invoice_id">Product name</label>
                             <input type="text" class="form-control" name="invoice_id"
-                                   id="invoice_id" required value="{{$id}}">
+                                   id="invoice_id" required value="{{$objInvoice->invoice_id}}">
                         </div>
-                        
+
                         <div class="form-group col-md-4">
                             <label for="invoice-date">Invoice Date</label>
                             <input type="date" required class="form-control" name="invoice_date"
-                                   id="invoice-date" placeholder="">
+                                   id="invoice-date" value="{{$objInvoice->date}}" placeholder="">
                         </div>
-                        
+
                         <div class="form-group col-md-4">
                             <label for="complaint">Complaint</label>
                             <input type="text" class="form-control" required name="complaint"
-                                   id="complaint" placeholder="Complaint">
+                                   id="complaint" placeholder="Complaint" value="{{isset($objInvoice->complaint)?$objInvoice->complaint:''}}">
                         </div>
                     </div>
-                    
-                    @csrf
+
+
                     <div class="box-body">
                         <table class="table table-bordered" id="item_table">
                             <thead>
@@ -38,16 +39,18 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach(json_decode($objInvoice->invoice) as $index => $invoice)
                             <tr>
-                                <td><input name="invoice[0][product]" class="form-control item_product" data-sub_category_id="0"/></td>
-                                <td><input type="number" name="invoice[0][unit]"  data-count="0" class="form-control item_unit calculate price" id="item_sub_category0" value="3" /></td>'
-                                <td><input type="number" name="invoice[0][quantity]" data-count="0" id="calctotal0" class="form-control qty item_quantity calculate" value="12"/></td>
+                                <td><input name="invoice[{{$index}}][product]" class="form-control item_product" value="{{$invoice->product}}" data-sub_category_id="0"/></td>
+                                <td><input type="number" name="invoice[{{$index}}][unit]"  data-count="0"  value="{{$invoice->unit}}" class="form-control item_unit calculate price" id="item_sub_category0"  /></td>'
+                                <td><input type="number" name="invoice[{{$index}}][quantity]" data-count="0" id="calctotal0" value="{{$invoice->quantity}}" class="form-control qty item_quantity calculate" /></td>
                                 <td>
-                                    <input type="number" name="invoice[0][total]" class="form-control item_total" readonly value="36" /></td>
+                                    <input type="number" name="invoice[{{$index}}][total]" class="form-control item_total" readonly value="36" /></td>
                                 <td><button type="button" class="add btn btn-primary">Add</button>
                                     <button type="button" class="remove btn btn-primary">Remove</button>
                                 </td>
                             </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -65,23 +68,22 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <br>
                     <div class="form-group">
                         <button class="form_submit btn btn-primary" >Save</button>
                     </div>
-                
+
                 </form>
             </div>
         </div>
         <div class="col-3"></div>
     </div>
-    
-    
+
     <script>
 		$(document).ready(function () {
-			var count = 1;
-			
+			var count = {!! count(json_decode($objInvoice->invoice))>0?count(json_decode($objInvoice->invoice)):0 !!};
+
 			$(document).on('click', '.add', function () {
 				count++;
 				var html = '';
@@ -93,14 +95,14 @@
 				html += '<td><button type="button" id="[' + count + ']" class="btn btn-danger btn-xs add">Add</button><button type="button" class="btn btn-danger btn-xs remove">Remove</button></td></tr>';
 				$('tbody').append(html);
 			});
-			
-			$('#item_table tbody').on('keyup change',function(){
+
+			$('#item_table tbody').on('keyup change blur',function(){
 				calc();
 			});
-			$('#tax').on('keyup change',function(){
+			$('#tax').on('keyup change blur',function(){
 				calc_total();
 			});
-			
+
 			function calc()
 			{
 				$('#item_table tbody tr').each(function(i, element) {
@@ -110,14 +112,14 @@
 						var qty = $(this).find('.qty').val();
 						var price = $(this).find('.price').val();
 						$(this).find('.item_total').val(qty*price);
-						
+
 						calc_total();
 					}
 				});
 			}
-			
+
 			$( "#complaint" ).autocomplete({
-				
+
 				source: function(request, response) {
 					$.ajax({
 						url: "{{url('/autocomplete/complaint/')}}",
@@ -130,14 +132,14 @@
 								//console.log(obj.city_name);
 								return obj.name;
 							});
-							
+
 							response(resp);
 						}
 					});
 				},
 				minLength: 1
 			});
-			
+
 			function calc_total()
 			{
 				total=0;
@@ -149,12 +151,12 @@
 				$('#tax_amount').val(tax_sum.toFixed(2));
 				$('#total_amount').val((tax_sum+total).toFixed(2));
 			}
-			
+
 			$(document).on('click', '.remove', function () {
 				$(this).closest('.addedSection').remove();
 			});
-			
-			
+
+
 		});
     </script>
 @stop
