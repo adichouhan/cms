@@ -1,36 +1,87 @@
 @extends('admin.admin_template')
 @section('content')
-    <div class="box box-info">
-        <div class="box-header with-border">
-            <h3 class="box-title">Employee Form</h3>
-        </div>
-
-        <!-- /.box-header -->
-        <!-- form start -->
-        <form  method="post" action="/admin/employee/store"  enctype="multipart/form-data">
-            @csrf
-            <div class="box-body">
-                <div class="form-group">
-                    <label for="employeename" class="col-sm-2 control-label">Employee Name</label>
-
-                    <div class="col-sm-10">
-                        <input type="text" name="name" class="form-control" id="employeename" placeholder="Name">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{ __('Register') }}</div>
+                    
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
+                            
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                                
+                                <div class="col-md-6">
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                
+                                <div class="col-md-6">
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                    
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                
+                                <div class="col-md-6">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                    
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                                
+                                <div class="col-md-6">
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                </div>
+                            </div>
+    
+                            <div class="form-group row">
+                                <label for="activation-status" class="col-md-4 col-form-label text-md-right">Activation Status</label>
+        
+                                <div class="col-md-6">
+                                    <select id="activation-status"  class="form-control" name="activation_status" required>
+                                        <option value="0">Deactivate</option>
+                                        <option value="1">Activate</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Register') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Select</label>
-                    <select class="form-control" name="role">
-                        <option value="manager">Manager</option>
-                        <option value="employee">Employee</option>
-                    </select>
-                </div>
-
             </div>
-            <!-- /.box-body -->
-            <div class="box-footer">
-                <button  class="btn btn-default">Submit</button>
-            </div>
-            <!-- /.box-footer -->
-        </form>
+        </div>
     </div>
-    @endsection
+@endsection

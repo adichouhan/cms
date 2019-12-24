@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-7">
-                <form method="post" action="{{ url('/admin/quote/createpdf') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/admin/quote/store') }}" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="invoice_id">Product name</label>
@@ -74,7 +74,10 @@
 
                     <br>
                     <div class="form-group">
-                        <button class="form_submit btn btn-primary" >Save</button>
+                        <a href="/admin/invoice/createpdf" class="form_submit btn btn-primary" >Save</a>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="form_submit btn btn-primary" >Save</button>
                     </div>
 
                 </form>
