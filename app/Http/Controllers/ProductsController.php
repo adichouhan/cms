@@ -36,6 +36,10 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'product_name' => 'required',
+            'product_unit'   => 'required',
+        ]);
         $objProduct=new Products();
         $objProduct->product_name=$request->product_name;
         $objProduct->product_unit=$request->product_unit;

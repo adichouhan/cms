@@ -37,6 +37,12 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'role'   => 'required',
+            'email_id' => 'required',
+            'mobile_no'   => 'required',
+        ]);
 
         $objEmployee = new Employee();
         $objEmployee->name = $request->name;
@@ -80,6 +86,12 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
+        $request->validate([
+            'name' => 'required',
+            'role'   => 'required',
+            'email_id' => 'required',
+            'mobile_no'   => 'required',
+        ]);
         $objEmployee = Employee::findorfail($request->id);
         $objEmployee->name = $request->name;
         $objEmployee->role = $request->role;

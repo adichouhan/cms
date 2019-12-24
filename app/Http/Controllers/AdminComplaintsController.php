@@ -48,6 +48,13 @@ class AdminComplaintsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'location'  => 'required',
+            'expdate'   => 'required',
+            'priority'  => 'required',
+            'material'  => 'required',
+            'image'     => 'required|image|max:2048',
+        ]);
         $objComplaints = new Complaint();
         $objComplaints->location = $request->location;
         $objComplaints->expected_date = $request->expdate;
@@ -89,6 +96,13 @@ class AdminComplaintsController extends Controller
      */
     public function update($id, Request $request)
     {
+        $request->validate([
+            'location' => 'required',
+            'expdate'   => 'required',
+            'priority' => 'required',
+            'material'   => 'required',
+            'image' => 'required|image|max:2048',
+        ]);
         $objComplaints = Complaint::findOrFail($id);
         $objComplaints->location = $request->location;
         $objComplaints->expected_date = $request->expdate;

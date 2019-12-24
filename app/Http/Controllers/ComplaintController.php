@@ -42,6 +42,14 @@ class ComplaintController extends Controller
      */
     public function postComplaints(Request $request)
     {
+        $request->validate([
+            'location' => 'required',
+            'expdate'   => 'required',
+            'priority' => 'required',
+            'material'   => 'required',
+            'complaint'   => 'required',
+            'image' => 'required|image|max:2048',
+        ]);
         $count = Complaint::all()->count();
         $objComplaints = new Complaint();
         $objComplaints->location = $request->location;
@@ -96,6 +104,14 @@ class ComplaintController extends Controller
      */
     public function update($id, Request $request)
     {
+        $request->validate([
+            'location' => 'required',
+            'expdate'   => 'required',
+            'priority' => 'required',
+            'material'   => 'required',
+            'complaint'   => 'required',
+            'image' => 'required|image|max:2048',
+        ]);
         $objComplaints = Complaint::findorfail($id);
         $objComplaints->location = $request->location;
         $objComplaints->expected_date = $request->expdate;

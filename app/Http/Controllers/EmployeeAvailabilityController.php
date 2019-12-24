@@ -37,6 +37,11 @@ class EmployeeAvailabilityController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'employee' => 'required',
+            'employee'   => 'required',
+            'onwork_status' => 'required',
+        ]);
         $objAvailability = new EmployeeAvailability();
         $objAvailability->employee_id=$request->employee;
         $objAvailability->available_status=$request->employee;

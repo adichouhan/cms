@@ -27,6 +27,9 @@ class AssetProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
+        $request->validate([
+            'asset_name' => 'required',
+        ]);
         $objAssetProduct=new AssetsProduct();
         $objAssetProduct->asset_product=$request->asset_name;
         $objAssetProduct->save();
@@ -51,6 +54,9 @@ class AssetProductController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function update(Request $request){
+        $request->validate([
+            'asset_name' => 'required',
+        ]);
         $objAssetProduct=AssetsProduct::findOrFail($request->id);
         $objAssetProduct->asset_product=$request->asset_name;
         $objAssetProduct->save();

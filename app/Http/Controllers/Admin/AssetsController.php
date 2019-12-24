@@ -51,7 +51,14 @@ class AssetsController extends Controller
      */
     public function store(Request $request)
     {
-      $objAssest = new Assets();
+        $request->validate([
+            'location' => 'required',
+            'expdate'   => 'required',
+            'priority' => 'required',
+            'material'   => 'required',
+            'image' => 'required|image|max:2048',
+        ]);
+        $objAssest = new Assets();
         $objAssest->location = $request->location;
         $objAssest->expected_date = $request->expdate;
         $objAssest->priority = $request->priority;
@@ -97,6 +104,13 @@ class AssetsController extends Controller
      */
     public function update(Request $request)
     {
+        $request->validate([
+            'location' => 'required',
+            'expdate'   => 'required',
+            'priority' => 'required',
+            'material'   => 'required',
+            'image' => 'required|image|max:2048',
+        ]);
         $objAssest = Assets::findOrFail($request->id);;
         $objAssest->location = $request->location;
         $objAssest->expected_date = $request->expdate;

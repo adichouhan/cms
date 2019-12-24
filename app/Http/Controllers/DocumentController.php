@@ -37,6 +37,11 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+            'expirydate'   => 'required',
+            'document' => 'required',
+        ]);
 //        dd($request->all());
         $objDocument = new Document();
         $objDocument->name = $request->title;
@@ -78,6 +83,11 @@ class DocumentController extends Controller
      */
     public function update(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+            'expirydate'   => 'required',
+            'document' => 'required',
+        ]);
         $objDocument = Document::findOrFail($request->id);
         $objDocument->name = $request->title;
         $objDocument->expiry_date = $request->expirydate;
