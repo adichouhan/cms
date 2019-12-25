@@ -28,7 +28,7 @@
                     <a href="{{url('admin/complaints')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            Add and Remove complaints
+                            Complaints
                         </p>
                     </a>
                 </li>
@@ -37,7 +37,7 @@
                     <a href="{{url('admin/employee')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            Employee Details
+                            Employee
                         </p>
                     </a>
                 </li>
@@ -46,7 +46,7 @@
                     <a href="{{url('admin/assets')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            View/Modify Assets
+                             Assets
                         </p>
                     </a>
                 </li>
@@ -55,7 +55,7 @@
                     <a href="{{url('admin/quote')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            Create Quote
+                           Quote
                         </p>
                     </a>
                 </li>
@@ -64,7 +64,7 @@
                     <a href="{{url('admin/invoice/')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            Create Bill/Invoice
+                            Bill/Invoice
                         </p>
                     </a>
                 </li>
@@ -103,6 +103,25 @@
                         </p>
                     </a>
                 </li>
+    
+                <li class="nav-item">
+                    <a href="{{url('/admin/supplier')}}" class="nav-link">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Supplier
+                        </p>
+                    </a>
+                </li>
+    
+                <li class="nav-item">
+                    <a href="{{url('/admin/delivery')}}" class="nav-link">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Delivery Challan
+                        </p>
+                    </a>
+                </li>
+                
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

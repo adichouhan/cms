@@ -1,44 +1,37 @@
-@extends('admin.admin_template')
++@extends('admin.admin_template')
 @section('content')
-    <script>
-	
-		
-    </script>
     <div class="container">
         <div class="row">
             <div class="col-2"></div>
             <div class="col-7">
-                <form method="post" action="{{ url('/admin/invoice/store') }}" enctype="multipart/form-data">
-                    @csrf
+                <form method="post" action="{{ url('/admin/quote/store') }}" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-4">
-                            <label for="invoice_id">Invoice Id</label>
+                            <label for="invoice_id">Product name</label>
                             <input type="text" class="form-control" name="invoice_id"
                                    id="invoice_id" required value="{{$id}}">
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="invoice-date">Invoice Date</label>
+                            <label for="invoice-date">Quote Date</label>
                             <input type="date" required class="form-control" name="invoice_date"
                                    id="invoice-date" placeholder="">
                         </div>
-                        
-                        <div class="col-md-2 btn complaint">Add Complaint</div>
-                        <div class="col-md-2 btn assets">Add Assets</div>
-                        
-                        <div class="form-group col-md-4" id="complaint" style="display: none">
+                        <div class="add_complaint">Add complaint</div>
+                        <div class="add_assets">Add asset</div>
+                        <div id="add_complaint" style="display:none" class="form-group col-md-4">
                             <label for="complaint">Complaint</label>
                             <input type="text" class="form-control" required name="complaint"
                                    id="complaint" placeholder="Complaint">
                         </div>
-                        <div class="form-group col-md-4" id="assets"  style="display: none">
-                            <label for="assets">Assets</label>
-                            <input type="text" class="form-control" required name="assets"
-                                   id="assets" placeholder="Assets">
+                        <div id="add_asset" style="display:none" class="form-group col-md-4">
+                            <label for="complaint">Complaint</label>
+                            <input type="text" class="form-control" required name="complaint"
+                                   id="complaint" placeholder="Complaint">
                         </div>
                     </div>
 
-                   
+                    @csrf
                     <div class="box-body">
                         <table class="table table-bordered" id="item_table">
                             <thead>
@@ -64,6 +57,7 @@
                             </tbody>
                         </table>
                     </div>
+                    <button type="button" class="btn btn-dark add">Add Issue</button>
                     <div class="row">
                         <div class="col-7"></div>
                         <div class="form-group col-5" id="invoice-total">
@@ -80,9 +74,9 @@
 
                     <br>
                     <div class="form-group">
-                        <a href="/admin/quote/createpdf" class="form_submit btn btn-primary" >Create Pdf</a>
+                        <a href="/admin/quote/createpdf" target="_blank" class="form_submit btn btn-primary">Create Pdf</a>
 
-                        <button class="form_submit btn btn-primary" >Save</button>
+                        <button type="submit" class="form_submit btn btn-primary" >Save</button>
                     </div>
 
                 </form>
@@ -114,18 +108,17 @@
             $('#tax').on('keyup change',function(){
                 calc_total();
             });
-	
-			$(document).on('click', '.assets', function () {
-				$('#assets').css('display', 'block');
-				$('#complaint').css('display', 'none');
-			});
-	
-			$(document).on('click', '.complaint', function () {
-				$('#complaint').css('display', 'block');
-				$('#assets').css('display', 'none');
-			});
-			
-			
+
+            $('.add_complaint').on('click', function () {
+                $('#add_complaint').css("display", "block");
+                $('#add_asset').css("display", "none");
+            });
+
+            $('.add_asset').on('click', function () {
+                $('#add_asset').css("display", "block");
+                $('#add_complaint').css("display", "none");
+            });
+
             function calc()
             {
                 $('#item_table tbody tr').each(function(i, element) {
@@ -142,6 +135,7 @@
             }
 
             $( "#complaint" ).autocomplete({
+
                 source: function(request, response) {
                     $.ajax({
                         url: "{{url('/autocomplete/complaint/')}}",

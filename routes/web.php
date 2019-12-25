@@ -13,11 +13,14 @@
 
 
 Route::group([ 'prefix' => 'admin' ], function() {
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    });
+    Route::get('/', function () {return view('admin.dashboard');});
 
-    Auth::routes();
+    Route::get('/user', 'UserController@index');
+    Route::get('/user/create', 'UserController@create');
+    Route::post('/user/stored', 'UserController@store');
+    Route::get('/user/edit/{user}', 'UserController@edit');
+    Route::post('/user/update/{user}', 'UserController@update');
+
 
     Route::get('/complaints', 'AdminComplaintsController@index');
     Route::get('/complaints/create', 'AdminComplaintsController@create');
@@ -57,6 +60,12 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::post('/boq/stored', 'BoqController@store');
     Route::get('/boq/edit/{document}', 'BoqController@edit');
     Route::post('/boq/update/{document}', 'BoqController@update');
+
+    Route::get('/supplier', 'SupplierController@index');
+    Route::get('/supplier/create', 'SupplierController@create');
+    Route::post('/supplier/stored', 'SupplierController@store');
+    Route::get('/supplier/edit/{supplier}', 'SupplierController@edit');
+    Route::post('/supplier/update/{supplier}', 'SupplierController@update');
 
     Route::get('/documents', 'DocumentController@index');
     Route::get('/documents/create', 'DocumentController@create');
