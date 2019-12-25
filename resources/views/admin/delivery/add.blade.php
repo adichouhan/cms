@@ -4,18 +4,19 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-7">
-                <form method="post" action="{{ url('/admin/quote/store') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/admin/delivery/store') }}" enctype="multipart/form-data">
+                    @csrf
                     <div class="row">
                         <div class="form-group col-md-4">
-                            <label for="invoice_id">Product name</label>
-                            <input type="text" class="form-control" name="invoice_id"
-                                   id="invoice_id" required value="{{$id}}">
+                            <label for="challan_id">Challan Id</label>
+                            <input type="text" class="form-control" name="challan_id"
+                                   id="challan_id" required value="{{$id}}">
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="invoice-date">Quote Date</label>
-                            <input type="date" required class="form-control" name="invoice_date"
-                                   id="invoice-date" placeholder="">
+                            <label for="challan-date">Challan Date</label>
+                            <input type="date" required class="form-control" name="challan_date"
+                                   id="challan-date" placeholder="">
                         </div>
                         <div class="add_complaint">Add complaint</div>
                         <div class="add_assets">Add asset</div>
@@ -31,7 +32,7 @@
                         </div>
                     </div>
 
-                    @csrf
+
                     <div class="box-body">
                         <table class="table table-bordered" id="item_table">
                             <thead>
@@ -45,11 +46,11 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td><input name="invoice[0][product]" class="form-control item_product" data-sub_category_id="0"/></td>
-                                <td><input type="number" name="invoice[0][unit]"  data-count="0" class="form-control item_unit calculate price" id="item_sub_category0" value="3" /></td>
-                                <td><input type="number" name="invoice[0][quantity]" data-count="0" id="calctotal0" class="form-control qty item_quantity calculate" value="12"/></td>
+                                <td><input type="text" name="challan[0][product]" class="form-control item_product" /></td>
+                                <td><input type="number" name="challan[0][unit]"   class="form-control item_unit calculate price" id="item_sub_category0" value="3" /></td>
+                                <td><input type="number" name="challan[0][quantity]"  id="calctotal0" class="form-control qty item_quantity calculate" value="12"/></td>
                                 <td>
-                                    <input type="number" name="invoice[0][total]" class="form-control item_total" readonly value="36" /></td>
+                                    <input type="number" name="challan[0][total]" class="form-control item_total" readonly value="36" /></td>
                                 <td><button type="button" class="add btn btn-primary">Add</button>
                                     <button type="button" class="remove btn btn-primary">Remove</button>
                                 </td>
@@ -57,7 +58,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <button type="button" class="btn btn-dark add">Add Issue</button>
+
                     <div class="row">
                         <div class="col-7"></div>
                         <div class="form-group col-5" id="invoice-total">
@@ -74,7 +75,7 @@
 
                     <br>
                     <div class="form-group">
-                        <a href="/admin/quote/createpdf" target="_blank" class="form_submit btn btn-primary">Create Pdf</a>
+                        <a href="/admin/challan/createpdf" target="_blank" class="form_submit btn btn-primary">Create Pdf</a>
 
                         <button type="submit" class="form_submit btn btn-primary" >Save</button>
                     </div>
@@ -94,10 +95,9 @@
                 count++;
                 var html = '';
                 html += '<tr class="addedSection">';
-                html += '<td><select name="invoice[' + count + '][product]" class="form-control item_product" data-product_id="' + count + '"><option value="check2">check2</option></select></td>';
-                html += '<td><input type="number" name="invoice[' + count + '][unit]" id="unit${count}" data-count="' + count + '" class="form-control item_unit calculate price" id="item_sub_category' + count + '" value="12"/></td>';
-                html += '<td><input type="number" name="invoice[' + count + '][quantity]" id="quantity${count}" data-count="' + count + '" class="form-control item_quantity calculate qty" value="6"/></td>';
-                html += '<td><input type="number     " name="invoice[' + count + '][total]" class="form-control item_total" value="144" readonly/><div class="showtotal"></div></td>';
+                html += '<td><select name="challan[' + count + '][product]" class="form-control item_product" data-product_id="' + count + '"><option value="check2">check2</option></select></td>';
+                html += '<td><input type="number" name="challan[' + count + '][unit]" id="unit${count}" data-count="' + count + '" class="form-control item_unit calculate price" id="item_sub_category' + count + '" value="12"/></td>';
+                html += '<td><input type="number" name="challan[' + count + '][quantity]" id="quantity${count}" data-count="' + count + '" class="form-control item_quantity calculate qty" value="6"/></td>';
                 html += '<td><button type="button" id="[' + count + ']" class="btn btn-danger btn-xs add">Add</button><button type="button" class="btn btn-danger btn-xs remove">Remove</button></td></tr>';
                 $('tbody').append(html);
             });

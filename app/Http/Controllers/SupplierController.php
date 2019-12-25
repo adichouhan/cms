@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Quote;
 use App\Supplier;
 use Illuminate\Http\Request;
 
@@ -10,32 +11,45 @@ class SupplierController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        //
+        $arrObjSupplier=Supplier::all();
+        return view('admin.quote.list', ['arrObjSupplier'=>$arrObjSupplier]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        //
+        return view('admin.supplier.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'role'   => 'required',
+            'email_id' => 'required',
+            'mobile_no'   => 'required',
+        ]);
+
+        $objEmployee = new Supplier();
+        $objEmployee->name = $request->name;
+        $objEmployee->email_id = $request->email_id;
+        $objEmployee->mobile_no = $request->mobile_no;
+        $objEmployee->save();
+        return  redirect()->back();
     }
 
     /**
@@ -55,9 +69,10 @@ class SupplierController extends Controller
      * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function edit(Supplier $supplier)
+    public function edit($id)
     {
-        //
+        $objSupplier = Supplier::findorfail($id);
+        return view('/admin/supplier/edit', ['objSupplier'=>$objSupplier]);
     }
 
     /**
@@ -65,11 +80,21 @@ class SupplierController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Supplier  $supplier
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, Supplier $supplier)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email_id' => 'required',
+            'mobile_no'   => 'required',
+        ]);
+        $objEmployee = Supplier::findorfail($request->id);
+        $objEmployee->name = $request->name;
+        $objEmployee->email_id = $request->email_id;
+        $objEmployee->mobile_no = $request->mobile_no;
+        $objEmployee->save();
+        return redirect('/admin/supplier')->with('Supplier created successfully');
     }
 
     /**

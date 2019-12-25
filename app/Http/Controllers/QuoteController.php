@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Invoice;
 use App\Quote;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
@@ -40,16 +39,18 @@ class QuoteController extends Controller
     public function store(Request $request)
     {
         $objQuote = new Quote();
-        $objQuote->invoice_id=$request->quote_id;
-        $objQuote->invoice_date=$request->quote_date;
+        $objQuote->quote_id=$request->quote_id;
+        $objQuote->quote_date=$request->quote_date;
         if($request->complaint){
             $objQuote->complaint=$request->complaint;
         }else{
             $objQuote->asset=$request->asset;
         }
-        $objQuote->invoice=json_encode($request->quote);
+        $objQuote->quote=json_encode($request->quote);
         $objQuote->save();
 
+        $this->createPdf($request);
+        redirect()->back();
     }
 
     /**
@@ -78,7 +79,7 @@ class QuoteController extends Controller
         }
         return view('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
         $pdf = PDF::loadView('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
-        return $pdf->stream('medium.pdf');
+        return $pdf->download('Quote'.$request->quote_id.'.pdf');
 
     }
 
@@ -104,15 +105,17 @@ class QuoteController extends Controller
     public function update($id, Request $request)
     {
         $objQuote = Quote::findorfail($id);
-        $objQuote->invoice_id=$request->quote_id;
-        $objQuote->invoice_date=$request->quote_date;
+        $objQuote->quote_id=$request->quote_id;
+        $objQuote->quote_date=$request->quote_date;
         if($request->complaint){
             $objQuote->complaint=$request->complaint;
         }else{
             $objQuote->asset=$request->asset;
         }
-        $objQuote->invoice=json_encode($request->quote);
+        $objQuote->quote=json_encode($request->quote);
         $objQuote->save();
+        $this->createPdf($request);
+        redirect()->back();
     }
 
     /**

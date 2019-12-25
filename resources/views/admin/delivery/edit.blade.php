@@ -4,13 +4,13 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-7">
-                <form method="post" action="{{ url('/admin/quote/createpdf') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/admin/delivery/createpdf') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="invoice_id">Product name</label>
                             <input type="text" class="form-control" name="invoice_id"
-                                   id="invoice_id" required value="{{$objInvoice->invoice_id}}">
+                                   id="invoice_id" required value="{{$objInvoice->challan_id}}">
                         </div>
 
                         <div class="form-group col-md-4">
@@ -34,18 +34,17 @@
                                 <th>Item</th>
                                 <th>Unit</th>
                                 <th>Cost</th>
-                                <th>Total</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach(json_decode($objInvoice->quote) as $index => $invoice)
                                 <tr>
-                                    <td><input name="invoice[{{$index}}][product]" class="form-control item_product" value="{{$invoice->product}}" data-sub_category_id="0"/></td>
-                                    <td><input type="number" name="invoice[{{$index}}][unit]"  data-count="0"  value="{{$invoice->unit}}" class="form-control item_unit calculate price" id="item_sub_category0"  /></td>'
-                                    <td><input type="number" name="invoice[{{$index}}][quantity]" data-count="0" id="calctotal0" value="{{$invoice->quantity}}" class="form-control qty item_quantity calculate" /></td>
+                                    <td><input name="challan[{{$index}}][product]" class="form-control item_product" value="{{$invoice->product}}" data-sub_category_id="0"/></td>
+                                    <td><input type="number" name="challan[{{$index}}][unit]"  data-count="0"  value="{{$invoice->unit}}" class="form-control item_unit calculate price" id="item_sub_category0"  /></td>'
+                                    <td><input type="number" name="challan[{{$index}}][quantity]" data-count="0" id="calctotal0" value="{{$invoice->quantity}}" class="form-control qty item_quantity calculate" /></td>
                                     <td>
-                                        <input type="number" name="invoice[{{$index}}][total]" class="form-control item_total" readonly value="36" /></td>
+                                        <input type="number" name="challan[{{$index}}][total]" class="form-control item_total" readonly value="36" /></td>
                                     <td><button type="button" class="add btn btn-primary">Add</button>
                                         <button type="button" class="remove btn btn-primary">Remove</button>
                                     </td>
@@ -54,26 +53,10 @@
                             </tbody>
                         </table>
                     </div>
-                    <button type="button" class="btn btn-dark add">Add Issue</button>
-                    <div class="row">
-                        <div class="col-7"></div>
-                        <div class="form-group col-5" id="invoice-total">
-                            <div class="row">
-                                <div class="col-6 invoice_total">
-                                    Sub Total
-                                </div>
-                                <div class="col-6 total">
-                                    <input type="number" name='sub_total' placeholder='0.00' class="form-control total_amount" id="sub_total" readonly/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <br>
                     <div class="form-group">
                         <button class="form_submit btn btn-primary" >Save</button>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -88,11 +71,10 @@
                 count++;
                 var html = '';
                 html += '<tr class="addedSection">';
-                html += '<td><select name="invoice[' + count + '][product]" class="form-control item_product" data-product_id="' + count + '"><option value="check2">check2</option></select></td>';
-                html += '<td><input type="number" name="invoice[' + count + '][unit]" id="unit${count}" data-count="' + count + '" class="form-control item_unit calculate price" id="item_sub_category' + count + '" value="12"/></td>';
-                html += '<td><input type="number" name="invoice[' + count + '][quantity]" id="quantity${count}" data-count="' + count + '" class="form-control item_quantity calculate qty" value="6"/></td>';
-                html += '<td><input type="number     " name="invoice[' + count + '][total]" class="form-control item_total" value="144" readonly/><div class="showtotal"></div></td>';
-                html += '<td><button type="button" id="[' + count + ']" class="btn btn-danger btn-xs add">Add</button><button type="button" class="btn btn-danger btn-xs remove">Remove</button></td></tr>';
+                html += '<td><select name="challan[' + count + '][product]" class="form-control item_product" data-product_id="' + count + '"><option value="check2">check2</option></select></td>';
+                html += '<td><input type="number" name="challan[' + count + '][unit]" id="unit${count}" data-count="' + count + '" class="form-control item_unit calculate price" id="item_sub_category' + count + '" value="12"/></td>';
+                html += '<td><input type="number" name="challan[' + count + '][quantity]" id="quantity${count}" data-count="' + count + '" class="form-control item_quantity calculate qty" value="6"/></td>';
+               html += '<td><button type="button" id="[' + count + ']" class="btn btn-danger btn-xs add">Add</button><button type="button" class="btn btn-danger btn-xs remove">Remove</button></td></tr>';
                 $('tbody').append(html);
             });
 

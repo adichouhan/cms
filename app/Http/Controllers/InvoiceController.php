@@ -43,9 +43,9 @@ class InvoiceController extends Controller
         }else{
             $arrMix['asset'] = $request->asset;
         }
-        return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
+//        return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
         $pdf = PDF::loadView('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
-        return $pdf->stream('medium.pdf');
+        return $pdf->download('Invoice'.$request->invoice_id.'.pdf');
 
     }
 
@@ -69,7 +69,7 @@ class InvoiceController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -83,6 +83,8 @@ class InvoiceController extends Controller
         }
         $objInvoice->invoice=json_encode($request->invoice);
         $objInvoice->save();
+        $this->createPdf($request);
+        return redirect()->back();
 
     }
 
@@ -114,7 +116,7 @@ class InvoiceController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Invoice  $invoice
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id, Request $request)
     {
@@ -128,6 +130,8 @@ class InvoiceController extends Controller
         }
         $objInvoice->invoice=json_encode($request->invoice);
         $objInvoice->save();
+        $this->createPdf($request);
+        return redirect()->back();
     }
 
     /**

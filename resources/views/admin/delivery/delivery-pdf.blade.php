@@ -9,7 +9,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
-    <title>quote - #123</title>
+    <title>Delivery Challan </title>
 
     <style type="text/css">
         @page {
@@ -122,7 +122,6 @@ Status: Paid
             <th scope="col">Item</th>
             <th scope="col">Unit cost</th>
             <th scope="col">Quantity</th>
-            <th scope="col">Total</th>
         </tr>
         </thead>
         <tbody>
@@ -131,18 +130,12 @@ Status: Paid
                 <td scope="row">{{$quote['product']}}</td>
                 <td>{{$quote['unit']}}</td>
                 <td >{{$quote['quantity']}}</td>
-                <td>{{$quote['total']}}</td>
             </tr>
         @endforeach
         </tbody>
 
         <tfoot>
-            <tr>
-                <td colspan="1"></td>
-                <td colspan="1"></td>
-                <td >Total</td>
-                <td  class="gray">{{$arrMix['sub_total']}}</td>
-            </tr>
+
         </tfoot>
     </table>
 </div>

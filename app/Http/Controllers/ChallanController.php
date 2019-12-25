@@ -10,32 +10,45 @@ class ChallanController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        //
+        $arrObjInvoices=Challan::all();
+        return view('admin.delivery.list', ['arrObjInvoices'=>$arrObjInvoices]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        //
+        $invoiceIdCount = Challan::withTrashed()->get()->count();
+        return  view('admin.delivery.add', ['id' => ++$invoiceIdCount]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $objChallan = new Challan();
+        $objChallan->challan_id=$request->challan_id;
+        $objChallan->challan_date=$request->challan_date;
+        if($request->complaint){
+            $objChallan->complaint=$request->complaint;
+        }else{
+            $objChallan->asset=$request->asset;
+        }
+        $objChallan->challan=json_encode($request->challan);
+        $objChallan->save();
+        $this->createPdf($request);
+        return redirect()->back();
     }
 
     /**
@@ -77,9 +90,10 @@ class ChallanController extends Controller
      *
      * @param  \App\Challan  $challan
      * @return \Illuminate\Http\Response
+     * -----
      */
     public function destroy(Challan $challan)
     {
-        //
+
     }
 }

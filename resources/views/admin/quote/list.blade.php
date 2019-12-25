@@ -2,7 +2,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Products</h3>
+            <h3 class="card-title">Quotes</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -56,7 +56,6 @@
                                     <td>{{$objInvoice->id}}</td>
                                     <td>{{isset($objInvoice->complaint)?$objInvoice->complaint:'NA'}}</td>
                                     <td>{{isset($objInvoice->asset)?$objInvoice->asset:'NA'}}</td>
-                                    <td>{{$objInvoice->asset}}</td>
                                     <td>{{$objInvoice->date}}</td>
                                     <td>
                                         <a href="{{url('admin/quote/edit/'.$objInvoice->id)}}" class="btn btn-primary">Edit</a>

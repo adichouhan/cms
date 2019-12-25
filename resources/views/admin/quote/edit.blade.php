@@ -41,11 +41,11 @@
                             <tbody>
                             @foreach(json_decode($objInvoice->quote) as $index => $invoice)
                                 <tr>
-                                    <td><input name="invoice[{{$index}}][product]" class="form-control item_product" value="{{$invoice->product}}" data-sub_category_id="0"/></td>
-                                    <td><input type="number" name="invoice[{{$index}}][unit]"  data-count="0"  value="{{$invoice->unit}}" class="form-control item_unit calculate price" id="item_sub_category0"  /></td>'
-                                    <td><input type="number" name="invoice[{{$index}}][quantity]" data-count="0" id="calctotal0" value="{{$invoice->quantity}}" class="form-control qty item_quantity calculate" /></td>
+                                    <td><input name="quote[{{$index}}][product]" class="form-control item_product" value="{{$invoice->product}}" data-sub_category_id="0"/></td>
+                                    <td><input type="number" name="quote[{{$index}}][unit]"  data-count="0"  value="{{$invoice->unit}}" class="form-control item_unit calculate price" id="item_sub_category0"  /></td>'
+                                    <td><input type="number" name="quote[{{$index}}][quantity]" data-count="0" id="calctotal0" value="{{$invoice->quantity}}" class="form-control qty item_quantity calculate" /></td>
                                     <td>
-                                        <input type="number" name="invoice[{{$index}}][total]" class="form-control item_total" readonly value="36" /></td>
+                                        <input type="number" name="quote[{{$index}}][total]" class="form-control item_total" readonly value="36" /></td>
                                     <td><button type="button" class="add btn btn-primary">Add</button>
                                         <button type="button" class="remove btn btn-primary">Remove</button>
                                     </td>
@@ -88,10 +88,10 @@
                 count++;
                 var html = '';
                 html += '<tr class="addedSection">';
-                html += '<td><select name="invoice[' + count + '][product]" class="form-control item_product" data-product_id="' + count + '"><option value="check2">check2</option></select></td>';
-                html += '<td><input type="number" name="invoice[' + count + '][unit]" id="unit${count}" data-count="' + count + '" class="form-control item_unit calculate price" id="item_sub_category' + count + '" value="12"/></td>';
-                html += '<td><input type="number" name="invoice[' + count + '][quantity]" id="quantity${count}" data-count="' + count + '" class="form-control item_quantity calculate qty" value="6"/></td>';
-                html += '<td><input type="number     " name="invoice[' + count + '][total]" class="form-control item_total" value="144" readonly/><div class="showtotal"></div></td>';
+                html += '<td><select name="quote[' + count + '][product]" class="form-control item_product" data-product_id="' + count + '"><option value="check2">check2</option></select></td>';
+                html += '<td><input type="number" name="quote[' + count + '][unit]" id="unit${count}" data-count="' + count + '" class="form-control item_unit calculate price" id="item_sub_category' + count + '" value="12"/></td>';
+                html += '<td><input type="number" name="quote[' + count + '][quantity]" id="quantity${count}" data-count="' + count + '" class="form-control item_quantity calculate qty" value="6"/></td>';
+                html += '<td><input type="number     " name="quote[' + count + '][total]" class="form-control item_total" value="144" readonly/><div class="showtotal"></div></td>';
                 html += '<td><button type="button" id="[' + count + ']" class="btn btn-danger btn-xs add">Add</button><button type="button" class="btn btn-danger btn-xs remove">Remove</button></td></tr>';
                 $('tbody').append(html);
             });
