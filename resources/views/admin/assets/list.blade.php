@@ -35,23 +35,30 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                        <table id="example2" class="table table-bordered table-striped dataTable" role="grid"
                                aria-describedby="example1_info">
                             <thead>
                             <tr role="row">
                                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-sort="ascending"
                                     aria-label="Rendering engine: activate to sort column descending"
-                                    style="width: 160px;">Compleint ID
+                                    style="width: 160px;">Assets ID
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">
-                                    Complaints
+                                    Assets
                                 </th>
+    
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Browser: activate to sort column ascending" style="width: 207px;">
+                                    Assets Unique ID
+                                </th>
+                                
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 183px;">
                                     Location
                                 </th>
+                                
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Engine version: activate to sort column ascending"
                                     style="width: 135px;">Expected Date
@@ -76,6 +83,9 @@
                                     <td class="sorting_1">{{$objasset->id}}</td>
                                     <td>
                                         {{$objasset->products}}
+                                    </td>
+                                    <td>
+                                        {{$objasset->assets_unique}}
                                     </td>
                                     <td>{{$objasset->location}}</td>
                                     <td>{{$objasset->expected_date}}</td>

@@ -44,8 +44,10 @@ class AssetsController extends Controller
             'material'   => 'required',
             'image' => 'required|image|max:2048',
         ]);
+        $count = Assets::all()->count();
         $objAssest = new Assets();
         $objAssest->location = $request->location;
+        $objAssest->assets_unique = 'asset_'.$count;
         $objAssest->expected_date = $request->expdate;
         $objAssest->priority = $request->priority;
         $objAssest->maerials = $request->material;

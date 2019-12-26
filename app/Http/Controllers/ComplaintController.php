@@ -53,7 +53,7 @@ class ComplaintController extends Controller
         $count = Complaint::all()->count();
         $objComplaints = new Complaint();
         $objComplaints->location = $request->location;
-        $objComplaints->complaints_unique = 'comp';
+        $objComplaints->complaints_unique = 'comp_'.$count;
         $objComplaints->expected_date = $request->expdate;
         $objComplaints->priority = $request->priority;
         $objComplaints->maerials = $request->material;
@@ -115,7 +115,6 @@ class ComplaintController extends Controller
         $objComplaints = Complaint::findorfail($id);
         $objComplaints->location = $request->location;
         $objComplaints->expected_date = $request->expdate;
-        $objComplaints->complaints_unique = $request->complaints_unique;
         $objComplaints->priority = $request->priority;
         $objComplaints->maerials = $request->material;
         $objComplaints->user_id = auth()->user()->id;

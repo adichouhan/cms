@@ -75,9 +75,7 @@
 
                     <br>
                     <div class="form-group">
-                        <a href="/admin/quote/createpdf" target="_blank" class="form_submit btn btn-primary">Create Pdf</a>
-
-                        <button type="submit" class="form_submit btn btn-primary" >Save</button>
+                       <button type="submit" class="form_submit btn btn-primary" >Save</button>
                     </div>
 
                 </form>
@@ -94,13 +92,13 @@
             $(document).on('click', '.add', function () {
                 count++;
                 var html = '';
-                html += '<tr class="addedSection">';
-                html += '<td><select name="quote[' + count + '][product]" class="form-control item_product" data-product_id="' + count + '"><option value="check2">check2</option></select></td>';
-                html += '<td><input type="number" name="quote[' + count + '][unit]" id="unit${count}" data-count="' + count + '" class="form-control item_unit calculate price" id="item_sub_category' + count + '" value="12"/></td>';
-                html += '<td><input type="number" name="quote[' + count + '][quantity]" id="quantity${count}" data-count="' + count + '" class="form-control item_quantity calculate qty" value="6"/></td>';
-                html += '<td><input type="number     " name="quote[' + count + '][total]" class="form-control item_total" value="144" readonly/><div class="showtotal"></div></td>';
-                html += '<td><button type="button" id="[' + count + ']" class="btn btn-danger btn-xs add">Add</button><button type="button" class="btn btn-danger btn-xs remove">Remove</button></td></tr>';
-                $('tbody').append(html);
+				html += '<tr class="addedSection">';
+				html += '<td><input type="hidden" name="quote[' + count + '][product]" class="form-control item_product" id="product'+count+'"><input type="text" name="quote[' + count + '][product]" class="form-control item_product" id="producttext'+count+'" ></td>';
+				html += '<td><input type="number" name="quote[' + count + '][unit]"   class="form-control item_unit calculate price" id="unit'+count+'" value="12"/></td>';
+				html += '<td><input type="number" name="quote[' + count + '][quantity]"   class="form-control item_quantity calculate qty" id="quantity'+count+'" value="6"/></td>';
+				html += '<td><input type="number" name="quote[' + count + '][total]" class="form-control item_total" value="144" readonly/><div class="showtotal"></div></td>';
+				html += '<td><button type="button" id="[' + count + ']" class="btn btn-danger btn-xs add">Add</button><button type="button" class="btn btn-danger btn-xs remove">Remove</button></td></tr>';
+				$('tbody').append(html);
             });
 
             $('#item_table tbody').on('keyup change',function(){
