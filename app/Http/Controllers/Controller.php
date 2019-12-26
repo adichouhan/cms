@@ -14,6 +14,6 @@ class Controller extends BaseController
 
     public function fetch(Request $request)
     {
-
+        dd($request->all());
     }
 }

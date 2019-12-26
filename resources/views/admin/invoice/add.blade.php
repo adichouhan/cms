@@ -1,8 +1,15 @@
 @extends('admin.admin_template')
 @section('content')
     <script>
-	
-		
+        $(document).on('click', '.assets', function () {
+            $('#assets').css('display', 'block');
+            $('#complaint').css('display', 'none');
+        });
+
+        $(document).on('click', '.complaint', function () {
+            $('#complaint').css('display', 'block');
+            $('#assets').css('display', 'none');
+        });
     </script>
     <div class="container">
         <div class="row">
@@ -22,28 +29,29 @@
                             <input type="date" required class="form-control" name="invoice_date"
                                    id="invoice-date" placeholder="">
                         </div>
-                        
+
                         <div class="col-md-2 btn complaint">Add Complaint</div>
                         <div class="col-md-2 btn assets">Add Assets</div>
-                        
+                    </div>
+                    <div class="row">
                         <div class="form-group col-md-4" id="complaint" style="display: none">
                             <label for="complaint">Complaint</label>
-                            <input type="text" class="form-control" required name="complaint"
-                                   id="complaint_text" placeholder="Complaint">
+                            <input type="text" class="form-control search" data-type="complaint"
+                                   id="complaint_text"  placeholder="Complaint">
                             <div id="complaintList">
-                            <input type="hidden" class="form-control"  required name="complaint"
+                            <input type="hidden" class="form-control"   name="complaint"
                                    id="complaint" placeholder="Complaint">
                         </div>
                         <div class="form-group col-md-4" id="assets"  style="display: none">
                             <label for="assets">Assets</label>
-                            <input type="text" class="form-control" required name="assets"
-                                   id="assets_text" placeholder="Assets">
-                            <input type="hidden" class="form-control" required name="assets"
+                            <input type="text" class="form-control search" data-type="asset"
+                                                                    id="assets_text" placeholder="Assets">
+                            <input type="hidden" class="form-control"  name="assets"
                                    id="assets" placeholder="Assets">
                         </div>
                     </div>
+                    </div>
 
-                   
                     <div class="box-body">
                         <table class="table table-bordered" id="item_table">
                             <thead>
@@ -57,7 +65,10 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td><input type="hidden" name="invoice[0][product]" class="form-control item_product" data-type="product"/></td>
+                                <td><input type="hidden" name="invoice[0][product]" class="form-control item_product" />
+                                    <input type="text"  class="form-control item_product" data-type="product" data-count="0"/>
+                                    <div id="invoiceList0">
+                                </td>
                                 <td><input type="number" name="invoice[0][unit]"  class="form-control item_unit calculate price" id="unit0" value="3" /></td>
                                 <td><input type="number" name="invoice[0][quantity]" data-count="0" id="quantity0" class="form-control qty item_quantity calculate" value="12"/></td>
                                 <td>
@@ -105,7 +116,7 @@
                 count++;
                 var html = '';
                 html += '<tr class="addedSection">';
-                html += '<td><input type="hidden" name="invoice[' + count + '][product]" class="form-control item_product" data-type="invoice" data-count="'+count+'" id="product'+count+'"><input type="text" name="invoice[' + count + '][product]" class="form-control item_product" id="producttext'+count+'" ></td>';
+                html += '<td><input type="hidden" name="invoice[' + count + '][product]" class="form-control item_product" data-type="product" data-count="'+count+'" id="product'+count+'"><input type="text"  class="form-control item_product" id="producttext'+count+'" ><div id="invoiceList'+count+'"></td>';
                 html += '<td><input type="number" name="invoice[' + count + '][unit]"   class="form-control item_unit calculate price" id="unit'+count+'" value="12"/></td>';
                 html += '<td><input type="number" name="invoice[' + count + '][quantity]"   class="form-control item_quantity calculate qty" id="quantity'+count+'" value="6"/></td>';
                 html += '<td><input type="number" name="invoice[' + count + '][total]" class="form-control item_total" value="144" readonly/><div class="showtotal"></div></td>';
@@ -119,18 +130,35 @@
             $('#tax').on('keyup change',function(){
                 calc_total();
             });
-	
-			$(document).on('click', '.assets', function () {
-				$('#assets').css('display', 'block');
-				$('#complaint').css('display', 'none');
-			});
-	
-			$(document).on('click', '.complaint', function () {
-				$('#complaint').css('display', 'block');
-				$('#assets').css('display', 'none');
-			});
-			
-			
+
+            $(document).on('keyup', '.search', function () {
+                var type = $(this).data('type');
+                var count = $(this).data('count');
+                var query = $(this).val();
+
+                if(query != '') {
+                    $.ajax({
+                        url: "/fetch",
+                        method: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "type": type,
+                            'query':query
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (data) {
+
+                        }
+                    })
+
+                }
+            });
+
+
+
+
             function calc()
             {
                 $('#item_table tbody tr').each(function(i, element) {
@@ -146,26 +174,7 @@
                 });
             }
 
-            $( "#complaint" ).autocomplete({
-                source: function(request, response) {
-                    $.ajax({
-                        url: "{{url('/autocomplete/complaint/')}}",
-                        data: {
-                            term : request.term
-                        },
-                        dataType: "json",
-                        success: function(data){
-                            var resp = $.map(data,function(obj){
-                                //console.log(obj.city_name);
-                                return obj.name;
-                            });
 
-                            response(resp);
-                        }
-                    });
-                },
-                minLength: 1
-            });
 
             function calc_total()
             {

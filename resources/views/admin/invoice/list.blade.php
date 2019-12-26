@@ -56,8 +56,7 @@
                                     <td>{{$objInvoice->id}}</td>
                                     <td>{{isset($objInvoice->complaint)?$objInvoice->complaint:'NA'}}</td>
                                     <td>{{isset($objInvoice->asset)?$objInvoice->asset:'NA'}}</td>
-                                    <td>{{$objInvoice->asset}}</td>
-                                    <td>{{$objInvoice->date}}</td>
+                                    <td>{{$objInvoice->invoice_date}}</td>
                                     <td>
                                         <a href="{{url('admin/invoice/edit/'.$objInvoice->id)}}" class="btn btn-primary">Edit</a>
                                         <form action="{{url('admin/invoice/delete/'.$objInvoice->id)}}" method="post">

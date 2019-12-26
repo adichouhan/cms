@@ -37,7 +37,7 @@ class QuoteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {dd('sdf');
         $objQuote = new Quote();
         $objQuote->quote_id=$request->quote_id;
         $objQuote->quote_date=$request->quote_date;

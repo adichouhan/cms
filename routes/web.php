@@ -39,7 +39,7 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::post('/invoice/createpdf', 'InvoiceController@createpdf');
     Route::post('/invoice/store', 'InvoiceController@store');
     Route::get('/invoice/edit/{invoice}', 'InvoiceController@edit');
-    Route::post('/invoice/edit/{invoice}', 'InvoiceController@update');
+    Route::post('/invoice/update/{invoice}', 'InvoiceController@update');
 
     Route::get('/quote', 'QuoteController@index');
     Route::get('/quote/create', 'QuoteController@create');
@@ -96,6 +96,7 @@ Route::get('/complaints', function () {
     return view('complaints');
 })->middleware('auth');
 
+Route::post('/fetch', 'Controller@fetch');
 
 Route::get('/register/user/create', 'RegisterController@create')->middleware('auth');
 

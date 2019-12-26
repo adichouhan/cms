@@ -1,4 +1,4 @@
-+@extends('admin.admin_template')
+@extends('admin.admin_template')
 @section('content')
     <div class="container">
         <div class="row">
@@ -22,13 +22,17 @@
                         <div class="add_assets">Add asset</div>
                         <div id="add_complaint" style="display:none" class="form-group col-md-4">
                             <label for="complaint">Complaint</label>
-                            <input type="text" class="form-control" required name="complaint"
+                            <input type="hidden" class="form-control"  name="complaint"
+                                   id="complaint_text" placeholder="Complaint">
+                            <input type="text" class="form-control" required
                                    id="complaint" placeholder="Complaint">
                         </div>
-                        <div id="add_asset" style="display:none" class="form-group col-md-4">
-                            <label for="complaint">Complaint</label>
-                            <input type="text" class="form-control" required name="complaint"
-                                   id="complaint" placeholder="Complaint">
+                        <div class="form-group col-md-4" id="asset"  style="display: none">
+                            <label for="assets">Assets</label>
+                            <input type="text" class="form-control"
+                                   id="assets_text" placeholder="Assets">
+                            <input type="hidden" class="form-control" required name="assets"
+                                   id="assets" placeholder="Assets">
                         </div>
                     </div>
 
@@ -46,7 +50,7 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td><input name="quote[0][product]" class="form-control item_product" data-sub_category_id="0"/></td>
+                                <td><input type="text" name="quote[0][product]" class="form-control item_product" data-sub_category_id="0"/></td>
                                 <td><input type="number" name="quote[0][unit]"  data-count="0" class="form-control item_unit calculate price" id="item_sub_category0" value="3" /></td>
                                 <td><input type="number" name="quote[0][quantity]" data-count="0" id="calctotal0" class="form-control qty item_quantity calculate" value="12"/></td>
                                 <td>
@@ -93,7 +97,7 @@
                 count++;
                 var html = '';
 				html += '<tr class="addedSection">';
-				html += '<td><input type="hidden" name="quote[' + count + '][product]" class="form-control item_product" id="product'+count+'"><input type="text" name="quote[' + count + '][product]" class="form-control item_product" id="producttext'+count+'" ></td>';
+				html += '<td><input type="hidden" name="quote[' + count + '][product]" class="form-control item_product" id="product'+count+'"><input type="text" class="form-control item_product" id="producttext'+count+'" ></td>';
 				html += '<td><input type="number" name="quote[' + count + '][unit]"   class="form-control item_unit calculate price" id="unit'+count+'" value="12"/></td>';
 				html += '<td><input type="number" name="quote[' + count + '][quantity]"   class="form-control item_quantity calculate qty" id="quantity'+count+'" value="6"/></td>';
 				html += '<td><input type="number" name="quote[' + count + '][total]" class="form-control item_total" value="144" readonly/><div class="showtotal"></div></td>';

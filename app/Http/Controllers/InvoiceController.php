@@ -76,7 +76,7 @@ class InvoiceController extends Controller
         $objInvoice = new Invoice();
         $objInvoice->invoice_id=$request->invoice_id;
         $objInvoice->invoice_date=$request->invoice_date;
-        if($request->complaint){
+        if(isset($request->complaint)){
             $objInvoice->complaint=$request->complaint;
         }else{
             $objInvoice->asset=$request->asset;
@@ -123,7 +123,7 @@ class InvoiceController extends Controller
         $objInvoice = Invoice::findorfail($id);
         $objInvoice->invoice_id=$request->invoice_id;
         $objInvoice->invoice_date=$request->invoice_date;
-        if($request->complaint){
+        if(isset($request->complaint)){
             $objInvoice->complaint=$request->complaint;
         }else{
             $objInvoice->asset=$request->asset;

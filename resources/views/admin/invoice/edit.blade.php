@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-7">
-                <form method="post" action="{{ url('/admin/invoice/createpdf') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/admin/invoice/update/'.$objInvoice->id) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-4">
@@ -16,14 +16,24 @@
                         <div class="form-group col-md-4">
                             <label for="invoice-date">Invoice Date</label>
                             <input type="date" required class="form-control" name="invoice_date"
-                                   id="invoice-date" value="{{$objInvoice->date}}" placeholder="">
+                                   id="invoice-date" value="{{$objInvoice->invoice_date}}" placeholder="">
                         </div>
-
+                        @if(isset($objInvoice->complaint))
                         <div class="form-group col-md-4">
                             <label for="complaint">Complaint</label>
                             <input type="text" class="form-control" required name="complaint"
                                    id="complaint" placeholder="Complaint" value="{{isset($objInvoice->complaint)?$objInvoice->complaint:''}}">
                         </div>
+                        @endif
+
+                        @if(isset($objInvoice->assets))
+                            <label for="assets">Assets</label>
+                            <input type="text" class="form-control"
+                                   id="assets_text" placeholder="Assets" >
+                            <input type="hidden" class="form-control"  name="assets"
+                                   id="assets" placeholder="Assets">
+                        @endif
+
                     </div>
 
 
@@ -54,7 +64,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <button type="button" class="btn btn-dark add">Add Issue</button>
                     <div class="row">
                         <div class="col-7"></div>
                         <div class="form-group col-5" id="invoice-total">
