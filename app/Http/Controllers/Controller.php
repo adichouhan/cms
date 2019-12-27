@@ -41,6 +41,13 @@ class Controller extends BaseController
             $objModel=User::where('name', 'LIKE', '%' . $term . '%')->get();
         }
 
+        $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
+        foreach($objModel as $row)
+        {
+            $output .= '<li><a href="#">'.$row->country_name.'</a></li>';
+        }
+        $output .= '</ul>';
+        echo $output;
 
     }
 }

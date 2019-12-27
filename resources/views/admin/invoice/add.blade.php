@@ -153,14 +153,21 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function (data) {
-
+                            autocomplete(type, data);
                         }
                     })
 
                 }
             });
 
-
+            function autocomplete(type, data) {
+             
+            	if(type=='complaint'){
+                	$('#complaintList').html(data);
+                }
+            	
+            	
+			}
 
 
             function calc()
