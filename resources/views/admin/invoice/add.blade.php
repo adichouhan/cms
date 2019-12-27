@@ -2,6 +2,7 @@
 @section('content')
     <script>
         $(document).on('click', '.assets', function () {
+        	console.log('lksdf')
             $('#assets').css('display', 'block');
             $('#complaint').css('display', 'none');
         });
@@ -37,19 +38,18 @@
                         <div class="form-group col-md-4" id="complaint" style="display: none">
                             <label for="complaint">Complaint</label>
                             <input type="text" class="form-control search" data-type="complaint"
-                                   id="complaint_text"  placeholder="Complaint">
-                            <div id="complaintList">
+                                   id="complaint_text"  placeholder="Complaint" />
+                            <div id="complaintList"></div>
                             <input type="hidden" class="form-control"   name="complaint"
-                                   id="complaint" placeholder="Complaint">
+                                   id="complaint" placeholder="Complaint" />
                         </div>
                         <div class="form-group col-md-4" id="assets"  style="display: none">
-                            <label for="assets">Assets</label>
+                            <label for="asset">Assets</label>
                             <input type="text" class="form-control search" data-type="asset"
                                                                     id="assets_text" placeholder="Assets">
                             <input type="hidden" class="form-control"  name="assets"
-                                   id="assets" placeholder="Assets">
+                                   id="asset" placeholder="Assets">
                         </div>
-                    </div>
                     </div>
 
                     <div class="box-body">
@@ -67,7 +67,7 @@
                             <tr>
                                 <td><input type="hidden" name="invoice[0][product]" class="form-control item_product" />
                                     <input type="text"  class="form-control item_product" data-type="product" data-count="0"/>
-                                    <div id="invoiceList0">
+                                    <div id="invoiceList0"></div>
                                 </td>
                                 <td><input type="number" name="invoice[0][unit]"  class="form-control item_unit calculate price" id="unit0" value="3" /></td>
                                 <td><input type="number" name="invoice[0][quantity]" data-count="0" id="quantity0" class="form-control qty item_quantity calculate" value="12"/></td>
@@ -137,6 +137,10 @@
                 var query = $(this).val();
 
                 if(query != '') {
+                	console.log('lksdfkllksad');
+                	console.log(type);
+                	console.log(count);
+                	console.log(query);
                     $.ajax({
                         url: "/fetch",
                         method: "POST",

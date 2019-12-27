@@ -16,6 +16,7 @@ class CreateAssetsTable extends Migration
         Schema::create('assets', function (Blueprint $table) {
             $table->increments('id');
             $table->text('products')->nullable();
+            $table->text('assets_unique')->nullable();
             $table->text('location')->nullable();
             $table->dateTime('expected_date')->nullable();
             $table->text('priority')->nullable();
