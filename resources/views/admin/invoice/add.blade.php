@@ -41,7 +41,7 @@
                                    id="complaint_text"  placeholder="Complaint" />
                             <div id="complaintList"></div>
                             <input type="hidden" class="form-control"   name="complaint"
-                                   id="complaint" placeholder="Complaint" />
+                                   id="complaintVal" placeholder="Complaint" />
                         </div>
                         <div class="form-group col-md-4" id="assets"  style="display: none">
                             <label for="asset">Assets</label>
@@ -153,6 +153,8 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function (data) {
+                            console.log('data')
+                            console.log(data)
                             autocomplete(type, data);
                         }
                     })
@@ -161,14 +163,23 @@
             });
 
             function autocomplete(type, data) {
-             
-            	if(type=='complaint'){
-                	$('#complaintList').html(data);
+                var htmlComplaint='';
+                htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
+
+            	if(type =='complaint'){
+            	    data.forEach(function (complaints) {
+                        htmlComplaint +='<li class="comp" data-id="'+ complaints.id+'">'+ complaints.complaints_unique+'</li> ';
+                        $('#complaintList').append(htmlComplaint);
+                    })
                 }
-            	
-            	
+
 			}
 
+            $(document).on('click', 'li.comp', function(){
+                $('#complaint_text').val($(this).text());
+                $('#complaintVal').val($(this).data('id'));
+                $('#complaintList').fadeOut();
+            });
 
             function calc()
             {

@@ -24,6 +24,7 @@ Route::group([ 'prefix' => 'admin' ], function() {
 
     Route::get('/complaints', 'AdminComplaintsController@index');
     Route::get('/complaints/create', 'AdminComplaintsController@create');
+    Route::post('/complaints/create', 'AdminComplaintsController@store');
     Route::get('/autocomplete/complaint', 'AdminComplaintsController@autocomplete');
     Route::get('/complaints/edit/{complaint}', 'AdminComplaintsController@edit');
     Route::post('/update/complaint/{complaint}', 'AdminComplaintsController@update');

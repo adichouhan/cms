@@ -5,7 +5,7 @@
             <div class="col-2"></div>
             <div class="col-7">
 
-                <form method="post" action="{{ url('/admin/create/assets/') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/admin/assets/store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="inputState">Users</label>

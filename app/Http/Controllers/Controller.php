@@ -19,35 +19,30 @@ class Controller extends BaseController
 
     public function fetch(Request $request)
     {
-        $modelType=$request->type;
-        $term = $request->query;
-        if($modelType = 'complaint'){
-            $objModel=Complaint::where('name', 'LIKE', '%' . $term . '%')->get();
+        $modelType=$request['type'];
+        $term = $request['query'];
+
+        if($modelType == 'complaint'){
+            $objModel=Complaint::where('complaints_unique', 'LIKE', '%' . $term . '%')->get();
         }
 
-        if($modelType = 'asset'){
-            $objModel=Assets::where('name', 'LIKE', '%' . $term . '%')->get();
+        if($modelType == 'asset'){
+            $objModel=Assets::where('assets_unique', 'LIKE', '%' . $term . '%')->get();
         }
 
-        if($modelType = 'assetProduct'){
-            $objModel=AssetsProduct::where('name', 'LIKE', '%' . $term . '%')->get();
+        if($modelType == 'assetProduct'){
+            $objModel=AssetsProduct::where('product_name', 'LIKE', '%' . $term . '%')->get();
         }
 
-        if($modelType = 'product'){
-            $objModel=Products::where('name', 'LIKE', '%' . $term . '%')->get();
+        if($modelType == 'product'){
+            $objModel=Products::where('product_name', 'LIKE', '%' . $term . '%')->get();
         }
 
-        if($modelType = 'user'){
+        if($modelType == 'user'){
             $objModel=User::where('name', 'LIKE', '%' . $term . '%')->get();
         }
 
-        $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
-        foreach($objModel as $row)
-        {
-            $output .= '<li><a href="#">'.$row->country_name.'</a></li>';
-        }
-        $output .= '</ul>';
-        echo $output;
+        return response()->json($objModel);
 
     }
 }
