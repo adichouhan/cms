@@ -47,6 +47,7 @@
                             <label for="asset">Assets</label>
                             <input type="text" class="form-control search" data-type="asset"
                                                                     id="assets_text" placeholder="Assets">
+                            <div id="assetList"></div>
                             <input type="hidden" class="form-control"  name="assets"
                                    id="asset" placeholder="Assets">
                         </div>
@@ -65,9 +66,9 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td><input type="hidden" name="invoice[0][product]" class="form-control item_product" />
-                                    <input type="text"  class="form-control item_product" data-type="product" data-count="0"/>
-                                    <div id="invoiceList0"></div>
+                                <td><input type="text" name="invoice[0][product]" class="form-control item_product search"
+                                           data-type="product" data-count="0" id="product0"                                    />
+                                    <div id="productList0"></div>
                                 </td>
                                 <td><input type="number" name="invoice[0][unit]"  class="form-control item_unit calculate price" id="unit0" value="3" /></td>
                                 <td><input type="number" name="invoice[0][quantity]" data-count="0" id="quantity0" class="form-control qty item_quantity calculate" value="12"/></td>
@@ -110,13 +111,15 @@
 
     <script>
         $(document).ready(function () {
-            var count = 1;
+            var count = 0;
+            var dataCount='';
+
 
             $(document).on('click', '.add', function () {
                 count++;
                 var html = '';
                 html += '<tr class="addedSection">';
-                html += '<td><input type="hidden" name="invoice[' + count + '][product]" class="form-control item_product" data-type="product" data-count="'+count+'" id="product'+count+'"><input type="text"  class="form-control item_product" id="producttext'+count+'" ><div id="invoiceList'+count+'"></td>';
+                html += '<td><input type="text" name="invoice[' + count + '][product]" class="form-control item_product search" data-type="product" data-count="'+count+'" id="product'+count+'"><div id="productList'+count+'"></td>';
                 html += '<td><input type="number" name="invoice[' + count + '][unit]"   class="form-control item_unit calculate price" id="unit'+count+'" value="12"/></td>';
                 html += '<td><input type="number" name="invoice[' + count + '][quantity]"   class="form-control item_quantity calculate qty" id="quantity'+count+'" value="6"/></td>';
                 html += '<td><input type="number" name="invoice[' + count + '][total]" class="form-control item_total" value="144" readonly/><div class="showtotal"></div></td>';
@@ -124,7 +127,7 @@
                 $('tbody').append(html);
             });
 
-            $('#item_table tbody').on('keyup change',function(){
+            $(document).on('keyup change', '#item_table tbody',function(){
                 calc();
             });
             $('#tax').on('keyup change',function(){
@@ -133,14 +136,10 @@
 
             $(document).on('keyup', '.search', function () {
                 var type = $(this).data('type');
-                var count = $(this).data('count');
+                dataCount = $(this).data('count');
                 var query = $(this).val();
 
                 if(query != '') {
-                	console.log('lksdfkllksad');
-                	console.log(type);
-                	console.log(count);
-                	console.log(query);
                     $.ajax({
                         url: "/fetch",
                         method: "POST",
@@ -153,7 +152,6 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function (data) {
-                            console.log('data')
                             console.log(data)
                             autocomplete(type, data);
                         }
@@ -173,12 +171,48 @@
                     })
                 }
 
-			}
+                if(type =='asset'){
+                    data.forEach(function (assets) {
+                        htmlComplaint +='<li class="asset" data-id="'+ assets.id+'">'+ assets.assets_unique+'</li> ';
+                        $('#assetList').append(htmlComplaint);
+                    })
+                }
+
+                if(type =='product'){
+                    data.forEach(function (product) {
+                        htmlComplaint +='<li class="product" data-id="'+ product.id+'" data-unit="'+product.product_unit+'" data-cost="'+product.product_cost+'">'+ product.product_name+'</li> ';
+                        var listId = '#productList'+dataCount;
+                        $(listId).append(htmlComplaint);
+                    })
+                }
+
+                htmlComplaint += '</ul>'
+
+            }
 
             $(document).on('click', 'li.comp', function(){
                 $('#complaint_text').val($(this).text());
                 $('#complaintVal').val($(this).data('id'));
                 $('#complaintList').fadeOut();
+            });
+
+            $(document).on('click', 'li.asset', function(){
+                $('#asset_text').val($(this).text());
+                $('#asset').val($(this).data('id'));
+                $('#assetList').fadeOut();
+            });
+
+            $(document).on('click', 'li.product', function(){
+                var productId = '#product'+dataCount;
+                var unitId = '#unit'+dataCount;
+                var costId = '#quantity'+dataCount;
+                console.log('productId');
+                console.log(productId);
+                $(productId).val($(this).text());
+                var unit =$(this).data('unit')
+                var cost =$(this).data('cost')
+                $(unitId).val(unit)
+                $(costId).val(cost)
             });
 
             function calc()
