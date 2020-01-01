@@ -1,5 +1,17 @@
 @extends('admin.admin_template')
 @section('content')
+    <script>
+        $(document).on('click', '.assets', function () {
+            console.log('lksdf')
+            $('#assets').css('display', 'block');
+            $('#complaint').css('display', 'none');
+        });
+
+        $(document).on('click', '.complaint', function () {
+            $('#complaint').css('display', 'block');
+            $('#assets').css('display', 'none');
+        });
+    </script>
     <div class="container">
         <div class="row">
             <div class="col-2"></div>
@@ -8,31 +20,35 @@
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-4">
-                            <label for="invoice_id">Product name</label>
+                            <label for="quote_id">Product name</label>
                             <input type="text" class="form-control" name="quote_id"
-                                   id="invoice_id" required value="{{$id}}">
+                                   id="quote_id" required value="{{$id}}">
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="invoice-date">Quote Date</label>
+                            <label for="quote-date">Quote Date</label>
                             <input type="date" required class="form-control" name="quote_date"
-                                   id="invoice-date" placeholder="">
+                                   id="quotee-date" placeholder="">
                         </div>
                         <div class="add_complaint">Add complaint</div>
                         <div class="add_assets">Add asset</div>
-                        <div id="add_complaint" style="display:none" class="form-group col-md-4">
-                            <label for="complaint">Complaint</label>
-                            <input type="hidden" class="form-control"  name="complaint"
-                                   id="complaint_text" placeholder="Complaint">
-                            <input type="text" class="form-control" required
-                                   id="complaint" placeholder="Complaint">
-                        </div>
-                        <div class="form-group col-md-4" id="asset"  style="display: none">
-                            <label for="assets">Assets</label>
-                            <input type="text" class="form-control"
-                                   id="assets_text" placeholder="Assets">
-                            <input type="hidden" class="form-control" required name="assets"
-                                   id="assets" placeholder="Assets">
+                        <div class="row">
+                            <div class="form-group col-md-4" id="complaint" style="display: none">
+                                <label for="complaint">Complaint</label>
+                                <input type="text" class="form-control search" data-type="complaint"
+                                       id="complaint_text"  placeholder="Complaint" />
+                                <div id="complaintList"></div>
+                                <input type="hidden" class="form-control"   name="complaint"
+                                       id="complaintVal" placeholder="Complaint" />
+                            </div>
+                            <div class="form-group col-md-4" id="assets"  style="display: none">
+                                <label for="asset">Assets</label>
+                                <input type="text" class="form-control search" data-type="asset"
+                                       id="assets_text" placeholder="Assets">
+                                <div id="assetList"></div>
+                                <input type="hidden" class="form-control"  name="assets"
+                                       id="asset" placeholder="Assets">
+                            </div>
                         </div>
                     </div>
 
@@ -50,11 +66,13 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td><input type="text" name="quote[0][product]" class="form-control item_product" data-sub_category_id="0"/></td>
-                                <td><input type="number" name="quote[0][unit]"  data-count="0" class="form-control item_unit calculate price" id="item_sub_category0" value="3" /></td>
-                                <td><input type="number" name="quote[0][quantity]" data-count="0" id="calctotal0" class="form-control qty item_quantity calculate" value="12"/></td>
+                                <td><input type="text" name="quote[0][product]" class="form-control item_product search"
+                                           data-type="product" data-count="0" id="product0"                                    />
+                                    <div id="productList0"></div>
+                                <td><input type="number" name="quote[0][unit]"  data-count="0" class="form-control item_unit calculate price" id="unit0"  /></td>
+                                <td><input type="number" name="quote[0][quantity]" data-count="0" id="quantity0" class="form-control qty item_quantity calculate"/></td>
                                 <td>
-                                    <input type="number" name="quote[0][total]" class="form-control item_total" readonly value="36" /></td>
+                                    <input type="number" name="quote[0][total]" class="form-control item_total" id="total0" readonly/></td>
                                 <td><button type="button" class="add btn btn-primary">Add</button>
                                     <button type="button" class="remove btn btn-primary">Remove</button>
                                 </td>
@@ -65,9 +83,9 @@
                     <button type="button" class="btn btn-dark add">Add Issue</button>
                     <div class="row">
                         <div class="col-7"></div>
-                        <div class="form-group col-5" id="invoice-total">
+                        <div class="form-group col-5" id="quote-total">
                             <div class="row">
-                                <div class="col-6 invoice_total">
+                                <div class="col-6 quote_total">
                                     Sub Total
                                 </div>
                                 <div class="col-6 total">
@@ -91,35 +109,121 @@
 
     <script>
         $(document).ready(function () {
-            var count = 1;
+            var count = 0;
+            var dataCount='';
+
 
             $(document).on('click', '.add', function () {
                 count++;
                 var html = '';
-				html += '<tr class="addedSection">';
-				html += '<td><input type="hidden" name="quote[' + count + '][product]" class="form-control item_product" id="product'+count+'"><input type="text" class="form-control item_product" id="producttext'+count+'" ></td>';
-				html += '<td><input type="number" name="quote[' + count + '][unit]"   class="form-control item_unit calculate price" id="unit'+count+'" value="12"/></td>';
-				html += '<td><input type="number" name="quote[' + count + '][quantity]"   class="form-control item_quantity calculate qty" id="quantity'+count+'" value="6"/></td>';
-				html += '<td><input type="number" name="quote[' + count + '][total]" class="form-control item_total" value="144" readonly/><div class="showtotal"></div></td>';
-				html += '<td><button type="button" id="[' + count + ']" class="btn btn-danger btn-xs add">Add</button><button type="button" class="btn btn-danger btn-xs remove">Remove</button></td></tr>';
-				$('tbody').append(html);
+                html += '<tr class="addedSection">';
+                html += '<td><input type="text" name="quote[' + count + '][product]" class="form-control item_product search" data-type="product" data-count="'+count+'" id="product'+count+'"><div id="productList'+count+'"></td>';
+                html += '<td><input type="number" name="quote[' + count + '][unit]"   class="form-control item_unit calculate price" id="unit'+count+'"/></td>';
+                html += '<td><input type="number" name="quote[' + count + '][quantity]"   class="form-control item_quantity calculate qty" id="quantity'+count+'" /></td>';
+                html += '<td><input type="number" name="quote[' + count + '][total]" class="form-control item_total" id="total'+count+'" readonly/></td>';
+                html += '<td><button type="button" id="[' + count + ']" class="btn btn-danger btn-xs add">Add</button><button type="button" class="btn btn-danger btn-xs remove">Remove</button></td></tr>';
+                $('tbody').append(html);
             });
 
-            $('#item_table tbody').on('keyup change',function(){
-                calc();
-            });
+
             $('#tax').on('keyup change',function(){
                 calc_total();
             });
 
-            $('.add_complaint').on('click', function () {
-                $('#add_complaint').css("display", "block");
-                $('#add_asset').css("display", "none");
+            $(document).on('keyup', '.search', function () {
+                var type = $(this).data('type');
+                dataCount = $(this).data('count');
+                var query = $(this).val();
+
+                if(query != '') {
+                    $.ajax({
+                        url: "/fetch",
+                        method: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "type": type,
+                            'query':query
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (data) {
+                            autocomplete(type, data);
+                        }
+                    })
+
+                }
             });
 
-            $('.add_asset').on('click', function () {
-                $('#add_asset').css("display", "block");
-                $('#add_complaint').css("display", "none");
+            function autocomplete(type, data) {
+                var htmlComplaint='';
+                htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
+
+                if(type =='complaint'){
+                    data.forEach(function (complaints) {
+                        htmlComplaint +='<li class="comp" data-id="'+ complaints.id+'">'+ complaints.complaints_unique+'</li> ';
+                        $('#complaintList').children().remove();
+                        $('#complaintList').append(htmlComplaint);
+                    })
+                }
+
+                if(type =='asset'){
+                    data.forEach(function (assets) {
+                        htmlComplaint +='<li class="asset" data-id="'+ assets.id+'">'+ assets.assets_unique+'</li> ';
+                        $('#assetList').children().remove();
+                        $('#assetList').append(htmlComplaint);
+                    })
+                }
+
+                if(type =='product'){
+                    var productListId = '#productList'+dataCount;
+                    $(productListId).fadeIn();
+
+                    data.forEach(function (product) {
+                        htmlComplaint +='<li class="product" data-id="'+ product.id+'" data-unit="'+product.product_unit+'" data-cost="'+product.product_cost+'">'+ product.product_name+'</li> ';
+                        var listId = '#productList'+dataCount;
+                        $(listId).children().remove();
+                        $(listId).append(htmlComplaint);
+                    })
+                }
+
+                htmlComplaint += '</ul>'
+                calc();
+            }
+
+            $(document).on('keyup change blur', '#item_table tbody',function(){
+                calc();
+            });
+
+            $(document).on('click', 'li.comp', function(){
+                $('#complaint_text').val($(this).text());
+                $('#complaintVal').val($(this).data('id'));
+                $('#complaintList').fadeOut();
+            });
+
+            $(document).on('click', 'li.asset', function(){
+                $('#asset_text').val($(this).text());
+                $('#asset').val($(this).data('id'));
+                $('#assetList').fadeOut();
+            });
+
+            $(document).on('click', 'li.product', function(){
+                var productId = '#product'+dataCount;
+                var unitId = '#unit'+dataCount;
+                var costId = '#quantity'+dataCount;
+                var totalId = '#total'+dataCount;
+                var productListId = '#productList'+dataCount;
+                $(productId).val($(this).text());
+                var unit =$(this).data('unit')
+                var cost =$(this).data('cost')
+                var total=parseInt(unit)*parseInt(cost);
+                $(unitId).val(unit)
+                $(costId).val(cost)
+                $(totalId).val(total)
+                $(productListId).fadeOut();
+                calc()
+                calc_total();
+
             });
 
             function calc()
@@ -137,27 +241,7 @@
                 });
             }
 
-            $( "#complaint" ).autocomplete({
 
-                source: function(request, response) {
-                    $.ajax({
-                        url: "{{url('/autocomplete/complaint/')}}",
-                        data: {
-                            term : request.term
-                        },
-                        dataType: "json",
-                        success: function(data){
-                            var resp = $.map(data,function(obj){
-                                //console.log(obj.city_name);
-                                return obj.name;
-                            });
-
-                            response(resp);
-                        }
-                    });
-                },
-                minLength: 1
-            });
 
             function calc_total()
             {

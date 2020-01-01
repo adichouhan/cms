@@ -70,10 +70,10 @@
                                            data-type="product" data-count="0" id="product0"                                    />
                                     <div id="productList0"></div>
                                 </td>
-                                <td><input type="number" name="invoice[0][unit]"  class="form-control item_unit calculate price" id="unit0" value="3" /></td>
-                                <td><input type="number" name="invoice[0][quantity]" data-count="0" id="quantity0" class="form-control qty item_quantity calculate" value="12"/></td>
+                                <td><input type="number" name="invoice[0][unit]"  class="form-control item_unit calculate price" id="unit0"  /></td>
+                                <td><input type="number" name="invoice[0][quantity]" data-count="0" id="quantity0" class="form-control qty item_quantity calculate" /></td>
                                 <td>
-                                    <input type="number" name="invoice[0][total]" class="form-control item_total" readonly value="36" /></td>
+                                    <input type="number" name="invoice[0][total]" class="form-control item_total" id="total0" readonly  /></td>
                                 <td><button type="button" class="add btn btn-primary">Add</button>
                                     <button type="button" class="remove btn btn-primary">Remove</button>
                                 </td>
@@ -97,7 +97,7 @@
 
                     <br>
                     <div class="form-group">
-                        <a href="/admin/quote/createpdf" class="form_submit btn btn-primary" >Create Pdf</a>
+{{--                        <a href="/admin/quote/createpdf" class="form_submit btn btn-primary" >Create Pdf</a>--}}
 
                         <button class="form_submit btn btn-primary" >Save</button>
                     </div>
@@ -120,16 +120,14 @@
                 var html = '';
                 html += '<tr class="addedSection">';
                 html += '<td><input type="text" name="invoice[' + count + '][product]" class="form-control item_product search" data-type="product" data-count="'+count+'" id="product'+count+'"><div id="productList'+count+'"></td>';
-                html += '<td><input type="number" name="invoice[' + count + '][unit]"   class="form-control item_unit calculate price" id="unit'+count+'" value="12"/></td>';
-                html += '<td><input type="number" name="invoice[' + count + '][quantity]"   class="form-control item_quantity calculate qty" id="quantity'+count+'" value="6"/></td>';
-                html += '<td><input type="number" name="invoice[' + count + '][total]" class="form-control item_total" value="144" readonly/><div class="showtotal"></div></td>';
+                html += '<td><input type="number" name="invoice[' + count + '][unit]"   class="form-control item_unit calculate price" id="unit'+count+'"/></td>';
+                html += '<td><input type="number" name="invoice[' + count + '][quantity]"   class="form-control item_quantity calculate qty" id="quantity'+count+'" /></td>';
+                html += '<td><input type="number" name="invoice[' + count + '][total]" class="form-control item_total" id="total'+count+'" readonly/></td>';
                 html += '<td><button type="button" id="[' + count + ']" class="btn btn-danger btn-xs add">Add</button><button type="button" class="btn btn-danger btn-xs remove">Remove</button></td></tr>';
                 $('tbody').append(html);
             });
 
-            $(document).on('keyup change', '#item_table tbody',function(){
-                calc();
-            });
+
             $('#tax').on('keyup change',function(){
                 calc_total();
             });
@@ -152,7 +150,6 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function (data) {
-                            console.log(data)
                             autocomplete(type, data);
                         }
                     })
@@ -179,16 +176,24 @@
                 }
 
                 if(type =='product'){
+                    var productListId = '#productList'+dataCount;
+                    $(productListId).fadeIn();
+
                     data.forEach(function (product) {
                         htmlComplaint +='<li class="product" data-id="'+ product.id+'" data-unit="'+product.product_unit+'" data-cost="'+product.product_cost+'">'+ product.product_name+'</li> ';
                         var listId = '#productList'+dataCount;
+                        $(listId).children().remove();
                         $(listId).append(htmlComplaint);
                     })
                 }
 
                 htmlComplaint += '</ul>'
-
+                calc();
             }
+
+            $(document).on('keyup change blur', '#item_table tbody',function(){
+                calc();
+            });
 
             $(document).on('click', 'li.comp', function(){
                 $('#complaint_text').val($(this).text());
@@ -206,13 +211,19 @@
                 var productId = '#product'+dataCount;
                 var unitId = '#unit'+dataCount;
                 var costId = '#quantity'+dataCount;
-                console.log('productId');
-                console.log(productId);
+                var totalId = '#total'+dataCount;
+                var productListId = '#productList'+dataCount;
                 $(productId).val($(this).text());
                 var unit =$(this).data('unit')
                 var cost =$(this).data('cost')
+                var total=parseInt(unit)*parseInt(cost);
                 $(unitId).val(unit)
                 $(costId).val(cost)
+                $(totalId).val(total)
+                $(productListId).fadeOut();
+                calc()
+                calc_total();
+
             });
 
             function calc()

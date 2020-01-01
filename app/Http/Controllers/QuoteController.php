@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Assets;
+use App\Complaint;
 use App\Quote;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
@@ -37,7 +39,7 @@ class QuoteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {dd('sdf');
+    {
         $objQuote = new Quote();
         $objQuote->quote_id=$request->quote_id;
         $objQuote->quote_date=$request->quote_date;
@@ -91,8 +93,14 @@ class QuoteController extends Controller
      */
     public function edit($id)
     {
-        $objInvoice=Quote::findorfail($id);
-        return view('admin.quote.edit',['objInvoice'=>$objInvoice]);
+        $objQuote=Quote::findorfail($id);
+        if($objQuote->complaint){
+            $objCompOrAsset =  Complaint::where($objQuote->complaint)->get();
+        }
+        if($objQuote->asset){
+            $objCompOrAsset = Assets::where($objQuote->asset)->get();
+        }
+        return view('admin.quote.edit',['objQuote'=>$objQuote, 'objCompOrAsset'=> $objCompOrAsset]);
     }
 
     /**

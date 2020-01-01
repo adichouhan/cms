@@ -1,5 +1,17 @@
 @extends('admin.admin_template')
 @section('content')
+    <script>
+        $(document).on('click', '.assets', function () {
+            console.log('lksdf')
+            $('#assets').css('display', 'block');
+            $('#complaint').css('display', 'none');
+        });
+
+        $(document).on('click', '.complaint', function () {
+            $('#complaint').css('display', 'block');
+            $('#assets').css('display', 'none');
+        });
+    </script>
     <div class="container">
         <div class="row">
             <div class="col-2"></div>
@@ -21,17 +33,23 @@
                         @if(isset($objInvoice->complaint))
                         <div class="form-group col-md-4">
                             <label for="complaint">Complaint</label>
-                            <input type="text" class="form-control" required name="complaint"
-                                   id="complaint" placeholder="Complaint" value="{{isset($objInvoice->complaint)?$objInvoice->complaint:''}}">
+                            <input type="text" class="form-control search" data-type="complaint"
+                                   id="complaint_text" value="{{$objCompOrAsset->name}}"  placeholder="Complaint" />
+                            <div id="complaintList"></div>
+                            <input type="hidden" class="form-control"   name="complaint"
+                                   id="complaintVal" value="{{$objCompOrAsset->id}}" placeholder="Complaint" />
                         </div>
                         @endif
 
                         @if(isset($objInvoice->assets))
+                            <div class="form-group col-md-4">
                             <label for="assets">Assets</label>
                             <input type="text" class="form-control"
-                                   id="assets_text" placeholder="Assets" >
-                            <input type="hidden" class="form-control"  name="assets"
+                                   id="assets_text" value="{{$objCompOrAsset->name}}" placeholder="Assets" >
+
+                            <input type="hidden" class="form-control"  value="{{$objCompOrAsset->id}}" name="assets"
                                    id="assets" placeholder="Assets">
+                            </div>
                         @endif
 
                     </div>
@@ -51,11 +69,13 @@
                             <tbody>
                             @foreach(json_decode($objInvoice->invoice) as $index => $invoice)
                             <tr>
-                                <td><input name="invoice[{{$index}}][product]" class="form-control item_product" value="{{$invoice->product}}" data-sub_category_id="0"/></td>
-                                <td><input type="number" name="invoice[{{$index}}][unit]"  data-count="0"  value="{{$invoice->unit}}" class="form-control item_unit calculate price" id="item_sub_category0"  /></td>'
-                                <td><input type="number" name="invoice[{{$index}}][quantity]" data-count="0" id="calctotal0" value="{{$invoice->quantity}}" class="form-control qty item_quantity calculate" /></td>
+                                <td><input name="invoice[{{$index}}][product]" class="form-control item_product search" value="{{$invoice->product}}" data-count="{{$index}}" id="product{{$index}}" />
+                                    <div id="productList{{$index}}"></div>
+                                </td>
+                                <td><input type="number" name="invoice[{{$index}}][unit]"  data-count="{{$index}}"  value="{{$invoice->unit}}" class="form-control item_unit calculate price" id="unit{{$index}}"  /></td>'
+                                <td><input type="number" name="invoice[{{$index}}][quantity]" data-count="{{$index}}" id="quantity{{$index}}" value="{{$invoice->quantity}}" class="form-control qty item_quantity calculate" /></td>
                                 <td>
-                                    <input type="number" name="invoice[{{$index}}][total]" class="form-control item_total" readonly value="36" /></td>
+                                    <input type="number" name="invoice[{{$index}}][total]" class="form-control item_total" value="{{(int)$invoice->unit*(int)$invoice->quantity}}" id="total{{$index}}" readonly /></td>
                                 <td><button type="button" class="add btn btn-primary">Add</button>
                                     <button type="button" class="remove btn btn-primary">Remove</button>
                                 </td>
@@ -80,7 +100,7 @@
 
                     <br>
                     <div class="form-group">
-                        <button class="form_submit btn btn-primary" >Save</button>
+                        <button class="form_submit btn btn-primary">Save</button>
                     </div>
 
                 </form>
@@ -90,83 +110,157 @@
     </div>
 
     <script>
-		$(document).ready(function () {
-			var count = {!! count(json_decode($objInvoice->invoice))>0?count(json_decode($objInvoice->invoice)):0 !!};
-
-			$(document).on('click', '.add', function () {
-				count++;
-				var html = '';
-				html += '<tr class="addedSection">';
-				html += '<td><select name="invoice[' + count + '][product]" class="form-control item_product" data-product_id="' + count + '"><option value="check2">check2</option></select></td>';
-				html += '<td><input type="number" name="invoice[' + count + '][unit]" id="unit${count}" data-count="' + count + '" class="form-control item_unit calculate price" id="item_sub_category' + count + '" value="12"/></td>';
-				html += '<td><input type="number" name="invoice[' + count + '][quantity]" id="quantity${count}" data-count="' + count + '" class="form-control item_quantity calculate qty" value="6"/></td>';
-				html += '<td><input type="number" name="invoice[' + count + '][total]" class="form-control item_total" value="144" readonly/><div class="showtotal"></div></td>';
-				html += '<td><button type="button" id="[' + count + ']" class="btn btn-danger btn-xs add">Add</button><button type="button" class="btn btn-danger btn-xs remove">Remove</button></td></tr>';
-				$('tbody').append(html);
-			});
-
-			$('#item_table tbody').on('keyup change blur',function(){
-				calc();
-			});
-			$('#tax').on('keyup change blur',function(){
-				calc_total();
-			});
-
-			function calc()
-			{
-				$('#item_table tbody tr').each(function(i, element) {
-					var html = $(this).html();
-					if(html!='')
-					{
-						var qty = $(this).find('.qty').val();
-						var price = $(this).find('.price').val();
-						$(this).find('.item_total').val(qty*price);
-
-						calc_total();
-					}
-				});
-			}
-
-			$( "#complaint" ).autocomplete({
-
-				source: function(request, response) {
-					$.ajax({
-						url: "{{url('/autocomplete/complaint/')}}",
-						data: {
-							term : request.term
-						},
-						dataType: "json",
-						success: function(data){
-							var resp = $.map(data,function(obj){
-								//console.log(obj.city_name);
-								return obj.name;
-							});
-
-							response(resp);
-						}
-					});
-				},
-				minLength: 1
-			});
-
-			function calc_total()
-			{
-				total=0;
-				$('.item_total').each(function() {
-					total += parseInt($(this).val());
-				});
-				$('#sub_total').val(total.toFixed(2));
-				tax_sum=total/100*$('#tax').val();
-				$('#tax_amount').val(tax_sum.toFixed(2));
-				$('#total_amount').val((tax_sum+total).toFixed(2));
-			}
-
-			$(document).on('click', '.remove', function () {
-				$(this).closest('.addedSection').remove();
-			});
+        $(document).ready(function () {
+            var count = 0;
+            var dataCount='';
 
 
-		});
+            $(document).on('click', '.add', function () {
+                count++;
+                var html = '';
+                html += '<tr class="addedSection">';
+                html += '<td><input type="text" name="invoice[' + count + '][product]" class="form-control item_product search" data-type="product" data-count="'+count+'" id="product'+count+'"><div id="productList'+count+'"></td>';
+                html += '<td><input type="number" name="invoice[' + count + '][unit]"   class="form-control item_unit calculate price" id="unit'+count+'"/></td>';
+                html += '<td><input type="number" name="invoice[' + count + '][quantity]"   class="form-control item_quantity calculate qty" id="quantity'+count+'" /></td>';
+                html += '<td><input type="number" name="invoice[' + count + '][total]" class="form-control item_total" id="total'+count+'" readonly/></td>';
+                html += '<td><button type="button" id="[' + count + ']" class="btn btn-danger btn-xs add">Add</button><button type="button" class="btn btn-danger btn-xs remove">Remove</button></td></tr>';
+                $('tbody').append(html);
+            });
+
+
+            $('#tax').on('keyup change',function(){
+                calc_total();
+            });
+
+            $(document).on('keyup', '.search', function () {
+                var type = $(this).data('type');
+                dataCount = $(this).data('count');
+                var query = $(this).val();
+
+                if(query != '') {
+                    $.ajax({
+                        url: "/fetch",
+                        method: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "type": type,
+                            'query':query
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (data) {
+                            autocomplete(type, data);
+                        }
+                    })
+
+                }
+            });
+
+            function autocomplete(type, data) {
+                var htmlComplaint='';
+                htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
+
+                if(type =='complaint'){
+                    data.forEach(function (complaints) {
+                        htmlComplaint +='<li class="comp" data-id="'+ complaints.id+'">'+ complaints.complaints_unique+'</li> ';
+                        $('#complaintList').append(htmlComplaint);
+                    })
+                }
+
+                if(type =='asset'){
+                    data.forEach(function (assets) {
+                        htmlComplaint +='<li class="asset" data-id="'+ assets.id+'">'+ assets.assets_unique+'</li> ';
+                        $('#assetList').append(htmlComplaint);
+                    })
+                }
+
+                if(type =='product'){
+                    var productListId = '#productList'+dataCount;
+                    $(productListId).fadeIn();
+
+                    data.forEach(function (product) {
+                        htmlComplaint +='<li class="product" data-id="'+ product.id+'" data-unit="'+product.product_unit+'" data-cost="'+product.product_cost+'">'+ product.product_name+'</li> ';
+                        var listId = '#productList'+dataCount;
+                        $(listId).children().remove();
+                        $(listId).append(htmlComplaint);
+                    })
+                }
+
+                htmlComplaint += '</ul>'
+                calc();
+            }
+
+            $(document).on('keyup change blur', '#item_table tbody',function(){
+                calc();
+            });
+
+            $(document).on('click', 'li.comp', function(){
+                $('#complaint_text').val($(this).text());
+                $('#complaintVal').val($(this).data('id'));
+                $('#complaintList').fadeOut();
+            });
+
+            $(document).on('click', 'li.asset', function(){
+                $('#asset_text').val($(this).text());
+                $('#asset').val($(this).data('id'));
+                $('#assetList').fadeOut();
+            });
+
+            $(document).on('click', 'li.product', function(){
+                var productId = '#product'+dataCount;
+                var unitId = '#unit'+dataCount;
+                var costId = '#quantity'+dataCount;
+                var totalId = '#total'+dataCount;
+                var productListId = '#productList'+dataCount;
+                $(productId).val($(this).text());
+                var unit =$(this).data('unit')
+                var cost =$(this).data('cost')
+                var total=parseInt(unit)*parseInt(cost);
+                $(unitId).val(unit)
+                $(costId).val(cost)
+                $(totalId).val(total)
+                $(productListId).fadeOut();
+                calc()
+                calc_total();
+
+            });
+
+            function calc()
+            {
+                $('#item_table tbody tr').each(function(i, element) {
+                    var html = $(this).html();
+                    if(html!='')
+                    {
+                        var qty = $(this).find('.qty').val();
+                        var price = $(this).find('.price').val();
+                        $(this).find('.item_total').val(qty*price);
+
+                        calc_total();
+                    }
+                });
+            }
+
+
+
+            function calc_total()
+            {
+                total=0;
+                $('.item_total').each(function() {
+                    total += parseInt($(this).val());
+                });
+                $('#sub_total').val(total.toFixed(2));
+                tax_sum=total/100*$('#tax').val();
+                $('#tax_amount').val(tax_sum.toFixed(2));
+                $('#total_amount').val((tax_sum+total).toFixed(2));
+            }
+
+            $(document).on('click', '.remove', function () {
+                $(this).closest('.addedSection').remove();
+            });
+
+
+        });
     </script>
 @stop
 
