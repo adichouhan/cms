@@ -110,12 +110,14 @@ class InvoiceController extends Controller
     public function edit($id)
     {
         $objInvoice=Invoice::findorfail($id);
+        $objCompOrAsset ='';
         if($objInvoice->complaint){
             $objCompOrAsset =  Complaint::where($objInvoice->complaint)->get();
         }
         if($objInvoice->asset){
             $objCompOrAsset = Assets::where($objInvoice->asset)->get();
         }
+
         return view('admin.invoice.edit',['objInvoice'=>$objInvoice, 'objCompOrAsset'=> $objCompOrAsset]);
 
     }

@@ -58,11 +58,13 @@
                             <tbody>
                             @foreach(json_decode($objQuote->quote) as $index => $invoice)
                                 <tr>
-                                    <td><input name="quote[{{$index}}][product]" class="form-control item_product" value="{{$invoice->product}}" data-sub_category_id="0"/></td>
-                                    <td><input type="number" name="quote[{{$index}}][unit]"  data-count="0"  value="{{$invoice->unit}}" class="form-control item_unit calculate price" id="item_sub_category0"  /></td>'
-                                    <td><input type="number" name="quote[{{$index}}][quantity]" data-count="0" id="calctotal0" value="{{$invoice->quantity}}" class="form-control qty item_quantity calculate" /></td>
+                                    <td><input name="quote[{{$index}}][product]" class="form-control item_product search" value="{{$invoice->product}}" data-count="{{$index}}" id="product{{$index}}" />
+                                        <div id="productList{{$index}}"></div>
+                                    </td>
+                                    <td><input type="number" name="quote[{{$index}}][unit]"  data-count="{{$index}}"  value="{{$invoice->unit}}" class="form-control item_unit calculate price" id="unit{{$index}}"  /></td>'
+                                    <td><input type="number" name="quote[{{$index}}][quantity]" data-count="{{$index}}" id="quantity{{$index}}" value="{{$invoice->quantity}}" class="form-control qty item_quantity calculate" /></td>
                                     <td>
-                                        <input type="number" name="quote[{{$index}}][total]" class="form-control item_total" readonly value="36" /></td>
+                                        <input type="number" name="quote[{{$index}}][total]" class="form-control item_total" value="{{(int)$invoice->unit*(int)$invoice->quantity}}" id="total{{$index}}" readonly /></td>
                                     <td><button type="button" class="add btn btn-primary">Add</button>
                                         <button type="button" class="remove btn btn-primary">Remove</button>
                                     </td>
