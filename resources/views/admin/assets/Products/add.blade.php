@@ -3,7 +3,10 @@
 <form method="post" action="{{ url('admin/asset/product/store') }}" enctype="multipart/form-data">
     <div class="box-body">
         @csrf
-        <input type="text" id="product_name" name="product_name" >
+        <div class="form-group">
+            <label for="name">Product Name*</label>
+           <input type="text" id="product_name" name="product_name" >
+        </div>
     </div>
     <button type="submit" class="btn btn-success">Submit</button>
 </form>
