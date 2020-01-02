@@ -67,7 +67,7 @@ class SupplierController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Supplier  $supplier
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {

@@ -84,6 +84,10 @@
                     <button type="button" class="btn btn-dark add">Add Issue</button>
 
                     <div class="form-group">
+                        <input type="text" value="{{$objUser->name}}" readonly>
+                        <input type="hidden" value="{{$objUser->id}}"  name="user">
+                    </div>
+                    <div class="form-group">
                         <label for="location">Location(Branch Name)*</label>
                         <input type="text" class="form-control" id="location"
                                value="{{isset($objComplaints->location)?$objComplaints->location:''}}" name="location"
@@ -170,7 +174,7 @@
                             <select id="inputState" class="form-control" name="assignedto">
                                 @foreach($arrEmployees as $employees)
                                 <option
-                                    value="employee" {{(isset($employees->id))? 'selected':'' }}>
+                                    value="{{$employees->id}}" {{(isset($objComplaints->employee_id) && $objComplaints->employee_id== $employees->id)? 'selected':'' }}>
                                     {{$employees->employee->name}}
                                 </option>
                                  @endforeach

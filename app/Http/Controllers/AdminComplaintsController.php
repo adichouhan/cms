@@ -81,10 +81,10 @@ class AdminComplaintsController extends Controller
         foreach ($data as $item){
             $output .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';
         }
-
+        $objUser=User::where('id', $complaint->user_id)->get();
         $arrEmployees=EmployeeAvailability::with('employee')->where('available_status', '1')->where('onWork', '!=', '1')->get();
 
-        return view('admin.complaints.edit', ['objComplaints' => $complaint, 'output' =>$output, 'arrEmployees'=>$arrEmployees]);
+        return view('admin.complaints.edit', ['objComplaints' => $complaint, 'output' =>$output, 'arrEmployees'=>$arrEmployees, 'objUser'=>$objUser]);
     }
 
     /**
@@ -92,7 +92,7 @@ class AdminComplaintsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Complaint  $complaint
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id, Request $request)
     {
@@ -109,12 +109,13 @@ class AdminComplaintsController extends Controller
         $objComplaints->priority = $request->priority;
         $objComplaints->maerials = $request->material;
         $objComplaints->user_id  = $request->user;
+        $objComplaints->employee_id  = $request->assignedto;
         $objComplaints->complaints = json_encode($request->get('complaint'));
         if($request->file('image')){
             $objComplaints->image = $request->file('image')->store('complaint');
         }
         $objComplaints->save();
-        return redirect()->back();
+        return redirect()->back()->with('Complaints Updated');
     }
 
 }

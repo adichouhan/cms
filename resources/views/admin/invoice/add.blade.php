@@ -164,6 +164,7 @@
             	if(type =='complaint'){
             	    data.forEach(function (complaints) {
                         htmlComplaint +='<li class="comp" data-id="'+ complaints.id+'">'+ complaints.complaints_unique+'</li> ';
+                        $('#complaintList').children().remove();
                         $('#complaintList').append(htmlComplaint);
                     })
                 }
@@ -171,6 +172,7 @@
                 if(type =='asset'){
                     data.forEach(function (assets) {
                         htmlComplaint +='<li class="asset" data-id="'+ assets.id+'">'+ assets.assets_unique+'</li> ';
+                        $('#assetList').children().remove();
                         $('#assetList').append(htmlComplaint);
                     })
                 }

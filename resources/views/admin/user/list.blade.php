@@ -48,7 +48,7 @@
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 183px;">
                                   Activation Status
                                 </th>
-                                
+
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
                                     Action
@@ -63,14 +63,13 @@
                                         {{$objUser->name}}
                                     </td>
                                     <td>{{$objUser->activation_status}}</td>
-                                    <td></td>
+
                                     <td>
-                                        <a href="{{url('admin/document/edit/'.$objDocument->id)}}"
+                                        <a href="{{url('admin/user/edit/'.$objUser->id)}}"
                                            class="btn btn-primary">Edit</a>
                                     </td>
                                 </tr>
                             @endforeach
-
                             </tbody>
 
                         </table>

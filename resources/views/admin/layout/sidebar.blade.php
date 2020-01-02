@@ -34,6 +34,15 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="{{url('admin/user')}}" class="nav-link">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            User
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="{{url('admin/employee')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
@@ -103,7 +112,7 @@
                         </p>
                     </a>
                 </li>
-    
+
                 <li class="nav-item">
                     <a href="{{url('/admin/supplier')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
@@ -112,7 +121,7 @@
                         </p>
                     </a>
                 </li>
-    
+
                 <li class="nav-item">
                     <a href="{{url('/admin/delivery')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
@@ -121,7 +130,7 @@
                         </p>
                     </a>
                 </li>
-                
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

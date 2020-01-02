@@ -13,6 +13,13 @@
                     <button type="button" class="btn btn-dark add">Add Issue</button>
 
                     <div class="form-group">
+                        <label for="user">Users</label>
+                        <input type="text" id="user" data-type="user" class="form-control search">
+                        <input type="hidden" id="userId" class="form-control search" name="user">
+                        <div id="userList"></div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="location">Location(Branch Name)*</label>
                         <input type="text" class="form-control" id="location"
                                name="location"
@@ -88,7 +95,7 @@
                             <select id="inputState" class="form-control" name="assignedto">
                                 @foreach($arrObjEmployees as $employees)
                                     <option
-                                        value="employee" {{(isset($employees->id))? 'selected':'' }}>
+                                        value="{{$employees->id}}">
                                         {{$employees->employee->name}}
                                     </option>
                                 @endforeach
@@ -100,7 +107,6 @@
                     <div class="form-group">
                         <button type="submit"  class="btn btn-primary" >Submit</button>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -129,7 +135,50 @@
 			});
 
 
-					$(document).on('change', '.item_category', function () {
+            $(document).on('keyup', '.search', function () {
+                var type = $(this).data('type');
+                var query = $(this).val();
+
+                if(query != '') {
+                    $.ajax({
+                        url: "/fetch",
+                        method: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "type": type,
+                            'query':query
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (data) {
+                            autocomplete(type, data);
+                        }
+                    })
+
+                }
+            });
+
+            function autocomplete(type, data) {
+                var htmlComplaint = '';
+                htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
+
+                if(type='user'){
+                    data.forEach(function (user) {
+                        htmlComplaint +='<li class="user" data-id="'+ user.id+'">'+ user.name+'</li> ';
+                        $('#userList').children().remove();
+                        $('#userList').append(htmlComplaint);
+                    })
+                }
+            }
+
+            $(document).on('click', 'li.user', function(){
+                $('#user').val($(this).text());
+                $('#userId').val($(this).data('id'));
+                $('#userList').fadeOut();
+            });
+
+                $(document).on('change', '.item_category', function () {
 						var category_id = $(this).val();
 
 						var sub_category_id = $(this).data('sub_category_id');

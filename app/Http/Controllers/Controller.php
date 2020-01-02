@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Assets;
 use App\AssetsProduct;
 use App\Complaint;
+use App\Employee;
 use App\Products;
 use App\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -34,12 +35,20 @@ class Controller extends BaseController
             $objModel=AssetsProduct::where('product_name', 'LIKE', '%' . $term . '%')->get();
         }
 
+        if($modelType == 'assetProduct'){
+            $objModel=AssetsProduct::where('product_name', 'LIKE', '%' . $term . '%')->get();
+        }
+
         if($modelType == 'product'){
             $objModel=Products::where('product_name', 'LIKE', '%' . $term . '%')->get();
         }
 
         if($modelType == 'user'){
-            $objModel=User::where('name', 'LIKE', '%' . $term . '%')->get();
+            $objModel=User::where('name', 'LIKE', '%' . $term . '%')->where('activation_status', 1)->get();
+        }
+
+        if($modelType == 'employee'){
+            $objModel=Employee::where('name', 'LIKE', '%' . $term . '%')->get();
         }
 
         return response()->json($objModel);

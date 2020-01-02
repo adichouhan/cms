@@ -9,15 +9,8 @@
                     @csrf
                     <button type="button" class="btn btn-dark add">Add Issue</button>
                     <div class="form-group">
-                        <label for="inputState">Users</label>
-                        <select id="inputState" class="form-control" name="user">
-                            @foreach($arrObjUser as $objUser)
-                                <option
-                                    value="{{$objUser->id}}" >
-                                    {{$objUser->name}}
-                                </option>
-                            @endforeach
-                        </select>
+                        <input type="text" value="{{$objUser->name}}" readonly>
+                        <input type="hidden" value="{{$objUser->id}}"  name="user">
                     </div>
 
                     <div class="form-group">
