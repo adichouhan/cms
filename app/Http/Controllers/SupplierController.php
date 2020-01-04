@@ -16,7 +16,7 @@ class SupplierController extends Controller
     public function index()
     {
         $arrObjSupplier=Supplier::all();
-        return view('admin.quote.list', ['arrObjSupplier'=>$arrObjSupplier]);
+        return view('admin.supplier.list', ['arrObjSupplier'=>$arrObjSupplier]);
     }
 
     /**
@@ -39,7 +39,6 @@ class SupplierController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'role'   => 'required',
             'email_id' => 'required',
             'mobile_no'   => 'required',
         ]);

@@ -1,11 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\AseetsProduct;
-use App\Assets;
 use App\AssetsProduct;
-use App\Category;
-use App\Complaint;
+
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class AssetProductController extends Controller
@@ -24,16 +22,16 @@ class AssetProductController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request){
         $request->validate([
-            'asset_name' => 'required',
+            'product_name' => 'required',
         ]);
         $objAssetProduct=new AssetsProduct();
-        $objAssetProduct->asset_product=$request->asset_name;
+        $objAssetProduct->product_name=$request->product_name;
         $objAssetProduct->save();
-        redirect()->back()->with('Asset Product created successfully');
+        return redirect('/admin/assets')->back()->with('Asset Product created successfully');
     }
 
     /**

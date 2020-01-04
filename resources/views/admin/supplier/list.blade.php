@@ -2,10 +2,10 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Employee List</h3>
+            <h3 class="card-title">Supplier List</h3>
         </div>
         <div>
-            <a href="{{ url('admin/supplier/store') }}" class="btn btn-info">Add New </a>
+            <a href="{{ url('admin/supplier/create') }}" class="btn btn-info">Add New </a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">

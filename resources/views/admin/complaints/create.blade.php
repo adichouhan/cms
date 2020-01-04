@@ -4,12 +4,13 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-7">
+                <div class="box-body">
                 <form method="post" action="{{ url('/admin/complaints/create') }}" enctype="multipart/form-data">
-                    <div class="box-body">
+
                         @csrf
                         <div id="addsection">
                         </div>
-                    </div>
+
                     <button type="button" class="btn btn-dark add">Add Issue</button>
 
                     <div class="form-group">
@@ -108,6 +109,7 @@
                         <button type="submit"  class="btn btn-primary" >Submit</button>
                     </div>
                 </form>
+                </div>
             </div>
         </div>
         <div class="col-3"></div>

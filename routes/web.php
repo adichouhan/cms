@@ -15,6 +15,13 @@
 Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/', function () {return view('admin.dashboard');});
 
+    Route::get('/category/create', 'CategoryController@createCategory');
+    Route::get('/category/stored', 'CategoryController@storeCategory');
+
+    Route::get('/subcategory/create', 'CategoryController@createSubCategory');
+    Route::get('/subcategory/stored', 'CategoryController@storeSubCategory');
+
+
     Route::get('/user', 'UserController@index');
     Route::get('/user/create', 'UserController@create');
     Route::post('/user/stored', 'UserController@store');
@@ -42,6 +49,16 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/invoice/edit/{invoice}', 'InvoiceController@edit');
     Route::post('/invoice/update/{invoice}', 'InvoiceController@update');
 
+
+    Route::get('/delivery', 'ChallanController@index');
+    Route::get('/delivery/create', 'ChallanController@create');
+    Route::get('/delivery/getPdf', 'ChallanController@getPdf');
+    Route::post('/delivery/createpdf', 'ChallanController@createpdf');
+    Route::post('/delivery/store', 'ChallanController@store');
+    Route::get('/delivery/edit/{invoice}', 'ChallanController@edit');
+    Route::post('/delivery/update/{invoice}', 'ChallanController@update');
+
+
     Route::get('/quote', 'QuoteController@index');
     Route::get('/quote/create', 'QuoteController@create');
     Route::get('/quote/getPdf', 'QuoteController@getPdf');
@@ -51,7 +68,7 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::post('/quote/edit', 'QuoteController@update');
 
     Route::get('/product', 'ProductsController@index');
-    Route::get('/add/product', 'ProductsController@create');
+    Route::get('/product/create', 'ProductsController@create');
     Route::post('/add/product', 'ProductsController@store');
     Route::get('/edit/product/{product}', 'ProductsController@edit');
     Route::post('/edit/product/{product}', 'ProductsController@update');
@@ -74,6 +91,9 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/document/edit/{document}', 'DocumentController@edit');
     Route::post('/document/update/{document}', 'DocumentController@update');
 
+    Route::get('/asset/product/create', 'AssetProductController@create');
+    Route::post('/asset/product/store', 'AssetProductController@store');
+
 });
 
 Route::group([ 'namespace' => '\App\Http\Controllers\Admin', 'prefix'=>'admin' ], function() {
@@ -81,8 +101,6 @@ Route::group([ 'namespace' => '\App\Http\Controllers\Admin', 'prefix'=>'admin' ]
     Route::get('/assets/create', 'AssetsController@create');
     Route::post('/assets/store', 'AssetsController@store');
     Route::get('/assets/edit/{asset}', 'AssetsController@edit');
-    Route::get('/assets/product/create', 'AssetsController@getProductCreate');
-    Route::post('/assets/product/store', 'AssetsController@getProductStrore');
 
 
     Route::get('/employee', 'EmployeeController@index');

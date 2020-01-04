@@ -133,10 +133,10 @@
                         <img src="{{asset($objComplaints->image)}}" class="img-thumbnail" width="100"/>
                         <input type="hidden" name="hidden_image" value="{{ $objComplaints->image }}"/>
                     </div>
-
+<div class="form-group">
                     <button type="button"  class="btn btn-primary" onclick="myFunction()">Accept</button>
                     <button type="button" class="btn btn-primary reject" onclick="reject()">Reject</button>
-
+</div>
                     <div class="form-group" id="reject" style="display:none">
                         <label for="rejectreason">Reject Reason</label>
                         <input type="text" class="form-control"
@@ -227,7 +227,6 @@
 
             $(document).on('change', '.item_category', function () {
                 var category_id = $(this).val();
-                console.log(category_id);
                 var sub_category_id = $(this).data('sub_category_id');
                 $.ajax({
                     url: "/fill_sub_category",

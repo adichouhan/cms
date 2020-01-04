@@ -85,8 +85,6 @@ class AdminComplaintsController extends Controller
         }
         $objUser=User::where('id', "$complaint->user_id")->first();
 
-
-
         $arrEmployees=EmployeeAvailability::with('employee')->where('available_status', '1')->where('onWork', '!=', '1')->get();
 
         return view('admin.complaints.edit', ['objComplaints' => $complaint, 'output' =>$output, 'arrEmployees'=>$arrEmployees, 'objUser'=>$objUser]);

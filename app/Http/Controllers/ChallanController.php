@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Challan;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 class ChallanController extends Controller
@@ -14,8 +15,8 @@ class ChallanController extends Controller
      */
     public function index()
     {
-        $arrObjInvoices=Challan::all();
-        return view('admin.delivery.list', ['arrObjInvoices'=>$arrObjInvoices]);
+        $arrObjChallan=Challan::all();
+        return view('admin.delivery.list', ['arrObjChallan'=>$arrObjChallan]);
     }
 
     /**
@@ -49,6 +50,26 @@ class ChallanController extends Controller
         $objChallan->save();
         $this->createPdf($request);
         return redirect()->back();
+    }
+
+
+    public function createPdf(Request $request)
+    {
+        $arrMix=[];
+        $arrMix['challan_id'] = $request->challan_id;
+        $arrMix['challan_date'] = $request->challan_date;
+        $arrMix['challan']      = $request->challan;
+        $arrMix['sub_total']      = $request->sub_total;
+
+        if($request->complaint){
+            $arrMix['complaint'] = $request->complaint;
+        }else{
+            $arrMix['asset'] = $request->asset;
+        }
+//        return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
+        $pdf = PDF::loadView('admin.delivery.delivery-pdf', ['arrMix'=>$arrMix]);
+        return $pdf->download('Challan'.$request->challan_id.'.pdf');
+
     }
 
     /**

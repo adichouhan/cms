@@ -15,6 +15,12 @@ class CreateChallansTable extends Migration
     {
         Schema::create('challans', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->text('invoice_id');
+            $table->date('invoice_date');
+            $table->text('complaint')->nullable();
+            $table->text('asset')->nullable();
+            $table->text('invoice');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

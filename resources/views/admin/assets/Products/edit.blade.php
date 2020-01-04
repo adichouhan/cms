@@ -5,7 +5,7 @@
         @csrf
         <div class="form-group">
             <label for="name">Product Name*</label>
-        <input type="text"  id="id" name="asset_name" {{isset($objAssetProduct->product_name)?$objAssetProduct->product_name:''}} >
+        <input type="text"  id="id" name="product_name" {{isset($objAssetProduct->product_name)?$objAssetProduct->product_name:''}} >
         </div>
     </div>
     <button type="submit" class="btn btn-success">Submit</button>

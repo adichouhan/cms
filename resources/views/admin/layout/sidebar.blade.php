@@ -34,6 +34,15 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="{{url('admin/category/create')}}" class="nav-link">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Add Category
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="{{url('admin/user')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>

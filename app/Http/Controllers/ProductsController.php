@@ -15,7 +15,7 @@ class ProductsController extends Controller
     public function index()
     {
         $arrObjProduct=Products::all();
-        return view('product.list', ['arrObjProduct'=>$arrObjProduct]);
+        return view('admin.product.list', ['arrObjProduct'=>$arrObjProduct]);
     }
 
     /**
@@ -25,7 +25,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('product.add');
+        return view('admin.product.add');
     }
 
     /**
@@ -66,7 +66,7 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $objProduct=Products::findorfail($id);
-        return view('product.add', ['objProduct'=>$objProduct]);
+        return view('admin.product.edit', ['objProduct'=>$objProduct]);
 
     }
 
@@ -79,7 +79,10 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Products $products)
     {
-        //
+        $objProduct=Products::findorfail();
+        $objProduct->product_name=$request->product_name;
+        $objProduct->product_unit=$request->product_unit;
+        $objProduct->save();
     }
 
     /**

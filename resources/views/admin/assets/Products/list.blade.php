@@ -50,7 +50,7 @@
                             @foreach($arrAssetProduct as  $assetProduct)
                                 <tr>
                                     <td>{{$assetProduct->id}}</td>
-                                    <td>{{$assetProduct->name}}</td>
+                                    <td>{{$assetProduct->product_name}}</td>
                                     <td>
                                         <a href="{{url('admin/assets/product/edit/'.$assetProduct->id)}}" class="btn btn-primary">Edit</a>
                                         <form action="{{url('admin/assets/product/delete/'.$assetProduct->id)}}" method="post">

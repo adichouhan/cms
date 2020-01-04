@@ -2,7 +2,10 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Products</h3>
+            <h3 class="card-title">Delivery Challan</h3>
+        </div>
+        <div class="left">
+            <a href="{{ url('admin/delivery/create') }}" class="btn btn-info">Add New </a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -34,7 +37,7 @@
                             <tr role="row">
                                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
-                                    style="width: 160px;">Invoice ID
+                                    style="width: 160px;">Challan ID
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">Complaint
@@ -43,7 +46,7 @@
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">Asset
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending" style="width: 207px;">Invoice Date
+                                    aria-label="Browser: activate to sort column ascending" style="width: 207px;">Challan Date
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">Action
@@ -51,16 +54,16 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($arrObjInvoices as  $objInvoice)
+                            @foreach($arrObjChallan as  $objChallan)
                                 <tr>
-                                    <td>{{$objInvoice->id}}</td>
-                                    <td>{{isset($objInvoice->complaint)?$objInvoice->complaint:'NA'}}</td>
-                                    <td>{{isset($objInvoice->asset)?$objInvoice->asset:'NA'}}</td>
-                                    <td>{{$objInvoice->asset}}</td>
-                                    <td>{{$objInvoice->date}}</td>
+                                    <td>{{$objChallan->id}}</td>
+                                    <td>{{isset($objChallan->complaint)?$objChallan->complaint:'NA'}}</td>
+                                    <td>{{isset($objChallan->asset)?$objChallan->asset:'NA'}}</td>
+                                    <td>{{$objChallan->asset}}</td>
+                                    <td>{{$objChallan->date}}</td>
                                     <td>
-                                        <a href="{{url('admin/quote/edit/'.$objInvoice->id)}}" class="btn btn-primary">Edit</a>
-                                        <form action="{{url('admin/quote/delete/'.$objInvoice->id)}}" method="post">
+                                        <a href="{{url('admin/delivery/edit/'.$objChallan->id)}}" class="btn btn-primary">Edit</a>
+                                        <form action="{{url('admin/delivery/delete/'.$objChallan->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger" type="submit">Delete</button>

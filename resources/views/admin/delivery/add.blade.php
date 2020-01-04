@@ -18,18 +18,18 @@
                             <input type="date" required class="form-control" name="challan_date"
                                    id="challan-date" placeholder="">
                         </div>
-                        <div class="add_complaint">Add complaint</div>
-                        <div class="add_assets">Add asset</div>
-                        <div id="add_complaint" style="display:none" class="form-group col-md-4">
-                            <label for="complaint">Complaint</label>
-                            <input type="text" class="form-control" required name="complaint"
-                                   id="complaint" placeholder="Complaint">
-                        </div>
-                        <div id="add_asset" style="display:none" class="form-group col-md-4">
-                            <label for="complaint">Complaint</label>
-                            <input type="text" class="form-control" required name="complaint"
-                                   id="complaint" placeholder="Complaint">
-                        </div>
+{{--                        <div class="add_complaint">Add complaint</div>--}}
+{{--                        <div class="add_assets">Add asset</div>--}}
+{{--                        <div id="add_complaint" style="display:none" class="form-group col-md-4">--}}
+{{--                            <label for="complaint">Complaint</label>--}}
+{{--                            <input type="text" class="form-control" required name="complaint"--}}
+{{--                                   id="complaint" placeholder="Complaint">--}}
+{{--                        </div>--}}
+{{--                        <div id="add_asset" style="display:none" class="form-group col-md-4">--}}
+{{--                            <label for="complaint">Complaint</label>--}}
+{{--                            <input type="text" class="form-control" required name="complaint"--}}
+{{--                                   id="complaint" placeholder="Complaint">--}}
+{{--                        </div>--}}
                     </div>
 
 
@@ -39,39 +39,38 @@
                             <tr>
                                 <th>Item</th>
                                 <th>Unit</th>
-                                <th>Cost</th>
-                                <th>Total</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td><input type="text" name="challan[0][product]" class="form-control item_product" /></td>
-                                <td><input type="number" name="challan[0][unit]"   class="form-control item_unit calculate price" id="item_sub_category0" value="3" /></td>
-                                <td><input type="number" name="challan[0][quantity]"  id="calctotal0" class="form-control qty item_quantity calculate" value="12"/></td>
-                                <td>
-                                    <input type="number" name="challan[0][total]" class="form-control item_total" readonly value="36" /></td>
-                                <td><button type="button" class="add btn btn-primary">Add</button>
-                                    <button type="button" class="remove btn btn-primary">Remove</button>
+                                <td><input type="text" name="challan[0][product]" class="form-control item_product search"
+                                           data-type="boq" data-count="0" id="product0"                                    />
+                                    <div id="productList0"></div>
+                                </td>
+                                <td><input type="number" name="challan[0][unit]"  class="form-control item_unit calculate price" id="unit0"  /></td>
+                                 <td>
+                                   <button type="button" class="add btn  btn-xs btn-primary">Add</button>
+                                    <button type="button" class="remove btn  btn-xs btn-primary">Remove</button>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
 
-                    <div class="row">
-                        <div class="col-7"></div>
-                        <div class="form-group col-5" id="invoice-total">
-                            <div class="row">
-                                <div class="col-6 invoice_total">
-                                    Sub Total
-                                </div>
-                                <div class="col-6 total">
-                                    <input type="number" name='sub_total' placeholder='0.00' class="form-control total_amount" id="sub_total" readonly/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+{{--                    <div class="row">--}}
+{{--                        <div class="col-7"></div>--}}
+{{--                        <div class="form-group col-5" id="invoice-total">--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-6 invoice_total">--}}
+{{--                                    Sub Total--}}
+{{--                                </div>--}}
+{{--                                <div class="col-6 total">--}}
+{{--                                    <input type="number" name='sub_total' placeholder='0.00' class="form-control total_amount" id="sub_total" readonly/>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
                     <br>
                     <div class="form-group">
@@ -91,16 +90,64 @@
         $(document).ready(function () {
             var count = 1;
 
+
             $(document).on('click', '.add', function () {
                 count++;
                 var html = '';
                 html += '<tr class="addedSection">';
-                html += '<td><input name="challan[' + count + '][product]" data-type="product" class="form-control item_product" data-product_id="' + count + '"> <div id="product"</td>';
-                html += '<td><input type="number" name="challan[' + count + '][unit]" id="unit${count}" data-count="' + count + '" class="form-control item_unit calculate price" id="item_sub_category' + count + '" value="12"/></td>';
-                html += '<td><input type="number" name="challan[' + count + '][quantity]" id="quantity${count}" data-count="' + count + '" class="form-control item_quantity calculate qty" value="6"/></td>';
-                html += '<td><button type="button" id="[' + count + ']" class="btn btn-danger btn-xs add">Add</button><button type="button" class="btn btn-danger btn-xs remove">Remove</button></td></tr>';
+                html += '<td><input type="text" name="challan[' + count + '][product]" class="form-control item_product search" data-type="product" data-count="'+count+'" id="product'+count+'"><div id="productList'+count+'"></td>';
+                html += '<td><input type="number" name="challan[' + count + '][unit]"   class="form-control item_unit calculate price" id="unit'+count+'"/></td>';
+                html += '<td><button type="button" id="[' + count + ']" class="btn btn-primary btn-xs add">Add</button><button type="button" class="btn btn-primary btn-xs remove">Remove</button></td></tr>';
                 $('tbody').append(html);
             });
+
+            $(document).on('keyup', '.search', function () {
+                var type = $(this).data('type');
+                dataCount = $(this).data('count');
+                var query = $(this).val();
+
+                if(query != '') {
+                    $.ajax({
+                        url: "/fetch",
+                        method: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "type": type,
+                            'query':query
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (data) {
+                            autocomplete(type, data);
+                        }
+                    })
+
+                }
+            });
+
+
+            function autocomplete(type, data) {
+                var htmlComplaint='';
+                htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
+
+
+                if(type =='product'){
+                    var productListId = '#productList'+dataCount;
+                    $(productListId).fadeIn();
+
+                    data.forEach(function (product) {
+                        htmlComplaint +='<li class="product" data-id="'+ product.id+'" data-unit="'+product.product_unit+'" data-cost="'+product.product_cost+'">'+ product.product_name+'</li> ';
+                        var listId = '#productList'+dataCount;
+                        $(listId).children().remove();
+                        $(listId).append(htmlComplaint);
+                    })
+                }
+
+                htmlComplaint += '</ul>'
+                calc();
+            }
+
 
             $('#item_table tbody').on('keyup change',function(){
                 calc();

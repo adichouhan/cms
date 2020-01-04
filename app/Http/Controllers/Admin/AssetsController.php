@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\AseetsProduct;
+
 use App\Assets;
 use App\AssetsProduct;
 use App\Category;
-use App\Complaint;
 use App\EmployeeAvailability;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -91,8 +90,11 @@ class AssetsController extends Controller
     public function edit($id)
     {
         $objAssets = Assets::findOrFail($id);
+        $objUser=User::where('id', "$objAssets->user_id")->first();
+        $arrObjProduct= AssetsProduct::all();
+        $arrEmployees=EmployeeAvailability::with('employee')->where('available_status', '1')->where('onWork', '!=', '1')->get();
 
-        return view('admin.assets.book_asset',['objAssets' => $objAssets ,'type' => 'edit']);
+        return view('admin.assets.edit',['objAssets' => $objAssets , 'arrEmployees'=>$arrEmployees, 'arrObjProduct' => $arrObjProduct ,'type' => 'edit', 'objUser'=>$objUser]);
     }
 
     /**
