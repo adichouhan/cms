@@ -53,7 +53,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $objUser = User::findorfail($id);
-        return view('/admin/user/edit', ['objUser'=>$objUser]);
+
+        return view('admin.user.edit', ['objUser'=>$objUser]);
     }
 
     /**

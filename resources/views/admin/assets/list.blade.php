@@ -48,17 +48,17 @@
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">
                                     Assets
                                 </th>
-    
+
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">
                                     Assets Unique ID
                                 </th>
-                                
+
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 183px;">
                                     Location
                                 </th>
-                                
+
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Engine version: activate to sort column ascending"
                                     style="width: 135px;">Expected Date
@@ -92,7 +92,7 @@
                                     <td>{{$objasset->priority}}</td>
                                     <td>{{$objasset->maerials}}</td>
                                     <td>
-                                        <a href="{{url('admin/complaints/edit/'.$objasset->id)}}"
+                                        <a href="{{url('admin/assets/edit/'.$objasset->id)}}"
                                            class="btn btn-primary">Edit</a>
                                         <form action="{{url('admin/complaints/delete/'.$objasset->id)}}"
                                               method="post">

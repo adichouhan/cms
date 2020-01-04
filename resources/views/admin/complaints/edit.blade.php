@@ -81,9 +81,10 @@
                             <div id="addsection">
                             </div>
                     </div>
-                    <button type="button" class="btn btn-dark add">Add Issue</button>
-
                     <div class="form-group">
+                    <button type="button" class="btn btn-dark add">Add Issue</button>
+                    </div>
+                        <div class="form-group">
                         <input type="text" value="{{$objUser->name}}" readonly>
                         <input type="hidden" value="{{$objUser->id}}"  name="user">
                     </div>
@@ -202,11 +203,11 @@
                 count++;
                 var html = '';
 
-                html += '<div class="addedSection"><select name="complaint[' + count + '][main]" class="form-control item_category" data-sub_category_id="' + count + '"><option value="">Select Category</option>{!! $output !!}</select></td>';
-                html += '<div><select name="complaint[' + count + '][sub]" class="form-control item_sub_category" id="item_sub_category' + count + '"><option value="">Select Sub Category</option></select></div>';
-                html += '<div ><input type="text" name="complaint[' + count + '][name]" class="form-control item_name" /></div>';
-                html += '<div><button type="button" name="remove" class="btn btn-danger btn-xs remove">Remove</button></div>';
-                $('#addsection').append(html);
+                html += '<div class="addedSection"><div class="form-group"></div><select name="complaint[' + count + '][main]" class="form-control item_category" data-sub_category_id="' + count + '"><option value="">Select Category</option>{!! $output !!}</select></div></td>';
+                html += '<div class="form-group"><select name="complaint[' + count + '][sub]" class="form-control item_sub_category" id="item_sub_category' + count + '"><option value="">Select Sub Category</option></select></div>';
+                html += '<div class="form-group"><input type="text" name="complaint[' + count + '][name]" class="form-control item_name" /></div>';
+                html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger btn-xs remove">Remove</button></div>';
+                $("#addsection").append(html);
             });
 
             $(document).on('click', '.remove', function () {

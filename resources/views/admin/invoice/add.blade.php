@@ -67,7 +67,7 @@
                             <tbody>
                             <tr>
                                 <td><input type="text" name="invoice[0][product]" class="form-control item_product search"
-                                           data-type="product" data-count="0" id="product0"                                    />
+                                           data-type="boq" data-count="0" id="product0"                                    />
                                     <div id="productList0"></div>
                                 </td>
                                 <td><input type="number" name="invoice[0][unit]"  class="form-control item_unit calculate price" id="unit0"  /></td>
@@ -119,7 +119,7 @@
                 count++;
                 var html = '';
                 html += '<tr class="addedSection">';
-                html += '<td><input type="text" name="invoice[' + count + '][product]" class="form-control item_product search" data-type="product" data-count="'+count+'" id="product'+count+'"><div id="productList'+count+'"></td>';
+                html += '<td><input type="text" name="invoice[' + count + '][product]" class="form-control item_product search" data-type="boq" data-count="'+count+'" id="product'+count+'"><div id="productList'+count+'"></td>';
                 html += '<td><input type="number" name="invoice[' + count + '][unit]"   class="form-control item_unit calculate price" id="unit'+count+'"/></td>';
                 html += '<td><input type="number" name="invoice[' + count + '][quantity]"   class="form-control item_quantity calculate qty" id="quantity'+count+'" /></td>';
                 html += '<td><input type="number" name="invoice[' + count + '][total]" class="form-control item_total" id="total'+count+'" readonly/></td>';
@@ -177,7 +177,7 @@
                     })
                 }
 
-                if(type =='product'){
+                if(type =='boq'){
                     var productListId = '#productList'+dataCount;
                     $(productListId).fadeIn();
 

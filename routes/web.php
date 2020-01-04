@@ -80,9 +80,9 @@ Route::group([ 'namespace' => '\App\Http\Controllers\Admin', 'prefix'=>'admin' ]
     Route::get('/assets', 'AssetsController@index');
     Route::get('/assets/create', 'AssetsController@create');
     Route::post('/assets/store', 'AssetsController@store');
-    Route::get('/edit/asset/{asset}', 'AssetsController@edit');
-    Route::get('/asset/product/create', 'AssetsController@getProductCreate');
-    Route::post('/asset/product/store', 'AssetsController@getProductStrore');
+    Route::get('/assets/edit/{asset}', 'AssetsController@edit');
+    Route::get('/assets/product/create', 'AssetsController@getProductCreate');
+    Route::post('/assets/product/store', 'AssetsController@getProductStrore');
 
 
     Route::get('/employee', 'EmployeeController@index');

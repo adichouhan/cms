@@ -67,7 +67,7 @@
                             <tbody>
                             <tr>
                                 <td><input type="text" name="quote[0][product]" class="form-control item_product search"
-                                           data-type="product" data-count="0" id="product0"                                    />
+                                           data-type="boq" data-count="0" id="product0"                                    />
                                     <div id="productList0"></div>
                                 <td><input type="number" name="quote[0][unit]"  data-count="0" class="form-control item_unit calculate price" id="unit0"  /></td>
                                 <td><input type="number" name="quote[0][quantity]" data-count="0" id="quantity0" class="form-control qty item_quantity calculate"/></td>
@@ -117,7 +117,7 @@
                 count++;
                 var html = '';
                 html += '<tr class="addedSection">';
-                html += '<td><input type="text" name="quote[' + count + '][product]" class="form-control item_product search" data-type="product" data-count="'+count+'" id="product'+count+'"><div id="productList'+count+'"></td>';
+                html += '<td><input type="text" name="quote[' + count + '][product]" class="form-control item_product search" data-type="boq" data-count="'+count+'" id="product'+count+'"><div id="productList'+count+'"></td>';
                 html += '<td><input type="number" name="quote[' + count + '][unit]"   class="form-control item_unit calculate price" id="unit'+count+'"/></td>';
                 html += '<td><input type="number" name="quote[' + count + '][quantity]"   class="form-control item_quantity calculate qty" id="quantity'+count+'" /></td>';
                 html += '<td><input type="number" name="quote[' + count + '][total]" class="form-control item_total" id="total'+count+'" readonly/></td>';
@@ -175,7 +175,7 @@
                     })
                 }
 
-                if(type =='product'){
+                if(type =='boq'){
                     var productListId = '#productList'+dataCount;
                     $(productListId).fadeIn();
 

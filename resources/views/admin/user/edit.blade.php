@@ -7,7 +7,7 @@
                     <div class="card-header">Update User</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('/admin/user/update') }}">
+                        <form method="POST" action="/admin/user/update">
                             @csrf
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -37,19 +37,19 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+{{--                            <div class="form-group row">--}}
+{{--                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>--}}
 
-                                <div class="col-md-6">
-                                    <input id="password" type="password" value="{{$objUser->email}}" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+{{--                                <div class="col-md-6">--}}
+{{--                                    <input id="password" type="password" value="{{$objUser->email}}" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">--}}
 
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
+{{--                                    @error('password')--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
                             <div class="form-group row">
                                 <label for="activation-status" class="col-md-4 col-form-label text-md-right">Activation Status</label>

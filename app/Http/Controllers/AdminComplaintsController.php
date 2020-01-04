@@ -55,9 +55,11 @@ class AdminComplaintsController extends Controller
             'material'  => 'required',
             'image'     => 'required|image|max:2048',
         ]);
+        $count = Complaint::all()->count();
         $objComplaints = new Complaint();
         $objComplaints->location = $request->location;
         $objComplaints->expected_date = $request->expdate;
+        $objComplaints->complaints_unique = 'comp_'.$count;
         $objComplaints->priority = $request->priority;
         $objComplaints->maerials = $request->material;
         $objComplaints->user_id  = $request->user;
@@ -81,7 +83,10 @@ class AdminComplaintsController extends Controller
         foreach ($data as $item){
             $output .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';
         }
-        $objUser=User::where('id', $complaint->user_id)->get();
+        $objUser=User::where('id', "$complaint->user_id")->first();
+
+
+
         $arrEmployees=EmployeeAvailability::with('employee')->where('available_status', '1')->where('onWork', '!=', '1')->get();
 
         return view('admin.complaints.edit', ['objComplaints' => $complaint, 'output' =>$output, 'arrEmployees'=>$arrEmployees, 'objUser'=>$objUser]);
@@ -103,6 +108,7 @@ class AdminComplaintsController extends Controller
             'material'   => 'required',
             'image' => 'required|image|max:2048',
         ]);
+
         $objComplaints = Complaint::findOrFail($id);
         $objComplaints->location = $request->location;
         $objComplaints->expected_date = $request->expdate;

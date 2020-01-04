@@ -95,7 +95,7 @@
                 count++;
                 var html = '';
                 html += '<tr class="addedSection">';
-                html += '<td><select name="challan[' + count + '][product]" class="form-control item_product" data-product_id="' + count + '"><option value="check2">check2</option></select></td>';
+                html += '<td><input name="challan[' + count + '][product]" data-type="product" class="form-control item_product" data-product_id="' + count + '"> <div id="product"</td>';
                 html += '<td><input type="number" name="challan[' + count + '][unit]" id="unit${count}" data-count="' + count + '" class="form-control item_unit calculate price" id="item_sub_category' + count + '" value="12"/></td>';
                 html += '<td><input type="number" name="challan[' + count + '][quantity]" id="quantity${count}" data-count="' + count + '" class="form-control item_quantity calculate qty" value="6"/></td>';
                 html += '<td><button type="button" id="[' + count + ']" class="btn btn-danger btn-xs add">Add</button><button type="button" class="btn btn-danger btn-xs remove">Remove</button></td></tr>';

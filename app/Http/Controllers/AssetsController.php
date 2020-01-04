@@ -16,7 +16,7 @@ class AssetsController extends Controller
      */
     public function index()
     {
-        return view('assets');
+        return view('assets.list');
     }
 
     /**
@@ -26,7 +26,7 @@ class AssetsController extends Controller
      */
     public function create()
     {
-        return view('assetes.book_asset',['type' => '']);
+        return view('assets.book_asset',['type' => '']);
     }
 
     /**

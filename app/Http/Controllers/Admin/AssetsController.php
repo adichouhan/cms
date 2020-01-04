@@ -79,7 +79,7 @@ class AssetsController extends Controller
     public function show(Assets $assets)
     {
         $arrObjAssets = Assets::all();
-        return view('assetes.view_assets',['arrObjAssets' => $arrObjAssets]);
+        return view('admin.assets.view_assets',['arrObjAssets' => $arrObjAssets]);
     }
 
     /**
@@ -92,7 +92,7 @@ class AssetsController extends Controller
     {
         $objAssets = Assets::findOrFail($id);
 
-        return view('assetes.book_asset',['objAssets' => $objAssets ,'type' => 'edit']);
+        return view('admin.assets.book_asset',['objAssets' => $objAssets ,'type' => 'edit']);
     }
 
     /**

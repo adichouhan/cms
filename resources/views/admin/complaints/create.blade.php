@@ -121,7 +121,6 @@
 			$(document).on('click', '.add', function () {
 				count++;
 				var html = '';
-
 				html += '<div class="addedSection"><select name="complaint[' + count + '][main]" class="form-control item_category" data-sub_category_id="' + count + '"><option value="">Select Category</option>{!! $output !!}</select></td>';
 				html += '<div><select name="complaint[' + count + '][sub]" class="form-control item_sub_category" id="item_sub_category' + count + '"><option value="">Select Sub Category</option></select></div>';
 				html += '<div ><input type="text" name="complaint[' + count + '][name]" class="form-control item_name" /></div>';

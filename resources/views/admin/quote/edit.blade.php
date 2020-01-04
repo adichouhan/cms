@@ -58,7 +58,7 @@
                             <tbody>
                             @foreach(json_decode($objQuote->quote) as $index => $invoice)
                                 <tr>
-                                    <td><input name="quote[{{$index}}][product]" class="form-control item_product search" value="{{$invoice->product}}" data-count="{{$index}}" id="product{{$index}}" />
+                                    <td><input name="quote[{{$index}}][product]" data-type="boq" class="form-control item_product search" value="{{$invoice->product}}" data-count="{{$index}}" id="product{{$index}}" />
                                         <div id="productList{{$index}}"></div>
                                     </td>
                                     <td><input type="number" name="quote[{{$index}}][unit]"  data-count="{{$index}}"  value="{{$invoice->unit}}" class="form-control item_unit calculate price" id="unit{{$index}}"  /></td>'
@@ -109,7 +109,7 @@
                 count++;
                 var html = '';
                 html += '<tr class="addedSection">';
-                html += '<td><input type="text" name="quote[' + count + '][product]" class="form-control item_product search" data-type="product" data-count="'+count+'" id="product'+count+'"><div id="productList'+count+'"></td>';
+                html += '<td><input type="text" name="quote[' + count + '][product]" class="form-control item_product search" data-type="boq" data-count="'+count+'" id="product'+count+'"><div id="productList'+count+'"></td>';
                 html += '<td><input type="number" name="quote[' + count + '][unit]"   class="form-control item_unit calculate price" id="unit'+count+'"/></td>';
                 html += '<td><input type="number" name="quote[' + count + '][quantity]"   class="form-control item_quantity calculate qty" id="quantity'+count+'" /></td>';
                 html += '<td><input type="number" name="quote[' + count + '][total]" class="form-control item_total" id="total'+count+'" readonly/></td>';
@@ -165,7 +165,7 @@
                     })
                 }
 
-                if(type =='product'){
+                if(type =='boq'){
                     var productListId = '#productList'+dataCount;
                     $(productListId).fadeIn();
 
