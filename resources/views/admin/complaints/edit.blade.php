@@ -1,7 +1,7 @@
 @extends('admin.admin_template')
 @section('content')
     <script>
-        function myFunction() {
+        function accept() {
             console.log('here')
             $('#reject').css({ display: "none" });
             $('#accept').css({ display: "block" });
@@ -216,7 +216,8 @@
             });
 
             $(document).on('click', '.accept', function () {
-
+                    $('#reject').css({ display: "none" });
+                    $('#accept').css({ display: "block" });
             },
 
             $(document).on('click', '.reject', function () {

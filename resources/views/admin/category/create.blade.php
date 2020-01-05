@@ -1,7 +1,8 @@
 @extends('admin.admin_template')
 @section('content')
+    <button class="btn btn-primary"></button>
     <div class="box-body">
-    <form method="post" action="{{ url('admin/add/category') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ url('admin/category/store') }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="name">Category Name*</label>

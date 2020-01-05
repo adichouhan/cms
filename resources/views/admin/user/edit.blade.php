@@ -7,7 +7,7 @@
                     <div class="card-header">Update User</div>
 
                     <div class="card-body">
-                        <form method="POST" action="/admin/user/update">
+                        <form method="POST" action="{{url('/admin/user/update/'.$objUser->id)}}">
                             @csrf
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -56,8 +56,8 @@
 
                                 <div class="col-md-6">
                                     <select id="activation-status"  class="form-control" name="activation_status" required>
-                                        <option value="{{isset($objUser->activation_status) && $objUser->activation_status==0?'checked':'' }}">Deactivate</option>
-                                        <option value="{{isset($objUser->activation_status) && $objUser->activation_status==1?'checked':'' }}">Activate</option>
+                                        <option value="0" {{isset($objUser->activation_status) && $objUser->activation_status==0?'checked':'' }}">Deactivate</option>
+                                        <option value="1" {{isset($objUser->activation_status) && $objUser->activation_status==1?'checked':'' }}">Activate</option>
                                     </select>
                                 </div>
                             </div>

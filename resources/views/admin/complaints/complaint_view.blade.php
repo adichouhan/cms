@@ -75,15 +75,15 @@
                                 <tr role="row" class="odd">
                                     <td class="sorting_1">{{$objComplaints->id}}</td>
                                     <td>    @if(json_decode($objComplaints->complaints) != NULL || json_decode($objComplaints->complaints) != '')
-                                            @foreach(json_decode($objComplaints->complaints) as $index =>$objComplaint)
-                                                {{$index}}
-												<?php
-												$category = \App\Category::where('id', $objComplaint->main)->first();
-												$subCategory = \App\SubCategory::where('id', $objComplaint->sub)
-													->first();
-												?>
-                                                {{$category->category_title}}:{{$subCategory->subcategory_title}}
-                                            @endforeach
+{{--                                            @foreach(json_decode($objComplaints->complaints) as $index =>$objComplaint)--}}
+{{--                                                {{$index}}--}}
+{{--												<?php--}}
+{{--												$category = \App\Category::where('id', $objComplaint->main)->first();--}}
+{{--												$subCategory = \App\SubCategory::where('id', $objComplaint->sub)--}}
+{{--													->first();--}}
+{{--												?>--}}
+{{--                                                {{$category->category_title}}:{{$subCategory->subcategory_title}}--}}
+{{--                                            @endforeach--}}
                                         @endif
                                     </td>
                                     <td>{{$objComplaints->complaints_unique}}</td>
@@ -103,9 +103,9 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            
+
                             </tbody>
-                        
+
                         </table>
                     </div>
                 </div>

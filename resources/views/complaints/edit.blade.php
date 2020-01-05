@@ -68,10 +68,11 @@
                             @endforeach
                             <div id="addsection">
                             </div>
+
                             <button type="button" class="btn btn-dark add" >Add Issue</button>
                             <div class="form-group">
                                 <label for="location">Location(Branch Name)*</label>
-                                <input type="text" class="form-control" id="location" {{isset($objComplaints->location)?$objComplaints->location:''}} name="location" placeholder="" value="{{$objComplaint->location}}">
+                                <input type="text" class="form-control" id="location" {{isset($objComplaints->location)?$objComplaints->location:''}} name="location" placeholder="" value="{{$objComplaints->location}}">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputState">Priority</label>
@@ -80,20 +81,19 @@
                                     <option value="medium" {{(isset($objComplaints->priority) && $objComplaints->priority=='medium')? 'selected':'' }}>Medium</option>
                                     <option value="high" {{(isset($objComplaints->priority) && $objComplaints->priority=='high')? 'selected':'' }}>High</option>
                                 </select>
-                            </div>}
+                            </div>
                             <div class="form-group">
                                 <label for="date">Expected Date</label>
-                                <input type="datetime-local" class="form-control" name="expdate" id="date" placeholder=""  value="{{$objComplaint->expected_date}}">
+                                <input type="datetime-local" class="form-control" name="expdate" id="date" placeholder=""  value="{{$objComplaints->expected_date}}">
                             </div>
                             <div class="form-group">
-                                <label for="material">Location</label>
-                                <input type="text" class="form-control"  name="material" id="material" placeholder="" value="{{$objComplaint->maerials}}">
-                                <input type="hidden" name="hidden_image" value="{{ $objComplaints->image }}"/>
+                                <label for="material">Materials</label>
+                                <input type="text" class="form-control"  name="material" id="material" placeholder="" value="{{$objComplaints->maerials}}">
                             </div>
 
 
                             <div class="form-group">
-                                <label for="exampleFormControlFile1">Example file input</label>
+                                <label for="exampleFormControlFile1">Image Upload</label>
                                 <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1">
                             </div>
                             <button type="submit" class="btn btn-primary">Sign in</button>

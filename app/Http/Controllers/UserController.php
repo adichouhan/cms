@@ -64,9 +64,9 @@ class UserController extends Controller
      * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, Supplier $supplier)
+    public function update($id, Request $request)
     {
-        $objUser                        = User::findOrFail($request->id);
+        $objUser                        = User::findOrFail($id);
         $objUser->name                  = $request->name;
         $objUser->password              = bcrypt($request->password);
         $objUser->email                 = $request->email;

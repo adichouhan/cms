@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Complaint;
-use App\Employee;
 use App\EmployeeAvailability;
 use App\User;
 use Illuminate\Http\Request;
@@ -48,6 +47,7 @@ class AdminComplaintsController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $request->validate([
             'location'  => 'required',
             'expdate'   => 'required',

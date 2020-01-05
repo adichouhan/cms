@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-7">
-                <form method="post" action="{{ url('/admin/quote/createpdf') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/admin/quote/update'.$objQuote->id) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-4">

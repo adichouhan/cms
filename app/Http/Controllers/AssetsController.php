@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Assets;
 use App\Category;
 use App\Complaint;
+use App\Invoice;
+use App\Quote;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 class AssetsController extends Controller
@@ -12,11 +15,12 @@ class AssetsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        return view('assets.list');
+        $arrObjAssets = Assets::all();
+        return view('assets.view_assets',['arrObjAssets' => $arrObjAssets]);
     }
 
     /**
@@ -52,7 +56,7 @@ class AssetsController extends Controller
         $objAssest->priority = $request->priority;
         $objAssest->maerials = $request->material;
         $objAssest->user_id = auth()->user()->id;
-        $objAssest->products  = '';
+        $objAssest->products  = $request->product;
         $objAssest->image       = $request->file('image')->store('assets');
         $objAssest->save();
         return redirect('assets')->with('success', 'Data Added successfully.');
@@ -67,7 +71,7 @@ class AssetsController extends Controller
     public function show(Assets $assets)
     {
         $arrObjAssets = Assets::all();
-        return view('assetes.view_assets',['arrObjAssets' => $arrObjAssets]);
+        return view('assets.view_assets',['arrObjAssets' => $arrObjAssets]);
     }
 
     /**
@@ -80,7 +84,7 @@ class AssetsController extends Controller
     {
         $objAssets = Assets::findOrFail($id);
 
-        return view('assetes.book_asset',['objAssets' => $objAssets ,'type' => 'edit']);
+        return view('assets.book_asset',['objAssets' => $objAssets ,'type' => 'edit']);
     }
 
     /**
@@ -104,7 +108,7 @@ class AssetsController extends Controller
         $objAssest->expected_date = $request->expdate;
         $objAssest->priority = $request->priority;
         $objAssest->maerials = $request->material;
-        $objAssest->products  = '';
+        $objAssest->products  = $request->product;
         $objAssest->image       = $request->file('image')->store('assets');
         $objAssest->save();
         return redirect('/view/assets')->with('success', 'Data Added successfully.');
@@ -126,5 +130,107 @@ class AssetsController extends Controller
 
     public function getAssetView(){
         return view('assets');
+    }
+
+    /**
+     *Invoices list
+     */
+    public function invoices()
+    {
+        $arrObjInvoices=Invoice::with('getUserAssets')->get();
+        return view('complaints.invoice.list', ['arrObjInvoices'=>$arrObjInvoices]);
+    }
+
+    /**
+     *Invoices list
+     */
+    public function invoiceDownload($id)
+    {
+        $arrObjInvoices=Invoice::findorfail($id);
+        $arrMix=[];
+        $arrMix['invoice_id']   = $arrObjInvoices->invoice_id;
+        $arrMix['invoice_date'] = $arrObjInvoices->invoice_date;
+        $arrMix['invoice']      = $arrObjInvoices->invoice;
+        $arrMix['sub_total']    = $arrObjInvoices->sub_total;
+
+        if($arrObjInvoices->complaint){
+            $arrMix['complaint'] = $arrObjInvoices->complaint;
+        }else{
+            $arrMix['asset'] = $arrObjInvoices->asset;
+        }
+//        return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
+        $pdf = PDF::loadView('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
+        return $pdf->download('Invoice'.$arrObjInvoices->invoice_id.'.pdf');
+    }
+
+    /**
+     *Invoices list
+     */
+    public function invoiceView($id)
+    {
+        $arrObjInvoices=Invoice::findorfail($id);
+        $arrMix=[];
+        $arrMix['invoice_id']   = $arrObjInvoices->invoice_id;
+        $arrMix['invoice_date'] = $arrObjInvoices->invoice_date;
+        $arrMix['invoice']      = $arrObjInvoices->invoice;
+        $arrMix['sub_total']    = $arrObjInvoices->sub_total;
+
+        if($arrObjInvoices->complaint){
+            $arrMix['complaint'] = $arrObjInvoices->complaint;
+        }else{
+            $arrMix['asset'] = $arrObjInvoices->asset;
+        }
+        return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
+    }
+
+    /**
+     *Invoices list
+     */
+    public function quotes()
+    {
+        $arrObjQuotes=Quote::with('getUserAssets')->get();
+        return view('complaints.quotes.list', ['arrObjQuotes'=>$arrObjQuotes]);
+    }
+
+    /**
+     *Invoices list
+     */
+    public function quotesDownload($id)
+    {
+        $arrObjQuotes=Quote::findorfail($id);
+        $arrMix=[];
+        $arrMix['quote_id']     = $arrObjQuotes->quote_id;
+        $arrMix['quote_date']   = $arrObjQuotes->quote_date;
+        $arrMix['quote']        = $arrObjQuotes->quote;
+        $arrMix['sub_total']    = $arrObjQuotes->sub_total;
+
+        if($arrObjQuotes->complaint){
+            $arrMix['complaint'] = $arrObjQuotes->complaint;
+        }else{
+            $arrMix['asset']     = $arrObjQuotes->asset;
+        }
+//        return view('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
+        $pdf = PDF::loadView('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
+        return $pdf->download('Quote'.$arrObjQuotes->quote_id.'.pdf');
+    }
+
+    /**
+     *Invoices list
+     */
+    public function quotesView($id)
+    {
+        $arrObjQuotes=Quote::findorfail($id);
+        $arrMix=[];
+        $arrMix['quote_id']     = $arrObjQuotes->quote_id;
+        $arrMix['quote_date']   = $arrObjQuotes->quote_date;
+        $arrMix['quote']        = $arrObjQuotes->quote;
+        $arrMix['sub_total']    = $arrObjQuotes->sub_total;
+
+        if($arrObjQuotes->complaint){
+            $arrMix['complaint'] = $arrObjQuotes->complaint;
+        }else{
+            $arrMix['asset']     = $arrObjQuotes->asset;
+        }
+        return view('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
     }
 }

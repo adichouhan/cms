@@ -29,11 +29,13 @@
                         <td>    @if(json_decode($objComplaint->complaints) != null || json_decode($objComplaint->complaints) != '')
                                 @foreach(json_decode($objComplaint->complaints) as $index =>$objComplain)
                                     {{$index}}
+                                @if( $objComplaint->main)
                                     <?php
-                                    $category=\App\Category::where('id', $objComplain->main)->first();
-                                    $subCategory=\App\SubCategory::where('id', $objComplain->sub)->first();
+                                    $category=\App\Category::where('id', $objComplaint->main)->first();
+                                    $subCategory=\App\SubCategory::where('id', $objComplaint->sub)->first();
                                     ?>
                                     {{$category->category_title}}:{{$subCategory->subcategory_title}}
+                                @endif
                                 @endforeach
                             @endif
                         </td>
@@ -42,7 +44,7 @@
                         <td>{{$objComplaint->priority}}</td>
                         <td>{{$objComplaint->maerials}}</td>
                         <td>
-                            <a href="/complaints/edit/{{$objComplaint}}" class="btn btn-primary">Edit</a>
+                            <a href="/complaints/edit/{{$objComplaint->id}}" class="btn btn-primary">Edit</a>
                             <form action="" method="post">
                                 @csrf
                                 @method('DELETE')

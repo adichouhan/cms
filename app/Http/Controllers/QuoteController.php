@@ -79,7 +79,7 @@ class QuoteController extends Controller
         }else{
             $arrMix['asset']     = $request->asset;
         }
-        return view('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
+//        return view('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
         $pdf = PDF::loadView('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
         return $pdf->download('Quote'.$request->quote_id.'.pdf');
 

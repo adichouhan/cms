@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Complaint;
+use App\Invoice;
+use App\Quote;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -81,7 +84,7 @@ class ComplaintController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param \App\Complaint $complaint
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getEditComplain($id)
     {
@@ -139,4 +142,108 @@ class ComplaintController extends Controller
     {
         //
     }
+
+    /**
+     *Invoices list
+     */
+    public function invoices()
+    {
+        $arrObjInvoices=Invoice::with('getUserComplaints')->get();
+        return view('complaints.invoice.list', ['arrObjInvoices'=>$arrObjInvoices]);
+    }
+
+    /**
+     *Invoices list
+     */
+    public function invoiceDownload($id)
+    {
+        $arrObjInvoices=Invoice::findorfail($id);
+        $arrMix=[];
+        $arrMix['invoice_id']   = $arrObjInvoices->invoice_id;
+        $arrMix['invoice_date'] = $arrObjInvoices->invoice_date;
+        $arrMix['invoice']      = $arrObjInvoices->invoice;
+        $arrMix['sub_total']    = $arrObjInvoices->sub_total;
+
+        if($arrObjInvoices->complaint){
+            $arrMix['complaint'] = $arrObjInvoices->complaint;
+        }else{
+            $arrMix['asset'] = $arrObjInvoices->asset;
+        }
+//        return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
+        $pdf = PDF::loadView('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
+        return $pdf->download('Invoice'.$arrObjInvoices->invoice_id.'.pdf');
+    }
+
+    /**
+     *Invoices list
+     */
+    public function invoiceView($id)
+    {
+        $arrObjInvoices=Invoice::findorfail($id);
+        $arrMix=[];
+        $arrMix['invoice_id']   = $arrObjInvoices->invoice_id;
+        $arrMix['invoice_date'] = $arrObjInvoices->invoice_date;
+        $arrMix['invoice']      = $arrObjInvoices->invoice;
+        $arrMix['sub_total']    = $arrObjInvoices->sub_total;
+
+        if($arrObjInvoices->complaint){
+            $arrMix['complaint'] = $arrObjInvoices->complaint;
+        }else{
+            $arrMix['asset'] = $arrObjInvoices->asset;
+        }
+        return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
+    }
+
+    /**
+     *Invoices list
+     */
+    public function quotes()
+    {
+        $arrObjQuotes=Quote::with('getUserComplaints')->get();
+        return view('complaints.quote.list', ['arrObjQuotes'=>$arrObjQuotes]);
+    }
+
+    /**
+     *Invoices list
+     */
+    public function quotesDownload($id)
+    {
+        $arrObjQuotes=Quote::findorfail($id);
+        $arrMix=[];
+        $arrMix['quote_id']     = $arrObjQuotes->quote_id;
+        $arrMix['quote_date']   = $arrObjQuotes->quote_date;
+        $arrMix['quote']        = $arrObjQuotes->quote;
+        $arrMix['sub_total']    = $arrObjQuotes->sub_total;
+
+        if($arrObjQuotes->complaint){
+            $arrMix['complaint'] = $arrObjQuotes->complaint;
+        }else{
+            $arrMix['asset']     = $arrObjQuotes->asset;
+        }
+//        return view('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
+        $pdf = PDF::loadView('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
+        return $pdf->download('Quote'.$arrObjQuotes->quote_id.'.pdf');
+    }
+
+
+    /**
+     *Invoices list
+     */
+    public function quotesView($id)
+    {
+        $arrObjQuotes=Quote::findorfail($id);
+        $arrMix=[];
+        $arrMix['quote_id']     = $arrObjQuotes->quote_id;
+        $arrMix['quote_date']   = $arrObjQuotes->quote_date;
+        $arrMix['quote']        = $arrObjQuotes->quote;
+        $arrMix['sub_total']    = $arrObjQuotes->sub_total;
+
+        if($arrObjQuotes->complaint){
+            $arrMix['complaint'] = $arrObjQuotes->complaint;
+        }else{
+            $arrMix['asset']     = $arrObjQuotes->asset;
+        }
+        return view('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
+    }
+
 }

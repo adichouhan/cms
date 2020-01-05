@@ -63,7 +63,7 @@ class AssetsController extends Controller
         $objAssest->priority = $request->priority;
         $objAssest->maerials = $request->material;
         $objAssest->user_id = auth()->user()->id;
-        $objAssest->products  = '';
+        $objAssest->products  = $request->product;
         $objAssest->image       = $request->file('image')->store('assets');
         $objAssest->save();
         return redirect('assets')->with('success', 'Data Added successfully.');
@@ -118,7 +118,7 @@ class AssetsController extends Controller
         $objAssest->expected_date = $request->expdate;
         $objAssest->priority = $request->priority;
         $objAssest->maerials = $request->material;
-        $objAssest->products  = '';
+        $objAssest->products  = $request->product;
         $objAssest->image       = $request->file('image')->store('assets');
         $objAssest->save();
         return redirect('/view/assets')->with('success', 'Data Added successfully.');

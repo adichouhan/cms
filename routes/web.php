@@ -16,16 +16,16 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/', function () {return view('admin.dashboard');});
 
     Route::get('/category/create', 'CategoryController@createCategory');
-    Route::get('/category/stored', 'CategoryController@storeCategory');
+    Route::get('/category/store', 'CategoryController@storeCategory');
 
     Route::get('/subcategory/create', 'CategoryController@createSubCategory');
-    Route::get('/subcategory/stored', 'CategoryController@storeSubCategory');
+    Route::get('/subcategory/store', 'CategoryController@storeSubCategory');
 
 
-    Route::get('/user', 'UserController@index');
-    Route::get('/user/create', 'UserController@create');
-    Route::post('/user/stored', 'UserController@store');
-    Route::get('/user/edit/{user}', 'UserController@edit');
+    Route::get('/user',                'UserController@index');
+    Route::get('/user/create',         'UserController@create');
+    Route::post('/user/stored',        'UserController@store');
+    Route::get('/user/edit/{user}',    'UserController@edit');
     Route::post('/user/update/{user}', 'UserController@update');
 
 
@@ -69,7 +69,7 @@ Route::group([ 'prefix' => 'admin' ], function() {
 
     Route::get('/product', 'ProductsController@index');
     Route::get('/product/create', 'ProductsController@create');
-    Route::post('/add/product', 'ProductsController@store');
+    Route::post('/product/store', 'ProductsController@store');
     Route::get('/edit/product/{product}', 'ProductsController@edit');
     Route::post('/edit/product/{product}', 'ProductsController@update');
 
@@ -129,37 +129,36 @@ Route::get('/', function () {
 Route::get('/book', 'CategoryController@bookForm')->middleware('auth');
 
 Route::post('/register/complaint', 'ComplaintController@postComplaints')->middleware('auth');
-
 Route::get('/register/complaint', 'ComplaintController@create')->middleware('auth');
 
 Route::get('/view_complaints', 'ComplaintController@getViewComplaints')->middleware('auth');
-
-Route::get('/complaints/edit/{complaint}', 'ComplaintController@edit')->middleware('auth');
-
+Route::get('/complaints/edit/{complaint}', 'ComplaintController@getEditComplain')->middleware('auth');
 Route::post('/update/complaint/{complaint}', 'ComplaintController@update')->middleware('auth');
-
 Route::get('/mycomplaints', 'ComplaintController@getComplaintsView')->middleware('auth');
+Route::get('complaint/invoices',  'ComplaintController@invoices');
+Route::get('complaint/invoices/view/{$id}',  'ComplaintController@invoicesShow');
+Route::get('complaint/invoices/download/{$id}',  'ComplaintController@invoicesDownload');
+Route::get('complaint/quotes',  'ComplaintController@quotes');
+Route::get('complaint/quotes/view/{$id}',  'ComplaintController@quotesShow');
+Route::get('complaint/quotes/download/{$id}',  'ComplaintController@quotesDownload');
 
 Route::get('/assets', 'AssetsController@index')->middleware('auth');
-
 Route::get('/book_asset', 'AssetsController@create')->middleware('auth');
-
 Route::post('/register/asset', 'AssetsController@store')->middleware('auth');
-
 Route::get('/edit/asset/{asset}', 'AssetsController@edit')->middleware('auth');
-
 Route::get('/delete/asset/{asset}', 'AssetsController@destroy')->middleware('auth');
-
 Route::post('/update/asset', 'AssetsController@update')->middleware('auth');
-
 Route::get('/view/assets', 'AssetsController@show')->middleware('auth');
-
 Route::get('/myassets', 'AssetsController@getAssetView')->middleware('auth');
+Route::get('assets/invoices',  'AssetsController@invoices');
+Route::get('assets/invoices/view/{$id}',  'AssetsController@invoicesShow');
+Route::get('assets/invoices/download/{$id}',  'AssetsController@invoicesDownload');
+Route::get('assets/quotes',  'AssetsController@quotes');
+Route::get('assets/quotes/view/{$id}',  'AssetsController@quotesShow');
+Route::get('assets/quotes/download/{$id}',  'AssetsController@quotesDownload');
 
 
-Route::get('/admin', function () {
-    return view('admin.admin_template');
-})->middleware('auth');
+Route::get('/admin', function () {return view('admin.admin_template');})->middleware('auth');
 
 Route::post('fill_sub_category',  function(\Illuminate\Http\Request $request){
      $parent_category=$request->category_id;
@@ -172,5 +171,4 @@ Route::post('fill_sub_category',  function(\Illuminate\Http\Request $request){
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');

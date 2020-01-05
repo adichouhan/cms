@@ -14,8 +14,8 @@
             <div class="col-6">
                 <button type="button" class="btn btn-primary btn-lg btn-block"><a href="/register/complaint" class="text-white">Book Complaint/Maintenance call</a></button>
                 <button type="button" class="btn btn-secondary btn-lg btn-block"><a href="/view_complaints" class="text-white">View booked complaints</a></button>
-        <button type="button" class="btn btn-primary btn-lg btn-block">View Bills/Invoices</button>
-        <button type="button" class="btn btn-secondary btn-lg btn-block">View Quotation </button>
+        <button type="button" class="btn btn-primary btn-lg btn-block"><a href="/complaint/invoices"  class="text-white">View Bills/Invoices</a></button>
+                <button type="button" class="btn btn-secondary btn-lg btn-block"><a href="/complaint/quotes"  class="text-white">View Quotation </a></button>
         <button type="button" class="btn btn-primary btn-lg btn-block">Other Request</button>
         <button type="button" class="btn btn-secondary btn-lg btn-block">Bulk order</button>
                </div>
