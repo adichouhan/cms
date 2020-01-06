@@ -92,7 +92,7 @@ class AssetsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Assets  $assets
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request)
     {
@@ -118,7 +118,7 @@ class AssetsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Assets  $assets
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {

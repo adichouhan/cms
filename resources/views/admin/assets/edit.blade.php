@@ -63,10 +63,10 @@
 
                     <div class="form-group">
                         <label for="exampleFormControlFile1">photo upload</label>
-                        {{--                        <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1" >--}}
-{{--                        <input type="file" name="image" value="{{ $$objAssets->image }}"/>--}}
-{{--                        <img src="{{asset($$objAssets->image)}}" class="img-thumbnail" width="100"/>--}}
-{{--                        <input type="hidden" name="hidden_image" value="{{ $$objAssets->image }}"/>--}}
+                         <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1" >
+                        <input type="file" name="image" value="{{ isset($$objAssets->image)?$$objAssets->image:'' }}"/>
+                        <img src="{{asset($$objAssets->image)}}" class="img-thumbnail" width="100"/>
+                        <input type="hidden" name="hidden_image" value="{{ $$objAssets->image }}"/>
                     </div>
 
                     <button type="button"  class="btn btn-primary" onclick="myFunction()">Accept</button>
@@ -128,6 +128,73 @@
         </div>
         <div class="col-3"></div>
     </div>
+
+
+    <script>
+        $(document).ready(function () {
+            $(document).on('keyup', '.search', function () {
+                var type = $(this).data('type');
+                var query = $(this).val();
+
+                if (query != '') {
+                    $.ajax({
+                        url: "/fetch",
+                        method: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "type": type,
+                            'query': query
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (data) {
+                            autocomplete(type, data);
+                        }
+                    })
+
+                }
+            });
+
+            function autocomplete(type, data) {
+                console.log('type')
+                console.log(type)
+                var htmlComplaint = '';
+                htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
+
+                if (type == 'user') {
+                    data.forEach(function (user) {
+                        htmlComplaint += '<li class="user" data-id="' + user.id + '">' + user.name + '</li> ';
+                        $('#userList').children().remove();
+                        $('#userList').append(htmlComplaint);
+                    })
+                }
+                if (type == 'assetProduct') {
+
+                    data.forEach(function (product) {
+                        htmlComplaint += '<li class="product" data-id="' + product.id + '">' + product.product_name + '</li> ';
+                        $('#assetProductList').children().remove();
+                        $('#assetProductList').append(htmlComplaint);
+                    })
+                }
+            }
+
+            $(document).on('click', 'li.user', function () {
+                $('#user').val($(this).text());
+                $('#userId').val($(this).data('id'));
+                $('#userList').fadeOut();
+            });
+
+            $(document).on('click', 'li.product', function () {
+                $('#product').val($(this).text());
+                $('#productId').val($(this).data('id'));
+                $('#assetProductList').fadeOut();
+            });
+        });
+    </script>
+
+@stop
+
 @stop
 
 

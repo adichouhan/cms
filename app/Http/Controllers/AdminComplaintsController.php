@@ -47,7 +47,6 @@ class AdminComplaintsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
         $request->validate([
             'location'  => 'required',
             'expdate'   => 'required',
@@ -66,7 +65,7 @@ class AdminComplaintsController extends Controller
         $objComplaints->complaints = json_encode($request->get('complaint'));
         $objComplaints->image = $request->file('image')->store('complaint');
         $objComplaints->save();
-        redirect()->back();
+        redirect('admin/complaints');
     }
 
     /**

@@ -4,12 +4,11 @@
             <div class="text-center">
                 <div class="text-center"><h3>View Booked Complaints</h3></div>
             </div>
-            <div class="col-2"></div>
- 
+
         <div class="row pt-5">
             <div class="col-2"></div>
             <div class="col-8">
-                
+
                 <table>
                     <tr>
                         <th>Complaint ID</th>
@@ -60,21 +59,20 @@
             </div>
             <div class="col-2"></div>
         </div>
-    </div>
-    
+
     <style>
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
             width: 100%;
         }
-        
+
         td, th {
             border: 1px solid #dddddd;
             text-align: left;
             padding: 8px;
         }
-        
+
         tr:nth-child(even) {
             background-color: #dddddd;
         }

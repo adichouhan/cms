@@ -25,7 +25,6 @@
                     }
                 }
                 ?>
-
                 <form method="post" action="{{ url('/admin/update/complaint/'.$objComplaints->id) }}" enctype="multipart/form-data">
                     <div class="box-body">
                         @csrf
@@ -60,24 +59,25 @@
 
                             ?>
                             <div class="addedSection">
-                                <select name="complaint[{{$count}}][main]"
+                              <div class="form-group"><select  required name="complaint[{{$count}}][main]"
                                                               class="form-control item_category"
                                                               data-sub_category_id="{{$count}}">
                                     <option value="">Select Category</option>{!! $selectedCat !!}</select>
-                                <div><select name="complaint[{{$count}}][sub]" class="form-control item_sub_category"
+                              </div>
+                                <div class="form-group"><select name="complaint[{{$count}}][sub]" class="form-control item_sub_category"
                                              id="item_sub_category{{$count}}">
                                         <option value="">Select Sub Category</option>{!! $selectedSubCat !!}</select>
                                 </div>
 
-                                <div><input type="text" name="complaint[{{$count}}][name]"
+                                <div class="form-group"><input type="text" name="complaint[{{$count}}][name]"
                                             class="form-control item_name"/></div>
-                                <div>
+
+                                    <div class="form-group">
                                     <button type="button" name="remove" class="btn btn-danger btn-xs remove">Remove
                                     </button>
-                                </div>
+                                    </div>
                             </div>
                                 @endforeach
-
                             <div id="addsection">
                             </div>
                     </div>
@@ -134,7 +134,7 @@
                         <input type="hidden" name="hidden_image" value="{{ $objComplaints->image }}"/>
                     </div>
 <div class="form-group">
-                    <button type="button"  class="btn btn-primary" onclick="myFunction()">Accept</button>
+                    <button type="button"  class="btn btn-primary" onclick="accept()">Accept</button>
                     <button type="button" class="btn btn-primary reject" onclick="reject()">Reject</button>
 </div>
                     <div class="form-group" id="reject" style="display:none">
@@ -202,12 +202,11 @@
             $(document).on('click', '.add', function () {
                 count++;
                 var html = '';
-
-                html += '<div class="addedSection"><div class="form-group"></div><select name="complaint[' + count + '][main]" class="form-control item_category" data-sub_category_id="' + count + '"><option value="">Select Category</option>{!! $output !!}</select></div></td>';
-                html += '<div class="form-group"><select name="complaint[' + count + '][sub]" class="form-control item_sub_category" id="item_sub_category' + count + '"><option value="">Select Sub Category</option></select></div>';
+                html += '<div class="addedSection"> <div class="form-group"><select required name="complaint[' + count + '][main]" class="form-control item_category" data-sub_category_id="' + count + '"><option value="">Select Category</option>{!! $output !!}</select></td></div>';
+                html += '<div class="form-group"><select required name="complaint[' + count + '][sub]" class="form-control item_sub_category" id="item_sub_category' + count + '"><option value="">Select Sub Category</option></select></div>';
                 html += '<div class="form-group"><input type="text" name="complaint[' + count + '][name]" class="form-control item_name" /></div>';
-                html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger btn-xs remove">Remove</button></div>';
-                $("#addsection").append(html);
+                html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger btn-xs remove">Remove</button></div></div>';
+                $('#addsection').append(html);
             });
 
             $(document).on('click', '.remove', function () {
@@ -215,19 +214,53 @@
                 // $("div.addedSection").first().remove()
             });
 
-            $(document).on('click', '.accept', function () {
-                    $('#reject').css({ display: "none" });
-                    $('#accept').css({ display: "block" });
-            },
 
-            $(document).on('click', '.reject', function () {
-                console.log('there')
-                $('#accept').css({ display: "none" });
-                $('#reject').css({ display: "block" });
-            },
+            $(document).on('keyup', '.search', function () {
+                var type = $(this).data('type');
+                var query = $(this).val();
+
+                if(query != '') {
+                    $.ajax({
+                        url: "/fetch",
+                        method: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "type": type,
+                            'query':query
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (data) {
+                            autocomplete(type, data);
+                        }
+                    })
+
+                }
+            });
+
+            function autocomplete(type, data) {
+                var htmlComplaint = '';
+                htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
+
+                if(type='user'){
+                    data.forEach(function (user) {
+                        htmlComplaint +='<li class="user" data-id="'+ user.id+'">'+ user.name+'</li> ';
+                        $('#userList').children().remove();
+                        $('#userList').append(htmlComplaint);
+                    })
+                }
+            }
+
+            $(document).on('click', 'li.user', function(){
+                $('#user').val($(this).text());
+                $('#userId').val($(this).data('id'));
+                $('#userList').fadeOut();
+            });
 
             $(document).on('change', '.item_category', function () {
                 var category_id = $(this).val();
+
                 var sub_category_id = $(this).data('sub_category_id');
                 $.ajax({
                     url: "/fill_sub_category",

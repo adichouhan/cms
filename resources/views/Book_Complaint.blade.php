@@ -51,16 +51,14 @@
 
     <script>
         $(document).ready(function(){
-
             var count = 0;
-
             $(document).on('click', '.add', function(){
                 count++;
                 var html = '';
-                html += '<div class="addedSection"><input type="text" name="complaint['+count+'][name]" class="form-control item_name" />';
-                html += '<div><select name="complaint['+count+'][main]" class="form-control item_category" data-sub_category_id="'+count+'"><option value="">Select Category</option>{!! $output !!}</select></td>';
-                html += '<div><select name="complaint['+count+'][sub]" class="form-control item_sub_category" id="item_sub_category'+count+'"><option value="">Select Sub Category</option></select></div>';
-                html += '<div><button type="button" name="remove" class="btn btn-danger btn-xs remove"><span class="glyphicon glyphicon-minus"></span></button></div>';
+                html += '<div class="addedSection"><div class="form-group"> <input type="text" name="complaint['+count+'][name]" class="form-control item_name" /> </div>';
+                html += '<div  class="form-group"><select name="complaint['+count+'][main]" class="form-control item_category" data-sub_category_id="'+count+'"><option value="">Select Category</option>{!! $output !!}</select></td></div>';
+                html += '<div  class="form-group"><select name="complaint['+count+'][sub]" class="form-control item_sub_category" id="item_sub_category'+count+'"><option value="">Select Sub Category</option></select></div>';
+                html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger btn-xs remove">Remove</button></div></div>';
                 $('#addsection').append(html);
             });
 
