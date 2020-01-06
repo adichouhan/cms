@@ -1,7 +1,10 @@
 @extends('admin.admin_template')
 @section('content')
-    <button class="btn btn-primary"></button>
-    <div class="box-body">
+    <div class="container">
+    <div class="box-body card">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-7">
     <form method="post" action="{{ url('admin/category/store') }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
@@ -10,5 +13,8 @@
             </div>
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
+            </div>
+        </div>
+    </div>
     </div>
 @stop
