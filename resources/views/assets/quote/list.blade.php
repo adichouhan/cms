@@ -47,18 +47,23 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($arrObjQuotes as  $objQuotes)
+                    @if($arrObjQuotes->count()>0)
+                        @foreach($arrObjQuotes as  $objQuotes)
+                            <tr>
+                                <td>{{$objQuotes->id}}</td>
+                                <td>{{isset($objQuotes->complaint)?$objQuotes->complaint:'NA'}}</td>
+                                <td>{{isset($objQuotes->asset)?$objQuotes->asset:'NA'}}</td>
+                                <td>{{$objQuotes->invoice_date}}</td>
+                                <td>
+                                    <a href="{{url('quotes/view/'.$objQuotes->id)}}" class="btn btn-primary">View</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
                         <tr>
-                            <td>{{$objQuotes->id}}</td>
-                            <td>{{isset($objQuotes->complaint)?$objQuotes->complaint:'NA'}}</td>
-                            <td>{{isset($objQuotes->asset)?$objQuotes->asset:'NA'}}</td>
-                            <td>{{$objQuotes->invoice_date}}</td>
-                            <td>
-                                <a href="{{url('quotes/view/'.$objQuotes->id)}}" class="btn btn-primary">View</a>
-                            </td>
+                            <td colspan="5" class="text-center"> No Records found</td>
                         </tr>
-
-                    @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div>

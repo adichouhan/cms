@@ -47,6 +47,7 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @if($arrObjInvoices->count()>0)
                     @foreach($arrObjInvoices as  $objInvoice)
                         <tr>
                             <td>{{$objInvoice->id}}</td>
@@ -57,13 +58,16 @@
                                 <a href="{{url('invoice/view/'.$objInvoice->id)}}" class="btn btn-primary">View</a>
                             </td>
                         </tr>
-
                     @endforeach
+                    @else
+                        <tr>
+                            <td colspan="5" class="text-center"> No Records found</td>
+                        </tr>
+                    @endif
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-
-    @stop
+@stop

@@ -47,6 +47,7 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @if($arrObjQuotes->count()>0)
                     @foreach($arrObjQuotes as  $objQuotes)
                         <tr>
                             <td>{{$objQuotes->id}}</td>
@@ -58,6 +59,11 @@
                             </td>
                         </tr>
                     @endforeach
+                    @else
+                        <tr>
+                            <td colspan="5" class="text-center"> No Records found</td>
+                        </tr>
+                    @endif
                     </tbody>
                 </table>
             </div>
