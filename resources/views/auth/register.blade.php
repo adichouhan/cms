@@ -43,7 +43,7 @@
                             <label for="gst_no" class="col-md-4 col-form-label text-md-right">GST No.</label>
         
                             <div class="col-md-6">
-                                <input id="gst_no" type="text" class="form-control @error('gst_no') is-invalid @enderror" name="email" value="{{ old('gst_no') }}" required autocomplete="gst_no">
+                                <input id="gst_no" type="text" class="form-control @error('gst_no') is-invalid @enderror" name="gst_no" value="{{ old('gst_no') }}" required autocomplete="gst_no">
             
                                 @error('gst_no')
                                 <span class="invalid-feedback" role="alert">
