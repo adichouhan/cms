@@ -35,10 +35,6 @@ class Controller extends BaseController
             $objModel=AssetsProduct::where('product_name', 'LIKE', '%' . $term . '%')->get();
         }
 
-        if($modelType == 'assetProduct'){
-            $objModel=AssetsProduct::where('product_name', 'LIKE', '%' . $term . '%')->get();
-        }
-
         if($modelType == 'product'){
             $objModel=Products::where('product_name', 'LIKE', '%' . $term . '%')->get();
         }
@@ -52,6 +48,5 @@ class Controller extends BaseController
         }
 
         return response()->json($objModel);
-
     }
 }

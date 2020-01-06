@@ -39,7 +39,11 @@ class UserController extends Controller
         $objUser->name                  = $request->name;
         $objUser->password              = bcrypt($request->password);
         $objUser->email                 = $request->email;
+        $objUser->gst_no                = $request->gst_no;
+
+        if($request->has('activation_status')){
         $objUser->activation_status     = $request->activation_status;
+        }
         $objUser->save();
         return redirect()->back()->with('notice', 'User Created Successfully');
     }
@@ -70,6 +74,7 @@ class UserController extends Controller
         $objUser->name                  = $request->name;
         $objUser->password              = bcrypt($request->password);
         $objUser->email                 = $request->email;
+        $objUser->gst_no                = $request->gst_no;
         $objUser->activation_status     = $request->activation_status;
         $objUser->save();
         return redirect()->back()->with('User Updated successfully');

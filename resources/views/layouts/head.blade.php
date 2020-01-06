@@ -2,7 +2,7 @@
 <meta name="description" content="">
 <meta name="author" content="Scotch">
 
-<title>Super Cool Layouts</title>
+<title>Admin Dashboard</title>
 
 <!-- load bootstrap from a cdn -->
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>

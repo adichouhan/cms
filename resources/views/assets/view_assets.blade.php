@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-    <div class="container">
+    
         <div class="row ">
             <div class="col-2">Go Back</div>
             <div class="col-8 text-center">
@@ -23,6 +23,7 @@
                         <th>Material</th>
                         <th>Action</th>
                     </tr>
+                    @if($arrObjAssets > 0)
                     @foreach($arrObjAssets as $objAsset)
                         <tr>
                             <td>{{$objAsset->id}}</td>
@@ -38,11 +39,14 @@
                             </td>
                         </tr>
                     @endforeach
+                    @else
+                    <tr>
+                        <td colspan="7">No Records Found</td>
+                    </tr>
                 </table>
             </div>
             <div class="col-2"></div>
         </div>
-    </div>
 
     <style>
         table {

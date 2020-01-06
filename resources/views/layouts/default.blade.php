@@ -10,7 +10,7 @@
         @include('layouts.header')
     </header>
 
-    <div id="main" class="row">
+    <div id="main">
 
         @yield('content')
 

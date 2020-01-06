@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ url('admin/user/stored') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -33,6 +33,20 @@
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+    
+                        <div class="form-group row">
+                            <label for="gst_no" class="col-md-4 col-form-label text-md-right">GST No.</label>
+        
+                            <div class="col-md-6">
+                                <input id="gst_no" type="text" class="form-control @error('gst_no') is-invalid @enderror" name="email" value="{{ old('gst_no') }}" required autocomplete="gst_no">
+            
+                                @error('gst_no')
+                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
