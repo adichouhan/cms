@@ -4,6 +4,9 @@
         <div class="card-header">
             <h3 class="card-title">Quotes</h3>
         </div>
+        <div align="left">
+            <a href="{{ url('admin/complaints/create') }}" class="btn btn-info">Add New </a>
+        </div>
         <!-- /.card-header -->
         <div class="card-body">
             <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -28,7 +31,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <table id="example2" class="table table-bordered table-striped dataTable" role="grid"
+                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
                                aria-describedby="example1_info">
                             <thead>
                             <tr role="row">

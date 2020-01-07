@@ -9,8 +9,10 @@
             <div class="col-2"></div>
             <div class="col-8">
 
-                <table>
-                    <tr>
+                <table id="example2" class="table table-bordered table-striped dataTable" role="grid"
+                       aria-describedby="example1_info">
+                    <table id="example2" class="table table-bordered table-striped dataTable" role="grid"
+                           aria-describedby="example1_info">
                         <th>Complaint ID</th>
                         <th>Complaints</th>
                         <th>Location</th>
@@ -19,6 +21,7 @@
                         <th>Material</th>
                         <th>Action</th>
                     </tr>
+                    </thead>
                     @if($arrObjComplaints->count() > 0)
                             @foreach($arrObjComplaints as $objComplaint)
                                 <tr>

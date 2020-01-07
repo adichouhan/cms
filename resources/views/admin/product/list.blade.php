@@ -32,7 +32,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <table id="example2" class="table table-bordered table-striped dataTable" role="grid"
+                    <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
                            aria-describedby="example1_info">
                         <thead>
                         <tr role="row">

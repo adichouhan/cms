@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    
+
         <div class="row ">
             <div class="col-2">Go Back</div>
             <div class="col-8 text-center">
@@ -13,8 +13,10 @@
             <div class="col-2"></div>
             <div class="col-8">
 
-                <table>
-                    <tr>
+                <table id="example2" class="table table-bordered table-striped dataTable" role="grid"
+                       aria-describedby="example1_info">
+                    <table id="example2" class="table table-bordered table-striped dataTable" role="grid"
+                           aria-describedby="example1_info">
                         <th>Asset ID</th>
                         <th>Products</th>
                         <th>Location</th>

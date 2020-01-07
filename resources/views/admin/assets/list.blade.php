@@ -35,7 +35,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <table id="example2" class="table table-bordered table-striped dataTable" role="grid"
+                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
                                aria-describedby="example1_info">
                             <thead>
                             <tr role="row">
@@ -78,7 +78,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($arrObjAssets as $objasset)
+                            @if($arrObjAssets->count()>0)
+                                    @foreach($arrObjAssets as $objasset)
                                 <tr role="row" class="odd">
                                     <td class="sorting_1">{{$objasset->id}}</td>
                                     <td>
@@ -103,7 +104,11 @@
                                     </td>
                                 </tr>
                             @endforeach
-
+                            @else
+                                <tr>
+                                    <td colspan="8" class="text-center"> No Records found</td>
+                                </tr>
+                            @endif
                             </tbody>
 
                         </table>

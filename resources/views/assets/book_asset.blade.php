@@ -4,6 +4,15 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-7">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 @if($type == 'edit')
                     <form method="post" action="{{ url('update/asset') }}" enctype="multipart/form-data">
                         <div class="box-body">
