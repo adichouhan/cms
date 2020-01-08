@@ -120,8 +120,8 @@
     </ul>
 </nav>
 <!-- /.navbar -->
-
 <script>
+    $(document).ready(function(){
     $(function () {
         $('#example1').DataTable({
             "paging": true,
@@ -132,4 +132,5 @@
             "autoWidth": true,
         });
     });
+	})
 </script>

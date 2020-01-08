@@ -87,7 +87,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="date">Expected Date</label>
-                                <input type="datetime-local" class="form-control" name="expdate" id="date" placeholder=""  value="{{$objComplaints->expected_date}}">
+                                {{date("m/d/Y h:i:s A T",($objComplaints->expected_date))}}
+                                <input type="datetime-local" class="form-control" name="expdate" id="date" placeholder=""  value="{{date("m/d/Y h:i:s A T",strtotime($objComplaints->expected_date).time}}">
                             </div>
                             <div class="form-group">
                                 <label for="material">Materials</label>
