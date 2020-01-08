@@ -38,7 +38,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="date">Expected Date</label>
-                                <input type="datetime-local" class="form-control" name="expdate" id="date" placeholder=""  value="{{$objAssets->expected_date}}">
+                                <input type="datetime" class="form-control" name="expdate" id="date" placeholder=""  value="{{$objAssets->expected_date}}">
                             </div>
                             <div class="form-group">
                                 <label for="material">Materials</label>
@@ -78,7 +78,7 @@
 
                             <div class="form-group">
                                 <label for="date">Expected Date</label>
-                                <input type="datetime-local" class="form-control" name="expdate" id="date" placeholder="">
+                                <input type="datetime" class="form-control" name="expdate" id="date" placeholder="">
                             </div>
                             <div class="form-group">
                                 <label for="material">Material</label>

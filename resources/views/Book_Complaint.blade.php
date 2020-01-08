@@ -56,7 +56,7 @@
             <div class="col-3"></div>
         </div>
     </div>
-    </div>
+
 
     <script>
         $(document).ready(function(){

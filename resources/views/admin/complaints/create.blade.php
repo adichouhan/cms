@@ -47,7 +47,7 @@
 
                     <div class="form-group">
                         <label for="date">Expected Date</label>
-                        <input type="datetime-local" class="form-control" name="expdate"
+                        <input type="datetime" class="form-control" name="expdate"
                                id="date" placeholder="">
                     </div>
 

@@ -51,22 +51,22 @@
 
                     <div class="form-group">
                         <label for="date">Expected Date</label>
-                        <input type="datetime-local" class="form-control" name="expdate"
-                               id="date" placeholder="">
+                        <input type="datetime" class="form-control" name="expdate"
+                               id="date" placeholder="" value="{{$objAssets->date}}">
                     </div>
 
                     <div class="form-group">
                         <label for="material">Material(if any)</label>
                         <input type="text" class="form-control"
-                               name="material" id="material" placeholder="">
+                               name="material" id="material" placeholder="" value="{{$objAssets->material}}">
                     </div>
 
                     <div class="form-group">
                         <label for="exampleFormControlFile1">photo upload</label>
                          <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1" >
-                        <input type="file" name="image" value="{{ isset($$objAssets->image)?$$objAssets->image:'' }}"/>
-                        <img src="{{asset($$objAssets->image)}}" class="img-thumbnail" width="100"/>
-                        <input type="hidden" name="hidden_image" value="{{ $$objAssets->image }}"/>
+                        <input type="file" name="image" value="{{ isset($objAssets->image)?$objAssets->image:'' }}"/>
+                        <img src="{{asset($objAssets->image)}}" class="img-thumbnail" width="100"/>
+                        <input type="hidden" name="hidden_image" value="{{ $objAssets->image }}"/>
                     </div>
 
                     <button type="button"  class="btn btn-primary" onclick="myFunction()">Accept</button>
@@ -195,6 +195,6 @@
 
 @stop
 
-@stop
+
 
 
