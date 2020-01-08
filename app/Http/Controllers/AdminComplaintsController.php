@@ -65,7 +65,7 @@ class AdminComplaintsController extends Controller
         $objComplaints->complaints = json_encode($request->get('complaint'));
         $objComplaints->image = $request->file('image')->store('complaint');
         $objComplaints->save();
-        redirect('admin/complaints');
+        return redirect('admin/complaints');
     }
 
     /**

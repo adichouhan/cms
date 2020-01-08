@@ -4,12 +4,12 @@
     <form method="post" action="{{ url('admin/subcategory/store') }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="name">Category Name*</label>
-                <input type="text"  id="name" required name="category_name" >
+                <label for="name">SubCategory Name*</label>
+                <input type="text"  id="name" required name="subcategory_name" >
             </div>
 
         <div class="form-group">
-            <label for="category">Users</label>
+            <label for="category">Catgory</label>
             <input type="text" id="category" data-type="category" class="form-control search">
             <input type="hidden" id="categoryId" class="form-control search" name="parent_id">
             <div id="categoryList"></div>
@@ -58,7 +58,7 @@
             }
         }
 
-        $(document).on('click', 'li.user', function(){
+        $(document).on('click', 'li.category', function(){
             $('#category').val($(this).text());
             $('#categoryId').val($(this).data('id'));
             $('#categoryList').fadeOut();

@@ -59,32 +59,32 @@
 
                             ?>
                             <div class="addedSection">
-                              <div class="form-group"><select  required name="complaint[{{$count}}][main]"
-                                                              class="form-control item_category"
-                                                              data-sub_category_id="{{$count}}">
-                                    <option value="">Select Category</option>{!! $selectedCat !!}</select>
-                              </div>
+                                <div class="form-group"><select  required name="complaint[{{$count}}][main]"
+                                                                 class="form-control item_category"
+                                                                 data-sub_category_id="{{$count}}">
+                                        <option value="">Select Category</option>{!! $selectedCat !!}</select>
+                                </div>
                                 <div class="form-group"><select name="complaint[{{$count}}][sub]" class="form-control item_sub_category"
-                                             id="item_sub_category{{$count}}">
+                                                                id="item_sub_category{{$count}}">
                                         <option value="">Select Sub Category</option>{!! $selectedSubCat !!}</select>
                                 </div>
 
                                 <div class="form-group"><input type="text" name="complaint[{{$count}}][name]"
-                                            class="form-control item_name"/></div>
+                                                               class="form-control item_name"/></div>
 
-                                    <div class="form-group">
+                                <div class="form-group">
                                     <button type="button" name="remove" class="btn btn-danger btn-xs remove">Remove
                                     </button>
-                                    </div>
+                                </div>
                             </div>
-                                @endforeach
-                            <div id="addsection">
-                            </div>
+                        @endforeach
+                        <div id="addsection">
+                        </div>
                     </div>
                     <div class="form-group">
-                    <button type="button" class="btn btn-dark add">Add Issue</button>
+                        <button type="button" class="btn btn-dark add">Add Issue</button>
                     </div>
-                        <div class="form-group">
+                    <div class="form-group">
                         <input type="text" value="{{$objUser->name}}" readonly>
                         <input type="hidden" value="{{$objUser->id}}"  name="user">
                     </div>
@@ -133,10 +133,10 @@
                         <img src="{{asset($objComplaints->image)}}" class="img-thumbnail" width="100"/>
                         <input type="hidden" name="hidden_image" value="{{ $objComplaints->image }}"/>
                     </div>
-<div class="form-group">
-                    <button type="button"  class="btn btn-primary" onclick="accept()">Accept</button>
-                    <button type="button" class="btn btn-primary reject" onclick="reject()">Reject</button>
-</div>
+                    <div class="form-group">
+                        <button type="button"  class="btn btn-primary" onclick="accept()">Accept</button>
+                        <button type="button" class="btn btn-primary reject" onclick="reject()">Reject</button>
+                    </div>
                     <div class="form-group" id="reject" style="display:none">
                         <label for="rejectreason">Reject Reason</label>
                         <input type="text" class="form-control"
@@ -144,41 +144,41 @@
                                name="rejectreason" id="rejectreason" placeholder="">
                     </div>
                     <div id="accept" style="display: none">
-                         <div class="form-group col-md-4">
-                                                <label for="inputState">Status</label>
-                                                <select id="inputState" class="form-control" name="status">
-                                                    <option
-                                                        value="booked" {{(isset($objComplaints->status) && $objComplaints->priority=='booked')? 'selected':'' }}>
-                                                        Booked
-                                                    </option>
-                                                    <option
-                                                        value="processed" {{(isset($objComplaints->priority) && $objComplaints->priority=='processed')? 'selected':'' }}>
-                                                        Processed
-                                                    </option>
-                                                    <option
-                                                        value="ongoing" {{(isset($objComplaints->priority) && $objComplaints->priority=='ongoing')? 'selected':'' }}>
-                                                        OnGoing
-                                                    </option>
-                                                    <option
-                                                        value="completed" {{(isset($objComplaints->priority) && $objComplaints->priority=='completed')? 'selected':'' }}>
-                                                        Completed
-                                                    </option>
-                                                    <option
-                                                        value="rejected" {{(isset($objComplaints->priority) && $objComplaints->priority=='rejected')? 'selected':'' }}>
-                                                        Rejected
-                                                    </option>
-                                                </select>
-                                            </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputState">Status</label>
+                            <select id="inputState" class="form-control" name="status">
+                                <option
+                                    value="booked" {{(isset($objComplaints->status) && $objComplaints->priority=='booked')? 'selected':'' }}>
+                                    Booked
+                                </option>
+                                <option
+                                    value="processed" {{(isset($objComplaints->priority) && $objComplaints->priority=='processed')? 'selected':'' }}>
+                                    Processed
+                                </option>
+                                <option
+                                    value="ongoing" {{(isset($objComplaints->priority) && $objComplaints->priority=='ongoing')? 'selected':'' }}>
+                                    OnGoing
+                                </option>
+                                <option
+                                    value="completed" {{(isset($objComplaints->priority) && $objComplaints->priority=='completed')? 'selected':'' }}>
+                                    Completed
+                                </option>
+                                <option
+                                    value="rejected" {{(isset($objComplaints->priority) && $objComplaints->priority=='rejected')? 'selected':'' }}>
+                                    Rejected
+                                </option>
+                            </select>
+                        </div>
 
                         <div class="form-group col-md-4">
                             <label for="inputState">Assigned To</label>
                             <select id="inputState" class="form-control" name="assignedto">
                                 @foreach($arrEmployees as $employees)
-                                <option
-                                    value="{{$employees->id}}" {{(isset($objComplaints->employee_id) && $objComplaints->employee_id== $employees->id)? 'selected':'' }}>
-                                    {{$employees->employee->name}}
-                                </option>
-                                 @endforeach
+                                    <option
+                                        value="{{$employees->id}}" {{(isset($objComplaints->employee_id) && $objComplaints->employee_id== $employees->id)? 'selected':'' }}>
+                                        {{$employees->employee->name}}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -188,7 +188,7 @@
                         <button type="submit"  class="btn btn-primary" >Submit</button>
                     </div>
 
-            </form>
+                </form>
             </div>
         </div>
         <div class="col-3"></div>

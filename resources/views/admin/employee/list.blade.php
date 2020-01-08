@@ -61,6 +61,7 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @if($arrObjEmployee->count()>0)
                             @foreach($arrObjEmployee as $data)
                                 <tr role="row" class="odd">
                                     <td class="sorting_1">{{$data->id}}</td>
@@ -76,7 +77,11 @@
                                     </td>
                                 </tr>
                             @endforeach
-
+                            @else
+                                <tr>
+                                    <td colspan="8" class="text-center"> No Records found</td>
+                                </tr>
+                            @endif
                             </tbody>
 
                         </table>

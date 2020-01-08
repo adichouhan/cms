@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\SubCategory;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -33,9 +34,8 @@ class CategoryController extends Controller
     }
 
     function storeSubCategory(Request $request){
-
-        $objCategory = new Category();
-        $objCategory->subcategory_title = $request->category_name;
+        $objCategory = new SubCategory();
+        $objCategory->subcategory_title = $request->subcategory_name;
         $objCategory->parent_id         = $request->parent_id;
         $objCategory->save();
         return redirect('admin/category/create');

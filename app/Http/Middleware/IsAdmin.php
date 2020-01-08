@@ -16,10 +16,10 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        $isAdmin=json_encode(Auth::user()->extra_data())['admin'];
-        if($isAdmin) {
-            return $next($request);
-        }
-        return redirect('/');
+//        $isAdmin=json_encode(Auth::user()->extra_data())['admin'];
+//        if($isAdmin) {
+//            return $next($request);
+//        }
+//        return redirect('/');
     }
 }

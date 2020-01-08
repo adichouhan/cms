@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Assets;
 use App\AssetsProduct;
+use App\Category;
 use App\Complaint;
 use App\Employee;
 use App\Products;
@@ -45,6 +46,10 @@ class Controller extends BaseController
 
         if($modelType == 'employee'){
             $objModel=Employee::where('name', 'LIKE', '%' . $term . '%')->get();
+        }
+
+        if($modelType == 'category'){
+            $objModel=Category::where('category_title', 'LIKE', '%' . $term . '%')->get();
         }
 
         return response()->json($objModel);

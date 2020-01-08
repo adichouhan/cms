@@ -12,14 +12,16 @@
 */
 
 
-Route::group([ 'prefix' => 'admin' ],['middleware' => 'admin', function() {
+Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/', function () {return view('admin.dashboard');});
 
-    Route::get('/category/create', 'CategoryController@createCategory');
-    Route::get('/category/store', 'CategoryController@storeCategory');
+    Route::get('/category/create',      'CategoryController@createCategory');
+    Route::get('/category',             'CategoryController@indexCategory');
+    Route::post('/category/store',      'CategoryController@storeCategory');
 
-    Route::get('/subcategory/create', 'CategoryController@createSubCategory');
-    Route::get('/subcategory/store', 'CategoryController@storeSubCategory');
+    Route::get('/subcategory/create',   'CategoryController@createSubCategory');
+    Route::get('/subcategory',          'CategoryController@indexCategory');
+    Route::post('/subcategory/store',   'CategoryController@storeSubCategory');
 
 
     Route::get('/user',                'UserController@index');
@@ -94,9 +96,9 @@ Route::group([ 'prefix' => 'admin' ],['middleware' => 'admin', function() {
     Route::get('/asset/product/create', 'AssetProductController@create');
     Route::post('/asset/product/store', 'AssetProductController@store');
 
-}]);
+});
 
-Route::group([ 'namespace' => '\App\Http\Controllers\Admin', 'prefix'=>'admin', 'middleware' => 'admin' ], function() {
+Route::group([ 'namespace' => '\App\Http\Controllers\Admin', 'prefix'=>'admin'], function() {
     Route::get('/assets', 'AssetsController@index');
     Route::get('/assets/create', 'AssetsController@create');
     Route::post('/assets/store', 'AssetsController@store');
