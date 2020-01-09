@@ -31,7 +31,7 @@
                                name="location"
                                placeholder="">
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group">
                         <label for="inputState">Priority</label>
                         <select id="inputState" class="form-control" name="priority">
                             <option

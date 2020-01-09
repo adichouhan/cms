@@ -112,7 +112,6 @@
         </div>
         <div class="col-3"></div>
     </div>
-
 <script>
     $(document).ready(function () {
         $(document).on('keyup', '.search', function () {
@@ -140,8 +139,6 @@
         });
 
         function autocomplete(type, data) {
-            console.log('type')
-            console.log(type)
             var htmlComplaint = '';
             htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
 
@@ -175,5 +172,4 @@
         });
     });
 </script>
-
 @stop

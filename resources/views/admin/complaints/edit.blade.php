@@ -133,6 +133,7 @@
                         <img src="{{asset($objComplaints->image)}}" class="img-thumbnail" width="100"/>
                         <input type="hidden" name="hidden_image" value="{{ $objComplaints->image }}"/>
                     </div>
+
                     <div class="form-group">
                         <button type="button"  class="btn btn-primary" onclick="accept()">Accept</button>
                         <button type="button" class="btn btn-primary reject" onclick="reject()">Reject</button>
