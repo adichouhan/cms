@@ -15,7 +15,7 @@
 
                         <div class="form-group col-md-4">
                             <label for="challan-date">Challan Date</label>
-                            <input type="date" required class="form-control" name="challan_date"
+                            <input type="datetime-local" required class="form-control" name="challan_date"
                                    id="challan-date" placeholder="">
                         </div>
 {{--                        <div class="add_complaint">Add complaint</div>--}}
@@ -82,10 +82,7 @@
                 </form>
             </div>
         </div>
-        <div class="col-3"></div>
     </div>
-
-
     <script>
         $(document).ready(function () {
             var count = 1;
@@ -130,7 +127,6 @@
             function autocomplete(type, data) {
                 var htmlComplaint='';
                 htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
-
 
                 if(type =='product'){
                     var productListId = '#productList'+dataCount;

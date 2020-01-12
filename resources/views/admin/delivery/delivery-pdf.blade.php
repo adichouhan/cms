@@ -91,12 +91,12 @@ Status: Paid
 </div>
 
     <div class="quote">
-        <h4>quote</h4>
+        <h4>Challan</h4>
         <hr>
         <table>
             <tr>
-            <td>quote number</td>
-            <td>{{$arrMix['quote_id']}}</td>
+            <td>Challan number</td>
+            <td>{{$arrMix['challan_id']}}</td>
             <td>
                 @if(isset($arrMix['reciepient']))
                     {{$arrMix['reciepient']}}
@@ -104,8 +104,8 @@ Status: Paid
             </td>
             </tr>
             <tr>
-            <td>quote Date</td>
-            <td>{{$arrMix['quote_date']}}</td>
+            <td>Challan Date</td>
+            <td>{{$arrMix['challan_date']}}</td>
             <td></td>
             </tr>
         </table>
@@ -120,16 +120,15 @@ Status: Paid
         <thead>
         <tr>
             <th scope="col">Item</th>
-            <th scope="col">Unit cost</th>
             <th scope="col">Quantity</th>
         </tr>
         </thead>
         <tbody>
-        @foreach( $arrMix['quote'] as $index => $quote)
+        @foreach( $arrMix['challan'] as $index => $challan)
             <tr>
-                <td scope="row">{{$quote['product']}}</td>
-                <td>{{$quote['unit']}}</td>
-                <td >{{$quote['quantity']}}</td>
+                <td scope="row">{{$challan['product']}}</td>
+                <td>{{$challan['unit']}}</td>
+                <td >{{$challan['unit']}}</td>
             </tr>
         @endforeach
         </tbody>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-            <div class="text-center">
+        <div class="text-center">
                 <div class="text-center"><h3>View Booked Complaints</h3></div>
             </div>
 
@@ -13,6 +13,7 @@
                        aria-describedby="example1_info">
                     <table id="example2" class="table table-bordered table-striped dataTable" role="grid"
                            aria-describedby="example1_info">
+                        <thead><tr>
                         <th>Complaint ID</th>
                         <th>Complaints</th>
                         <th>Location</th>
@@ -26,16 +27,17 @@
                             @foreach($arrObjComplaints as $objComplaint)
                                 <tr>
                                     <td>{{$objComplaint->id}}</td>
-                                    <td>    @if(json_decode($objComplaint->complaints) != null || json_decode($objComplaint->complaints) != '')
+                                    <td>
+                                        @if(json_decode($objComplaint->complaints) != NULL || json_decode($objComplaint->complaints) != '')
                                             @foreach(json_decode($objComplaint->complaints) as $index =>$objComplain)
-                                                {{$index}}
-                                                @if( $objComplaint->main)
-                                                    <?php
-                                                    $category=\App\Category::where('id', $objComplaint->main)->first();
-                                                    $subCategory=\App\SubCategory::where('id', $objComplaint->sub)->first();
-                                                    ?>
-                                                    {{$category->category_title}}:{{$subCategory->subcategory_title}}
-                                                @endif
+
+                                                <?php
+                                                $category = \App\Category::where('id', $objComplain->main)->first();
+                                                $subCategory = \App\SubCategory::where('id', $objComplain->sub)
+                                                    ->first();
+                                                ?>
+                                                <div>{{$index}}.<span>Category :</span>{{isset($category->category_title)?$category->category_title:''}}</div>
+                                                <div><span>Sub Category :</span>{{isset($subCategory->subcategory_title)?$subCategory->subcategory_title:''}}</div>
                                             @endforeach
                                         @endif
                                     </td>

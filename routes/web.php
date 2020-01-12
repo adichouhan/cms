@@ -134,7 +134,7 @@ Route::get('/book', 'CategoryController@bookForm')->middleware('auth');
 Route::post('/register/complaint', 'ComplaintController@postComplaints')->middleware('auth');
 Route::get('/register/complaint', 'ComplaintController@create')->middleware('auth');
 
-Route::get('/view_complaints', 'ComplaintController@getViewComplaints')->middleware('auth');
+Route::get('/complaints/', 'ComplaintController@getViewComplaints')->middleware('auth');
 Route::get('/complaints/edit/{complaint}', 'ComplaintController@getEditComplain')->middleware('auth');
 Route::post('complaint/update/{complaint}', 'ComplaintController@update')->middleware('auth');
 Route::get('/mycomplaints', 'ComplaintController@getComplaintsView')->middleware('auth');

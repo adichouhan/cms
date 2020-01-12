@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-7">
-                <form method="post" action="{{ url('/admin/delivery/createpdf') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/delivery/update/'.$objInvoice->id) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-4">
@@ -19,11 +19,6 @@
                                    id="invoice-date" value="{{$objInvoice->date}}" placeholder="">
                         </div>
 
-                        <div class="form-group col-md-4">
-                            <label for="complaint">Complaint</label>
-                            <input type="text" class="form-control" required name="complaint"
-                                   id="complaint" placeholder="Complaint" value="{{isset($objInvoice->complaint)?$objInvoice->complaint:''}}">
-                        </div>
                     </div>
 
 
@@ -38,11 +33,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach(json_decode($objInvoice->quote) as $index => $invoice)
+                            @foreach(json_decode($objInvoice->challan) as $index => $invoice)
                                 <tr>
                                     <td><input name="challan[{{$index}}][product]" class="form-control item_product" value="{{$invoice->product}}" data-sub_category_id="0"/></td>
                                     <td><input type="number" name="challan[{{$index}}][unit]"  data-count="0"  value="{{$invoice->unit}}" class="form-control item_unit calculate price" id="item_sub_category0"  /></td>'
-                                    <td><input type="number" name="challan[{{$index}}][quantity]" data-count="0" id="calctotal0" value="{{$invoice->quantity}}" class="form-control qty item_quantity calculate" /></td>
                                     <td>
                                         <input type="number" name="challan[{{$index}}][total]" class="form-control item_total" readonly value="36" /></td>
                                     <td><button type="button" class="add btn btn-primary">Add</button>
@@ -65,7 +59,7 @@
 
     <script>
         $(document).ready(function () {
-            var count = {!! count(json_decode($objInvoice->invoice))>0?count(json_decode($objInvoice->invoice)):0 !!};
+            var count = {!! count(json_decode($objInvoice->challan))>0?count(json_decode($objInvoice->challan)):0 !!};
 
             $(document).on('click', '.add', function () {
                 count++;

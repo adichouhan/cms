@@ -43,7 +43,7 @@ class UserController extends Controller
         $objUser->gst_no                = $request->gst_no;
 
         if($request->has('activation_status')){
-        $objUser->activation_status     = $request->activation_status;
+            $objUser->activation_status     = $request->activation_status;
         }
         $objUser->save();
         return redirect()->back()->with('notice', 'User Created Successfully');
@@ -58,7 +58,6 @@ class UserController extends Controller
     public function edit($id)
     {
         $objUser = User::findorfail($id);
-
         return view('admin.user.edit', ['objUser'=>$objUser]);
     }
 

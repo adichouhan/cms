@@ -26,7 +26,7 @@
                                 <input type="text" class="form-control" id="location" name="location" placeholder="" >
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group">
                                 <label for="inputState">Priority</label>
                                 <select id="inputState" class="form-control" name="priority">
                                     <option value="low">Low</option>
@@ -63,12 +63,12 @@
             var count = 0;
             $(document).on('click', '.add', function(){
                 count++;
-                var html = '';
-                html += '<div class="addedSection"><div class="form-group"> <input type="text" name="complaint['+count+'][name]" class="form-control item_name" required/> </div>';
+                var html = '<div class="addedSection">';
                 html += '<div  class="form-group"><select required name="complaint['+count+'][main]" class="form-control item_category" data-sub_category_id="'+count+'"><option value="">Select Category</option>{!! $output !!}</select></td></div>';
                 html += '<div  class="form-group"><select required name="complaint['+count+'][sub]" class="form-control item_sub_category" id="item_sub_category'+count+'"><option value="">Select Sub Category</option></select></div>';
+                html += '<div class="form-group"> <input type="text" name="complaint['+count+'][name]" class="form-control item_name" required/> </div>';
                 html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger btn-xs remove">Remove</button></div></div>';
-                $('#addsection').append(html);
+                 $('#addsection').append(html);
             });
 
             $(document).on('click', '.remove', function(){

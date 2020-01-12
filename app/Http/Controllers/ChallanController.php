@@ -41,15 +41,10 @@ class ChallanController extends Controller
         $objChallan = new Challan();
         $objChallan->challan_id=$request->challan_id;
         $objChallan->challan_date=$request->challan_date;
-        if($request->complaint){
-            $objChallan->complaint=$request->complaint;
-        }else{
-            $objChallan->asset=$request->asset;
-        }
         $objChallan->challan=json_encode($request->challan);
         $objChallan->save();
         $this->createPdf($request);
-        return redirect('/admin/challan/')->with('message', 'Challan Created Successfully.');
+        return redirect('/admin/delivery/')->with('message', 'Challan Created Successfully.');
     }
 
     public function createPdf(Request $request)
@@ -86,11 +81,13 @@ class ChallanController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Challan  $challan
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Challan $challan)
+    public function edit($id,Challan $challan)
     {
-        //
+        $objInvoice=Challan::findorfail($id);
+        return view('admin.delivery.edit',['objInvoice'=>$objInvoice]);
+
     }
 
     /**
