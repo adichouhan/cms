@@ -33,13 +33,12 @@ class EmployeeAvailabilityController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
         $request->validate([
             'employee' => 'required',
-            'employee'   => 'required',
             'onwork_status' => 'required',
         ]);
         $objAvailability = new EmployeeAvailability();
@@ -47,7 +46,7 @@ class EmployeeAvailabilityController extends Controller
         $objAvailability->available_status=$request->employee;
         $objAvailability->onWork=$request->onwork_status;
         $objAvailability->save();
-        return redirect('/admin/employee/availability/create')->with('Employee created successfully');
+        return redirect('/admin/employee/availability/create')->with('message', 'Employee created successfully');
     }
 
     /**

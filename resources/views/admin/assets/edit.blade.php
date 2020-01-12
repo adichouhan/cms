@@ -31,6 +31,7 @@
                                name="location"
                                placeholder="">
                     </div>
+
                     <div class="form-group">
                         <label for="inputState">Priority</label>
                         <select id="inputState" class="form-control" name="priority">
@@ -65,7 +66,7 @@
                         <label for="exampleFormControlFile1">photo upload</label>
                          <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1" >
                         <input type="file" name="image" value="{{ isset($objAssets->image)?$objAssets->image:'' }}"/>
-                        <img src="{{asset($objAssets->image)}}" class="img-thumbnail" width="100"/>
+                        <img src="{{url('/images/'.$objAssets->image)}}" class="img-thumbnail" width="100"/>
                         <input type="hidden" name="hidden_image" value="{{ $objAssets->image }}"/>
                     </div>
 

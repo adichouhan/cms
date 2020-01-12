@@ -31,7 +31,7 @@ class AssetProductController extends Controller
         $objAssetProduct=new AssetsProduct();
         $objAssetProduct->product_name=$request->product_name;
         $objAssetProduct->save();
-        return redirect('/admin/assets')->back()->with('Asset Product created successfully');
+        return redirect('/admin/assets')->with('message','Asset Product created successfully');
     }
 
     /**
@@ -58,7 +58,7 @@ class AssetProductController extends Controller
         $objAssetProduct=AssetsProduct::findOrFail($request->id);
         $objAssetProduct->asset_product=$request->asset_name;
         $objAssetProduct->save();
-        redirect()->back()->with('Asset Product updated successfully');
+        redirect('/admin/assets')->with('message','Asset Product updated successfully');
     }
 
 

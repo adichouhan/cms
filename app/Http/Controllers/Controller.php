@@ -9,11 +9,14 @@ use App\Complaint;
 use App\Employee;
 use App\Products;
 use App\User;
+
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 
 class Controller extends BaseController
 {
@@ -53,5 +56,19 @@ class Controller extends BaseController
         }
 
         return response()->json($objModel);
+    }
+
+    public function displayImage($pathname, $filename)
+    {
+        $path = storage_path('app/'.$pathname.'/'.$filename);
+//        if (!File::exists($path)) {
+//            abort(404);
+//        }
+        $file = File::get($path);
+        $type = File::mimeType($path);
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+        return $response;
+
     }
 }

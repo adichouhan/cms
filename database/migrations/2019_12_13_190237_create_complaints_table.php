@@ -19,7 +19,7 @@ CreateComplaintsTable extends Migration
             $table->text('complaints')->nullable();
             $table->text('complaints_unique')->nullable();
             $table->text('location')->nullable();
-            $table->dateTime('expected_date')->nullable();
+            $table->dateTimeTz('expected_date')->nullable();
             $table->text('priority')->nullable();
             $table->text('maerials')->nullable();
             $table->text('work_status')->nullable();

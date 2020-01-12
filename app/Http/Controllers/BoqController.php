@@ -41,7 +41,7 @@ class BoqController extends Controller
             $objBoq->product_unit=$request->product_unit;
             $objBoq->product_rate=$request->product_rate;
             $objBoq->save();
-            return redirect()->back();
+            return redirect('/admin/boq')->with('message', 'Boq Created Successfully');
     }
 
     /**
@@ -72,7 +72,7 @@ class BoqController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Boq  $boq
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update($id, Request $request)
     {
@@ -81,7 +81,7 @@ class BoqController extends Controller
         $objBoq->product_unit=$request->product_unit;
         $objBoq->product_rate=$request->product_rate;
         $objBoq->save();
-        return redirect()->back();
+        return redirect('/admin/boq')->with('message', 'Boq Updated Successfully');
     }
 
     /**

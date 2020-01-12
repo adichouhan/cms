@@ -49,9 +49,8 @@ class ChallanController extends Controller
         $objChallan->challan=json_encode($request->challan);
         $objChallan->save();
         $this->createPdf($request);
-        return redirect()->back();
+        return redirect('/admin/challan/')->with('message', 'Challan Created Successfully.');
     }
-
 
     public function createPdf(Request $request)
     {

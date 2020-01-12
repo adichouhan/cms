@@ -42,13 +42,12 @@ class DocumentController extends Controller
             'expirydate'   => 'required',
             'document' => 'required',
         ]);
-//        dd($request->all());
         $objDocument = new Document();
         $objDocument->name = $request->title;
         $objDocument->expiry_date = $request->expirydate;
         $objDocument->file = $request->file('file')->store('document');
         $objDocument->save();
-        return redirect('/admin/documents')->with('success', 'Data Added successfully.');
+        return redirect('/admin/documents')->with('message', 'Data Added successfully.');
     }
 
     /**
@@ -93,7 +92,7 @@ class DocumentController extends Controller
         $objDocument->expiry_date = $request->expirydate;
         $objDocument->file = $request->file('file')->store('document');
         $objDocument->save();
-        return redirect('/admin/documents')->with('success', 'Data Added successfully.');
+        return redirect('/admin/documents')->with('message', 'Data Added successfully.');
     }
 
     /**

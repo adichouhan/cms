@@ -118,6 +118,7 @@ Route::get('/complaints', function () {
 })->middleware('auth');
 
 Route::post('/fetch', 'Controller@fetch');
+Route::get('/images/{pathname}/{filename}', 'Controller@displayImage');
 
 Route::get('/register/user/create', 'RegisterController@create')->middleware('auth');
 
@@ -135,7 +136,7 @@ Route::get('/register/complaint', 'ComplaintController@create')->middleware('aut
 
 Route::get('/view_complaints', 'ComplaintController@getViewComplaints')->middleware('auth');
 Route::get('/complaints/edit/{complaint}', 'ComplaintController@getEditComplain')->middleware('auth');
-Route::post('/update/complaint/{complaint}', 'ComplaintController@update')->middleware('auth');
+Route::post('complaint/update/{complaint}', 'ComplaintController@update')->middleware('auth');
 Route::get('/mycomplaints', 'ComplaintController@getComplaintsView')->middleware('auth');
 Route::get('complaint/invoices',  'ComplaintController@invoices');
 Route::get('complaint/invoices/view/{$id}',  'ComplaintController@invoicesShow');

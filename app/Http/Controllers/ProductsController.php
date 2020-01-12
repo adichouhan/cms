@@ -32,7 +32,7 @@ class ProductsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -44,6 +44,7 @@ class ProductsController extends Controller
         $objProduct->product_name=$request->product_name;
         $objProduct->product_unit=$request->product_unit;
         $objProduct->save();
+        return redirect('admin/products')->with('message', 'Products Created Successfully');
     }
 
     /**
@@ -60,7 +61,7 @@ class ProductsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Products  $products
+     * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
@@ -75,7 +76,7 @@ class ProductsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Products  $products
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, Products $products)
     {
@@ -83,6 +84,7 @@ class ProductsController extends Controller
         $objProduct->product_name=$request->product_name;
         $objProduct->product_unit=$request->product_unit;
         $objProduct->save();
+        return redirect('admin/products')->with('message', 'Products Created Successfully');
     }
 
     /**

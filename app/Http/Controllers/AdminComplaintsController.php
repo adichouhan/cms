@@ -39,11 +39,12 @@ class AdminComplaintsController extends Controller
         $arrObjEmployee=EmployeeAvailability::with('employee')->where('available_status')->get();
         return view('admin.complaints.create',['arrObjUser' => $arrObjUser, 'arrObjEmployees'=>$arrObjEmployee, 'output'=>$output]);
     }
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Complaint  $complaint
-     * @return \Illuminate\View\View
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -65,7 +66,7 @@ class AdminComplaintsController extends Controller
         $objComplaints->complaints = json_encode($request->get('complaint'));
         $objComplaints->image = $request->file('image')->store('complaint');
         $objComplaints->save();
-        return redirect('admin/complaints');
+        return redirect('admin/complaints')->with('message', 'Complaints Created Successfully');
     }
 
     /**
@@ -118,7 +119,7 @@ class AdminComplaintsController extends Controller
             $objComplaints->image = $request->file('image')->store('complaint');
         }
         $objComplaints->save();
-        return redirect()->back()->with('Complaints Updated');
+        return redirect('admin/complaints')->with('message','Complaints Updated Successfully');
     }
 
 }

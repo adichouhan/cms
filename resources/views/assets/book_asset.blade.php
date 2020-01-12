@@ -24,10 +24,12 @@
                                 <input type="hidden" id="productId" class="form-control search" name="product">
                                 <div id="assetProductList"></div>
                             </div>
+
                             <div class="form-group">
                                 <label for="location">Location(Branch Name)*</label>
                                 <input type="text" class="form-control" id="location" name="location" placeholder="" value="{{$objAssets->location}}">
                             </div>
+
                             <div class="form-group col-md-4">
                                 <label for="inputState">Priority</label>
                                 <select id="inputState" class="form-control" name="priority">
@@ -36,20 +38,23 @@
                                     <option value="high">High</option>
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label for="date">Expected Date</label>
                                 <input type="datetime" class="form-control" name="expdate" id="date" placeholder=""  value="{{$objAssets->expected_date}}">
                             </div>
+
                             <div class="form-group">
                                 <label for="material">Materials</label>
                                 <input type="text" class="form-control"  name="material" id="material" placeholder="" value="{{$objAssets->maerials}}">
                             </div>
 
-
                             <div class="form-group">
                                 <label for="exampleFormControlFile1">Example file input</label>
                                 <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1">
+                                <img src="{{url('/images/'.$objAssets->image)}}" class="img-thumbnail" width="100"/>
                             </div>
+
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </form>

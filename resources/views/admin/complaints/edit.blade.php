@@ -130,7 +130,7 @@
                         <label for="exampleFormControlFile1">photo upload</label>
                         {{--                        <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1" >--}}
                         <input type="file" name="image" value="{{ $objComplaints->image }}"/>
-                        <img src="{{asset($objComplaints->image)}}" class="img-thumbnail" width="100"/>
+                        <img src="{{url('/images/'.$objComplaints->image)}}" class="img-thumbnail" width="100"/>
                         <input type="hidden" name="hidden_image" value="{{ $objComplaints->image }}"/>
                     </div>
 

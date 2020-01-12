@@ -9,6 +9,11 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="row">
                     <div class="col-sm-12 col-md-6">

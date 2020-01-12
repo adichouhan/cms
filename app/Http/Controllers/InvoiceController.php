@@ -86,7 +86,7 @@ class InvoiceController extends Controller
         $objInvoice->invoice=json_encode($request->invoice);
         $objInvoice->save();
         $this->createPdf($request);
-        return redirect()->back();
+        return redirect('admin/invoice')->with('message', 'Invoice Created Successfully');
 
     }
 
@@ -142,7 +142,7 @@ class InvoiceController extends Controller
         $objInvoice->invoice=json_encode($request->invoice);
         $objInvoice->save();
         $this->createPdf($request);
-        return redirect()->back();
+        return redirect('admin/invoice')->with('message', 'Invoice Created Successfully');
     }
 
     /**

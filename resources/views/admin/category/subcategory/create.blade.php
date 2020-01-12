@@ -1,6 +1,10 @@
 @extends('admin.admin_template')
 @section('content')
-    <div class="box-body">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Add SubCategory</h3>
+        </div>
+        <div class="card-body">
     <form method="post" action="{{ url('admin/subcategory/store') }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
@@ -10,13 +14,14 @@
 
         <div class="form-group">
             <label for="category">Catgory</label>
-            <input type="text" id="category" data-type="category" class="form-control search">
-            <input type="hidden" id="categoryId" class="form-control search" name="parent_id">
+            <input type="text" id="category" data-type="category" class="search">
+            <input type="hidden" id="categoryId" class="search" name="parent_id">
             <div id="categoryList"></div>
         </div>
 
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
+        </div>
     </div>
 
 

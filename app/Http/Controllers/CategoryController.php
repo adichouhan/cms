@@ -26,7 +26,7 @@ class CategoryController extends Controller
         $objCategory = new Category();
         $objCategory->category_title = $request->category_name;
         $objCategory->save();
-        return redirect('admin/category/create');
+        return redirect('admin/category/create')->with('message', 'Category Created Successfully');
     }
 
     function createSubCategory(){
@@ -38,6 +38,6 @@ class CategoryController extends Controller
         $objCategory->subcategory_title = $request->subcategory_name;
         $objCategory->parent_id         = $request->parent_id;
         $objCategory->save();
-        return redirect('admin/category/create');
+        return redirect('admin/category/create')->with('message', 'Category Created Successfully');
     }
 }

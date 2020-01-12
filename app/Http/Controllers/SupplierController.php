@@ -48,7 +48,7 @@ class SupplierController extends Controller
         $objEmployee->email_id = $request->email_id;
         $objEmployee->mobile_no = $request->mobile_no;
         $objEmployee->save();
-        return  redirect()->back();
+        return redirect('admin/supplier')->with('message', 'Supplier Created Successfully');
     }
 
     /**

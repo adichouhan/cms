@@ -36,7 +36,7 @@ class QuoteController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -52,7 +52,7 @@ class QuoteController extends Controller
         $objQuote->save();
 
         $this->createPdf($request);
-        redirect()->back();
+        return redirect('admin/quotes')->with('message', 'Quotes Created Successfully');
     }
 
     /**
@@ -108,7 +108,7 @@ class QuoteController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Quote  $quote
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update($id, Request $request)
     {
@@ -123,7 +123,7 @@ class QuoteController extends Controller
         $objQuote->quote=json_encode($request->quote);
         $objQuote->save();
         $this->createPdf($request);
-        redirect()->back();
+        return redirect('admin/quotes')->with('message', 'Quotes Created Successfully');
     }
 
     /**

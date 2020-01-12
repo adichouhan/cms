@@ -37,7 +37,7 @@ class AssetsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -59,7 +59,7 @@ class AssetsController extends Controller
         $objAssest->products  = $request->product;
         $objAssest->image       = $request->file('image')->store('assets');
         $objAssest->save();
-        return redirect('assets')->with('success', 'Data Added successfully.');
+        return redirect('assets')->with('message', 'Assets Created Successfully.');
     }
 
     /**
@@ -111,7 +111,7 @@ class AssetsController extends Controller
         $objAssest->products  = $request->product;
         $objAssest->image       = $request->file('image')->store('assets');
         $objAssest->save();
-        return redirect('/view/assets')->with('success', 'Data Added successfully.');
+        return redirect('/assets')->with('message', 'Assets Added successfully.');
     }
 
     /**
@@ -126,7 +126,6 @@ class AssetsController extends Controller
         $data->delete();
         return redirect('assets')->with('success', 'Data Added successfully.');
     }
-
 
     public function getAssetView(){
         return view('assets');

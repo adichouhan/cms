@@ -30,6 +30,6 @@ class RegisterController extends Controller
             $objUser->password=$request->password;
             $objUser->email=$request->email;
             $objUser->save();
-            redirect('/')->with('You are registered successfully. You can logged in after verification');
+            redirect('/login')->with('You are registered successfully. You can logged in after verification');
     }
 }
