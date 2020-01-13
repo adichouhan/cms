@@ -17,6 +17,7 @@
                        aria-describedby="example1_info">
                     <table id="example2" class="table table-bordered table-striped dataTable" role="grid"
                            aria-describedby="example1_info">
+                        <tr>
                         <th>Asset ID</th>
                         <th>Products</th>
                         <th>Location</th>
@@ -25,7 +26,7 @@
                         <th>Material</th>
                         <th>Action</th>
                     </tr>
-                    @if($arrObjAssets > 0)
+                    @if($arrObjAssets->count() > 0)
                     @foreach($arrObjAssets as $objAsset)
                         <tr>
                             <td>{{$objAsset->id}}</td>
@@ -45,7 +46,9 @@
                     <tr>
                         <td colspan="7">No Records Found</td>
                     </tr>
+                        @endif
                 </table>
+
             </div>
             <div class="col-2"></div>
         </div>

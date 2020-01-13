@@ -18,6 +18,7 @@
                         <div class="box-body">
                             @csrf
                             <input type="hidden"  id="id" name="id"  value="{{$objAssets->id}}">
+
                             <div class="form-group">
                                 <label for="product">Product</label>
                                 <input type="text" id="product" data-type="assetProduct" class="form-control search">
@@ -68,10 +69,12 @@
                                 <input type="hidden" id="productId" class="form-control search" name="product">
                                 <div id="assetProductList"></div>
                             </div>
+
                             <div class="form-group">
                                 <label for="location">Location(Branch Name)*</label>
                                 <input type="text" class="form-control" id="location" name="location" placeholder="">
                             </div>
+
                             <div class="form-group col-md-4">
                                 <label for="inputState">Priority</label>
                                 <select id="inputState" class="form-control" name="priority">
@@ -85,16 +88,17 @@
                                 <label for="date">Expected Date</label>
                                 <input type="datetime" class="form-control" name="expdate" id="date" placeholder="">
                             </div>
+
                             <div class="form-group">
                                 <label for="material">Material</label>
                                 <input type="text" class="form-control"  name="material" id="material" placeholder="">
                             </div>
 
-
                             <div class="form-group">
                                 <label for="exampleFormControlFile1">Example file input</label>
                                 <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1">
                             </div>
+
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </form>

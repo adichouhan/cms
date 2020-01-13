@@ -21,18 +21,17 @@
                     @csrf
                     <div class="form-group">
                         <label for="user">Users</label>
-                        <input type="text" id="user" data-type="user" value="{{$objUser->name}}" class="form-control search">
-                        <input type="hidden" id="userId" class="form-control search" value="{{$objUser->id}}" name="user">
+                        <input type="text" id="user" data-type="user" value="{{isset($objUser->name)??$objUser->name}}" class="form-control search">
+                        <input type="hidden" id="userId" class="form-control search" value="{{isset($objUser->id)??$objUser->id}}" name="user">
                         <div id="userList"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="product">Product</label>
-                        <input type="text" id="product" data-type="assetProduct" value="{{$objAssets->product}}" class="form-control search">
+                        <input type="text" id="product" data-type="assetProduct" value="{{isset($objAssets->product}}" class="form-control search">
                         <input type="hidden" id="productId" class="form-control search" name="product">
                         <div id="assetProductList"></div>
                     </div>
-
 
                     <div class="form-group">
                         <label for="location">Location(Branch Name)*</label>
