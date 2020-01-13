@@ -1,5 +1,17 @@
 @extends('admin.admin_template')
 @section('content')
+    <script>
+        function accept() {
+            console.log('here')
+            $('#reject').css({ display: "none" });
+            $('#accept').css({ display: "block" });
+        }
+        function reject() {
+            console.log('there')
+            $('#accept').css({ display: "none" });
+            $('#reject').css({ display: "block" });
+        }
+    </script>
     <div class="container">
         <div class="row">
             <div class="col-2"></div>
@@ -7,28 +19,25 @@
 
                 <form method="post" action="{{ url('/admin/edit/assets/') }}" enctype="multipart/form-data">
                     @csrf
-                    <button type="button" class="btn btn-dark add">Add Issue</button>
                     <div class="form-group">
-                        <input type="text" value="{{$objUser->name}}" readonly>
-                        <input type="hidden" value="{{$objUser->id}}"  name="user">
+                        <label for="user">Users</label>
+                        <input type="text" id="user" data-type="user" value="{{$objUser->name}}" class="form-control search">
+                        <input type="hidden" id="userId" class="form-control search" value="{{$objUser->id}}" name="user">
+                        <div id="userList"></div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputState">Users</label>
-                        <select id="inputState" class="form-control" name="user">
-                            @foreach($arrObjProduct as $objProduct)
-                                <option
-                                    value="{{$objProduct->id}}" >
-                                    {{$objProduct->name}}
-                                </option>
-                            @endforeach
-                        </select>
+                        <label for="product">Product</label>
+                        <input type="text" id="product" data-type="assetProduct" value="{{$objAssets->product}}" class="form-control search">
+                        <input type="hidden" id="productId" class="form-control search" name="product">
+                        <div id="assetProductList"></div>
                     </div>
+
 
                     <div class="form-group">
                         <label for="location">Location(Branch Name)*</label>
                         <input type="text" class="form-control" id="location"
-                               name="location"
+                               name="location" value="{{$objAssets->location}}"
                                placeholder="">
                     </div>
 
@@ -53,18 +62,17 @@
                     <div class="form-group">
                         <label for="date">Expected Date</label>
                         <input type="datetime" class="form-control" name="expdate"
-                               id="date" placeholder="" value="{{$objAssets->date}}">
+                               id="date" placeholder="" value="{{date("m/d/Y h:i:s A ",strtotime($objAssets->expected_date))}}">
                     </div>
 
                     <div class="form-group">
                         <label for="material">Material(if any)</label>
                         <input type="text" class="form-control"
-                               name="material" id="material" placeholder="" value="{{$objAssets->material}}">
+                               name="material" id="material" placeholder="" value="{{$objAssets->maerials}}">
                     </div>
 
                     <div class="form-group">
                         <label for="exampleFormControlFile1">photo upload</label>
-                         <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1" >
                         <input type="file" name="image" value="{{ isset($objAssets->image)?$objAssets->image:'' }}"/>
                         <img src="{{url('/images/'.$objAssets->image)}}" class="img-thumbnail" width="100"/>
                         <input type="hidden" name="hidden_image" value="{{ $objAssets->image }}"/>
@@ -130,7 +138,6 @@
         <div class="col-3"></div>
     </div>
 
-
     <script>
         $(document).ready(function () {
             $(document).on('keyup', '.search', function () {
@@ -193,7 +200,6 @@
             });
         });
     </script>
-
 @stop
 
 

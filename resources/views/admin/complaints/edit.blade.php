@@ -85,8 +85,10 @@
                         <button type="button" class="btn btn-dark add">Add Issue</button>
                     </div>
                     <div class="form-group">
-                        <input type="text" value="{{$objUser->name}}" readonly>
-                        <input type="hidden" value="{{$objUser->id}}"  name="user">
+                        <label for="user">Users</label>
+                        <input type="text" id="user" value="{{isset($objUser->name)??$objUser->name}}" readonly>
+                        <input type="hidden"  id="userId" value="{{isset($objUser->id)??$objUser->id}}"  name="user">
+                        <div id="userList"></div>
                     </div>
                     <div class="form-group">
                         <label for="location">Location(Branch Name)*</label>
@@ -94,6 +96,7 @@
                                value="{{isset($objComplaints->location)?$objComplaints->location:''}}" name="location"
                                placeholder="">
                     </div>
+
                     <div class="form-group col-md-4">
                         <label for="inputState">Priority</label>
                         <select id="inputState" class="form-control" name="priority">
@@ -114,8 +117,8 @@
 
                     <div class="form-group">
                         <label for="date">Expected Date</label>
-                        <input type="datetime-local" class="form-control" name="expdate"
-                               value="{{isset($objComplaints->expected_date)?strtotime($objComplaints->expected_date):''}}"
+                        <input type="datetime" class="form-control" name="expdate"
+                               value="{{date("m/d/Y h:i:s A ",strtotime($objComplaints->expected_date))}}"
                                id="date" placeholder="">
                     </div>
 

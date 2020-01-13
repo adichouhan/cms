@@ -66,7 +66,7 @@ class AssetsController extends Controller
         $objAssest->products  = $request->product;
         $objAssest->image       = $request->file('image')->store('assets');
         $objAssest->save();
-        return redirect('assets')->with('success', 'Data Added successfully.');
+        return redirect('admin/assets')->with('success', 'Asset created successfully.');
     }
 
     /**
