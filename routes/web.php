@@ -124,10 +124,7 @@ Route::get('/register/user/create', 'RegisterController@create')->middleware('au
 
 Route::post('/register/user/create', 'RegisterController@store')->middleware('auth');
 
-
-Route::get('/', function () {
-    return view('service_book');
-})->middleware('auth');
+Route::get('/', function () {return view('service_book');})->middleware('auth');
 
 Route::get('/book', 'CategoryController@bookForm')->middleware('auth');
 
@@ -160,9 +157,7 @@ Route::get('assets/quotes',  'AssetsController@quotes');
 Route::get('assets/quotes/view/{$id}',  'AssetsController@quotesShow');
 Route::get('assets/quotes/download/{$id}',  'AssetsController@quotesDownload');
 
-
 Route::get('/admin', function () {return view('admin.admin_template');})->middleware('auth');
-
 Route::post('fill_sub_category',  function(\Illuminate\Http\Request $request){
      $parent_category=$request->category_id;
      $subCategory=\App\SubCategory::where('parent_id', $parent_category)->get();

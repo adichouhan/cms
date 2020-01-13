@@ -16,11 +16,9 @@
                         <div class="form-group col-md-4">
                             <label for="invoice-date">Invoice Date</label>
                             <input type="date" required class="form-control" name="invoice_date"
-                                   id="invoice-date" value="{{$objInvoice->date}}" placeholder="">
+                                   id="invoice-date" value="{{isset($objInvoice->challan_date)?($objInvoice->challan_date):''}}" placeholder="">
                         </div>
-
                     </div>
-
 
                     <div class="box-body">
                         <table class="table table-bordered" id="item_table">
@@ -28,7 +26,6 @@
                             <tr>
                                 <th>Item</th>
                                 <th>Unit</th>
-                                <th>Cost</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -37,8 +34,6 @@
                                 <tr>
                                     <td><input name="challan[{{$index}}][product]" class="form-control item_product" value="{{$invoice->product}}" data-sub_category_id="0"/></td>
                                     <td><input type="number" name="challan[{{$index}}][unit]"  data-count="0"  value="{{$invoice->unit}}" class="form-control item_unit calculate price" id="item_sub_category0"  /></td>'
-                                    <td>
-                                        <input type="number" name="challan[{{$index}}][total]" class="form-control item_total" readonly value="36" /></td>
                                     <td><button type="button" class="add btn btn-primary">Add</button>
                                         <button type="button" class="remove btn btn-primary">Remove</button>
                                     </td>

@@ -86,8 +86,6 @@
     <script>
         $(document).ready(function () {
             var count = 1;
-
-
             $(document).on('click', '.add', function () {
                 count++;
                 var html = '';
@@ -143,7 +141,6 @@
                 htmlComplaint += '</ul>'
                 calc();
             }
-
 
             $('#item_table tbody').on('keyup change',function(){
                 calc();

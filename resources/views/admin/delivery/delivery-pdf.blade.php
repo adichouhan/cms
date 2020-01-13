@@ -128,7 +128,6 @@ Status: Paid
             <tr>
                 <td scope="row">{{$challan['product']}}</td>
                 <td>{{$challan['unit']}}</td>
-                <td >{{$challan['unit']}}</td>
             </tr>
         @endforeach
         </tbody>
