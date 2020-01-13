@@ -43,20 +43,20 @@
                                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-sort="ascending"
                                     aria-label="Rendering engine: activate to sort column descending"
-                                    style="width: 160px;">Category ID
+                                    style="width: 160px;">Sub-Category ID
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
-                                    Category Name
+                                    Sub-Category Name
                                 </th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($arrObjCategory as $objCategory)
+                            @foreach($arrObjSubCategory as $objSubCategory)
                                 <tr role="row" class="odd">
-                                    <td class="sorting_1">{{$objCategory->id}}</td>
+                                    <td class="sorting_1">{{$objSubCategory->id}}</td>
                                     <td>
-                                        {{$objCategory->category_title}}
+                                        {{$objSubCategory->subcategory_title}}
                                     </td>
                                     <td>
 {{--                                        <a href="{{url('admin/document/edit/'.$objBoq->id)}}"--}}

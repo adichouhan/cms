@@ -21,6 +21,11 @@ class CategoryController extends Controller
         return view('admin.category.create');
     }
 
+    function indexCategory(){
+        $arrObjCategory=Category::all();
+        return view('admin.category.list',['arrObjCategory'=>$arrObjCategory]);
+    }
+
     function storeCategory(Request $request){
 
         $objCategory = new Category();
