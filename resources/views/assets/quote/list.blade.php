@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
 <!-- /.card-header -->
+<div class="card container">
+    <div class="card-header">
+        <h3 class="card-title">Assets Invoice</h3>
+    </div>
 <div class="card-body">
     <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
         <div class="row">
@@ -47,5 +51,5 @@
         </div>
     </div>
 </div>
-
-    @stop
+</div>
+@stop
