@@ -24,7 +24,7 @@
                             aria-label="Browser: activate to sort column ascending" style="width: 207px;">Invoice Date
                         </th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                            aria-label="Browser: activate to sort column ascending" style="width: 207px;">Action
+                             style="width: 207px;">Action
                         </th>
                     </tr>
                     </thead>

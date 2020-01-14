@@ -18,7 +18,6 @@
                         <div class="box-body">
                             @csrf
                             <input type="hidden"  id="id" name="id"  value="{{$objAssets->id}}">
-
                             <div class="form-group">
                                 <label for="product">Product</label>
                                 <input type="text" id="product" data-type="assetProduct" class="form-control search">
@@ -134,8 +133,6 @@
             });
 
             function autocomplete(type, data) {
-                console.log('type')
-                console.log(type)
                 var htmlComplaint = '';
                 htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
 

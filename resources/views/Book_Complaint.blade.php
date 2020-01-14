@@ -72,7 +72,6 @@
             });
 
             $(document).on('click', '.remove', function(){
-                // $(this).closest('.addedSection').remove();
                 $("div.addedSection").first().remove()
             });
 
