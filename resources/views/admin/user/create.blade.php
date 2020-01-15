@@ -7,7 +7,7 @@
                     <div class="card-header">{{ __('Register') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="/admin/user/create">
+                        <form method="POST" autocomplete="off" action="/admin/user/create">
                             @csrf
 
                             <div class="form-group row">

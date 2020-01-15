@@ -5,7 +5,7 @@
             <div class="col-2"></div>
             <div class="col-7">
                 <div class="box-body">
-                <form method="post" action="{{ url('/admin/complaints/create') }}" enctype="multipart/form-data">
+                <form method="post" autocomplete="off" action="{{ url('/admin/complaints/create') }}" enctype="multipart/form-data">
 
                         @csrf
                         <div id="addsection">

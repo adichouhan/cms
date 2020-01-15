@@ -1,6 +1,6 @@
 @extends('admin.admin_template')
 @section('content')
-<form method="post" action="{{ url('admin/product/store') }}" enctype="multipart/form-data">
+<form method="post" autocomplete="off" action="{{ url('admin/product/store') }}" enctype="multipart/form-data">
     <div class="box-body">
         @csrf
         <div class="form-group">

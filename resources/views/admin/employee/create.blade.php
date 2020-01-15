@@ -5,7 +5,7 @@
             <h3 class="box-title">Employee Form</h3>
         </div>
 
-        <form method="post" action="{{ url('/admin/employee/store') }}" enctype="multipart/form-data">
+        <form method="post" autocomplete="off" action="{{ url('/admin/employee/store') }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="date">Employee Name</label>

@@ -24,7 +24,6 @@
                             <input type="text" class="form-control" name="invoice_id"
                                    id="invoice_id" required value="{{$objInvoice->invoice_id}}">
                         </div>
-
                         <div class="form-group col-md-4">
                             <label for="invoice-date">Invoice Date</label>
                             <input type="date" required class="form-control" name="invoice_date"
@@ -34,10 +33,10 @@
                         <div class="form-group col-md-4">
                             <label for="complaint">Complaint</label>
                             <input type="text" class="form-control search" data-type="complaint"
-                                   id="complaint_text" value="{{is_object($objCompOrAsset)?$objCompOrAsset->name:''}}"  placeholder="Complaint" />
+                                   id="complaint_text" value="{{isset($objCompOrAsset)?$objCompOrAsset->complaints_unique:''}}"  placeholder="Complaint" />
                             <div id="complaintList"></div>
                             <input type="hidden" class="form-control"   name="complaint"
-                                   id="complaintVal" value="{{is_object($objCompOrAsset)?$objCompOrAsset->id:''}}" placeholder="Complaint" />
+                                   id="complaintVal" value="{{isset($objCompOrAsset)?$objCompOrAsset->id:''}}" placeholder="Complaint" />
                         </div>
                         @endif
 
@@ -45,9 +44,9 @@
                             <div class="form-group col-md-4">
                             <label for="assets">Assets</label>
                             <input type="text" class="form-control"
-                                   id="assets_text" value="{{is_object($objCompOrAsset)?$objCompOrAsset->name:''}}" placeholder="Assets" >
+                                   id="assets_text" value="{{isset($objCompOrAsset)?$objCompOrAsset->assets_unique:''}}" placeholder="Assets" >
 
-                            <input type="hidden" class="form-control"  value="{{is_object($objCompOrAsset)?$objCompOrAsset->id:''}}" name="assets"
+                            <input type="hidden" class="form-control"  value="{{isset($objCompOrAsset)?$objCompOrAsset->id:''}}" name="assets"
                                    id="assets" placeholder="Assets">
                             </div>
                         @endif

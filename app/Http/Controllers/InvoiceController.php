@@ -66,7 +66,6 @@ class InvoiceController extends Controller
 
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -118,10 +117,10 @@ class InvoiceController extends Controller
         $objInvoice=Invoice::findorfail($id);
         $objCompOrAsset ='';
         if($objInvoice->complaint){
-            $objCompOrAsset =  Complaint::where($objInvoice->complaint)->get();
+            $objCompOrAsset =  Complaint::where('id', $objInvoice->complaint)->first();
         }
         if($objInvoice->asset){
-            $objCompOrAsset = Assets::where($objInvoice->asset)->get();
+            $objCompOrAsset = Assets::where('id', $objInvoice->asset)->first();
         }
 
         return view('admin.invoice.edit',['objInvoice'=>$objInvoice, 'objCompOrAsset'=> $objCompOrAsset]);

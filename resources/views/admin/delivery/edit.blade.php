@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-7">
-                <form method="post" action="{{ url('/delivery/update/'.$objInvoice->id) }}" enctype="multipart/form-data">
+                <form method="post" autocomplete="off" action="{{ url('/delivery/update/'.$objInvoice->id) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-4">

@@ -25,7 +25,7 @@
                     }
                 }
                 ?>
-                <form method="post" action="{{ url('/admin/update/complaint/'.$objComplaints->id) }}" enctype="multipart/form-data">
+                <form method="post" autocomplete="off" action="{{ url('/admin/update/complaint/'.$objComplaints->id) }}" enctype="multipart/form-data">
                     <div class="box-body">
                         @csrf
 

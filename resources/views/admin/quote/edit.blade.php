@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-7">
-                <form method="post" action="{{ url('/admin/quote/update'.$objQuote->id) }}" enctype="multipart/form-data">
+                <form method="post" autocomplete="off" action="{{ url('/admin/quote/update'.$objQuote->id) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-4">
@@ -24,7 +24,7 @@
                             <div class="form-group col-md-4">
                                 <label for="complaint">Complaint</label>
                                 <input type="text" class="form-control search" data-type="complaint"
-                                       id="complaint_text" value="{{$objCompOrAsset->name}}"  placeholder="Complaint" />
+                                       id="complaint_text" value="{{$objCompOrAsset->complaints_unique}}"  placeholder="Complaint" />
                                 <div id="complaintList"></div>
                                 <input type="hidden" class="form-control"   name="complaint"
                                        id="complaintVal" value="{{$objCompOrAsset->id}}" placeholder="Complaint" />
@@ -35,7 +35,7 @@
                             <div class="form-group col-md-4">
                                 <label for="assets">Assets</label>
                                 <input type="text" class="form-control"
-                                       id="assets_text" value="{{$objCompOrAsset->name}}" placeholder="Assets" >
+                                       id="assets_text" value="{{$objCompOrAsset->assets_unique}}" placeholder="Assets" >
 
                                 <input type="hidden" class="form-control"  value="{{$objCompOrAsset->id}}" name="assets"
                                        id="assets" placeholder="Assets">

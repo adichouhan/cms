@@ -5,7 +5,7 @@
             <div class="col-2"></div>
             <div class="col-7">
 
-                <form method="post" action="{{ url('/admin/document/stored') }}" enctype="multipart/form-data">
+                <form method="post" autocomplete="off" action="{{ url('/admin/document/stored') }}" enctype="multipart/form-data">
                     @csrf
 
 

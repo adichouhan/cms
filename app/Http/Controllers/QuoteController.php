@@ -100,10 +100,10 @@ class QuoteController extends Controller
     {
         $objQuote=Quote::findorfail($id);
         if($objQuote->complaint){
-            $objCompOrAsset =  Complaint::where($objQuote->complaint)->get();
+            $objCompOrAsset =  Complaint::where('id',$objQuote->complaint)->get();
         }
         if($objQuote->asset){
-            $objCompOrAsset = Assets::where($objQuote->asset)->get();
+            $objCompOrAsset = Assets::where('id',$objQuote->asset)->get();
         }
         return view('admin.quote.edit',['objQuote'=>$objQuote, 'objCompOrAsset'=> $objCompOrAsset]);
     }

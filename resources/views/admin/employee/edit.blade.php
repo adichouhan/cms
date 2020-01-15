@@ -8,7 +8,7 @@
         <!-- /.box-header -->
         <!-- form start -->
 
-        <form  method="post" action="{{ url('/admin/employee/update') }}"  enctype="multipart/form-data">
+        <form  method="post" autocomplete="off" action="{{ url('/admin/employee/update') }}"  enctype="multipart/form-data">
             @csrf
             <input type="hidden"  id="id" name="id"  value="{{$objEmployee->id}}">
             <div class="box-body">

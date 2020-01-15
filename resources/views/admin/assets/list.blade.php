@@ -69,10 +69,10 @@
                                 <tr role="row" class="odd">
                                     <td class="sorting_1">{{$objasset->id}}</td>
                                     <td>
-                                        {{$objasset->products}}
+                                        {{isset($objasset->products)?$objasset->products:'NA'}}
                                     </td>
                                     <td>
-                                        {{$objasset->assets_unique}}
+                                        {{isset($objasset->assets_unique)?$objasset->assets_unique:'NA'}}
                                     </td>
                                     <td>{{$objasset->location}}</td>
                                     <td>{{$objasset->expected_date}}</td>

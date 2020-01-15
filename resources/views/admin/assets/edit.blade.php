@@ -17,7 +17,7 @@
             <div class="col-2"></div>
             <div class="col-7">
 
-                <form method="post" action="{{ url('/admin/edit/assets/') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/admin/edit/assets/') }}" autocomplete="off" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="user">Users</label>
@@ -28,8 +28,8 @@
 
                     <div class="form-group">
                         <label for="product">Product</label>
-                        <input type="text" id="product" data-type="assetProduct" value="{{isset($objAssets->product}}" class="form-control search">
-                        <input type="hidden" id="productId" class="form-control search" name="product">
+                        <input type="text" id="product" data-type="assetProduct" value="{{isset($objAssets->product)??$objAssets->product}}" class="form-control search">
+                        <input type="hidden" id="productId" class="form-control search" value="{{isset($objAssets->id)??$objAssets->id}}" name="product">
                         <div id="assetProductList"></div>
                     </div>
 

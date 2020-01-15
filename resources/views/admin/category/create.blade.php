@@ -6,13 +6,13 @@
             <h3 class="card-title">Add Category</h3>
         </div>
         <div align="left">
-            <a href="{{ url('admin/subcategory/create') }}" class="btn btn-info">Add New Subcategory</a>
+            <a href="{{ url('admin/subcategory/create') }}" autocomplete="off" class="btn btn-info">Add New Subcategory</a>
         </div>
         <div class="card-body">
         <div class="row">
             <div class="col-2"></div>
             <div class="col-7">
-        <form method="post" action="{{ url('admin/category/store') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ url('admin/category/store') }}" autocomplete="off" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="name">Category Name*</label>

@@ -6,7 +6,7 @@
                 <h3 class="box-title">Supplier Form</h3>
             </div>
             <div class="card-body">
-            <form method="post" action="{{ url('/admin/supplier/store') }}" enctype="multipart/form-data">
+            <form method="post" autocomplete="off" action="{{ url('/admin/supplier/store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="supplier">Supplier Name</label>
