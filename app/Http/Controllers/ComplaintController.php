@@ -48,10 +48,7 @@ class ComplaintController extends Controller
         $request->validate([
             'location' => 'required',
             'expdate'   => 'required',
-            'priority' => 'required',
-            'material'   => 'required',
             'complaint'   => 'required',
-            'image' => 'required|image|max:2048',
         ]);
         $count = Complaint::all()->count();
         $objComplaints = new Complaint();
@@ -110,10 +107,7 @@ class ComplaintController extends Controller
         $request->validate([
             'location' => 'required',
             'expdate'   => 'required',
-            'priority' => 'required',
-            'material'   => 'required',
             'complaint'   => 'required',
-            'image' => 'required|image|max:2048',
         ]);
         $objComplaints = Complaint::findorfail($id);
         $objComplaints->location = $request->location;

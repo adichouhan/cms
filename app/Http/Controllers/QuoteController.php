@@ -40,6 +40,11 @@ class QuoteController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'quote_id' => 'required',
+            'quote_date' => 'required',
+            'quote' => 'required',
+        ]);
         $objQuote = new Quote();
         $objQuote->quote_id=$request->quote_id;
         $objQuote->quote_date=$request->quote_date;
@@ -112,6 +117,11 @@ class QuoteController extends Controller
      */
     public function update($id, Request $request)
     {
+        $request->validate([
+            'quote_id' => 'required',
+            'quote_date' => 'required',
+            'quote' => 'required',
+        ]);
         $objQuote = Quote::findorfail($id);
         $objQuote->quote_id=$request->quote_id;
         $objQuote->quote_date=$request->quote_date;

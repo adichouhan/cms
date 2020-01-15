@@ -75,6 +75,12 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'invoice_id' => 'required',
+            'invoice_date' => 'required',
+            'available_status' => 'required',
+            'invoice' => 'required',
+        ]);
         $objInvoice = new Invoice();
         $objInvoice->invoice_id=$request->invoice_id;
         $objInvoice->invoice_date=$request->invoice_date;

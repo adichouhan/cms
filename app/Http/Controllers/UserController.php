@@ -36,6 +36,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'password' => 'required',
+            'email' => 'required',
+            'gst_no' => 'required',
+        ]);
         $objUser                        = new User();
         $objUser->name                  = $request->name;
         $objUser->password              = bcrypt($request->password);
@@ -70,6 +76,12 @@ class UserController extends Controller
      */
     public function update($id, Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'password' => 'required',
+            'email' => 'required',
+            'gst_no' => 'required',
+        ]);
         $objUser                        = User::findOrFail($id);
         $objUser->name                  = $request->name;
         $objUser->password              = bcrypt($request->password);

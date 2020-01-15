@@ -38,6 +38,11 @@ class ChallanController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'challan_id'   => 'required',
+            'challan_date'          => 'required',
+            'challan'          => 'required',
+        ]);
         $objChallan = new Challan();
         $objChallan->challan_id=$request->challan_id;
         $objChallan->challan_date=$request->challan_date;
@@ -97,9 +102,20 @@ class ChallanController extends Controller
      * @param  \App\Challan  $challan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Challan $challan)
+    public function update($id, Request $request)
     {
-        //
+        $request->validate([
+            'challan_id'   => 'required',
+            'challan_date'          => 'required',
+            'challan'          => 'required',
+        ]);
+        $objChallan = Challan::findorfail($id);
+        $objChallan->challan_id=$request->challan_id;
+        $objChallan->challan_date=$request->challan_date;
+        $objChallan->challan=json_encode($request->challan);
+        $objChallan->save();
+        $this->createPdf($request);
+        return redirect('/admin/delivery/')->with('message', 'Challan Created Successfully.');
     }
 
     /**

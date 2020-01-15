@@ -40,6 +40,7 @@ class EmployeeAvailabilityController extends Controller
         $request->validate([
             'employee' => 'required',
             'onwork_status' => 'required',
+            'available_status' => 'required',
         ]);
         $objAvailability = new EmployeeAvailability();
         $objAvailability->employee_id=$request->employee;
@@ -66,7 +67,7 @@ class EmployeeAvailabilityController extends Controller
      * @param  \App\EmployeeAvailability  $employeeAvailability
      * @return \Illuminate\Http\Response
      */
-    public function edit(EmployeeAvailability $employeeAvailability)
+    public function edit($id, EmployeeAvailability $employeeAvailability)
     {
         //
     }
@@ -78,9 +79,9 @@ class EmployeeAvailabilityController extends Controller
      * @param  \App\EmployeeAvailability  $employeeAvailability
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EmployeeAvailability $employeeAvailability)
+    public function update($id,Request $request)
     {
-        //
+
     }
 
     /**

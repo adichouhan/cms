@@ -24,7 +24,6 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
             $objUser = new User();
             $objUser->name=$request->name;
             $objUser->password=$request->password;

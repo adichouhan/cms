@@ -36,6 +36,11 @@ class BoqController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'product_name'   => 'required',
+            'product_unit' => 'required',
+            'product_rate' => 'required',
+        ]);
             $objBoq= new Boq();
             $objBoq->product_name=$request->product_name;
             $objBoq->product_unit=$request->product_unit;
@@ -76,6 +81,11 @@ class BoqController extends Controller
      */
     public function update($id, Request $request)
     {
+        $request->validate([
+            'product_name'   => 'required',
+            'product_unit' => 'required',
+            'product_rate' => 'required',
+        ]);
         $objBoq = Boq::findorfail($id);
         $objBoq->product_name=$request->product_name;
         $objBoq->product_unit=$request->product_unit;

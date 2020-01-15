@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 class AssetProductController extends Controller
 {
 
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index(){
+        return view('admin.assets.Products.list');
+    }
     /**
      * Store a newly created resource in storage.
      *

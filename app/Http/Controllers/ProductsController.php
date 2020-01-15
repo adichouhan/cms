@@ -78,8 +78,12 @@ class ProductsController extends Controller
      * @param  \App\Products  $products
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, Products $products)
+    public function update($id, Request $request)
     {
+        $request->validate([
+            'product_name' => 'required',
+            'product_unit' => 'required',
+        ]);
         $objProduct=Products::findorfail();
         $objProduct->product_name=$request->product_name;
         $objProduct->product_unit=$request->product_unit;

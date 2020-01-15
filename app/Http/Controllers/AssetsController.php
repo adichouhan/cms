@@ -97,11 +97,9 @@ class AssetsController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'location' => 'required',
             'expdate'   => 'required',
             'priority' => 'required',
-            'material'   => 'required',
-            'image' => 'required|image|max:2048',
+            'product' => 'required',
         ]);
         $objAssest = Assets::findOrFail($request->id);
         $objAssest->location = $request->location;

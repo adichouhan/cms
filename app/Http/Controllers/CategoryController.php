@@ -27,7 +27,9 @@ class CategoryController extends Controller
     }
 
     function storeCategory(Request $request){
-
+        $request->validate([
+            'category_name'   => 'required',
+        ]);
         $objCategory = new Category();
         $objCategory->category_title = $request->category_name;
         $objCategory->save();
@@ -39,6 +41,10 @@ class CategoryController extends Controller
     }
 
     function storeSubCategory(Request $request){
+        $request->validate([
+            'subcategory_name'   => 'required',
+            'parent_id'          => 'required',
+        ]);
         $objCategory = new SubCategory();
         $objCategory->subcategory_title = $request->subcategory_name;
         $objCategory->parent_id         = $request->parent_id;
