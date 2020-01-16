@@ -200,62 +200,6 @@
 							}
 						})
 					});
-			$('#insert_form').on('submit', function (event) {
-				event.preventDefault();
-				var error = '';
-				$('.item_name').each(function () {
-					var count = 1;
-					if ($(this).val() == '') {
-						error += '<p>Enter Item name at ' + count + ' Row</p>';
-						return false;
-					}
-					count = count + 1;
-				});
-
-				$('.item_category').each(function () {
-					var count = 1;
-
-					if ($(this).val() == '') {
-						error += '<p>Select Item Category at ' + count + ' row</p>';
-						return false;
-					}
-
-					count = count + 1;
-
-				});
-
-
-				$('.item_sub_category').each(function () {
-
-					var count = 1;
-
-					if ($(this).val() == '') {
-						error += '<p>Select Item Sub category ' + count + ' Row</p> ';
-						return false;
-					}
-
-					count = count + 1;
-
-				});
-
-				var form_data = $(this).serialize();
-
-				if (error == '') {
-					$.ajax({
-						url: "insert.php",
-						method: "POST",
-						data: form_data,
-						success: function (data) {
-							if (data == 'ok') {
-								$('#item_table').find('tr:gt(0)').remove();
-								$('#error').html('<div class="alert alert-success">Item Details Saved</div>');
-							}
-						}
-					});
-				} else {
-					$('#error').html('<div class="alert alert-danger">' + error + '</div>');
-				}
-			});
 		});
     </script>
 @stop
