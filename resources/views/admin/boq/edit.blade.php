@@ -5,23 +5,23 @@
             <div class="col-2"></div>
             <div class="col-7">
 
-                <form method="post" action="{{ url('/admin/boq/edit'.$objBoq->product_name) }}" autocomplete="off" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/admin/boq/edit'.$objBoq->id) }}" autocomplete="off" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="title">Product Name</label>
                         <input type="text" class="form-control" id="title" name="product_name"
-                              value="{{$objBoq->product_name}}" placeholder="Enter title..">
+                              value="{{isset($objBoq->product_name)?$objBoq->product_name:''}}" placeholder="Enter title..">
                     </div>
 
                     <div class="form-group">
                         <label for="productunit">Product Unit</label>
-                        <input value="{{$objBoq->product_unit}}" type="number" class="form-control" name="product_unit"
+                        <input value="{{$objBoq->product_unit?$objBoq->product_unit:''}}" type="number" class="form-control" name="product_unit"
                                id="productunit" >
                     </div>
 
                     <div class="form-group">
                         <label for="productrate">Product Rate</label>
-                        <input value="{{$objBoq->product_rate}}" type="number" class="form-control" name="product_rate"
+                        <input value="{{$objBoq->product_rate?$objBoq->product_rate:''}}" type="number" class="form-control" name="product_rate"
                                id="productrate" >
                     </div>
                     <br>

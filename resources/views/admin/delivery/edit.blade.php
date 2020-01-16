@@ -9,13 +9,13 @@
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="invoice_id">Product name</label>
-                            <input type="text" class="form-control" name="invoice_id"
+                            <input type="text" class="form-control" name="challan_id"
                                    id="invoice_id" required value="{{$objInvoice->challan_id}}">
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="invoice-date">Invoice Date</label>
-                            <input type="date" required class="form-control" name="invoice_date"
+                            <input type="date" required class="form-control" name="challan_date"
                                    id="invoice-date" value="{{isset($objInvoice->challan_date)?($objInvoice->challan_date):''}}" placeholder="">
                         </div>
                     </div>

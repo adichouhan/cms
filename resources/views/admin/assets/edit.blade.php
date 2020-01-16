@@ -61,20 +61,21 @@
                     <div class="form-group">
                         <label for="date">Expected Date</label>
                         <input type="datetime" class="form-control" name="expdate"
-                               id="date" placeholder="" value="{{date("m/d/Y h:i:s A ",strtotime($objAssets->expected_date))}}">
+                               id="date" placeholder="" value="{{date("m/d/Y h:i:s A ",strtotime(isset($objAssets->expected_date)?$objAssets->expected_date:''))}}">
                     </div>
 
                     <div class="form-group">
                         <label for="material">Material(if any)</label>
                         <input type="text" class="form-control"
-                               name="material" id="material" placeholder="" value="{{$objAssets->maerials}}">
+                               name="material" id="material" placeholder="" value="{{isset($objAssets->maerials)?$objAssets->maerials:''}}">
                     </div>
 
                     <div class="form-group">
                         <label for="exampleFormControlFile1">photo upload</label>
                         <input type="file" name="image" value="{{ isset($objAssets->image)?$objAssets->image:'' }}"/>
-                        <img src="{{url('/images/'.$objAssets->image)}}" class="img-thumbnail" width="100"/>
-                        <input type="hidden" name="hidden_image" value="{{ $objAssets->image }}"/>
+                        @if($objAssets->image)
+                            <img src="{{url('/images/'.$objAssets->image)}}" class="img-thumbnail" width="100"/>
+                        @endif
                     </div>
 
                     <button type="button"  class="btn btn-primary" onclick="myFunction()">Accept</button>
@@ -83,7 +84,7 @@
                     <div class="form-group" id="reject" style="display:none">
                         <label for="rejectreason">Reject Reason</label>
                         <input type="text" class="form-control"
-                               value="{{isset($$objAssets->rejectReason)?$$objAssets->rejectReason:''}}"
+                               value="{{isset($objAssets->rejectReason)?$objAssets->rejectReason:''}}"
                                name="rejectreason" id="rejectreason" placeholder="">
                     </div>
                     <div id="accept" style="display: none">
@@ -91,23 +92,23 @@
                             <label for="inputState">Status</label>
                             <select id="inputState" class="form-control" name="status">
                                 <option
-                                    value="booked" {{(isset($$objAssets->status) && $$objAssets->priority=='booked')? 'selected':'' }}>
+                                    value="booked" {{(isset($objAssets->status) && $objAssets->priority=='booked')? 'selected':'' }}>
                                     Booked
                                 </option>
                                 <option
-                                    value="processed" {{(isset($$objAssets->priority) && $$objAssets->priority=='processed')? 'selected':'' }}>
+                                    value="processed" {{(isset($objAssets->priority) && $objAssets->priority=='processed')? 'selected':'' }}>
                                     Processed
                                 </option>
                                 <option
-                                    value="ongoing" {{(isset($$objAssets->priority) && $$objAssets->priority=='ongoing')? 'selected':'' }}>
+                                    value="ongoing" {{(isset($objAssets->priority) && $objAssets->priority=='ongoing')? 'selected':'' }}>
                                     OnGoing
                                 </option>
                                 <option
-                                    value="completed" {{(isset($$objAssets->priority) && $$objAssets->priority=='completed')? 'selected':'' }}>
+                                    value="completed" {{(isset($objAssets->priority) && $objAssets->priority=='completed')? 'selected':'' }}>
                                     Completed
                                 </option>
                                 <option
-                                    value="rejected" {{(isset($$objAssets->priority) && $$objAssets->priority=='rejected')? 'selected':'' }}>
+                                    value="rejected" {{(isset($objAssets->priority) && $objAssets->priority=='rejected')? 'selected':'' }}>
                                     Rejected
                                 </option>
                             </select>
@@ -119,7 +120,7 @@
                                 @foreach($arrEmployees as $employees)
                                     <option
                                         value="employee" {{(isset($employees->id))? 'selected':'' }}>
-                                        {{$employees->employee->name}}
+                                        {{isset($employees->employee->name)}}
                                     </option>
                                 @endforeach
                             </select>
@@ -164,8 +165,6 @@
             });
 
             function autocomplete(type, data) {
-                console.log('type')
-                console.log(type)
                 var htmlComplaint = '';
                 htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
 

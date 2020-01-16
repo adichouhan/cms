@@ -10,7 +10,7 @@
                     <input type="hidden"  id="id" name="id"  value="{{$objDocuments->id}}">
                     <div class="form-group">
                         <label for="title">Document Title</label>
-                        <input type="text" class="form-control" id="title" name="title" value="{{$objDocuments->name}}"
+                        <input type="text" class="form-control" id="title" name="title" value="{{isset($objDocuments->name)?$objDocuments->name:''}}"
                                placeholder="Enter title..">
                     </div>
                     <div class="form-group">
