@@ -1,11 +1,14 @@
 @extends('admin.admin_template')
 @section('content')
-    <div class="card">
-        <div class="card-header">
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+            <div class="card">
+         <div class="card-header">
             <h3 class="card-title">Add SubCategory</h3>
         </div>
         <div class="card-body">
-    <form method="post" action="{{ url('admin/subcategory/store') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ url('admin/subcategory/store') }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="name">SubCategory Name*</label>
@@ -22,8 +25,10 @@
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
         </div>
+            </div>
+            </div>
+        </div>
     </div>
-
 
     <script>
         $(document).on('keyup', '.search', function () {

@@ -12,10 +12,12 @@
             $('#reject').css({ display: "block" });
         }
     </script>
-    <div class="container">
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-7">
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                <div class="card-header">Edit Complaint</div>
+                <div class="card-body">
                 <?php
                 $count = 0;
                 $arrComplaint = [];
@@ -191,10 +193,12 @@
                     </div>
 
                 </form>
+                </div>
+                </div>
             </div>
-        <div class="col-3"></div>
+        </div>
     </div>
-    
+
     <script>
         $(document).ready(function () {
             var count = {!! count($arrComplaint)>0?count($arrComplaint):0 !!};

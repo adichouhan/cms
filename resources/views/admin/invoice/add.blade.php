@@ -107,8 +107,6 @@
         </div>
         <div class="col-3"></div>
     </div>
-
-
     <script>
         $(document).ready(function () {
             var count = 0;
