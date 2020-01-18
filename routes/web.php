@@ -20,7 +20,7 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::post('/category/store',      'CategoryController@storeCategory');
 
     Route::get('/subcategory/create',   'CategoryController@createSubCategory');
-    Route::get('/subcategory',          'CategoryController@indexCategory');
+    Route::get('/subcategory',          'CategoryController@indexSubCategory');
     Route::post('/subcategory/store',   'CategoryController@storeSubCategory');
 
 

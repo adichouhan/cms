@@ -129,13 +129,16 @@
                 if(type =='product'){
                     var productListId = '#productList'+dataCount;
                     $(productListId).fadeIn();
-
+                    if(data.length>0){
                     data.forEach(function (product) {
-                        htmlComplaint +='<li class="product" data-id="'+ product.id+'" data-unit="'+product.product_unit+'" data-cost="'+product.product_cost+'">'+ product.product_name+'</li> ';
+                        htmlComplaint += '<li class="product" data-id="' + product.id + '" data-unit="' + product.product_unit + '" data-cost="' + product.product_cost + '">' + product.product_name + '</li> ';
+                    })
+                    }else{
+                            htmlComplaint +='<li class="product"><a href="/admin/product/create">Add Product</a></li> ';
+                        }
                         var listId = '#productList'+dataCount;
                         $(listId).children().remove();
                         $(listId).append(htmlComplaint);
-                    })
                 }
 
                 htmlComplaint += '</ul>'

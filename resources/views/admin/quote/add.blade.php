@@ -160,31 +160,47 @@
                 htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
 
                 if(type =='complaint'){
-                    data.forEach(function (complaints) {
-                        htmlComplaint +='<li class="comp" data-id="'+ complaints.id+'">'+ complaints.complaints_unique+'</li> ';
-                        $('#complaintList').children().remove();
-                        $('#complaintList').append(htmlComplaint);
-                    })
+                    if(data.length>0){
+                        data.forEach(function (complaints) {
+                            htmlComplaint += '<li class="comp" data-id="' + complaints.id + '">' + complaints.complaints_unique + '</li> ';
+                        })
+                    }else{
+                        htmlComplaint += '<li class="comp" ><a href="/admin/complaints/create">Create New Complaints </a> </li> ';
+                    }
+
+                    $('#complaintList').children().remove();
+                    $('#complaintList').append(htmlComplaint);
+
                 }
 
                 if(type =='asset'){
-                    data.forEach(function (assets) {
-                        htmlComplaint +='<li class="asset" data-id="'+ assets.id+'">'+ assets.assets_unique+'</li> ';
-                        $('#assetList').children().remove();
-                        $('#assetList').append(htmlComplaint);
-                    })
+                    if(data.length>0){
+                        data.forEach(function (assets) {
+                            htmlComplaint += '<li class="asset" data-id="' + assets.id + '">' + assets.assets_unique + '</li> ';
+                        })
+                    }else{
+                        htmlComplaint += '<li class="asset" data-id="' + assets.id + '"><a href="/admin/asset/create"> Create New Asset</a> </li> ';
+                    }
+                    $('#assetList').children().remove();
+                    $('#assetList').append(htmlComplaint);
+
                 }
 
                 if(type =='boq'){
                     var productListId = '#productList'+dataCount;
                     $(productListId).fadeIn();
+                    if(data.length>0) {
+                        data.forEach(function (product) {
+                            htmlComplaint += '<li class="product" data-id="' + product.id + '" data-unit="' + product.product_unit + '" data-cost="' + product.product_cost + '">' + product.product_name + '</li> ';
+                        })
+                    }else{
+                        htmlComplaint += '<li class="product" data-id="' + product.id + '" data-unit="' + product.product_unit + '" data-cost="' + product.product_cost + '"><a href="/admin/boq/creaete">Create Product</a></li> ';
+                    }
+                    var listId = '#productList'+dataCount;
 
-                    data.forEach(function (product) {
-                        htmlComplaint +='<li class="product" data-id="'+ product.id+'" data-unit="'+product.product_unit+'" data-cost="'+product.product_cost+'">'+ product.product_name+'</li> ';
-                        var listId = '#productList'+dataCount;
-                        $(listId).children().remove();
-                        $(listId).append(htmlComplaint);
-                    })
+                    $(listId).children().remove();
+                    $(listId).append(htmlComplaint);
+
                 }
 
                 htmlComplaint += '</ul>'

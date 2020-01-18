@@ -6,6 +6,7 @@
         </div>
         <div align="left">
             <a href="{{ url('admin/category/create') }}" class="btn btn-info">Add category</a>
+            <a href="{{ url('admin/subcategory/') }}" class="btn btn-info">SubCategory</a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">

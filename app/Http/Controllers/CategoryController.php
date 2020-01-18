@@ -26,6 +26,11 @@ class CategoryController extends Controller
         return view('admin.category.list',['arrObjCategory'=>$arrObjCategory]);
     }
 
+    function indexSubCategory(){
+        $arrObjSubCategory=SubCategory::all();
+        return view('admin.category.subcategory.list',['arrObjSubCategory'=>$arrObjSubCategory]);
+    }
+
     function storeCategory(Request $request){
         $request->validate([
             'category_name'   => 'required',

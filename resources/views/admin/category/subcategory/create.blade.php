@@ -1,34 +1,29 @@
 @extends('admin.admin_template')
 @section('content')
-    <div class="container ">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+
             <div class="card">
-         <div class="card-header">
-            <h3 class="card-title">Add SubCategory</h3>
-        </div>
-        <div class="card-body">
-            <form method="post" action="{{ url('admin/subcategory/store') }}" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group">
-                <label for="name">SubCategory Name*</label>
-                <input type="text"  id="name" required name="subcategory_name" >
-            </div>
+                <div class="card-header">
+                    <h3 class="card-title">Add SubCategory</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{{ url('admin/subcategory/store') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="name">SubCategory Name*</label>
+                            <input type="text"  id="name" class="form-control" required name="subcategory_name" >
+                        </div>
 
-        <div class="form-group">
-            <label for="category">Catgory</label>
-            <input type="text" id="category" data-type="category" class="search">
-            <input type="hidden" id="categoryId" class="search" name="parent_id">
-            <div id="categoryList"></div>
-        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <input type="text" id="category" data-type="category" class="search form-control">
+                            <input type="hidden" id="categoryId" class="search" name="parent_id">
+                            <div id="categoryList"></div>
+                        </div>
 
-        <button type="submit" class="btn btn-success">Submit</button>
-    </form>
-        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
             </div>
-            </div>
-        </div>
-    </div>
 
     <script>
         $(document).on('keyup', '.search', function () {

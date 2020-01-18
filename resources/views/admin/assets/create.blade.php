@@ -147,19 +147,28 @@
             htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
 
             if (type == 'user') {
-                data.forEach(function (user) {
-                    htmlComplaint += '<li class="user" data-id="' + user.id + '">' + user.name + '</li> ';
-                    $('#userList').children().remove();
-                    $('#userList').append(htmlComplaint);
-                })
+                if(data.length>0) {
+                    data.forEach(function (user) {
+                        htmlComplaint += '<li class="user" data-id="' + user.id + '">' + user.name + '</li> ';
+                    })
+                }else{
+                    htmlComplaint += '<li class="user"><a href="/admin/user/create">Add New User</a></li> ';
+                }
+                $('#userList').children().remove();
+                $('#userList').append(htmlComplaint);
             }
             if (type == 'assetProduct') {
-
+                if(data.length>0) {
                 data.forEach(function (product) {
                     htmlComplaint += '<li class="product" data-id="' + product.id + '">' + product.product_name + '</li> ';
-                    $('#assetProductList').children().remove();
-                    $('#assetProductList').append(htmlComplaint);
                 })
+                }else{
+                    htmlComplaint += '<li class="product"><a href="/admin/asset/product/create">Add New Asset Product</a></li> ';
+                }
+
+                $('#assetProductList').children().remove();
+                    $('#assetProductList').append(htmlComplaint);
+
             }
         }
 

@@ -248,11 +248,15 @@
                 htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
 
                 if(type='user'){
-                    data.forEach(function (user) {
-                        htmlComplaint +='<li class="user" data-id="'+ user.id+'">'+ user.name+'</li> ';
+                    if(data.length>0) {
+                        data.forEach(function (user) {
+                            htmlComplaint += '<li class="user" data-id="' + user.id + '">' + user.name + '</li> ';
+                        })
+                    }else{
+                        htmlComplaint += '<li class="user"><a href="/admin/user/create">Add New User</a></li> ';
+                    }
                         $('#userList').children().remove();
                         $('#userList').append(htmlComplaint);
-                    })
                 }
             }
 

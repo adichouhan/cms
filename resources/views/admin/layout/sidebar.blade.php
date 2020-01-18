@@ -34,10 +34,10 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{url('admin/category/create')}}" class="nav-link">
+                    <a href="{{url('admin/category/')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            Add Category
+                            Category
                         </p>
                     </a>
                 </li>
