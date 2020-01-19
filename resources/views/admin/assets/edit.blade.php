@@ -45,15 +45,15 @@
                         <label for="inputState">Priority</label>
                         <select id="inputState" class="form-control" name="priority">
                             <option
-                                value="low" >
+                                value="low"  {{(isset($objAssets->priority) && $objAssets->priority=='low')? 'selected':'' }}>
                                 Low
                             </option>
                             <option
-                                value="medium" >
+                                value="medium" {{(isset($objAssets->priority) && $objAssets->priority=='medium')? 'selected':'' }}>
                                 Medium
                             </option>
                             <option
-                                value="high" >
+                                value="high" {{(isset($objAssets->priority) && $objAssets->priority=='high')? 'selected':'' }}>
                                 High
                             </option>
                         </select>
@@ -62,7 +62,7 @@
                     <div class="form-group">
                         <label for="date">Expected Date</label>
                         <input type="datetime" class="form-control" name="expdate"
-                               id="date" placeholder="" value="{{date("m/d/Y h:i:s A ",strtotime(isset($objAssets->expected_date)?$objAssets->expected_date:''))}}">
+                               id="date" placeholder="" value="{{date("m-d-Y h:i:s",strtotime(isset($objAssets->expected_date)?$objAssets->expected_date:''))}}">
                     </div>
 
                     <div class="form-group">

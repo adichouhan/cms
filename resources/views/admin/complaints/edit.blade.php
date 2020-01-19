@@ -120,7 +120,7 @@
                     <div class="form-group">
                         <label for="date">Expected Date</label>
                         <input type="datetime" class="form-control" name="expdate"
-                               value="{{date("m/d/Y h:i:s A ",strtotime($objComplaints->expected_date))}}"
+                               value="{{date("m-d-Y h:i:s",strtotime($objComplaints->expected_date))}}"
                                id="date" placeholder="">
                     </div>
 

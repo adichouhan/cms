@@ -14,7 +14,7 @@
                     </div>
                 @endif
                 @if($type == 'edit')
-                    <form method="post" action="{{ url('update/asset') }}" enctype="multipart/form-data">
+                    <form method="post" autocomplete="off" action="{{ url('update/asset') }}" enctype="multipart/form-data">
                         <div class="box-body">
                             @csrf
                             <input type="hidden"  id="id" name="id"  value="{{$objAssets->id}}">
@@ -59,7 +59,7 @@
                         </div>
                     </form>
                 @else
-                    <form method="post" action="{{ url('register/asset') }}" enctype="multipart/form-data">
+                    <form method="post"  autocomplete="off" action="{{ url('register/asset') }}" enctype="multipart/form-data">
                         <div class="box-body">
                             @csrf
                             <div class="form-group">

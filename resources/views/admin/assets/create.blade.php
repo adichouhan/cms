@@ -17,9 +17,8 @@
 
                     <div class="form-group">
                         <label for="product">Product</label>
-                        <input type="text" id="product" data-type="assetProduct" class="form-control search">
-                        <input type="hidden" id="productId" class="form-control search" name="product">
-                        <div id="assetProductList"></div>
+                        <select id="product" data-type="assetProduct" name="product[]" class="form-control">
+                        </select>
                     </div>
 
                     <div class="form-group">

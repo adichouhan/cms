@@ -116,7 +116,8 @@ class ComplaintController extends Controller
         $objComplaints->maerials = $request->material;
         $objComplaints->user_id = auth()->user()->id;
         $objComplaints->complaints = json_encode($request->get('complaint'));
-        $objComplaints->image = $request->file('image')->store('complaint');
+//        dd($objComplaints);
+//        $objComplaints->image = $request->file('image')->store('complaint');
         $objComplaints->save();
         return redirect('complaint/')->with('message', 'Complaint Updated Successfully.');
     }
