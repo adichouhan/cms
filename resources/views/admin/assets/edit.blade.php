@@ -165,7 +165,7 @@
     <script>
         $(document).ready(function () {
 
-            var count= 0;
+            var count= {!! count($arrProduct) !!};
             var countList='';
             var productId='';
             $(document).on('click', '.add', function () {
