@@ -15,16 +15,14 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
     <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
-    -- Select2 -->
-    <link rel="stylesheet" href="{{asset('/select2/dist/css/select2.min.css')}}">
+
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('select2/dist/css/select2.min.css')}}">
+
     <!-- jQuery -->
     <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('dist/js/select2.full.min.js')}}"></script>
 </head>
 <!-- /.navbar -->
 

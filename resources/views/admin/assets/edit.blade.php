@@ -2,12 +2,10 @@
 @section('content')
     <script>
         function accept() {
-            console.log('here')
             $('#reject').css({ display: "none" });
             $('#accept').css({ display: "block" });
         }
         function reject() {
-            console.log('there')
             $('#accept').css({ display: "none" });
             $('#reject').css({ display: "block" });
         }
@@ -18,6 +16,15 @@
                 <div class="card">
                     <div class="card-header">Create Asset</div>
                     <div class="card-body">
+                        <?php
+                        $count = 0;
+                        $arrProduct = [];
+                        if (!empty($objAssets->products)) {
+                            foreach (json_decode($objAssets->products) as $product) {
+                                array_push($arrProduct, $product);
+                            }
+                        }
+                        ?>
                 <form method="post" action="{{ url('/admin/edit/assets/') }}" autocomplete="off" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
@@ -28,10 +35,21 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="product">Product</label>
-                        <input type="text" id="product" data-type="assetProduct" value="{{isset($objAssets->product)??$objAssets->product}}" class="form-control search">
-                        <input type="hidden" id="productId" class="form-control search" value="{{isset($objAssets->id)??$objAssets->id}}" name="product">
-                        <div id="assetProductList"></div>
+                        <button type="button" class="btn btn-dark add">Add Product</button>
+                    </div>
+                    @foreach($arrProduct as $index=>$objProduct)
+                        <?php
+                        $objDetail=\App\AssetsProduct::find($objProduct);
+                        ?>
+                        <div class="form-group">
+                            <label for="product">Product</label>
+                            <input type="text" id="product_{{$index}}" data-type="assetProduct" data-count="{{$index}}" class="form-control search" value="{{$objDetail->product_name}}">
+                            <input type="hidden" id="productId_{{$index}}" class="form-control search" value="{{$objProduct}}" name="product[{{$index}}]">
+                            <div id="assetProductList_{{$index}}"></div>
+                        </div>
+                    @endforeach
+
+                    <div id="addsection">
                     </div>
 
                     <div class="form-group">
@@ -146,9 +164,24 @@
 
     <script>
         $(document).ready(function () {
+
+            var count= 0;
+            var countList='';
+            var productId='';
+            $(document).on('click', '.add', function () {
+                count++
+                var html = '';
+                html += '<div class="form-group addedSection"><label for="product">Product</label><input type="text" id="product_'+count+'" data-type="assetProduct"  data-count="'+count+'"  class="form-control search">'
+                html += '<input type="hidden" id="productId_'+count+'" class="form-control search" name="product['+count+']">'
+                html += '<div id="assetProductList_'+count+'"></div>';
+                html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger btn-xs remove">Remove</button></div></div>';
+                $('#addsection').append(html);
+            });
+
             $(document).on('keyup', '.search', function () {
                 var type = $(this).data('type');
                 var query = $(this).val();
+                countList = $(this).data('count');
 
                 if (query != '') {
                     $.ajax({
@@ -198,9 +231,11 @@
             });
 
             $(document).on('click', 'li.product', function () {
-                $('#product').val($(this).text());
-                $('#productId').val($(this).data('id'));
-                $('#assetProductList').fadeOut();
+                var productcont="#product_"+count;
+                var productIdcont="#productId_"+count;
+                $(productcont).val($(this).text());
+                $(productIdcont).val($(this).data('id'));
+                $(productId).fadeOut();
             });
         });
     </script>

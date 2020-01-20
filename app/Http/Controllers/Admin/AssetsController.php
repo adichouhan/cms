@@ -54,16 +54,17 @@ class AssetsController extends Controller
             'location' => 'required',
             'expdate'   => 'required',
             'priority' => 'required',
-            'material'   => 'required',
-            'image' => 'required|image|max:2048',
+            'product' => 'required',
         ]);
+        $count = Assets::all()->count();
         $objAssest = new Assets();
         $objAssest->location = $request->location;
         $objAssest->expected_date = $request->expdate;
+        $objAssest->assets_unique = 'asset_'.$count;
         $objAssest->priority = $request->priority;
         $objAssest->maerials = $request->material;
-        $objAssest->user_id = auth()->user()->id;
-        $objAssest->products  = $request->product;
+        $objAssest->user_id = $request->user;
+        $objAssest->products  = json_encode($request->product);
         $objAssest->image       = $request->file('image')->store('assets');
         $objAssest->save();
         return redirect('admin/assets')->with('success', 'Asset created successfully.');
@@ -110,14 +111,13 @@ class AssetsController extends Controller
             'location' => 'required',
             'expdate'   => 'required',
             'priority' => 'required',
-            'material'   => 'required',
-            'image' => 'required|image|max:2048',
         ]);
         $objAssest = Assets::findOrFail($request->id);;
         $objAssest->location = $request->location;
         $objAssest->expected_date = $request->expdate;
         $objAssest->priority = $request->priority;
         $objAssest->maerials = $request->material;
+        $objAssest->user_id = $request->user;
         $objAssest->products  = $request->product;
         $objAssest->image       = $request->file('image')->store('assets');
         $objAssest->save();

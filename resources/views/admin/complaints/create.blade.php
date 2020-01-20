@@ -172,7 +172,7 @@
                     }
                         $('#userList').children().remove();
                         $('#userList').append(htmlComplaint);
-                    })
+
                 }
             }
 
