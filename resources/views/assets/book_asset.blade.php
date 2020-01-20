@@ -20,8 +20,8 @@
                             <input type="hidden"  id="id" name="id"  value="{{$objAssets->id}}">
                             <div class="form-group">
                                 <label for="product">Product</label>
-                                <input type="text" id="product" data-type="assetProduct" class="form-control search">
-                                <input type="hidden" id="productId" class="form-control search" name="product">
+                                <input type="text" id="product" data-type="assetProduct" value="{{isset($objAssets->product)??$objAssets->product}}" class="form-control search">
+                                <input type="hidden" id="productId" class="form-control search" value="{{isset($objAssets->id)??$objAssets->id}}" name="product">
                                 <div id="assetProductList"></div>
                             </div>
 
@@ -30,29 +30,43 @@
                                 <input type="text" class="form-control" id="location" name="location" placeholder="" value="{{$objAssets->location}}">
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group">
                                 <label for="inputState">Priority</label>
                                 <select id="inputState" class="form-control" name="priority">
-                                    <option value="low">Low</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="high">High</option>
+                                    <option
+                                        value="low"  {{(isset($objAssets->priority) && $objAssets->priority=='low')? 'selected':'' }}>
+                                        Low
+                                    </option>
+                                    <option
+                                        value="medium" {{(isset($objAssets->priority) && $objAssets->priority=='medium')? 'selected':'' }}>
+                                        Medium
+                                    </option>
+                                    <option
+                                        value="high" {{(isset($objAssets->priority) && $objAssets->priority=='high')? 'selected':'' }}>
+                                        High
+                                    </option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="date">Expected Date</label>
-                                <input type="datetime" class="form-control" name="expdate" id="date" placeholder=""  value="{{$objAssets->expected_date}}">
+                                <input type="datetime" class="form-control" name="expdate"
+                                       id="date" placeholder="" value="{{date("m-d-Y h:i:s",strtotime(isset($objAssets->expected_date)?$objAssets->expected_date:''))}}">
                             </div>
 
                             <div class="form-group">
-                                <label for="material">Materials</label>
-                                <input type="text" class="form-control"  name="material" id="material" placeholder="" value="{{$objAssets->maerials}}">
+                                <label for="material">Material(if any)</label>
+                                <input type="text" class="form-control"
+                                       name="material" id="material" placeholder="" value="{{isset($objAssets->maerials)?$objAssets->maerials:''}}">
                             </div>
 
+
                             <div class="form-group">
-                                <label for="exampleFormControlFile1">Example file input</label>
-                                <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1">
-                                <img src="{{url('/images/'.$objAssets->image)}}" class="img-thumbnail" width="100"/>
+                                <label for="exampleFormControlFile1">photo upload</label>
+                                <input type="file" name="image" value="{{ isset($objAssets->image)?$objAssets->image:'' }}"/>
+                                @if($objAssets->image)
+                                    <img src="{{url('/images/'.$objAssets->image)}}" class="img-thumbnail" width="100"/>
+                                @endif
                             </div>
 
                             <button type="submit" class="btn btn-primary">Update</button>

@@ -79,8 +79,12 @@
                         @endif
                     </div>
 
-                    <button type="button"  class="btn btn-primary" onclick="myFunction()">Accept</button>
-                    <button type="button" class="btn btn-primary reject" onclick="reject()">Reject</button>
+                    <div class="form-group">
+                        <button type="button"  class="btn btn-primary" onclick="myFunction()">Accept</button>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary reject" onclick="reject()">Reject</button>
+                    </div>
 
                     <div class="form-group" id="reject" style="display:none">
                         <label for="rejectreason">Reject Reason</label>

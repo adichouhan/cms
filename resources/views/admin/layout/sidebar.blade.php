@@ -113,6 +113,7 @@
                         </p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{url('/admin/employee/availability/create')}}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>

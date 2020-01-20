@@ -1,6 +1,6 @@
 @extends('admin.admin_template')
 @section('content')
-    <div class="container ">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -17,7 +17,7 @@
 
                     <div class="form-group">
                         <label for="product">Product</label>
-                        <select id="product" data-type="assetProduct" name="product[]" class="form-control">
+                        <select id="product" data-type="assetProduct" name="product[]" class="form-control product-multi" multiple="multiple">
                         </select>
                     </div>
 
@@ -117,7 +117,10 @@
     </div>
 <script>
     $(document).ready(function () {
-        $(document).on('keyup', '.search', function () {
+
+        $('.product-multi').select2();
+
+        $(document).on('keyup click blur', '.search', function () {
             var type = $(this).data('type');
             var query = $(this).val();
 
@@ -159,14 +162,14 @@
             if (type == 'assetProduct') {
                 if(data.length>0) {
                 data.forEach(function (product) {
-                    htmlComplaint += '<li class="product" data-id="' + product.id + '">' + product.product_name + '</li> ';
+                    htmlComplaint += '<option class="product" data-id="' + product.id + '">' + product.product_name + '</option> ';
                 })
                 }else{
                     htmlComplaint += '<li class="product"><a href="/admin/asset/product/create">Add New Asset Product</a></li> ';
                 }
 
-                $('#assetProductList').children().remove();
-                    $('#assetProductList').append(htmlComplaint);
+                $('#product').children().remove();
+                $('#product').append(htmlComplaint);
 
             }
         }
