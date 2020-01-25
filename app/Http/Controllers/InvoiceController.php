@@ -77,7 +77,6 @@ class InvoiceController extends Controller
         $request->validate([
             'invoice_id' => 'required',
             'invoice_date' => 'required',
-            'available_status' => 'required',
             'invoice' => 'required',
         ]);
         $objInvoice = new Invoice();
@@ -114,6 +113,11 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
+        $request->validate([
+            'invoice_id' => 'required',
+            'invoice_date' => 'required',
+            'invoice' => 'required',
+        ]);
         $objInvoice=Invoice::findorfail($id);
         $objCompOrAsset ='';
         if($objInvoice->complaint){

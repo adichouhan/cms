@@ -7,7 +7,15 @@
 
         <!-- /.box-header -->
         <!-- form start -->
-
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form  method="post" autocomplete="off" action="{{ url('/admin/supplier/update') }}"  enctype="multipart/form-data">
             @csrf
             <input type="hidden"  id="id" name="id"  value="{{$objSupplier->id}}">

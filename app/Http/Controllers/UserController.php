@@ -52,7 +52,7 @@ class UserController extends Controller
             $objUser->activation_status     = $request->activation_status;
         }
         $objUser->save();
-        return redirect()->back()->with('notice', 'User Created Successfully');
+        return redirect('/login')->with('message', 'Registered Successfully');
     }
 
     /**

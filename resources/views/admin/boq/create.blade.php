@@ -6,6 +6,15 @@
                 <div class="card">
                     <div class="card-header">Create Boq</div>
                     <div class="card-body">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                 <form method="post" action="{{ url('/admin/boq/store') }}" autocomplete="off" enctype="multipart/form-data">
                     @csrf
 
