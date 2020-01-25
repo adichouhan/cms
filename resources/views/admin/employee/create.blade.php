@@ -1,9 +1,11 @@
 @extends('admin.admin_template')
 @section('content')
-    <div class="box box-info">
-        <div class="box-header with-border">
-            <h3 class="box-title">Employee Form</h3>
-        </div>
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Create Employee Availabity</div>
+                    <div class="card-body">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -47,5 +49,9 @@
             </div>
 
         </form>
+    </div>
+                </div>
+            </div>
+        </div>
     </div>
     @endsection

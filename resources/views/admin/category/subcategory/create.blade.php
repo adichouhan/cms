@@ -1,11 +1,11 @@
 @extends('admin.admin_template')
 @section('content')
-
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Add SubCategory</h3>
-                </div>
-                <div class="card-body">
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Create SubCategorty</div>
+                    <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>

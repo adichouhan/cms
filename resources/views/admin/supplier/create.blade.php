@@ -1,11 +1,11 @@
 @extends('admin.admin_template')
 @section('content')
-    <div class="container card">
-        <div class="box box-info">
-            <div class="box-header with-border">
-                <h3 class="box-title">Supplier Form</h3>
-            </div>
-            <div class="card-body">
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Create Supplier</div>
+                    <div class="card-body">
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -46,6 +46,8 @@
                     <button type="submit"  class="btn btn-primary" >Submit</button>
                 </div>
             </form>
+            </div>
+        </div>
             </div>
         </div>
     </div>

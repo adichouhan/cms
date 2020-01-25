@@ -1,16 +1,11 @@
 @extends('admin.admin_template')
 @section('content')
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Add Category</h3>
-                    </div>
-                    <div align="left">
-                        <a href="{{ url('admin/subcategory/create') }}" autocomplete="off" class="btn btn-info">Add New Subcategory</a>
-                    </div>
+                    <div class="card-header">Create Category</div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-2"></div>
-                            <div class="col-7">
                                 @if ($errors->any())
                                     <div class="alert alert-danger">
                                         <ul>
@@ -32,4 +27,5 @@
                         </div>
                     </div>
                 </div>
+    </div>
 @stop

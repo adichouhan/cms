@@ -1,9 +1,11 @@
 @extends('admin.admin_template')
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-7">
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Edit Delivery Challan</div>
+                    <div class="card-body">
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -58,7 +60,8 @@
                 </form>
             </div>
         </div>
-        <div class="col-3"></div>
+            </div>
+        </div>
     </div>
 
     <script>

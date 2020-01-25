@@ -1,5 +1,11 @@
 @extends('admin.admin_template')
 @section('content')
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Edit Products</div>
+                    <div class="card-body">
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -28,4 +34,9 @@
     </div>
     <button type="submit" class="btn btn-success">Submit</button>
 </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
