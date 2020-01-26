@@ -29,19 +29,15 @@
                             <input type="datetime-local" required class="form-control" name="challan_date"
                                    id="challan-date" placeholder="">
                         </div>
-{{--                        <div class="add_complaint">Add complaint</div>--}}
-{{--                        <div class="add_assets">Add asset</div>--}}
-{{--                        <div id="add_complaint" style="display:none" class="form-group col-md-4">--}}
-{{--                            <label for="complaint">Complaint</label>--}}
-{{--                            <input type="text" class="form-control" required name="complaint"--}}
-{{--                                   id="complaint" placeholder="Complaint">--}}
-{{--                        </div>--}}
-{{--                        <div id="add_asset" style="display:none" class="form-group col-md-4">--}}
-{{--                            <label for="complaint">Complaint</label>--}}
-{{--                            <input type="text" class="form-control" required name="complaint"--}}
-{{--                                   id="complaint" placeholder="Complaint">--}}
-{{--                        </div>--}}
-                    </div>
+
+                        <div class="form-group col-md-4" id="complaint" style="display: none">
+                            <label for="supplier">Supplier</label>
+                            <input type="text" class="form-control search" data-type="supplier"
+                                   id="supplier_text"  placeholder="Supplier...." />
+                            <div id="supplierList"></div>
+                            <input type="hidden" class="form-control" name="supplier"
+                                   id="supplier" placeholder="Complaint" />
+                        </div>
 
 
                     <div class="box-body">
@@ -69,24 +65,9 @@
                         </table>
                     </div>
 
-{{--                    <div class="row">--}}
-{{--                        <div class="col-7"></div>--}}
-{{--                        <div class="form-group col-5" id="invoice-total">--}}
-{{--                            <div class="row">--}}
-{{--                                <div class="col-6 invoice_total">--}}
-{{--                                    Sub Total--}}
-{{--                                </div>--}}
-{{--                                <div class="col-6 total">--}}
-{{--                                    <input type="number" name='sub_total' placeholder='0.00' class="form-control total_amount" id="sub_total" readonly/>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
 
                     <br>
                     <div class="form-group">
-                        <a href="/admin/challan/createpdf" target="_blank" class="form_submit btn btn-primary">Create Pdf</a>
-
                         <button type="submit" class="form_submit btn btn-primary" >Save</button>
                     </div>
 
@@ -154,6 +135,21 @@
                         $(listId).append(htmlComplaint);
                 }
 
+                if(type =='supplier'){
+                    $('#supplierList').fadeIn();
+                    if(data.length>0){
+                        data.forEach(function (product) {
+                            htmlComplaint += '<li class="supplier" data-id="' + supplier.id + '">' + supplier.name + '</li> ';
+                        })
+                    }else{
+                        htmlComplaint +='<li class="supplier"><a href="/admin/suppler/create">Add Supplier</a></li> ';
+                    }
+                    $('#supplierList').children().remove();
+                    $('#supplierList').append(htmlComplaint);
+
+                }
+
+
                 htmlComplaint += '</ul>'
                 calc();
             }
@@ -201,7 +197,6 @@
                         dataType: "json",
                         success: function(data){
                             var resp = $.map(data,function(obj){
-                                //console.log(obj.city_name);
                                 return obj.name;
                             });
 

@@ -113,11 +113,7 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
-        $request->validate([
-            'invoice_id' => 'required',
-            'invoice_date' => 'required',
-            'invoice' => 'required',
-        ]);
+
         $objInvoice=Invoice::findorfail($id);
         $objCompOrAsset ='';
         if($objInvoice->complaint){
@@ -140,6 +136,11 @@ class InvoiceController extends Controller
      */
     public function update($id, Request $request)
     {
+        $request->validate([
+            'invoice_id' => 'required',
+            'invoice_date' => 'required',
+            'invoice' => 'required',
+        ]);
         $objInvoice = Invoice::findorfail($id);
         $objInvoice->invoice_id=$request->invoice_id;
         $objInvoice->invoice_date=$request->invoice_date;
@@ -151,7 +152,7 @@ class InvoiceController extends Controller
         $objInvoice->invoice=json_encode($request->invoice);
         $objInvoice->save();
         $this->createPdf($request);
-        return redirect('admin/invoice')->with('message', 'Invoice Created Successfully');
+        return redirect('admin/invoice')->with('message', 'Invoice Updated Successfully');
     }
 
     /**

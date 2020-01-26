@@ -33,6 +33,9 @@
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">Challan Date
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Browser: activate to sort column ascending" style="width: 207px;">Download/View Challan
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">Action
                                 </th>
                             </tr>
@@ -43,6 +46,10 @@
                                     <td>{{$objChallan->id}}</td>
                                     <td>{{$objChallan->challan}}</td>
                                     <td>{{$objChallan->challan_date}}</td>
+                                    <td>
+                                        <a href="/admin/delivery/view" class="btn btn-primary">View</a>
+                                        <a href="/admin/delivery/download" class="btn btn-primary">Download</a>
+                                    </td>
                                     <td>
                                         <a href="{{url('admin/delivery/edit/'.$objChallan->id)}}" class="btn btn-primary">Edit</a>
                                         <form action="{{url('admin/delivery/delete/'.$objChallan->id)}}" method="post">

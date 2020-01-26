@@ -39,13 +39,14 @@ class ChallanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'challan_id'   => 'required',
-            'challan_date'          => 'required',
+            'challan_id'      => 'required',
+            'challan_date'    => 'required',
             'challan'          => 'required',
         ]);
         $objChallan = new Challan();
         $objChallan->challan_id=$request->challan_id;
         $objChallan->challan_date=$request->challan_date;
+        $objChallan->supplier_id=$request->supplier;
         $objChallan->challan=json_encode($request->challan);
         $objChallan->save();
         $this->createPdf($request);
@@ -112,6 +113,7 @@ class ChallanController extends Controller
         $objChallan = Challan::findorfail($id);
         $objChallan->challan_id=$request->challan_id;
         $objChallan->challan_date=$request->challan_date;
+        $objChallan->supplier_id=$request->supplier;
         $objChallan->challan=json_encode($request->challan);
         $objChallan->save();
         $this->createPdf($request);

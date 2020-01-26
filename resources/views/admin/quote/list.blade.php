@@ -36,6 +36,9 @@
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">Invoice Date
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Browser: activate to sort column ascending" style="width: 207px;">Download/View
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">Action
                                 </th>
                             </tr>
@@ -48,6 +51,10 @@
                                     <td>{{isset($objInvoice->asset)?$objInvoice->asset:'NA'}}</td>
                                     <td>{{$objInvoice->date}}</td>
                                     <td>
+                                        <a href="/admin/quote/view" class="btn btn-primary">View</a>
+                                        <a href="/admin/quote/download" class="btn btn-primary">Download</a>
+                                    </td>
+                                    <td>
                                         <a href="{{url('admin/quote/edit/'.$objInvoice->id)}}" class="btn btn-primary">Edit</a>
                                         <form action="{{url('admin/quote/delete/'.$objInvoice->id)}}" method="post">
                                             @csrf
@@ -56,7 +63,6 @@
                                         </form>
                                     </td>
                                 </tr>
-
                             @endforeach
                             </tbody>
                         </table>

@@ -8,6 +8,7 @@ use App\Category;
 use App\Complaint;
 use App\Employee;
 use App\Products;
+use App\Supplier;
 use App\User;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -53,6 +54,10 @@ class Controller extends BaseController
 
         if($modelType == 'category'){
             $objModel=Category::where('category_title', 'LIKE', '%' . $term . '%')->get();
+        }
+
+        if($modelType == 'supplier'){
+            $objModel=Supplier::where('name', 'LIKE', '%' . $term . '%')->get();
         }
 
         return response()->json($objModel);

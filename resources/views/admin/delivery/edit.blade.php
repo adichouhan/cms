@@ -29,6 +29,15 @@
                             <input type="date" required class="form-control" name="challan_date"
                                    id="invoice-date" value="{{isset($objInvoice->challan_date)?($objInvoice->challan_date):''}}" placeholder="">
                         </div>
+
+                        <div class="form-group col-md-4" id="complaint" style="display: none">
+                            <label for="supplier">Supplier</label>
+                            <input type="text" class="form-control search" data-type="supplier"
+                                   id="supplier_text"  placeholder="Supplier...." />
+                            <div id="supplierList"></div>
+                            <input type="hidden" class="form-control" name="supplier"
+                                   id="supplier" placeholder="Complaint" />
+                        </div>
                     </div>
 
                     <div class="box-body">

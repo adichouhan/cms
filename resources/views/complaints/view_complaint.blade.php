@@ -1,10 +1,8 @@
 @extends('layouts.app')
 @section('content')
-
         <div class="text-center">
                 <div class="text-center"><h3>View Booked Complaints</h3></div>
             </div>
-
         <div class="row pt-5">
             <div class="col-2"></div>
             <div class="col-8">

@@ -6,7 +6,7 @@
     </div>
 
     <div align="left">
-        <a href="{{ url('admin/invoice/create') }}" class="btn btn-info">Add New </a>
+        <a href="{{ url('admin/invoice/create') }}" class="btn btn-info">Add New Invoice</a>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -36,6 +36,9 @@
                                 aria-label="Browser: activate to sort column ascending" style="width: 207px;">Invoice Date
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                aria-label="Browser: activate to sort column ascending" style="width: 207px;">Download/View
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                 aria-label="Browser: activate to sort column ascending" style="width: 207px;">Action
                             </th>
                         </tr>
@@ -48,6 +51,10 @@
                                     <td>{{isset($objInvoice->asset)?$objInvoice->asset:'NA'}}</td>
                                     <td>{{$objInvoice->invoice_date}}</td>
                                     <td>
+                                        <a href="/admin/invoice/view" class="btn btn-primary">View</a>
+                                        <a href="/admin/invoice/download" class="btn btn-primary">Download</a>
+                                    </td>
+                                    <td>
                                         <a href="{{url('admin/invoice/edit/'.$objInvoice->id)}}" class="btn btn-primary">Edit</a>
                                         <form action="{{url('admin/invoice/delete/'.$objInvoice->id)}}" method="post">
                                             @csrf
@@ -56,7 +63,6 @@
                                         </form>
                                     </td>
                                 </tr>
-
                             @endforeach
                         </tbody>
                     </table>

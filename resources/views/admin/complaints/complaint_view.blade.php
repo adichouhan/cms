@@ -64,13 +64,15 @@
                                     <td>
                                         @if(json_decode($objComplaints->complaints) != NULL || json_decode($objComplaints->complaints) != '')
                                                 @foreach(json_decode($objComplaints->complaints) as $index =>$objComplaint)
-                                                    {{$index}}
+                                                    <ul>
                                                     <?php
                                                     $category = \App\Category::where('id', $objComplaint->main)->first();
                                                     $subCategory = \App\SubCategory::where('id', $objComplaint->sub)
                                                         ->first();
                                                     ?>
-                                                    {{isset($category->category_title)?$category->category_title:''}}:{{isset($subCategory->subcategory_title)?$subCategory->subcategory_title:''}}
+                                                    <li>Category :{{isset($category->category_title)?$category->category_title:''}}</li>
+                                                        <li>SubCategory :{{isset($subCategory->subcategory_title)?$subCategory->subcategory_title:''}}</li>
+                                                    </ul>
                                                 @endforeach
                                         @endif
                                     </td>

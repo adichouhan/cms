@@ -16,6 +16,7 @@ class CreateChallansTable extends Migration
         Schema::create('challans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('challan_id');
+            $table->integer('supplier_id');
             $table->date('challan_date');
             $table->text('challan')->nullable();
             $table->softDeletes();
