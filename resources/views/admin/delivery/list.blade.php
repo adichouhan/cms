@@ -47,8 +47,8 @@
                                     <td>{{$objChallan->challan}}</td>
                                     <td>{{$objChallan->challan_date}}</td>
                                     <td>
-                                        <a href="/admin/delivery/view" class="btn btn-primary">View</a>
-                                        <a href="/admin/delivery/download" class="btn btn-primary">Download</a>
+                                        <a href={{url("/admin/delivery/view".$objChallan->id)}} class="btn btn-primary">View</a>
+                                        <a href={{url("/admin/delivery/download".$objChallan->id)}} class="btn btn-primary">Download</a>
                                     </td>
                                     <td>
                                         <a href="{{url('admin/delivery/edit/'.$objChallan->id)}}" class="btn btn-primary">Edit</a>

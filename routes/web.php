@@ -44,9 +44,9 @@ Route::group([ 'prefix' => 'admin' ], function() {
 
 
     Route::get('/invoice', 'InvoiceController@index');
+    Route::get('/invoice/view/{$id}', 'InvoiceController@getPdf');
+    Route::get('/invoice/download/{$id}', 'InvoiceController@createpdf');
     Route::get('/invoice/create', 'InvoiceController@create');
-    Route::get('/invoice/getPdf', 'InvoiceController@getPdf');
-    Route::post('/invoice/createpdf', 'InvoiceController@createpdf');
     Route::post('/invoice/store', 'InvoiceController@store');
     Route::get('/invoice/edit/{invoice}', 'InvoiceController@edit');
     Route::post('/invoice/update/{invoice}', 'InvoiceController@update');
