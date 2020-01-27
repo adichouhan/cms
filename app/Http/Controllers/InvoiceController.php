@@ -32,7 +32,26 @@ class InvoiceController extends Controller
         return  view('admin.invoice.add', ['id' => ++$invoiceIdCount]);
     }
 
-    public function createPdf(Request $request)
+    public function downloadPdf($id)
+    {
+        $objInvoice=Invoice::findorfail($id);
+        $arrMix=[];
+        $arrMix['invoice_id'] = $objInvoice->invoice_id;
+        $arrMix['invoice_date'] = $objInvoice->invoice_date;
+        $arrMix['invoice']      = $objInvoice->invoice;
+        $arrMix['sub_total']      = $objInvoice->sub_total;
+
+        if($objInvoice->complaint){
+            $arrMix['complaint'] = $objInvoice->complaint;
+        }else{
+            $arrMix['asset'] = $objInvoice->asset;
+        }
+//        return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
+        $pdf = PDF::loadView('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
+        return $pdf->download('Invoice'.$objInvoice->invoice_id.'.pdf');
+    }
+
+    public function viewPdf($id,$type = 'stream')
     {
         $arrMix=[];
         $arrMix['invoice_id'] = $request->invoice_id;
@@ -45,25 +64,7 @@ class InvoiceController extends Controller
         }else{
             $arrMix['asset'] = $request->asset;
         }
-//        return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
-        $pdf = PDF::loadView('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
-        return $pdf->download('Invoice'.$request->invoice_id.'.pdf');
-
-    }
-
-    public function getPdf($type = 'stream')
-    {
-        return view('admin.invoice.invoice-pdf');
-        $pdf = app('dompdf.wrapper')->loadView('admin.invoice.invoice-pdf', ['order' => $this]);
-
-        if ($type == 'stream') {
-            return $pdf->stream('invoice.pdf');
-        }
-
-        if ($type == 'download') {
-            return $pdf->download('invoice.pdf');
-        }
-
+        return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
     }
 
     /**
