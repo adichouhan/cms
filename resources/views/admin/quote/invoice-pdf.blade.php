@@ -69,7 +69,6 @@ Identifier: #uniquehash
 Status: Paid
 </pre>
 
-
             </td>
             <td align="center">
                 <img src="/path/to/logo.png" alt="Logo" width="64" class="logo"/>
@@ -79,7 +78,6 @@ Status: Paid
                 <h3>CompanyName</h3>
                 <pre>
                     https://company.com
-
                     Street 26
                     123456 City
                     United Kingdom
@@ -110,8 +108,6 @@ Status: Paid
             </tr>
         </table>
     </div>
-
-
 <br/>
 
 <div class="">

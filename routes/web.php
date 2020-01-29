@@ -44,8 +44,8 @@ Route::group([ 'prefix' => 'admin' ], function() {
 
 
     Route::get('/invoice', 'InvoiceController@index');
-    Route::get('/invoice/view/{$id}', 'InvoiceController@viewPdf');
-    Route::get('/invoice/download/{$id}', 'InvoiceController@downloadPdf');
+    Route::get('/invoice/view/{id}', 'InvoiceController@viewPdf');
+    Route::get('/invoice/download/{id}', 'InvoiceController@downloadPdf');
     Route::get('/invoice/create', 'InvoiceController@create');
     Route::post('/invoice/store', 'InvoiceController@store');
     Route::get('/invoice/edit/{invoice}', 'InvoiceController@edit');
@@ -54,8 +54,8 @@ Route::group([ 'prefix' => 'admin' ], function() {
 
     Route::get('/delivery', 'ChallanController@index');
     Route::get('/delivery/create', 'ChallanController@create');
-    Route::get('/delivery/getPdf', 'ChallanController@getPdf');
-    Route::post('/delivery/createpdf', 'ChallanController@createpdf');
+    Route::get('/delivery/view/{id}', 'ChallanController@viewPdf');
+    Route::get('/delivery/download/{id}', 'ChallanController@downloadPdf');
     Route::post('/delivery/store', 'ChallanController@store');
     Route::get('/delivery/edit/{invoice}', 'ChallanController@edit');
     Route::post('/delivery/update/{invoice}', 'ChallanController@update');
@@ -63,11 +63,11 @@ Route::group([ 'prefix' => 'admin' ], function() {
 
     Route::get('/quote', 'QuoteController@index');
     Route::get('/quote/create', 'QuoteController@create');
-    Route::get('/quote/getPdf', 'QuoteController@getPdf');
-    Route::post('/quote/createpdf', 'QuoteController@createpdf');
+    Route::get('/quote/view/{id}', 'ChallanController@viewPdf');
+    Route::get('/quote/download/{id}', 'ChallanController@downloadPdf');
     Route::post('/quote/store', 'QuoteController@store');
-    Route::get('/quote/edit', 'QuoteController@edit');
-    Route::post('/quote/edit', 'QuoteController@update');
+    Route::get('/quote/edit/{id}', 'QuoteController@edit');
+    Route::post('/quote/edit/{id}', 'QuoteController@update');
 
     Route::get('/product', 'ProductsController@index');
     Route::get('/product/create', 'ProductsController@create');

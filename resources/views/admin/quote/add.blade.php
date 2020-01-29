@@ -91,7 +91,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <button type="button" class="btn btn-dark add">Add Issue</button>
                     <div class="row">
                         <div class="col-7"></div>
                         <div class="form-group col-5" id="quote-total">

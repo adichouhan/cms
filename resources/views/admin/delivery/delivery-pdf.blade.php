@@ -124,10 +124,11 @@ Status: Paid
         </tr>
         </thead>
         <tbody>
-        @foreach( $arrMix['challan'] as $index => $challan)
+
+        @foreach( json_decode(json_decode($arrMix['challan'])) as $index => $challan)
             <tr>
-                <td scope="row">{{$challan['product']}}</td>
-                <td>{{$challan['unit']}}</td>
+                <td scope="row">{{$challan->product}}</td>
+                <td>{{$challan->unit}}</td>
             </tr>
         @endforeach
         </tbody>

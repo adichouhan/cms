@@ -5,7 +5,7 @@
             <h3 class="card-title">Quotes</h3>
         </div>
         <div align="left">
-            <a href="{{ url('admin/complaints/create') }}" class="btn btn-info">Add New </a>
+            <a href="{{ url('admin/quote/create') }}" class="btn btn-info">Add New </a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -33,7 +33,7 @@
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">Asset
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending" style="width: 207px;">Invoice Date
+                                    aria-label="Browser: activate to sort column ascending" style="width: 207px;">Quotes Date
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">Download/View
@@ -44,19 +44,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($arrObjInvoices as  $objInvoice)
+                            @foreach($arrObjQuotes as  $objQuotes)
                                 <tr>
-                                    <td>{{$objInvoice->id}}</td>
-                                    <td>{{isset($objInvoice->complaint)?$objInvoice->complaint:'NA'}}</td>
-                                    <td>{{isset($objInvoice->asset)?$objInvoice->asset:'NA'}}</td>
-                                    <td>{{$objInvoice->date}}</td>
+                                    <td>{{$objQuotes->id}}</td>
+                                    <td>{{isset($objQuotes->complaint)?$objInvoice->complaint:'NA'}}</td>
+                                    <td>{{isset($objQuotes->asset)?$objInvoice->asset:'NA'}}</td>
+                                    <td>{{$objQuotes->quote_date}}</td>
                                     <td>
-                                        <a href={{url("/admin/quote/view".$objInvoice->id)}} class="btn btn-primary">View</a>
-                                        <a href={{url("/admin/quote/download".$objInvoice->id)}} class="btn btn-primary">Download</a>
+                                        <a href={{url("/admin/quote/view/".$objQuotes->id)}} class="btn btn-primary">View</a>
+                                        <a href={{url("/admin/quote/download/".$objQuotes->id)}} class="btn btn-primary">Download</a>
                                     </td>
                                     <td>
-                                        <a href="{{url('admin/quote/edit/'.$objInvoice->id)}}" class="btn btn-primary">Edit</a>
-                                        <form action="{{url('admin/quote/delete/'.$objInvoice->id)}}" method="post">
+                                        <a href="{{url('admin/quote/edit/'.$objQuotes->id)}}" class="btn btn-primary">Edit</a>
+                                        <form action="{{url('admin/quote/delete/'.$objQuotes->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger" type="submit">Delete</button>

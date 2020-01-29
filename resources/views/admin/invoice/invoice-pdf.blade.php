@@ -69,7 +69,6 @@ Identifier: #uniquehash
 Status: Paid
 </pre>
 
-
             </td>
             <td align="center">
                 <img src="/path/to/logo.png" alt="Logo" width="64" class="logo"/>
@@ -126,22 +125,26 @@ Status: Paid
         </tr>
         </thead>
         <tbody>
-        @foreach( $arrMix['invoice'] as $index => $invoice)
+
+        @foreach( json_decode(json_decode($arrMix['invoice'])) as $index => $invoice)
             <tr>
-                <td scope="row">{{$invoice['product']}}</td>
-                <td>{{$invoice['unit']}}</td>
-                <td >{{$invoice['quantity']}}</td>
-                <td>{{$invoice['total']}}</td>
+                <td scope="row">{{ $invoice->product }}</td>
+                <td>{{$invoice->unit}}</td>
+                <td >{{$invoice->quantity}}</td>
+                <td>{{$invoice->total}}</td>
+                <?php
+                    $subtotal ='';
+                $subtotal=+$invoice->total;
+                ?>
             </tr>
         @endforeach
         </tbody>
-
         <tfoot>
             <tr>
                 <td colspan="1"></td>
                 <td colspan="1"></td>
                 <td >Total</td>
-                <td  class="gray">{{$arrMix['sub_total']}}</td>
+                <td  class="gray">{{$subtotal}}</td>
             </tr>
         </tfoot>
     </table>

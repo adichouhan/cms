@@ -38,7 +38,7 @@ class InvoiceController extends Controller
         $arrMix=[];
         $arrMix['invoice_id'] = $objInvoice->invoice_id;
         $arrMix['invoice_date'] = $objInvoice->invoice_date;
-        $arrMix['invoice']      = $objInvoice->invoice;
+        $arrMix['invoice']      = json_encode($objInvoice->invoice);
         $arrMix['sub_total']      = $objInvoice->sub_total;
 
         if($objInvoice->complaint){
@@ -46,23 +46,23 @@ class InvoiceController extends Controller
         }else{
             $arrMix['asset'] = $objInvoice->asset;
         }
-//        return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
         $pdf = PDF::loadView('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
         return $pdf->download('Invoice'.$objInvoice->invoice_id.'.pdf');
     }
 
     public function viewPdf($id,$type = 'stream')
     {
+        $objInvoice=Invoice::findorfail($id);
         $arrMix=[];
-        $arrMix['invoice_id'] = $request->invoice_id;
-        $arrMix['invoice_date'] = $request->invoice_date;
-        $arrMix['invoice']      = $request->invoice;
-        $arrMix['sub_total']      = $request->sub_total;
+        $arrMix['invoice_id'] = $objInvoice->invoice_id;
+        $arrMix['invoice_date'] = $objInvoice->invoice_date;
+        $arrMix['invoice']      = json_encode($objInvoice->invoice);
+        $arrMix['sub_total']      = $objInvoice->sub_total;
 
-        if($request->complaint){
-            $arrMix['complaint'] = $request->complaint;
+        if($objInvoice->complaint){
+            $arrMix['complaint'] = $objInvoice->complaint;
         }else{
-            $arrMix['asset'] = $request->asset;
+            $arrMix['asset'] = $objInvoice->asset;
         }
         return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
     }
@@ -90,7 +90,6 @@ class InvoiceController extends Controller
         }
         $objInvoice->invoice=json_encode($request->invoice);
         $objInvoice->save();
-        $this->createPdf($request);
         return redirect('admin/invoice')->with('message', 'Invoice Created Successfully');
 
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Assets;
 use App\Complaint;
+use App\Invoice;
 use App\Quote;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
@@ -17,8 +18,8 @@ class QuoteController extends Controller
      */
     public function index()
     {
-        $arrObjInvoices=Quote::all();
-        return view('admin.quote.list', ['arrObjInvoices'=>$arrObjInvoices]);
+        $arrObjQuotes=Quote::all();
+        return view('admin.quote.list', ['arrObjQuotes'=>$arrObjQuotes]);
     }
 
     /**
@@ -55,9 +56,7 @@ class QuoteController extends Controller
         }
         $objQuote->quote=json_encode($request->quote);
         $objQuote->save();
-
-        $this->createPdf($request);
-        return redirect('admin/quotes')->with('message', 'Quotes Created Successfully');
+        return redirect('admin/quote')->with('message', 'Quotes Created Successfully');
     }
 
     /**
@@ -71,12 +70,12 @@ class QuoteController extends Controller
         //
     }
 
-    public function createPdf(Request $request)
+    public function downloadPdf($id, Request $request)
     {
         $arrMix=[];
         $arrMix['quote_id']     = $request->quote_id;
         $arrMix['quote_date']   = $request->quote_date;
-        $arrMix['quote']        = $request->quote;
+        $arrMix['quote']        = json_encode($request->quote);
         $arrMix['sub_total']    = $request->sub_total;
 
         if($request->complaint){
@@ -84,10 +83,26 @@ class QuoteController extends Controller
         }else{
             $arrMix['asset']     = $request->asset;
         }
-//        return view('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
         $pdf = PDF::loadView('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
         return $pdf->download('Quote'.$request->quote_id.'.pdf');
 
+    }
+
+    public function viewPdf($id,$type = 'stream')
+    {
+        $objQuote=Quote::findorfail($id);
+        $arrMix=[];
+        $arrMix['invoice_id']       = $objQuote->invoice_id;
+        $arrMix['invoice_date']     = $objQuote->invoice_date;
+        $arrMix['invoice']          = json_encode($objQuote->invoice);
+        $arrMix['sub_total']        = $objQuote->sub_total;
+
+        if($objQuote->complaint){
+            $arrMix['complaint'] = $objQuote->complaint;
+        }else{
+            $arrMix['asset'] = $objQuote->asset;
+        }
+        return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
     }
 
     /**
@@ -99,6 +114,7 @@ class QuoteController extends Controller
     public function edit($id)
     {
         $objQuote=Quote::findorfail($id);
+        $objCompOrAsset ='';
         if($objQuote->complaint){
             $objCompOrAsset =  Complaint::where('id',$objQuote->complaint)->get();
         }
@@ -132,7 +148,6 @@ class QuoteController extends Controller
         }
         $objQuote->quote=json_encode($request->quote);
         $objQuote->save();
-        $this->createPdf($request);
         return redirect('admin/quotes')->with('message', 'Quotes Created Successfully');
     }
 

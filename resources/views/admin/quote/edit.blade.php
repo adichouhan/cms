@@ -27,7 +27,7 @@
                         <div class="form-group col-md-4">
                             <label for="quote-date">Quote Date</label>
                             <input type="date" required class="form-control" name="quote_date"
-                                   id="quote-date" value="{{$objQuote->date}}" placeholder="">
+                                   id="quote-date" value="{{$objQuote->quote_date}}" placeholder="">
                         </div>
 
                         @if(isset($objQuote->complaint))
@@ -71,7 +71,7 @@
                                     <td><input name="quote[{{$index}}][product]" data-type="boq" class="form-control item_product search" value="{{$invoice->product}}" data-count="{{$index}}" id="product{{$index}}" />
                                         <div id="productList{{$index}}"></div>
                                     </td>
-                                    <td><input type="number" name="quote[{{$index}}][unit]"  data-count="{{$index}}"  value="{{$invoice->unit}}" class="form-control item_unit calculate price" id="unit{{$index}}"  /></td>'
+                                    <td><input type="number" name="quote[{{$index}}][unit]"  data-count="{{$index}}"  value="{{$invoice->unit}}" class="form-control item_unit calculate price" id="unit{{$index}}"  /></td>
                                     <td><input type="number" name="quote[{{$index}}][quantity]" data-count="{{$index}}" id="quantity{{$index}}" value="{{$invoice->quantity}}" class="form-control qty item_quantity calculate" /></td>
                                     <td>
                                         <input type="number" name="quote[{{$index}}][total]" class="form-control item_total" value="{{(int)$invoice->unit*(int)$invoice->quantity}}" id="total{{$index}}" readonly /></td>
