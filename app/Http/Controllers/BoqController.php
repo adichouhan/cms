@@ -68,7 +68,7 @@ class BoqController extends Controller
      */
     public function edit($id)
     {
-        $objBoq = Boq::findorfail($id);;
+        $objBoq = Boq::findorfail($id);
         return view('admin.boq.edit', ['objBoq'=>$objBoq]);
     }
 

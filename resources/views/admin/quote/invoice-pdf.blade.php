@@ -89,7 +89,7 @@ Status: Paid
 </div>
 
     <div class="quote">
-        <h4>quote</h4>
+        <h4>Quote</h4>
         <hr>
         <table>
             <tr>
@@ -122,12 +122,16 @@ Status: Paid
         </tr>
         </thead>
         <tbody>
-        @foreach( $arrMix['quote'] as $index => $quote)
+        @foreach( json_decode(json_decode($arrMix['quote'])) as $index => $quote)
             <tr>
-                <td scope="row">{{$quote['product']}}</td>
-                <td>{{$quote['unit']}}</td>
-                <td >{{$quote['quantity']}}</td>
-                <td>{{$quote['total']}}</td>
+                <td scope="row">{{$quote->product}}</td>
+                <td>{{$quote->unit}}</td>
+                <td >{{$quote->quantity}}</td>
+                <td>{{$quote->total}}</td>
+                <?php
+                $subtotal ='';
+                $subtotal=+$quote->total;
+                ?>
             </tr>
         @endforeach
         </tbody>
@@ -137,7 +141,7 @@ Status: Paid
                 <td colspan="1"></td>
                 <td colspan="1"></td>
                 <td >Total</td>
-                <td  class="gray">{{$arrMix['sub_total']}}</td>
+                <td  class="gray">{{$subtotal}}</td>
             </tr>
         </tfoot>
     </table>

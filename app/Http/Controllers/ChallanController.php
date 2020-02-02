@@ -58,17 +58,9 @@ class ChallanController extends Controller
     {
         $objChallan=Challan::findorfail($id);
         $arrMix=[];
-        $arrMix['invoice_id']       = $objChallan->invoice_id;
-        $arrMix['invoice_date']     = $objChallan->invoice_date;
-        $arrMix['invoice']          = json_encode($objChallan->invoice);
-        $arrMix['sub_total']        = $objChallan->sub_total;
-
-        if($objChallan->complaint){
-            $arrMix['complaint'] = $objChallan->complaint;
-        }else{
-            $arrMix['asset'] = $objChallan->asset;
-        }
-//        return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
+        $arrMix['challan_id']       = $objChallan->challan_id;
+        $arrMix['challan_date']     = $objChallan->challan_date;
+        $arrMix['challan']          = json_encode($objChallan->challan);
         $pdf = PDF::loadView('admin.delivery.delivery-pdf', ['arrMix'=>$arrMix]);
         return $pdf->download('Challan'.$request->challan_id.'.pdf');
 

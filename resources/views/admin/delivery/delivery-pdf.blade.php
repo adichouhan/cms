@@ -91,7 +91,7 @@ Status: Paid
 </div>
 
     <div class="quote">
-        <h4>Challan</h4>
+        <h4>Delivery Challan</h4>
         <hr>
         <table>
             <tr>

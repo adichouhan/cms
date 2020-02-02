@@ -63,8 +63,8 @@ Route::group([ 'prefix' => 'admin' ], function() {
 
     Route::get('/quote', 'QuoteController@index');
     Route::get('/quote/create', 'QuoteController@create');
-    Route::get('/quote/view/{id}', 'ChallanController@viewPdf');
-    Route::get('/quote/download/{id}', 'ChallanController@downloadPdf');
+    Route::get('/quote/view/{id}', 'QuoteController@viewPdf');
+    Route::get('/quote/download/{id}', 'QuoteController@downloadPdf');
     Route::post('/quote/store', 'QuoteController@store');
     Route::get('/quote/edit/{id}', 'QuoteController@edit');
     Route::post('/quote/edit/{id}', 'QuoteController@update');
@@ -77,7 +77,7 @@ Route::group([ 'prefix' => 'admin' ], function() {
 
     Route::get('/boq', 'BoqController@index');
     Route::get('/boq/create', 'BoqController@create');
-    Route::post('/boq/stored', 'BoqController@store');
+    Route::post('/boq/store', 'BoqController@store');
     Route::get('/boq/edit/{document}', 'BoqController@edit');
     Route::post('/boq/update/{document}', 'BoqController@update');
 

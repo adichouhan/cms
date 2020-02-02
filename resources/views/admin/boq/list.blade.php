@@ -54,7 +54,7 @@
                                     <td>{{$objBoq->product_unit}}</td>
                                     <td>{{$objBoq->product_rate}}</td>
                                     <td>
-                                        <a href="{{url('admin/document/edit/'.$objBoq->id)}}"
+                                        <a href="{{url('admin/boq/edit/'.$objBoq->id)}}"
                                            class="btn btn-primary">Edit</a>
                                     </td>
                                 </tr>

@@ -69,7 +69,18 @@
                                 <tr role="row" class="odd">
                                     <td class="sorting_1">{{$objasset->id}}</td>
                                     <td>
-                                        {{isset($objasset->products)?$objasset->products:'NA'}}
+                                        <?php
+
+                                        if($objasset->product){
+                                            foreach ($objasset->product as $product)
+                                                {
+                                                    $objAssetProduct= \App\AssetsProduct::findorfail('id',$product);
+                                                    echo $objAssetProduct->product_name;
+                                                }
+                                        }else{
+                                            echo 'NA';
+                                        }
+                                            ?>
                                     </td>
                                     <td>
                                         {{isset($objasset->assets_unique)?$objasset->assets_unique:'NA'}}

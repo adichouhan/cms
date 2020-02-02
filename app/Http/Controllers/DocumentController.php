@@ -40,7 +40,6 @@ class DocumentController extends Controller
         $request->validate([
             'title' => 'required',
             'expirydate'   => 'required',
-            'document' => 'required',
         ]);
         $objDocument = new Document();
         $objDocument->name = $request->title;
@@ -85,11 +84,11 @@ class DocumentController extends Controller
         $request->validate([
             'title' => 'required',
             'expirydate'   => 'required',
-            'document' => 'required',
         ]);
         $objDocument = Document::findOrFail($request->id);
         $objDocument->name = $request->title;
         $objDocument->expiry_date = $request->expirydate;
+        dd($request->all());
         $objDocument->file = $request->file('file')->store('document');
         $objDocument->save();
         return redirect('/admin/documents')->with('message', 'Data Added successfully.');

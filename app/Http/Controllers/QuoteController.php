@@ -72,19 +72,20 @@ class QuoteController extends Controller
 
     public function downloadPdf($id, Request $request)
     {
+        $objQuote=Quote::findorfail($id);
         $arrMix=[];
-        $arrMix['quote_id']     = $request->quote_id;
-        $arrMix['quote_date']   = $request->quote_date;
-        $arrMix['quote']        = json_encode($request->quote);
-        $arrMix['sub_total']    = $request->sub_total;
+        $arrMix['quote_id']     = $objQuote->quote_id;
+        $arrMix['quote_date']   = $objQuote->quote_date;
+        $arrMix['quote']        = json_encode($objQuote->quote);
+        $arrMix['sub_total']    = $objQuote->sub_total;
 
-        if($request->complaint){
-            $arrMix['complaint'] = $request->complaint;
+        if($objQuote->complaint){
+            $arrMix['complaint'] = $objQuote->complaint;
         }else{
-            $arrMix['asset']     = $request->asset;
+            $arrMix['asset']     = $objQuote->asset;
         }
         $pdf = PDF::loadView('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
-        return $pdf->download('Quote'.$request->quote_id.'.pdf');
+        return $pdf->download('Quote'.$objQuote->quote_id.'.pdf');
 
     }
 
@@ -92,9 +93,9 @@ class QuoteController extends Controller
     {
         $objQuote=Quote::findorfail($id);
         $arrMix=[];
-        $arrMix['invoice_id']       = $objQuote->invoice_id;
-        $arrMix['invoice_date']     = $objQuote->invoice_date;
-        $arrMix['invoice']          = json_encode($objQuote->invoice);
+        $arrMix['quote_id']       = $objQuote->quote_id;
+        $arrMix['quote_date']     = $objQuote->quote_date;
+        $arrMix['quote']          = json_encode($objQuote->quote);
         $arrMix['sub_total']        = $objQuote->sub_total;
 
         if($objQuote->complaint){
@@ -102,7 +103,7 @@ class QuoteController extends Controller
         }else{
             $arrMix['asset'] = $objQuote->asset;
         }
-        return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
+        return view('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
     }
 
     /**
