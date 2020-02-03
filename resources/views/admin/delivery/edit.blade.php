@@ -30,7 +30,7 @@
                                    id="invoice-date" value="{{isset($objInvoice->challan_date)?($objInvoice->challan_date):''}}" placeholder="">
                         </div>
 
-                        <div class="form-group col-md-4" id="complaint" style="display: none">
+                        <div class="form-group col-md-4" id="complaint" >
                             <label for="supplier">Supplier</label>
                             <input type="text" class="form-control search" data-type="supplier"
                                    id="supplier_text"  placeholder="Supplier...." />

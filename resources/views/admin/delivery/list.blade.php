@@ -27,9 +27,6 @@
                                     style="width: 160px;">Challan ID
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending" style="width: 207px;">Challan
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">Challan Date
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
@@ -44,7 +41,6 @@
                             @foreach($arrObjChallan as  $objChallan)
                                 <tr>
                                     <td>{{$objChallan->id}}</td>
-                                    <td>{{$objChallan->challan}}</td>
                                     <td>{{$objChallan->challan_date}}</td>
                                     <td>
                                         <a href={{url("/admin/delivery/view/".$objChallan->id)}} class="btn btn-primary">View</a>
