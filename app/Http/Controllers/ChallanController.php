@@ -63,7 +63,6 @@ class ChallanController extends Controller
         $arrMix['challan']          = json_encode($objChallan->challan);
         $pdf = PDF::loadView('admin.delivery.delivery-pdf', ['arrMix'=>$arrMix]);
         return $pdf->download('Challan'.$request->challan_id.'.pdf');
-
     }
 
     public function viewPdf($id,$type = 'stream')
@@ -101,11 +100,25 @@ class ChallanController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Challan  $challan
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function delete($id)
+    {
+        $objChallan=Challan::findorfail($id);
+        $objChallan->delete();
+        return redirect('/admin/delivery/')->with('message', 'Challan deleted Successfully.');
+    }
+
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Challan  $challan
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update($id, Request $request)
     {
@@ -121,18 +134,7 @@ class ChallanController extends Controller
         $objChallan->challan=json_encode($request->challan);
         $objChallan->save();
         $this->createPdf($request);
-        return redirect('/admin/delivery/')->with('message', 'Challan Created Successfully.');
+        return redirect('/admin/delivery/')->with('message', 'Challan Updated Successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Challan  $challan
-     * @return \Illuminate\Http\Response
-     * -----
-     */
-    public function destroy(Challan $challan)
-    {
-
-    }
 }

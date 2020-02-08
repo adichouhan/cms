@@ -98,10 +98,12 @@ class BoqController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Boq  $boq
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy(Boq $boq)
+    public function delete($id)
     {
-        //
+       $objBoq= Boq::findOrFail($id);
+       $objBoq->delete();
+        return redirect('/admin/boq')->with('message', 'Boq Deleted Successfully');
     }
 }

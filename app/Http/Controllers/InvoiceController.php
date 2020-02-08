@@ -159,10 +159,12 @@ class InvoiceController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Invoice  $invoice
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy(Invoice $invoice)
+    public function delete($id)
     {
-        //
+        $objInvoice = Invoice::findorfail($id);
+        $objInvoice->delete();
+        return redirect('admin/invoice')->with('message', 'Invoice Deleted Successfully');
     }
 }

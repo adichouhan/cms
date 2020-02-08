@@ -88,8 +88,8 @@
 
                     <div class="form-group">
                         <label for="date">Expected Date</label>
-                        <input type="datetime" class="form-control" name="expdate"
-                               id="date" placeholder="" value="{{date("m-d-Y h:i:s",strtotime(isset($objAssets->expected_date)?$objAssets->expected_date:''))}}">
+                        <input type="datetime-local" class="form-control" name="expdate"
+                               id="date" placeholder=""  value="{{\Carbon\Carbon::parse($objAssets->expected_date)->format('Y-m-d\TH:i')}}">
                     </div>
 
                     <div class="form-group">

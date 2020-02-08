@@ -93,17 +93,19 @@ class SupplierController extends Controller
         $objEmployee->email_id = $request->email_id;
         $objEmployee->mobile_no = $request->mobile_no;
         $objEmployee->save();
-        return redirect('/admin/supplier')->with('Supplier created successfully');
+        return redirect('/admin/supplier')->with('Supplier Updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Supplier  $supplier
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy(Supplier $supplier)
+    public function delete($id)
     {
-        //
+        $objEmployee = Supplier::findorfail($id);
+        $objEmployee->delete();
+        return redirect('/admin/supplier')->with('Supplier deleted successfully');
     }
 }

@@ -89,7 +89,20 @@ class UserController extends Controller
         $objUser->gst_no                = $request->gst_no;
         $objUser->activation_status     = $request->activation_status;
         $objUser->save();
-        return redirect()->back()->with('User Updated successfully');
+        return redirect('/admin/user')->with('User Updated successfully');
     }
 
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param    $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function delete($id)
+    {
+        $objEmployee = User::findorfail($id);
+        $objEmployee->delete();
+        return redirect('/admin/user')->with('User deleted successfully');
+    }
 }

@@ -59,7 +59,7 @@ class AssetProductController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request){
         $request->validate([
@@ -68,9 +68,14 @@ class AssetProductController extends Controller
         $objAssetProduct=AssetsProduct::findOrFail($request->id);
         $objAssetProduct->asset_product=$request->asset_name;
         $objAssetProduct->save();
-        redirect('/admin/assets')->with('message','Asset Product updated successfully');
+        return redirect('/admin/assets')->with('message','Asset Product updated successfully');
     }
 
 
+    public function delete($id){
+        $objAssetProduct=AssetsProduct::findOrFail($id);
+        $objAssetProduct->delete();
+       return  redirect('/admin/assets')->with('message', 'Asset Product deleted successfully');
+    }
 
 }

@@ -84,21 +84,23 @@ class ProductsController extends Controller
             'product_name' => 'required',
             'product_unit' => 'required',
         ]);
-        $objProduct=Products::findorfail();
+        $objProduct=Products::findorfail($id);
         $objProduct->product_name=$request->product_name;
         $objProduct->product_unit=$request->product_unit;
         $objProduct->save();
-        return redirect('admin/products')->with('message', 'Products Created Successfully');
+        return redirect('admin/products')->with('message', 'Products Updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Products  $products
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy(Products $products)
+    public function delete($id)
     {
-        //
+        $objProduct=Products::findorfail($id);
+        $objProduct->delete();
+        return redirect('admin/products')->with('message', 'Products deleted Successfully');
     }
 }

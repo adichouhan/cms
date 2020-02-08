@@ -116,11 +116,11 @@ class AssetsController extends Controller
      * @param  \App\Assets  $assets
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
+    public function delete($id)
     {
         $data = Assets::findOrFail($id);
         $data->delete();
-        return redirect('assets')->with('success', 'Data Added successfully.');
+        return redirect('/assets')->with('success', 'Assets  successfully Deleted.');
     }
 
     public function getAssetView(){

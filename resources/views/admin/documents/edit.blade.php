@@ -25,8 +25,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="expirydate">Expiry Date</label>
-                                <input type="datetime" class="form-control" name="expirydate"
-                                       value="{{date("m/d/Y h:i:s",strtotime($objDocuments->expiry_date))}}"
+                                <input type="datetime-local" class="form-control" name="expirydate"
+                                       value="{{\Carbon\Carbon::parse($objDocuments->expiry_date)->format('Y-m-d\TH:i')}}"
+
                                        id="expirydate" >
                             </div>
 

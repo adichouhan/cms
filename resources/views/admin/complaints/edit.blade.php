@@ -128,8 +128,8 @@
 
                     <div class="form-group">
                         <label for="date">Expected Date</label>
-                        <input type="datetime" class="form-control" name="expdate"
-                               value="{{date("m-d-Y h:i:s",strtotime($objComplaints->expected_date))}}"
+                        <input type="datetime-local" class="form-control" name="expdate"
+                               value="{{\Carbon\Carbon::parse($objComplaints->expected_date)->format('Y-m-d\TH:i')}}"
                                id="date" placeholder="">
                     </div>
 

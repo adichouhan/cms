@@ -54,6 +54,12 @@ class CategoryController extends Controller
         $objCategory->subcategory_title = $request->subcategory_name;
         $objCategory->parent_id         = $request->parent_id;
         $objCategory->save();
-        return redirect('admin/category/create')->with('message', 'Category Created Successfully');
+        return redirect('admin/category/create')->with('message', 'Sub-Category Created Successfully');
+    }
+
+    function delete($id){
+        $objSubCategory = SubCategory::findorfail($id);
+        $objSubCategory->delete();
+        return redirect('admin/category/')->with('message', 'Sub-Category deleted Successfully');
     }
 }

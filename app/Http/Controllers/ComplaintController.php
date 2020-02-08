@@ -131,11 +131,13 @@ class ComplaintController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Complaint $complaint
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy(Complaint $complaint)
+    public function delete($id)
     {
-        //
+        $objComplaints = Complaint::findorfail($id);
+        $objComplaints->delete();
+        return redirect('complaint/')->with('message', 'Complaint Deleted Successfully.');
     }
 
     /**
@@ -164,7 +166,6 @@ class ComplaintController extends Controller
         }else{
             $arrMix['asset'] = $arrObjInvoices->asset;
         }
-//        return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
         $pdf = PDF::loadView('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
         return $pdf->download('Invoice'.$arrObjInvoices->invoice_id.'.pdf');
     }
@@ -215,7 +216,6 @@ class ComplaintController extends Controller
         }else{
             $arrMix['asset']     = $arrObjQuotes->asset;
         }
-//        return view('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
         $pdf = PDF::loadView('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
         return $pdf->download('Quote'.$arrObjQuotes->quote_id.'.pdf');
     }

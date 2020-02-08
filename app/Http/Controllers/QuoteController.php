@@ -149,17 +149,19 @@ class QuoteController extends Controller
         }
         $objQuote->quote=json_encode($request->quote);
         $objQuote->save();
-        return redirect('admin/quotes')->with('message', 'Quotes Created Successfully');
+        return redirect('admin/quotes')->with('message', 'Quotes Updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Quote  $quote
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy(Quote $quote)
+    public function delete($id)
     {
-        //
+        $objQuote = Quote::findorfail($id);
+        $objQuote->delete();
+        return redirect('admin/quotes')->with('message', 'Quotes Deleted Successfully');
     }
 }

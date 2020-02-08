@@ -43,7 +43,6 @@
 
         <!-- Main content -->
         <section class="content">
-            <!-- Your Page Content Here -->
             @yield('content')
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
