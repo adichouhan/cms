@@ -16,7 +16,7 @@ class CreateDocumentsTable extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->dateTime('expiry_date');
+            $table->date('expiry_date');
             $table->text('file');
             $table->softDeletes();
             $table->timestamps();

@@ -48,11 +48,9 @@
                                     </td>
                                     <td>
                                         <a href="{{url('admin/delivery/edit/'.$objChallan->id)}}" class="btn btn-primary">Edit</a>
-                                        <form action="{{url('admin/delivery/delete/'.$objChallan->id)}}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">Delete</button>
-                                        </form>
+                                        <a href="{{url('admin/delivery/delete/'.$objChallan->id)}}">
+                                         Delete
+                                        </a>
                                     </td>
                                 </tr>
 

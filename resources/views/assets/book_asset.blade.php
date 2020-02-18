@@ -4,6 +4,9 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-7">
+                    <?php
+                $arrProduct = [];
+                    ?>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -14,16 +17,32 @@
                     </div>
                 @endif
                 @if($type == 'edit')
+                        <?php
+                        $count = 0;
+                        if (!empty($objAssets->products)) {
+                            foreach (json_decode($objAssets->products) as $product) {
+                                array_push($arrProduct, $product);
+                            }
+                        }
+                        ?>
                     <form method="post" autocomplete="off" action="{{ url('update/asset') }}" enctype="multipart/form-data">
                         <div class="box-body">
                             @csrf
                             <input type="hidden"  id="id" name="id"  value="{{$objAssets->id}}">
                             <div class="form-group">
-                                <label for="product">Product</label>
-                                <input type="text" id="product" data-type="assetProduct" value="{{isset($objAssets->product)??$objAssets->product}}" class="form-control search">
-                                <input type="hidden" id="productId" class="form-control search" value="{{isset($objAssets->id)??$objAssets->id}}" name="product">
-                                <div id="assetProductList"></div>
+                                <button type="button" class="btn btn-dark add">Add Product</button>
                             </div>
+                            @foreach($arrProduct as $index=>$objProduct)
+                                <?php
+                                $objDetail=\App\AssetsProduct::find($objProduct);
+                                ?>
+                                <div class="form-group">
+                                    <label for="product">Product</label>
+                                    <input type="text" id="product_{{$index}}" data-type="assetProduct" data-count="{{$index}}" class="form-control search" value="{{$objDetail->product_name}}">
+                                    <input type="hidden" id="productId_{{$index}}" class="form-control search" value="{{$objProduct}}" name="product[{{$index}}]">
+                                    <div id="assetProductList_{{$index}}"></div>
+                                </div>
+                            @endforeach
 
                             <div class="form-group">
                                 <label for="location">Location(Branch Name)*</label>
@@ -119,11 +138,8 @@
             <div class="col-3"></div>
         </div>
     </div>
-
-
     <script>
         $(document).ready(function () {
-
             var count= {!! count($arrProduct) !!};
             var countList='';
             var productId='';

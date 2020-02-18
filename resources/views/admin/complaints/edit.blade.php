@@ -2,12 +2,10 @@
 @section('content')
     <script>
         function accept() {
-            console.log('here')
             $('#reject').css({ display: "none" });
             $('#accept').css({ display: "block" });
         }
         function reject() {
-            console.log('there')
             $('#accept').css({ display: "none" });
             $('#reject').css({ display: "block" });
         }

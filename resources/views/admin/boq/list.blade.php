@@ -56,6 +56,8 @@
                                     <td>
                                         <a href="{{url('admin/boq/edit/'.$objBoq->id)}}"
                                            class="btn btn-primary">Edit</a>
+                                        <a href="{{url('admin/boq/delete/'.$objBoq->id)}}"
+                                           class="btn btn-primary">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

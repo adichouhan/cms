@@ -84,12 +84,8 @@
                                     <td>
                                         <a href="{{url('admin/complaints/edit/'.$objComplaints->id)}}"
                                            class="btn btn-primary">Edit</a>
-                                        <form action="{{url('admin/complaints/delete/'.$objComplaints->id)}}"
-                                              method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">Delete</button>
-                                        </form>
+                                        <a href="{{url('admin/complaints/delete/'.$objComplaints->id)}}"
+                                           >Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

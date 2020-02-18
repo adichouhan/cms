@@ -83,9 +83,9 @@ class Controller extends BaseController
     {
             $objComplaint= Complaint::orderBy('id', 'desc')->take(10)->get();
             $objAsset= Assets::orderBy('id', 'desc')->take(10)->get();
-            $objDocument=Document::whereBetween('expiry_date', [Carbon::today(), Carbon::today()->add(1)])->get();
-            dd($objDocument);
-        return view('admin.layout.dashboard', ['objComplaint'=>$objComplaint, 'objAsset'=>$objAsset,]);
+//            $objDocument=Document::whereBetween('expiry_date', [Carbon::today(), Carbon::today()->add(2)])->get();
+//            dd($objDocument);
+        return view('admin.layout.dashboard', ['arrObjComplaints'=>$objComplaint, 'arrObjAssets'=>$objAsset,]);
     }
 
 }

@@ -41,8 +41,8 @@
                                         {{$objCategory->category_title}}
                                     </td>
                                     <td>
-{{--                                        <a href="{{url('admin/document/edit/'.$objBoq->id)}}"--}}
-{{--                                           class="btn btn-primary">Edit</a>--}}
+                                        {{--                                        <a href="{{url('admin/document/edit/'.$objBoq->id)}}"--}}
+                                        {{--                                           class="btn btn-primary">Edit</a>--}}
                                     </td>
                                 </tr>
                             @endforeach

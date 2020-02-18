@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Assets;
+use App\AssetsProduct;
 use App\Category;
 use App\Complaint;
 use App\Invoice;
@@ -26,11 +27,12 @@ class AssetsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        return view('assets.book_asset',['type' => '']);
+        $arrObjProduct= AssetsProduct::all();
+        return view('assets.book_asset',['type' => '', 'arrObjProduct'=>$arrObjProduct]);
     }
 
     /**
@@ -81,8 +83,8 @@ class AssetsController extends Controller
     public function edit($id)
     {
         $objAssets = Assets::findOrFail($id);
-
-        return view('assets.book_asset',['objAssets' => $objAssets ,'type' => 'edit']);
+        $arrObjProduct= AssetsProduct::all();
+        return view('assets.book_asset',['objAssets' => $objAssets ,'arrObjProduct' =>$arrObjProduct,'type' => 'edit']);
     }
 
     /**

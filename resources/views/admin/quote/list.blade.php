@@ -56,11 +56,9 @@
                                     </td>
                                     <td>
                                         <a href="{{url('admin/quote/edit/'.$objQuotes->id)}}" class="btn btn-primary">Edit</a>
-                                        <form action="{{url('admin/quote/delete/'.$objQuotes->id)}}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">Delete</button>
-                                        </form>
+                                        <a href="{{url('admin/quote/delete/'.$objQuotes->id)}}"
+                                           class="btn btn-danger">Delete
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

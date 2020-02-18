@@ -53,9 +53,9 @@
                                     <td>{{$data->mobile_no}}</td>
                                     <td>
                                         <a href="{{url('admin/supplier/edit/'.$data->id)}}"
-                                           class="btn btn-primary"><i class="fa fa-edit">Edit</i></a>
+                                           class="btn btn-primary">Edit</a>
                                         <a href="{{url('admin/supplier/delete/'.$data->id)}}"
-                                           class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                           class="btn btn-dark">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
