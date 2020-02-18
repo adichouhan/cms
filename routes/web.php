@@ -28,7 +28,7 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/user/create',         'UserController@create');
     Route::post('/user/stored',        'UserController@store');
     Route::get('/user/edit/{user}',    'UserController@edit');
-    Route::get('/user/delete/{user}',    'UserController@delete');
+    Route::get('/user/delete/{user}',    'UserController@destroy');
     Route::post('/user/update/{user}', 'UserController@update');
 
     Route::get('/complaints', 'AdminComplaintsController@index');
@@ -36,7 +36,7 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::post('/complaints/create', 'AdminComplaintsController@store');
     Route::get('/autocomplete/complaint', 'AdminComplaintsController@autocomplete');
     Route::get('/complaints/edit/{complaint}', 'AdminComplaintsController@edit');
-    Route::get('/complaints/delete/{complaint}', 'AdminComplaintsController@delete');
+    Route::get('/complaints/delete/{complaint}', 'AdminComplaintsController@destroy');
     Route::post('/update/complaint/{complaint}', 'AdminComplaintsController@update');
 
     Route::get('/employee/availability/create', 'EmployeeAvailabilityController@create');
@@ -48,7 +48,7 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/invoice/create', 'InvoiceController@create');
     Route::post('/invoice/store', 'InvoiceController@store');
     Route::get('/invoice/edit/{invoice}', 'InvoiceController@edit');
-    Route::get('/invoice/delete/{invoice}', 'InvoiceController@delete');
+    Route::get('/invoice/delete/{invoice}', 'InvoiceController@destroy');
     Route::post('/invoice/update/{invoice}', 'InvoiceController@update');
 
     Route::get('/delivery', 'ChallanController@index');
@@ -57,7 +57,7 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/delivery/download/{id}', 'ChallanController@downloadPdf');
     Route::post('/delivery/store', 'ChallanController@store');
     Route::get('/delivery/edit/{invoice}', 'ChallanController@edit');
-    Route::post('/delivery/delete/{invoice}', 'ChallanController@delete');
+    Route::post('/delivery/delete/{invoice}', 'ChallanController@destroy');
     Route::post('/delivery/update/{invoice}', 'ChallanController@update');
 
     Route::get('/quote', 'QuoteController@index');
@@ -66,35 +66,35 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/quote/download/{id}', 'QuoteController@downloadPdf');
     Route::post('/quote/store', 'QuoteController@store');
     Route::get('/quote/edit/{id}', 'QuoteController@edit');
-    Route::post('/quote/delete/{id}', 'QuoteController@delete');
+    Route::post('/quote/delete/{id}', 'QuoteController@destroy');
     Route::post('/quote/edit/{id}', 'QuoteController@update');
 
     Route::get('/product', 'ProductsController@index');
     Route::get('/product/create', 'ProductsController@create');
     Route::post('/product/store', 'ProductsController@store');
     Route::get('/edit/product/{product}', 'ProductsController@edit');
-    Route::post('/delete/product/{product}', 'ProductsController@delete');
+    Route::post('/delete/product/{product}', 'ProductsController@destroy');
     Route::post('/edit/product/{product}', 'ProductsController@update');
 
     Route::get('/boq', 'BoqController@index');
     Route::get('/boq/create', 'BoqController@create');
     Route::post('/boq/store', 'BoqController@store');
     Route::get('/boq/edit/{document}', 'BoqController@edit');
-    Route::get('/boq/delete/{document}', 'BoqController@delete');
+    Route::get('/boq/delete/{document}', 'BoqController@destroy');
     Route::post('/boq/update/{document}', 'BoqController@update');
 
     Route::get('/supplier', 'SupplierController@index');
     Route::get('/supplier/create', 'SupplierController@create');
     Route::post('/supplier/stored', 'SupplierController@store');
     Route::get('/supplier/edit/{supplier}', 'SupplierController@edit');
-    Route::get('/supplier/delete/{supplier}', 'SupplierController@delete');
+    Route::get('/supplier/delete/{supplier}', 'SupplierController@destroy');
     Route::post('/supplier/update/{supplier}', 'SupplierController@update');
 
     Route::get('/documents', 'DocumentController@index');
     Route::get('/documents/create', 'DocumentController@create');
     Route::post('/document/stored', 'DocumentController@store');
     Route::get('/document/edit/{document}', 'DocumentController@edit');
-    Route::get('/document/delete/{document}', 'DocumentController@delete');
+    Route::get('/document/delete/{document}', 'DocumentController@destroy');
     Route::post('/document/update/{document}', 'DocumentController@update');
 
     Route::get('/asset/product/create', 'AssetProductController@create');
@@ -106,13 +106,13 @@ Route::group([ 'namespace' => '\App\Http\Controllers\Admin', 'prefix'=>'admin'],
     Route::get('/assets/create', 'AssetsController@create');
     Route::post('/assets/store', 'AssetsController@store');
     Route::get('/assets/edit/{asset}', 'AssetsController@edit');
-    Route::get('/assets/delete/{asset}', 'AssetsController@delete');
+    Route::get('/assets/delete/{asset}', 'AssetsController@destroy');
 
     Route::get('/employee', 'EmployeeController@index');
     Route::get('/employee/create', 'EmployeeController@create');
     Route::post('/employee/store', 'EmployeeController@store');
     Route::get('/employee/edit/{id}', 'EmployeeController@edit');
-    Route::get('/employee/delete/{id}', 'EmployeeController@delete');
+    Route::get('/employee/delete/{id}', 'EmployeeController@destroy');
     Route::post('/employee/update', 'EmployeeController@update');
     Route::get('/employee/delete/{id}', 'EmployeeController@destroy');
 });
