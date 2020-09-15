@@ -12,6 +12,6 @@ class Category extends Model
 
     public function subCat()
     {
-        $this->hasMany('App/SubCategory', 'parent_id', 'id');
+        $this->hasMany('App/Category', 'parent_id', 'id');
     }
 }

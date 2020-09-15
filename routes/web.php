@@ -15,21 +15,27 @@
 Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/', 'Controller@dashboard');
 
-    Route::get('/category/create',      'CategoryController@createCategory');
-    Route::get('/category',             'CategoryController@indexCategory');
-    Route::post('/category/store',      'CategoryController@storeCategory');
+    Route::get('/category/create',       'CategoryController@createCategory');
+    Route::get('/category/edit/{id}',    'CategoryController@categoryEdit');
+    Route::get('/category',              'CategoryController@indexCategory');
+    Route::post('/category/store',       'CategoryController@storeCategory');
+    Route::post('/category/edit/{id}',   'CategoryController@postCategoryEdit');
+    Route::post('/category/delete/{id}', 'CategoryController@categoryDelete');
 
-    Route::get('/subcategory/create',   'CategoryController@createSubCategory');
-    Route::get('/subcategory',          'CategoryController@indexSubCategory');
-    Route::post('/subcategory/store',   'CategoryController@storeSubCategory');
+    Route::get('/subcategory/create',      'CategoryController@createSubCategory');
+    Route::get('/subcategory',             'CategoryController@indexSubCategory');
+    Route::get('/subcategory/edit/{id}',   'CategoryController@subCategoryEdit');
+    Route::post('/subcategory/store',      'CategoryController@storeSubCategory');
+    Route::post('/subcategory/edit/{id}',  'CategoryController@postSubCategoryEdit');
+    Route::post('/subcategory/delete/{id}','CategoryController@subCategoryDelete');
 
 
-    Route::get('/user',                'UserController@index');
-    Route::get('/user/create',         'UserController@create');
-    Route::post('/user/stored',        'UserController@store');
-    Route::get('/user/edit/{user}',    'UserController@edit');
-    Route::get('/user/delete/{user}',    'UserController@destroy');
-    Route::post('/user/update/{user}', 'UserController@update');
+    Route::get('/user',                 'UserController@index');
+    Route::get('/user/create',          'UserController@create');
+    Route::post('/user/store',          'UserController@store');
+    Route::get('/user/edit/{user}',     'UserController@edit');
+    Route::get('/user/delete/{user}',   'UserController@delete');
+    Route::post('/user/update/{user}',  'UserController@update');
 
     Route::get('/complaints', 'AdminComplaintsController@index');
     Route::get('/complaints/create', 'AdminComplaintsController@create');
@@ -108,7 +114,7 @@ Route::group([ 'namespace' => '\App\Http\Controllers\Admin', 'prefix'=>'admin'],
     Route::get('/assets/edit/{asset}', 'AssetsController@edit');
     Route::get('/assets/delete/{asset}', 'AssetsController@destroy');
 
-    Route::get('/employee', 'EmployeeController@index');
+    Route::get('/employee',        'EmployeeController@index');
     Route::get('/employee/create', 'EmployeeController@create');
     Route::post('/employee/store', 'EmployeeController@store');
     Route::get('/employee/edit/{id}', 'EmployeeController@edit');

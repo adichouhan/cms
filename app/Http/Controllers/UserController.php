@@ -40,14 +40,13 @@ class UserController extends Controller
             'name' => 'required',
             'password' => 'required',
             'email' => 'required',
-            'gst_no' => 'required',
+//            'gst_no' => 'required',
         ]);
         $objUser                        = new User();
         $objUser->name                  = $request->name;
         $objUser->password              = bcrypt($request->password);
         $objUser->email                 = $request->email;
         $objUser->gst_no                = $request->gst_no;
-
         if($request->has('activation_status')){
             $objUser->activation_status     = $request->activation_status;
         }
@@ -78,15 +77,14 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'password' => 'required',
+//            'password' => 'required',
             'email' => 'required',
-            'gst_no' => 'required',
+//            'gst_no' => 'required',
         ]);
         $objUser                        = User::findOrFail($id);
         $objUser->name                  = $request->name;
-        $objUser->password              = bcrypt($request->password);
         $objUser->email                 = $request->email;
-        $objUser->gst_no                = $request->gst_no;
+//        $objUser->gst_no                = $request->gst_no;
         $objUser->activation_status     = $request->activation_status;
         $objUser->save();
         return redirect('/admin/user')->with('User Updated successfully');

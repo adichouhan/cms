@@ -31,6 +31,10 @@
                                     aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
                                     Category Name
                                 </th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
+                                    Actions
+                                </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -41,8 +45,10 @@
                                         {{$objCategory->category_title}}
                                     </td>
                                     <td>
-                                        {{--                                        <a href="{{url('admin/document/edit/'.$objBoq->id)}}"--}}
-                                        {{--                                           class="btn btn-primary">Edit</a>--}}
+                                        <a href="{{url('admin/category/edit/'.$objCategory->id)}}"
+                                           class="btn btn-primary">Edit</a>
+                                        <a href="{{url('admin/category/delete/'.$objCategory->id)}}"
+                                           class="btn btn-primary">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

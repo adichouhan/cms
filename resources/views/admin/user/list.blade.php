@@ -54,6 +54,8 @@
                                     <td>
                                         <a href="{{url('admin/user/edit/'.$objUser->id)}}"
                                            class="btn btn-primary">Edit</a>
+                                        <a href="{{url('admin/user/delete/'.$objUser->id)}}"
+                                           class="btn btn-primary">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

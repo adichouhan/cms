@@ -16,7 +16,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <form method="POST" autocomplete="off" action="/admin/user/create">
+                        <form method="POST" autocomplete="off" action="/admin/user/store">
                             @csrf
 
                             <div class="form-group row">

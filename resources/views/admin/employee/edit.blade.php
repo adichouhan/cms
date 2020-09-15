@@ -24,14 +24,15 @@
                     <label for="employeename" class="col-sm-2 control-label">Employee Name</label>
 
                     <div class="col-sm-10">
-                        <input type="text" name="name" class="form-control" value="{{isset($objEmployee->name)?$objEmployee->name:''}}" id="employeename" placeholder="Name">
+                        <input type="text" name="name" class="form-control" value="{{isset($objEmployee->name)?$objEmployee->name:''}}"  id="employeename" placeholder="Enter name here..">
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Select</label>
                     <select class="form-control" name="role">
-                        <option value="{{isset($objEmployee->role) && $objEmployee->role == 'manager'?'selected':''}}">Manager</option>
-                        <option value="{{isset($objEmployee->role) && $objEmployee->role == 'employee'?'selected':''}}">Employee</option>
+                        <option value="" >select role</option>
+                        <option value="employee" {{isset($objEmployee->role) && $objEmployee->role == 'employee' ? 'selected':''}} >Employee</option>
+                        <option value="manager" {{isset($objEmployee->role) && $objEmployee->role == 'manager'  ? 'selected':''}} >Manager</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -42,13 +43,13 @@
                 <br>
                 <div class="form-group">
                     <label for="mobile_no">Employee Mobile Number</label>
-                    <input type="text" class="form-control" name="mobile_no" value="{{$objEmployee->mobile_no}}"
-                           id="mobile_no" placeholder="enter name here...">
+                    <input type="number" class="form-control" name="mobile_no" value="{{$objEmployee->mobile_no}}"
+                           id="mobile_no"  min="10" placeholder="Enter Mobile number here...">
                 </div>
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-                <button  class="btn btn-outline-success">Update</button>
+                <button  class="btn btn-primary">Update</button>
             </div>
             <!-- /.box-footer -->
         </form>

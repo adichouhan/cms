@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\SubCategory;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -21,13 +20,17 @@ class CategoryController extends Controller
         return view('admin.category.create');
     }
 
+    function createSubCategory(){
+        return view('admin.category.subcategory.create');
+    }
+
     function indexCategory(){
-        $arrObjCategory=Category::all();
-        return view('admin.category.list',['arrObjCategory'=>$arrObjCategory]);
+        $arrObjCategory=Category::whereNull('parent_id')->get();
+        return view('admin.category.list',['arrObjCategory' => $arrObjCategory]);
     }
 
     function indexSubCategory(){
-        $arrObjSubCategory=SubCategory::all();
+        $arrObjSubCategory=Category::whereNotNull('parent_id')->get();
         return view('admin.category.subcategory.list',['arrObjSubCategory'=>$arrObjSubCategory]);
     }
 
@@ -35,14 +38,12 @@ class CategoryController extends Controller
         $request->validate([
             'category_name'   => 'required',
         ]);
-        $objCategory = new Category();
-        $objCategory->category_title = $request->category_name;
-        $objCategory->save();
-        return redirect('admin/category/create')->with('message', 'Category Created Successfully');
-    }
 
-    function createSubCategory(){
-        return view('admin.category.subcategory.create');
+         Category::create([
+            'category_title' => $request->category_name
+        ]);
+
+        return redirect('admin/category/')->with('message', 'Category Created Successfully');
     }
 
     function storeSubCategory(Request $request){
@@ -50,16 +51,60 @@ class CategoryController extends Controller
             'subcategory_name'   => 'required',
             'parent_id'          => 'required',
         ]);
-        $objCategory = new SubCategory();
-        $objCategory->subcategory_title = $request->subcategory_name;
-        $objCategory->parent_id         = $request->parent_id;
-        $objCategory->save();
-        return redirect('admin/category/create')->with('message', 'Sub-Category Created Successfully');
+         Category::create([
+            'category_title' => $request->subcategory_name,
+            'parent_id'      => $request->parent_id
+        ]);
+        return redirect('admin/subcategory/')->with('message', 'Sub-Category Created Successfully');
     }
 
-    function delete($id){
-        $objSubCategory = SubCategory::findorfail($id);
-        $objSubCategory->delete();
+    function categoryEdit($id){
+        $objCategory = Category::where('id', $id)->whereNull('parent_id')->first();
+        if($objCategory){
+            return view('admin.category.edit', ['objCategory' => $objCategory]);
+        }
+        return view('admin.category.create');
+    }
+
+    function postCategoryEdit($id, Request $request){
+        $request->validate([
+            'category_name'   => 'required',
+        ]);
+        Category::where('id', $id)->whereNull('parent_id')->update([
+            'category_title' => $request->category_name
+        ]);
+        return redirect('admin/category/')->with('message', 'Category Updated Successfully');
+    }
+
+    function subCategoryEdit($id){
+        $objSubCategory = Category::where('id', $id)->whereNotNull('parent_id')->first();
+        if($objSubCategory->count() > 0 ){
+            return view('admin.category.subcategory.edit', ['objSubCategory' => $objSubCategory]);
+        }
+        return view('admin.category.subcategory.create');
+    }
+
+    function postSubCategoryEdit($id, Request $request){
+        $request->validate([
+            'subcategory_name'   => 'required',
+            'parent_id'          => 'required',
+        ]);
+         Category::where('id', $id)->whereNotNull('parent_id')->update([
+            'category_title' => $request->subcategory_name,
+            'parent_id'      => $request->parent_id
+        ]);
+        return redirect('admin/subcategory/')->with('message', 'Sub-Category Updated Successfully');
+    }
+
+    function categoryDelete($id){
+        $objCategory = Category::where('id', $id)->whereNull('parent_id')->get();
+        $objCategory->delete();
         return redirect('admin/category/')->with('message', 'Sub-Category deleted Successfully');
+    }
+
+    function subCategoryDelete($id){
+        $objCategory = Category::where('id', $id)->whereNotNull('parent_id')->get();
+        $objCategory->delete();
+        return redirect('admin/subcategory/')->with('message', 'Sub-Category deleted Successfully');
     }
 }

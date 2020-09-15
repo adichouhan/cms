@@ -4,8 +4,11 @@
         <div class="card-header">
             <h3 class="card-title">Complaints</h3>
         </div>
-        <div align="left">
-            <a href="{{ url('admin/subcategory/create') }}" class="btn btn-info">Add Sub-Category</a>
+        <div align="row">
+            <div class="col-md-10 col-sm-10"></div>
+            <div class="col-md-2 col-sm-2">
+            <a href="{{ url('admin/subcategory/create') }}" class="btn btn-info pull-right">Add Sub-Category</a>
+
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -34,17 +37,22 @@
                                     aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
                                     Parent Category Name
                                 </th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
+                                   Actions
+                                </th>
                             </tr>
                             </thead>
                             <tbody>
+
                             @foreach($arrObjSubCategory as $objSubCategory)
                                 <tr role="row" class="odd">
                                     <td class="sorting_1">{{$objSubCategory->id}}</td>
                                     <td>
-                                        {{$objSubCategory->subcategory_title}}
+                                        {{$objSubCategory->category_title}}
                                     </td>
                                     <td>
-                                        @if(isset($objSubCategory->parent_id))
+                                    @if(isset($objSubCategory->parent_id))
                                     <?php
                                         $objParentCategory=\App\Category::where('id', $objSubCategory->parent_id)->first();
                                         ?>
@@ -54,8 +62,10 @@
                                             @endif
                                     </td>
                                     <td>
-{{--                                        <a href="{{url('admin/document/edit/'.$objBoq->id)}}"--}}
-{{--                                           class="btn btn-primary">Edit</a>--}}
+                                        <a href="{{url('admin/category/edit/'.$objSubCategory->id)}}"
+                                           class="btn btn-primary">Edit</a>
+                                        <a href="{{url('admin/category/delete/'.$objSubCategory->id)}}"
+                                           class="btn btn-primary">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

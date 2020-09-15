@@ -1,6 +1,21 @@
 @extends('admin.admin_template')
 
 @section('content')
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Create Employee Availabity</div>
+                    <div class="card-body">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title">Employee Availability Status</h3>
@@ -32,7 +47,7 @@
                 <div class="form-group">
                     <label>OnWork Status</label>
                     <select class="form-control" name="onwork_status" required>
-                        <option>Select isOnwork</option>
+                        <option>Select Employee is Onwork</option>
                         <option value=1>yes</option>
                         <option value=0>no</option>
                     </select>
@@ -46,5 +61,11 @@
             <!-- /.box-footer -->
         </form>
     </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 

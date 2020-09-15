@@ -44,7 +44,7 @@ class EmployeeAvailabilityController extends Controller
         ]);
         $objAvailability = new EmployeeAvailability();
         $objAvailability->employee_id=$request->employee;
-        $objAvailability->available_status=$request->employee;
+        $objAvailability->available_status=$request->available_status;
         $objAvailability->onWork=$request->onwork_status;
         $objAvailability->save();
         return redirect('/admin/employee/availability/create')->with('message', 'Employee created successfully');

@@ -20,10 +20,10 @@
             <div class="form-group">
                 <label for="date">Employee Name</label>
                 <input type="text" class="form-control" name="name"
-                       id="date" placeholder="enter name here...">
+                       id="date" placeholder="Enter name here...">
             </div>
             <br>
-            <div class="form-group col-md-4">
+            <div class="form-group">
                 <label for="inputState">Employee Role</label>
                 <select id="inputState" class="form-control" name="role">
                     <option value="" >select role</option>
@@ -40,8 +40,8 @@
             <br>
             <div class="form-group">
                 <label for="mobile_no">Employee Mobile Number</label>
-                <input type="text" class="form-control" name="mobile_no"
-                       id="mobile_no" placeholder="enter name here...">
+                <input type="number" class="form-control" name="mobile_no"
+                       id="mobile_no" min="10" placeholder="Enter Mobile number here...">
             </div>
             <br>
             <div class="form-group">
