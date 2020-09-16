@@ -51,8 +51,8 @@
                                     <td>{{isset($objQuotes->asset)?$objInvoice->asset:'NA'}}</td>
                                     <td>{{$objQuotes->quote_date}}</td>
                                     <td>
-                                        <a href={{url("/admin/quote/view/".$objQuotes->id)}} class="btn btn-primary">View</a>
-                                        <a href={{url("/admin/quote/download/".$objQuotes->id)}} class="btn btn-primary">Download</a>
+                                        <a href="{{url("/admin/quote/view/".$objQuotes->id)}}" class="btn btn-primary">View</a>
+                                        <a href="{{url("/admin/quote/download/".$objQuotes->id)}}" class="btn btn-primary">Download</a>
                                     </td>
                                     <td>
                                         <a href="{{url('admin/quote/edit/'.$objQuotes->id)}}" class="btn btn-primary">Edit</a>

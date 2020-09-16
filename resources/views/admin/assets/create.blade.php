@@ -23,9 +23,7 @@
                                 <input type="hidden" id="userId" class="form-control search" name="user">
                                 <div id="userList"></div>
                             </div>
-                            <div class="form-group">
-                                <button type="button" class="btn btn-dark add">Add Product</button>
-                            </div>
+
                             <div class="form-group">
                                 <label for="product">Product</label>
                                 <input type="text" id="product_0" data-type="assetProduct" data-count="0" class="form-control search">
@@ -36,6 +34,9 @@
                             <div id="addsection">
                             </div>
 
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary add">Add Product</button>
+                            </div>
 
                             <div class="form-group">
                                 <label for="location">Location(Branch Name)*</label>
@@ -81,7 +82,7 @@
                             </div>
 
                             <div id="accept" >
-                                <div class="form-group col-md-4">
+                                <div class="form-group">
                                     <label for="inputState">Status</label>
                                     <select id="inputState" class="form-control" name="status">
                                         <option
@@ -107,15 +108,21 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group col-md-4">
+                                <div class="form-group">
                                     <label for="inputState">Assigned To</label>
                                     <select id="inputState" class="form-control" name="assignedto">
                                         @foreach($arrEmployees as $employees)
                                             <option
-                                                value="employee" {{(isset($employees->id))? 'selected':'' }}>
+                                                value="employee"}}>
                                                 {{$employees->employee->name}}
                                             </option>
                                         @endforeach
+                                        @if($arrEmployees->count() == 0)
+                                                <option  value="">
+                                                    No Employee Available
+                                                </option>
+                                        @endif
+
                                     </select>
                                 </div>
                             </div>
@@ -142,7 +149,7 @@
                 html += '<div class="form-group addedSection"><label for="product">Product</label><input type="text" id="product_'+count+'" data-type="assetProduct"  data-count="'+count+'"  class="form-control search">'
                 html += '<input type="hidden" id="productId_'+count+'" class="form-control search" name="product['+count+']">'
                 html += '<div id="assetProductList_'+count+'"></div>';
-                html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger btn-xs remove">Remove</button></div></div>';
+                html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger remove">Remove</button></div></div>';
                 $('#addsection').append(html);
             });
 

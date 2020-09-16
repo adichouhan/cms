@@ -144,7 +144,7 @@ class AssetsController extends Controller
 
     public function getProductCreate(){
 
-        return view('admin.assets.Products.add');
+        return view('admin.assets.products.add');
     }
 
     public function getProductStrore(Request $request){

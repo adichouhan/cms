@@ -19,9 +19,9 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="name">Category Name*</label>
-                                        <input type="text"  id="name" required name="category_name" >
+                                        <input type="text"  id="name" class="form-control" required name="category_name" >
                                     </div>
-                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
                             </div>
                         </div>

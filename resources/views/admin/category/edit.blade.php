@@ -20,9 +20,9 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="name">Category Name*</label>
-                                        <input type="text"  id="name" required value="{{isset($objCategory->category_title) ? $objCategory->category_title : ''}}" name="category_name" >
+                                        <input type="text" class="form-control" id="name" required value="{{isset($objCategory->category_title) ? $objCategory->category_title : ''}}" name="category_name" >
                                     </div>
-                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
                             </div>
                         </div>

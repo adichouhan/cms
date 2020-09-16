@@ -55,7 +55,7 @@
                                     <td><input name="challan[{{$index}}][product]" class="form-control item_product" value="{{$invoice->product}}" data-sub_category_id="0"/></td>
                                     <td><input type="number" name="challan[{{$index}}][unit]"  data-count="0"  value="{{$invoice->unit}}" class="form-control item_unit calculate price" id="item_sub_category0"  /></td>'
                                     <td><button type="button" class="add btn btn-primary">Add</button>
-                                        <button type="button" class="remove btn btn-primary">Remove</button>
+                                        <button type="button" class="remove btn btn-danger">Remove</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -83,7 +83,7 @@
                 html += '<tr class="addedSection">';
                 html += '<td><input type="text" name="challan[' + count + '][product]" class="form-control item_product search" data-type="product" data-count="'+count+'" id="product'+count+'"><div id="productList'+count+'"></td>';
                 html += '<td><input type="number" name="challan[' + count + '][unit]"   class="form-control item_unit calculate price" id="unit'+count+'"/></td>';
-                html += '<td><button type="button" id="[' + count + ']" class="btn btn-primary btn-xs add">Add</button><button type="button" class="btn btn-primary btn-xs remove">Remove</button></td></tr>';
+                html += '<td><button type="button" id="[' + count + ']" class="btn btn-primary add">Add</button><button type="button" class="btn btn-danger  remove">Remove</button></td></tr>';
                 $('tbody').append(html);
             });
 

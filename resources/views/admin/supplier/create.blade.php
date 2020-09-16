@@ -1,8 +1,8 @@
 @extends('admin.admin_template')
 @section('content')
     <div class="container ">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="justify-content-center">
+            <div class="">
                 <div class="card">
                     <div class="card-header">Create Supplier</div>
                     <div class="card-body">
@@ -27,14 +27,12 @@
                     <input type="email" class="form-control" name="email_id"
                            id="email" placeholder="Ex. name@gmail.com">
                 </div>
-                <br>
 
                 <div class="form-group">
                     <label for="extra_data">Extra Data</label>
                     <textarea type="text" class="form-control" name="extra_data"
                            id="extra_data" placeholder="Extra Data...."></textarea>
                 </div>
-                <br>
 
                 <div class="form-group">
                     <label for="mobile_no">Supplier Mobile Number</label>

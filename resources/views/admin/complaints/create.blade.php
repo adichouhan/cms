@@ -21,7 +21,7 @@
                             <div id="addsection">
                             </div>
 
-                        <button type="button" class="btn btn-dark add">Add Issue</button>
+                        <button type="button" class="btn btn-primary add">Add Issue</button>
 
                         <div class="form-group">
                             <label for="user">Users</label>
@@ -37,7 +37,7 @@
                                    placeholder="">
                         </div>
 
-                        <div class="form-group col-md-4">
+                        <div class="form-group">
                             <label for="inputState">Priority</label>
                             <select id="inputState" class="form-control" name="priority">
                                 <option
@@ -134,7 +134,7 @@
 				html += '<div class="addedSection"> <div class="form-group"><select required name="complaint[' + count + '][main]" class="form-control item_category" data-sub_category_id="' + count + '"><option value="">Select Category</option>{!! $output !!}</select></td></div>';
 				html += '<div class="form-group"><select required name="complaint[' + count + '][sub]" class="form-control item_sub_category" id="item_sub_category' + count + '"><option value="">Select Sub Category</option></select></div>';
 				html += '<div class="form-group"><input type="text" name="complaint[' + count + '][name]" class="form-control item_name" /></div>';
-				html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger btn-xs remove">Remove</button></div></div>';
+				html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger remove">Remove</button></div></div>';
 				$('#addsection').append(html);
 			});
 

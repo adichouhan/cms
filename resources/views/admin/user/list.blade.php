@@ -49,13 +49,22 @@
                                     <td>
                                         {{$objUser->name}}
                                     </td>
-                                    <td>{{$objUser->activation_status}}</td>
+                                    <td>
+                                        <?php
+
+                                        if($objUser->activation_status == 1){
+                                            echo "Active";
+                                        }else{
+                                            echo "InActive";
+                                        }
+
+                                        ?></td>
 
                                     <td>
                                         <a href="{{url('admin/user/edit/'.$objUser->id)}}"
                                            class="btn btn-primary">Edit</a>
                                         <a href="{{url('admin/user/delete/'.$objUser->id)}}"
-                                           class="btn btn-primary">Delete</a>
+                                           class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

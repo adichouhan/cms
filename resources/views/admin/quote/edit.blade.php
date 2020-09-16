@@ -93,8 +93,8 @@
                                                        value="{{(int)$invoice->unit*(int)$invoice->quantity}}"
                                                        id="total{{$index}}" readonly/></td>
                                             <td>
-                                                <button type="button" class="add btn btn-primary">Add</button>
-                                                <button type="button" class="remove btn btn-primary">Remove</button>
+                                                <button type="button" class="add btn btn-primary m-2">Add</button>
+                                                <button type="button" class="remove btn btn-danger">Remove</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -142,7 +142,7 @@
                         html += '<td><input type="number" name="quote[' + count + '][unit]"   class="form-control item_unit calculate price" id="unit' + count + '"/></td>';
                         html += '<td><input type="number" name="quote[' + count + '][quantity]"   class="form-control item_quantity calculate qty" id="quantity' + count + '" /></td>';
                         html += '<td><input type="number" name="quote[' + count + '][total]" class="form-control item_total" id="total' + count + '" readonly/></td>';
-                        html += '<td><button type="button" id="[' + count + ']" class="btn btn-danger btn-xs add">Add</button><button type="button" class="btn btn-danger btn-xs remove">Remove</button></td></tr>';
+                        html += '<td><button type="button" id="[' + count + ']" class="btn btn-primary add">Add</button><button type="button" class="btn btn-danger remove">Remove</button></td></tr>';
                         $('tbody').append(html);
                     });
 

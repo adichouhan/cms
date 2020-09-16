@@ -21,9 +21,9 @@ CreateComplaintsTable extends Migration
             $table->text('location')->nullable();
             $table->dateTimeTz('expected_date')->nullable();
             $table->text('priority')->nullable();
-            $table->text('maerials')->nullable();
+            $table->text('materials')->nullable();
             $table->text('work_status')->nullable();
-            $table->text('isCancelled')->nullable();
+            $table->text('is_cancelled')->nullable();
             $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('employee_id')->nullable();
 //

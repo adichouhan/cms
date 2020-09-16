@@ -26,7 +26,7 @@ class AssetProductController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create(){
-        return view('admin.assets.Products.add');
+        return view('admin.assets.products.add');
     }
     /**
      * Store a newly created resource in storage.

@@ -4,13 +4,12 @@
         <div class="card-header">
             <h3 class="card-title">Assets Request</h3>
         </div>
-        <div>
-            <a href="{{ url('admin/assets/create') }}" class="btn btn-info">Add New </a>
-        </div>
 
-        <div>
+        <div align="left">
+            <a href="{{ url('admin/assets/create') }}" class="btn btn-info">Add New </a>
             <a href="{{ url('admin/asset/product/create') }}" class="btn btn-info">Add New Product </a>
         </div>
+
         <!-- /.card-header -->
         <div class="card-body">
             @if(session()->has('message'))
@@ -93,7 +92,7 @@
                                         <a href="{{url('admin/assets/edit/'.$objasset->id)}}"
                                            class="btn btn-primary">Edit</a>
                                         <a href="{{url('admin/assets/delete/'.$objasset->id)}}"
-                                           class="btn btn-primary">Delete</a>
+                                           class="btn btn-danger">Delete</a>
 
                                     </td>
                                 </tr>

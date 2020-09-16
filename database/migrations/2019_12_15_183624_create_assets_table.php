@@ -20,7 +20,7 @@ class CreateAssetsTable extends Migration
             $table->text('location')->nullable();
             $table->dateTime('expected_date')->nullable();
             $table->text('priority')->nullable();
-            $table->text('maerials')->nullable();
+            $table->text('materials')->nullable();
             $table->integer('user_id')->nullable();
             $table->text('image')->nullable();
             $table->softDeletes();

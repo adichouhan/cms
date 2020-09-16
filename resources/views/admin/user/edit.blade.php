@@ -65,8 +65,8 @@
 
                                 <div class="col-md-6">
                                     <select id="activation-status"  class="form-control" name="activation_status" required>
-                                        <option value="0" {{isset($objUser->activation_status) && $objUser->activation_status==0?'checked':'' }}">Deactivate</option>
-                                        <option value="1" {{isset($objUser->activation_status) && $objUser->activation_status==1?'checked':'' }}">Activate</option>
+                                        <option value="0" {{ isset($objUser->activation_status) && $objUser->activation_status==0?'checked':'' }}">Deactivate</option>
+                                        <option value="1" {{ isset($objUser->activation_status) && $objUser->activation_status==1?'checked':'' }}">Activate</option>
                                     </select>
                                 </div>
                             </div>

@@ -183,7 +183,7 @@
                 html += '<div class="form-group addedSection"><label for="product">Product</label><input type="text" id="product_'+count+'" data-type="assetProduct"  data-count="'+count+'"  class="form-control search">'
                 html += '<input type="hidden" id="productId_'+count+'" class="form-control search" name="product['+count+']">'
                 html += '<div id="assetProductList_'+count+'"></div>';
-                html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger btn-xs remove">Remove</button></div></div>';
+                html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger remove">Remove</button></div></div>';
                 $('#addsection').append(html);
             });
 

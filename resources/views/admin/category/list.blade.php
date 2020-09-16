@@ -48,7 +48,7 @@
                                         <a href="{{url('admin/category/edit/'.$objCategory->id)}}"
                                            class="btn btn-primary">Edit</a>
                                         <a href="{{url('admin/category/delete/'.$objCategory->id)}}"
-                                           class="btn btn-primary">Delete</a>
+                                           class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

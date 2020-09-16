@@ -14,7 +14,7 @@
     </script>
     <div class="container ">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="">
                 <div class="card">
                     <div class="card-header">Create Quote</div>
                     <div class="card-body">
@@ -41,8 +41,8 @@
                             <input type="date" required class="form-control" name="quote_date"
                                    id="quotee-date" placeholder="">
                         </div>
-                        <div class="add_complaint">Add complaint</div>
-                        <div class="add_assets">Add asset</div>
+                        {{--<div class="add_complaint">Add complaint</div>--}}
+                        {{--<div class="add_assets">Add asset</div>--}}
                         <div class="row">
                             <div class="form-group col-md-4" id="complaint" style="display: none">
                                 <label for="complaint">Complaint</label>
@@ -84,8 +84,9 @@
                                 <td><input type="number" name="quote[0][quantity]" data-count="0" id="quantity0" class="form-control qty item_quantity calculate"/></td>
                                 <td>
                                     <input type="number" name="quote[0][total]" class="form-control item_total" id="total0" readonly/></td>
-                                <td><button type="button" class="add btn btn-primary">Add</button>
-                                    <button type="button" class="remove btn btn-primary">Remove</button>
+                                <td>
+                                    <button type="button" class="add d-inline m-2 btn btn-primary">Add</button>
+                                    <button type="button" class="remove btn btn-danger">Remove</button>
                                 </td>
                             </tr>
                             </tbody>
@@ -132,7 +133,7 @@
                 html += '<td><input type="number" name="quote[' + count + '][unit]"   class="form-control item_unit calculate price" id="unit'+count+'"/></td>';
                 html += '<td><input type="number" name="quote[' + count + '][quantity]"   class="form-control item_quantity calculate qty" id="quantity'+count+'" /></td>';
                 html += '<td><input type="number" name="quote[' + count + '][total]" class="form-control item_total" id="total'+count+'" readonly/></td>';
-                html += '<td><button type="button" id="[' + count + ']" class="btn btn-danger btn-xs add">Add</button><button type="button" class="btn btn-danger btn-xs remove">Remove</button></td></tr>';
+                html += '<td><button type="button" id="[' + count + ']" class=" add d-inline m-2 btn btn-primary ">Add</button><button type="button" class="btn btn-danger remove">Remove</button></td></tr>';
                 $('tbody').append(html);
             });
 

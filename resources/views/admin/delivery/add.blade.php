@@ -1,8 +1,8 @@
 +@extends('admin.admin_template')
 @section('content')
     <div class="container ">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="justify-content-center">
+            <div class="">
                 <div class="card">
                     <div class="card-header">Create Delivery Challan</div>
                     <div class="card-body">
@@ -39,7 +39,7 @@
                                    id="supplier" placeholder="Supplier" />
                         </div>
 
-
+                    </div>
                     <div class="box-body">
                         <table class="table table-bordered" id="item_table">
                             <thead>
@@ -57,16 +57,14 @@
                                 </td>
                                 <td><input type="number" name="challan[0][unit]"  class="form-control item_unit calculate price" id="unit0"  /></td>
                                  <td>
-                                   <button type="button" class="add btn  btn-xs btn-primary">Add</button>
-                                    <button type="button" class="remove btn  btn-xs btn-primary">Remove</button>
+                                   <button type="button" class="add btn btn-primary">Add</button>
+                                    <button type="button" class="remove btn btn-danger">Remove</button>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
 
-
-                    <br>
                     <div class="form-group">
                         <button type="submit" class="form_submit btn btn-primary" >Save</button>
                     </div>
@@ -86,7 +84,7 @@
                 html += '<tr class="addedSection">';
                 html += '<td><input type="text" name="challan[' + count + '][product]" class="form-control item_product search" data-type="product" data-count="'+count+'" id="product'+count+'"><div id="productList'+count+'"></td>';
                 html += '<td><input type="number" name="challan[' + count + '][unit]"   class="form-control item_unit calculate price" id="unit'+count+'"/></td>';
-                html += '<td><button type="button" id="[' + count + ']" class="btn btn-primary btn-xs add">Add</button><button type="button" class="btn btn-primary btn-xs remove">Remove</button></td></tr>';
+                html += '<td><button type="button" id="[' + count + ']" class="btn btn-primary add">Add</button><button type="button" class="btn btn-danger remove">Remove</button></td></tr>';
                 $('tbody').append(html);
             });
 

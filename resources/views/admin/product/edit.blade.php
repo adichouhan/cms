@@ -1,8 +1,8 @@
 @extends('admin.admin_template')
 @section('content')
     <div class="container ">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="justify-content-center">
+            <div class="">
                 <div class="card">
                     <div class="card-header">Edit Products</div>
                     <div class="card-body">
@@ -24,23 +24,26 @@
                                 <div class="form-group">
                                     <label for="name">Product Name*</label>
                                     <input type="text" id="name"
+                                           class="form-control"
                                            value="{{isset($objProduct->product_name)?$objProduct->product_name:''}}"
                                            name="product_name">
                                 </div>
                                 <div class="form-group">
                                     <label for="unit">Product Unit*</label>
                                     <input type="number" id="unit"
+                                           class="form-control"
                                            value="{{isset($objProduct->product_unit)?$objProduct->product_unit:''}}"
                                            name="product_unit">
                                 </div>
                                 <div class="form-group">
                                     <label for="cost">Product Cost*</label>
                                     <input type="number" id="cost"
+                                           class="form-control"
                                            value="{{isset($objProduct->product_cost)?$objProduct->product_cost:''}}"
                                            name="product_cost">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>

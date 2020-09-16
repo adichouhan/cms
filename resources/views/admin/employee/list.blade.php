@@ -24,26 +24,26 @@
                                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-sort="ascending"
                                     aria-label="Rendering engine: activate to sort column descending"
-                                    style="width: 160px;">Employee ID
+                                    style="width: 100px;">Employee ID
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending" style="width: 207px;">
+                                    aria-label="Browser: activate to sort column ascending" style="width: 160px;">
                                     Employee Name
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Platform(s): activate to sort column ascending" style="width: 183px;">
+                                    aria-label="Platform(s): activate to sort column ascending" style="width: 160px;">
                                     Employee Role
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Engine version: activate to sort column ascending"
-                                    style="width: 135px;">Employee Email Id
+                                    style="width: 160px;">Employee Email Id
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
+                                    aria-label="CSS grade: activate to sort column ascending" style="width: 160px;">
                                     Employee Contact No
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
+                                    aria-label="CSS grade: activate to sort column ascending" style="width: 160px;">
                                     Action
                                 </th>
                             </tr>
@@ -59,9 +59,9 @@
                                     <td>{{$data->mobile_no}}</td>
                                     <td>
                                         <a href="{{url('admin/employee/edit/'.$data->id)}}"
-                                           class="btn btn-primary"><i class="fa fa-edit">Edit</i></a>
+                                           class="btn btn-primary">Edit</a>
                                         <a href="{{url('admin/employee/delete/'.$data->id)}}"
-                                           class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                           class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
