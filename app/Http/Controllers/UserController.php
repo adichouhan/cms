@@ -39,7 +39,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'password' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:users',
 //            'gst_no' => 'required',
         ]);
         $objUser                        = new User();
