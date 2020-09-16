@@ -75,7 +75,7 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::post('/quote/delete/{id}',   'QuoteController@destroy');
     Route::post('/quote/edit/{id}',     'QuoteController@update');
 
-    Route::get('/product',                   'ProductsController@index');
+    Route::get('/products',                   'ProductsController@index');
     Route::get('/product/create',            'ProductsController@create');
     Route::post('/product/store',            'ProductsController@store');
     Route::get('/edit/product/{product}',    'ProductsController@edit');

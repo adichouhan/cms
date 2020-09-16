@@ -52,7 +52,7 @@
                             <tbody>
                             <tr>
                                 <td><input type="text" name="challan[0][product]" class="form-control item_product search"
-                                           data-type="boq" data-count="0" id="product0"                                    />
+                                           data-type="product" data-count="0" id="product0"                                    />
                                     <div id="productList0"></div>
                                 </td>
                                 <td><input type="number" name="challan[0][unit]"  class="form-control item_unit calculate price" id="unit0"  /></td>

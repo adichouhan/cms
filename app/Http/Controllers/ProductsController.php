@@ -39,10 +39,12 @@ class ProductsController extends Controller
         $request->validate([
             'product_name' => 'required',
             'product_unit'   => 'required',
+            'product_cost'   => 'required',
         ]);
         $objProduct=new Products();
         $objProduct->product_name=$request->product_name;
         $objProduct->product_unit=$request->product_unit;
+        $objProduct->product_cost=$request->product_cost;
         $objProduct->save();
         return redirect('admin/products')->with('message', 'Products Created Successfully');
     }
@@ -67,7 +69,7 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $objProduct=Products::findorfail($id);
-        return view('admin.product.edit', ['objProduct'=>$objProduct]);
+        return view('admin.product.edit', ['objProduct' => $objProduct]);
 
     }
 
