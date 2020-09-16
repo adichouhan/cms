@@ -134,8 +134,8 @@ class AssetsController extends Controller
      */
     public function invoices()
     {
-        $arrObjInvoices=Invoice::with('getUserAssets')->get();
-        return view('assets.invoice.list', ['arrObjInvoices'=>$arrObjInvoices]);
+        $arrObjInvoices=Invoice::all();
+        return view('assets.invoice.list', ['arrObjInvoices' => $arrObjInvoices]);
     }
 
     /**
@@ -186,7 +186,7 @@ class AssetsController extends Controller
     public function quotes()
     {
         $arrObjQuotes=Quote::with('getUserAssets')->get();
-        return view('assets.quotes.list', ['arrObjQuotes'=>$arrObjQuotes]);
+        return view('assets.quote.list', ['arrObjQuotes'=>$arrObjQuotes]);
     }
 
     /**

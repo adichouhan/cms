@@ -15,7 +15,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <form method="post" autocomplete="off" action="{{ url('/admin/supplier/update') }}"
+                        <form method="post" autocomplete="off" action="{{ url('/admin/supplier/update/') }}"
                               enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" id="id" name="id" value="{{$objSupplier->id}}">
@@ -36,6 +36,8 @@
                                            value="{{$objSupplier->email_id}}"
                                            id="email" placeholder="Ex. name@gmail.com">
                                 </div>
+
+
 
                                 <div class="form-group">
                                     <label for="mobile_no">Supplier Mobile Number</label>

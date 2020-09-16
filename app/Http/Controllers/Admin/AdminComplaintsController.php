@@ -37,7 +37,8 @@ class AdminComplaintsController extends Controller
             $output .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';
         }
 
-        $arrObjEmployee=EmployeeAvailability::with('employee')->where('available_status')->get();
+        $arrObjEmployee=EmployeeAvailability::with('employee')->where('available_status','==', 1)->get();
+        dd($arrObjEmployee);
         return view('admin.complaints.create',['arrObjUser' => $arrObjUser, 'arrObjEmployees'=>$arrObjEmployee, 'output'=>$output]);
     }
     /**

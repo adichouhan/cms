@@ -5,8 +5,8 @@
             <div class="col-12 text-center">
                 <div>Please select the service you want to book</div>
                 <div class="mt-5 mr-5">
-                    <button type="button" class="btn btn-primary btn-lg   mr-4"><a href="/mycomplaints" class="text-white">Maintenance Complaints</a></button>
-                    <button type="button" class="btn btn-secondary btn-lg  ml-4"><a href="/myassets" class="text-white">Asset Request</a></button>
+                    <button type="button" class="btn btn-primary btn-lg   mr-4"><a href="/my-complaints" class="text-white">Maintenance Complaints</a></button>
+                    <button type="button" class="btn btn-secondary btn-lg  ml-4"><a href="/my-assets" class="text-white">Asset Request</a></button>
                 </div>
             </div>
         </div>

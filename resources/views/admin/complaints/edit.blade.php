@@ -11,8 +11,8 @@
         }
     </script>
     <div class="container ">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="justify-content-center">
+            <div class="">
                 <div class="card">
                     <div class="card-header">Edit Complaint</div>
                     <div class="card-body">
@@ -155,7 +155,7 @@
                                        name="rejectreason" id="rejectreason" placeholder="">
                             </div>
                             <div id="accept" style="display: none">
-                                <div class="form-group col-md-4">
+                                <div class="form-group">
                                     <label for="inputState">Status</label>
                                     <select id="inputState" class="form-control" name="status">
                                         <option
@@ -181,12 +181,11 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group col-md-4">
+                                <div class="form-group">
                                     <label for="inputState">Assigned To</label>
                                     <select id="inputState" class="form-control" name="assignedto">
                                         @foreach($arrEmployees as $employees)
-                                            <option
-                                                    value="{{$employees->id}}" {{(isset($objComplaints->employee_id) && $objComplaints->employee_id== $employees->id)? 'selected':'' }}>
+                                            <option value="{{$employees->id}}" {{(isset($objComplaints->employee_id) && $objComplaints->employee_id== $employees->id)? 'selected':'' }}>
                                                 {{$employees->employee->name}}
                                             </option>
                                         @endforeach
@@ -278,7 +277,7 @@
 
                 var sub_category_id = $(this).data('sub_category_id');
                 $.ajax({
-                    url: "/fill_sub_category",
+                    url: "/search-category",
                     method: "POST",
                     data: {
                         "_token": "{{ csrf_token() }}",

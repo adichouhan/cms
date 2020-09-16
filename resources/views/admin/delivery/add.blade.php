@@ -116,7 +116,7 @@
 
             function autocomplete(type, data) {
                 var htmlComplaint='';
-                htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
+                htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative; min-width: 200px">';
 
                 if(type =='product'){
                     var productListId = '#productList'+dataCount;
@@ -140,7 +140,7 @@
                             htmlComplaint += '<li class="supplier" data-id="' + supplier.id + '">' + supplier.name + '</li> ';
                         })
                     }else{
-                        htmlComplaint +='<li class="supplier"><a href="/admin/suppler/create">Add Supplier</a></li> ';
+                        htmlComplaint +='<li class="supplier"><a href="/admin/supplier/create">Add Supplier</a></li> ';
                     }
                     $('#supplierList').children().remove();
                     $('#supplierList').append(htmlComplaint);
@@ -152,21 +152,17 @@
                 calc();
             }
 
+            $(document).on('click', 'li.supplier', function () {
+                $('#supplier_text').val($(this).text());
+                $('#supplier').val($(this).data('id'));
+                $('#supplierList').fadeOut();
+            });
+
             $('#item_table tbody').on('keyup change',function(){
                 calc();
             });
             $('#tax').on('keyup change',function(){
                 calc_total();
-            });
-
-            $('.add_complaint').on('click', function () {
-                $('#add_complaint').css("display", "block");
-                $('#add_asset').css("display", "none");
-            });
-
-            $('.add_asset').on('click', function () {
-                $('#add_asset').css("display", "block");
-                $('#add_complaint').css("display", "none");
             });
 
             function calc()
@@ -184,26 +180,6 @@
                 });
             }
 
-            $( "#complaint" ).autocomplete({
-
-                source: function(request, response) {
-                    $.ajax({
-                        url: "{{url('/autocomplete/complaint/')}}",
-                        data: {
-                            term : request.term
-                        },
-                        dataType: "json",
-                        success: function(data){
-                            var resp = $.map(data,function(obj){
-                                return obj.name;
-                            });
-
-                            response(resp);
-                        }
-                    });
-                },
-                minLength: 1
-            });
 
             function calc_total()
             {

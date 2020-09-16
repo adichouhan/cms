@@ -145,7 +145,7 @@ class ComplaintController extends Controller
      */
     public function invoices()
     {
-        $arrObjInvoices=Invoice::with('getUserComplaints')->get();
+        $arrObjInvoices=Invoice::all();
         return view('complaints.invoice.list', ['arrObjInvoices'=>$arrObjInvoices]);
     }
 

@@ -66,61 +66,61 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::post('/delivery/delete/{invoice}', 'ChallanController@destroy');
     Route::post('/delivery/update/{invoice}', 'ChallanController@update');
 
-    Route::get('/quote', 'QuoteController@index');
-    Route::get('/quote/create', 'QuoteController@create');
-    Route::get('/quote/view/{id}', 'QuoteController@viewPdf');
-    Route::get('/quote/download/{id}', 'QuoteController@downloadPdf');
-    Route::post('/quote/store', 'QuoteController@store');
-    Route::get('/quote/edit/{id}', 'QuoteController@edit');
-    Route::post('/quote/delete/{id}', 'QuoteController@destroy');
-    Route::post('/quote/edit/{id}', 'QuoteController@update');
+    Route::get('/quote',                'QuoteController@index');
+    Route::get('/quote/create',         'QuoteController@create');
+    Route::get('/quote/view/{id}',      'QuoteController@viewPdf');
+    Route::get('/quote/download/{id}',  'QuoteController@downloadPdf');
+    Route::post('/quote/store',         'QuoteController@store');
+    Route::get('/quote/edit/{id}',      'QuoteController@edit');
+    Route::post('/quote/delete/{id}',   'QuoteController@destroy');
+    Route::post('/quote/edit/{id}',     'QuoteController@update');
 
-    Route::get('/product', 'ProductsController@index');
-    Route::get('/product/create', 'ProductsController@create');
-    Route::post('/product/store', 'ProductsController@store');
-    Route::get('/edit/product/{product}', 'ProductsController@edit');
+    Route::get('/product',                   'ProductsController@index');
+    Route::get('/product/create',            'ProductsController@create');
+    Route::post('/product/store',            'ProductsController@store');
+    Route::get('/edit/product/{product}',    'ProductsController@edit');
     Route::post('/delete/product/{product}', 'ProductsController@destroy');
-    Route::post('/edit/product/{product}', 'ProductsController@update');
+    Route::post('/edit/product/{product}',   'ProductsController@update');
 
     Route::get('/boq', 'BoqController@index');
-    Route::get('/boq/create', 'BoqController@create');
-    Route::post('/boq/store', 'BoqController@store');
-    Route::get('/boq/edit/{document}', 'BoqController@edit');
-    Route::get('/boq/delete/{document}', 'BoqController@destroy');
-    Route::post('/boq/update/{document}', 'BoqController@update');
+    Route::get('/boq/create',               'BoqController@create');
+    Route::post('/boq/store',               'BoqController@store');
+    Route::get('/boq/edit/{document}',      'BoqController@edit');
+    Route::get('/boq/delete/{document}',    'BoqController@destroy');
+    Route::post('/boq/update/{document}',   'BoqController@update');
 
-    Route::get('/supplier', 'SupplierController@index');
-    Route::get('/supplier/create', 'SupplierController@create');
-    Route::post('/supplier/stored', 'SupplierController@store');
-    Route::get('/supplier/edit/{supplier}', 'SupplierController@edit');
-    Route::get('/supplier/delete/{supplier}', 'SupplierController@destroy');
-    Route::post('/supplier/update/{supplier}', 'SupplierController@update');
+    Route::get('/supplier',                     'SupplierController@index');
+    Route::get('/supplier/create',              'SupplierController@create');
+    Route::post('/supplier/store',              'SupplierController@store');
+    Route::get('/supplier/edit/{supplier}',     'SupplierController@edit');
+    Route::get('/supplier/delete/{supplier}',   'SupplierController@destroy');
+    Route::post('/supplier/update',             'SupplierController@update');
 
-    Route::get('/documents', 'DocumentController@index');
-    Route::get('/documents/create', 'DocumentController@create');
-    Route::post('/document/stored', 'DocumentController@store');
-    Route::get('/document/edit/{document}', 'DocumentController@edit');
-    Route::get('/document/delete/{document}', 'DocumentController@destroy');
-    Route::post('/document/update/{document}', 'DocumentController@update');
+    Route::get('/documents',                    'DocumentController@index');
+    Route::get('/documents/create',             'DocumentController@create');
+    Route::post('/document/stored',             'DocumentController@store');
+    Route::get('/document/edit/{document}',     'DocumentController@edit');
+    Route::get('/document/delete/{document}',   'DocumentController@destroy');
+    Route::post('/document/update/{document}',  'DocumentController@update');
 
-    Route::get('/asset/product/create', 'AssetProductController@create');
-    Route::post('/asset/product/store', 'AssetProductController@store');
+    Route::get('/asset/product/create',         'AssetProductController@create');
+    Route::post('/asset/product/store',         'AssetProductController@store');
 });
 
 Route::group([ 'namespace' => '\App\Http\Controllers\Admin', 'prefix'=>'admin'], function() {
-    Route::get('/assets', 'AssetsController@index');
-    Route::get('/assets/create', 'AssetsController@create');
-    Route::post('/assets/store', 'AssetsController@store');
-    Route::get('/assets/edit/{asset}', 'AssetsController@edit');
-    Route::get('/assets/delete/{asset}', 'AssetsController@destroy');
+    Route::get('/assets',                        'AssetsController@index');
+    Route::get('/assets/create',                 'AssetsController@create');
+    Route::post('/assets/store',                 'AssetsController@store');
+    Route::get('/assets/edit/{asset}',           'AssetsController@edit');
+    Route::get('/assets/delete/{asset}',         'AssetsController@destroy');
 
-    Route::get('/employee',        'EmployeeController@index');
-    Route::get('/employee/create', 'EmployeeController@create');
-    Route::post('/employee/store', 'EmployeeController@store');
-    Route::get('/employee/edit/{id}', 'EmployeeController@edit');
-    Route::get('/employee/delete/{id}', 'EmployeeController@destroy');
-    Route::post('/employee/update', 'EmployeeController@update');
-    Route::get('/employee/delete/{id}', 'EmployeeController@destroy');
+    Route::get('/employee',                      'EmployeeController@index');
+    Route::get('/employee/create',               'EmployeeController@create');
+    Route::post('/employee/store',               'EmployeeController@store');
+    Route::get('/employee/edit/{id}',            'EmployeeController@edit');
+    Route::get('/employee/delete/{id}',          'EmployeeController@destroy');
+    Route::post('/employee/update',              'EmployeeController@update');
+    Route::get('/employee/delete/{id}',          'EmployeeController@destroy');
 });
 
 Route::get('/complaints', function () {
@@ -144,7 +144,7 @@ Route::get('/register/complaint', 'ComplaintController@create')->middleware('aut
 Route::get('/complaints/', 'ComplaintController@getViewComplaints')->middleware('auth');
 Route::get('/complaints/edit/{complaint}', 'ComplaintController@getEditComplain')->middleware('auth');
 Route::post('complaint/update/{complaint}', 'ComplaintController@update')->middleware('auth');
-Route::get('/mycomplaints', 'ComplaintController@getComplaintsView')->middleware('auth');
+Route::get('/my-complaints', 'ComplaintController@getComplaintsView')->middleware('auth');
 Route::get('complaint/invoices',  'ComplaintController@invoices');
 Route::get('complaint/invoices/view/{$id}',  'ComplaintController@invoicesShow');
 Route::get('complaint/invoices/download/{$id}',  'ComplaintController@invoicesDownload');
@@ -152,31 +152,21 @@ Route::get('complaint/quotes',  'ComplaintController@quotes');
 Route::get('complaint/quotes/view/{$id}',  'ComplaintController@quotesShow');
 Route::get('complaint/quotes/download/{$id}',  'ComplaintController@quotesDownload');
 
-Route::get('/assets', 'AssetsController@index')->middleware('auth');
-Route::get('/book_asset', 'AssetsController@create')->middleware('auth');
-Route::post('/register/asset', 'AssetsController@store')->middleware('auth');
-Route::get('/edit/asset/{asset}', 'AssetsController@edit')->middleware('auth');
+Route::get('/assets',               'AssetsController@index')->middleware('auth');
+Route::get('/book-asset',           'AssetsController@create')->middleware('auth');
+Route::post('/register/asset',      'AssetsController@store')->middleware('auth');
+Route::get('/edit/asset/{asset}',   'AssetsController@edit')->middleware('auth');
 Route::get('/delete/asset/{asset}', 'AssetsController@destroy')->middleware('auth');
-Route::post('/update/asset', 'AssetsController@update')->middleware('auth');
-Route::get('/view/assets', 'AssetsController@show')->middleware('auth');
-Route::get('/myassets', 'AssetsController@getAssetView')->middleware('auth');
-Route::get('assets/invoices',  'AssetsController@invoices');
+Route::post('/update/asset',            'AssetsController@update')->middleware('auth');
+Route::get('/view/assets',                'AssetsController@show')->middleware('auth');
+Route::get('/my-assets',                  'AssetsController@getAssetView')->middleware('auth');
+Route::get('assets/invoices',             'AssetsController@invoices');
 Route::get('assets/invoices/view/{$id}',  'AssetsController@invoicesShow');
 Route::get('assets/invoices/download/{$id}',  'AssetsController@invoicesDownload');
 Route::get('assets/quotes',  'AssetsController@quotes');
 Route::get('assets/quotes/view/{$id}',  'AssetsController@quotesShow');
 Route::get('assets/quotes/download/{$id}',  'AssetsController@quotesDownload');
-
-
-Route::post('fill_sub_category',  function(\Illuminate\Http\Request $request){
-     $parent_category=$request->category_id;
-     $subCategory=\App\SubCategory::where('parent_id', $parent_category)->get();
-    $output='';
-    foreach ($subCategory as $item){
-        $output .= '<option value="'.$item["id"].'">'.$item["subcategory_title"].'</option>';
-    }
-    return $output;
-});
+Route::post('search-category', 'CategoryController@searchCategory');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

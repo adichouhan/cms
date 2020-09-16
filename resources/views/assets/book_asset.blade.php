@@ -106,7 +106,7 @@
                                 <input type="text" class="form-control" id="location" name="location" placeholder="">
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group">
                                 <label for="inputState">Priority</label>
                                 <select id="inputState" class="form-control" name="priority">
                                     <option value="low">Low</option>
@@ -117,7 +117,7 @@
 
                             <div class="form-group">
                                 <label for="date">Expected Date</label>
-                                <input type="datetime" class="form-control" name="expdate" id="date" placeholder="">
+                                <input class="form-control" id="date" name="expdate" placeholder="" type="datetime-local">
                             </div>
 
                             <div class="form-group">
@@ -126,8 +126,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleFormControlFile1">Example file input</label>
-                                <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1">
+                                <label for="photo-upload">Photo Upload</label>
+                                <input type="file" class="form-control-file" name="image" id="photo-upload">
                             </div>
 
                             <button type="submit" class="btn btn-success">Submit</button>

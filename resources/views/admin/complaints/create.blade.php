@@ -1,8 +1,8 @@
 @extends('admin.admin_template')
 @section('content')
     <div class="container ">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="justify-content-center">
+            <div class="">
                 <div class="card">
                     <div class="card-header">Create Complaint</div>
                     <div class="card-body">
@@ -40,6 +40,9 @@
                         <div class="form-group">
                             <label for="inputState">Priority</label>
                             <select id="inputState" class="form-control" name="priority">
+                                <option>
+                                    Select Priority
+                                </option>
                                 <option
                                     value="low" >
                                     Low
@@ -68,16 +71,17 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">photo upload</label>
-
+                            <label for="exampleFormControlFile1">Photo upload</label>
                             <input type="file" name="image" />
-
                         </div>
 
                         <div id="accept" >
-                            <div class="form-group col-md-4">
+                            <div class="form-group">
                                 <label for="inputState">Status</label>
                                 <select id="inputState" class="form-control" name="status">
+                                    <option value="">
+                                        Select Status
+                                    </option>
                                     <option
                                         value="booked">
                                         Booked
@@ -101,9 +105,12 @@
                                 </select>
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group">
                                 <label for="inputState">Assigned To</label>
                                 <select id="inputState" class="form-control" name="assignedto">
+                                    <option value="">
+                                        Select Employee
+                                    </option>
                                     @foreach($arrObjEmployees as $employees)
                                         <option
                                             value="{{$employees->id}}">
@@ -196,7 +203,7 @@
 
 						var sub_category_id = $(this).data('sub_category_id');
 						$.ajax({
-							url: "/fill_sub_category",
+							url: "/search-category",
 							method: "POST",
 							data: {
 								"_token": "{{ csrf_token() }}",

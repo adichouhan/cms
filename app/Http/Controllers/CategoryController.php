@@ -107,4 +107,14 @@ class CategoryController extends Controller
         $objCategory->delete();
         return redirect('admin/subcategory/')->with('message', 'Sub-Category deleted Successfully');
     }
+
+    function searchCategory(Request $request){
+        $parentId=$request->category_id;
+        $subCategory=Category::where('id', $parentId)->whereNotNull('parent_id')->get();
+        $output='';
+        foreach ($subCategory as $item){
+            $output .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';
+        }
+        return $output;
+    }
 }

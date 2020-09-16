@@ -2,10 +2,8 @@
 @section('content')
 
         <div class="row ">
-            <div class="col-2">Go Back</div>
-            <div class="col-8 text-center">
-                <div class=""><h3>View Booked Assets</h3></div>
-                <div>please check options below</div>
+            <div class="col-12 text-center">
+                <h3>View Booked Assets</h3>
             </div>
             <div class="col-2"></div>
         </div>
@@ -37,7 +35,7 @@
                             <td>{{$objAsset->maerials}}</td>
                             <td>
                                 <a href="{{url('edit/asset',$objAsset->id)}}" class="btn btn-primary">Edit</a>
-                                <a href="{{url('delete/asset',$objAsset->id)}}" class="btn btn-dark">Delete</a>
+                                <a href="{{url('delete/asset',$objAsset->id)}}" class="btn btn-danger">Delete</a>
 
                             </td>
                         </tr>

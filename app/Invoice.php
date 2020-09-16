@@ -11,16 +11,17 @@ class Invoice extends Model
 
     public function complaint()
     {
-        $this->hasOne('App/Complaint', 'complaint', 'id');
+        return $this->hasOne(new Complaint(), 'complaint', 'id');
     }
 
-    public function getUserComplaints(){
-        return $this->complaint()->where('user_id', auth()->user()->id);
+    public function getUserComplaints()
+    {
+        return $this->complaint && $this->complaint->where('user_id', auth()->user()->id) ?? collect();
     }
 
     public function asset()
     {
-        $this->hasOne('App/Assets', 'asset', 'id');
+        return $this->hasOne('App/Assets', 'asset', 'id');
     }
 
     public function getUserAssets(){

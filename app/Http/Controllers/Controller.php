@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Assets;
 use App\AssetsProduct;
+use App\Boq;
 use App\Category;
 use App\Complaint;
 use App\Employee;
@@ -60,6 +61,9 @@ class Controller extends BaseController
             $objModel=Supplier::where('name', 'LIKE', '%' . $term . '%')->get();
         }
 
+        if($modelType == 'boq'){
+            $objModel=Boq::where('product_name', 'LIKE', '%' . $term . '%')->get();
+        }
         return response()->json($objModel);
     }
 

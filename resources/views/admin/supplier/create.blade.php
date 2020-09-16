@@ -28,11 +28,11 @@
                            id="email" placeholder="Ex. name@gmail.com">
                 </div>
 
-                <div class="form-group">
-                    <label for="extra_data">Extra Data</label>
-                    <textarea type="text" class="form-control" name="extra_data"
-                           id="extra_data" placeholder="Extra Data...."></textarea>
-                </div>
+                {{--<div class="form-group">--}}
+                    {{--<label for="extra_data">Extra Data</label>--}}
+                    {{--<textarea type="text" class="form-control" name="extra_data"--}}
+                           {{--id="extra_data" placeholder="Extra Data...."></textarea>--}}
+                {{--</div>--}}
 
                 <div class="form-group">
                     <label for="mobile_no">Supplier Mobile Number</label>

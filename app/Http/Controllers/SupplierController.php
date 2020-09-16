@@ -88,7 +88,8 @@ class SupplierController extends Controller
             'email_id' => 'required',
             'mobile_no'   => 'required',
         ]);
-        $objEmployee = Supplier::findorfail($request->id);
+
+        $objEmployee = Supplier::findorfail($request->id)->first();
         $objEmployee->name = $request->name;
         $objEmployee->email_id = $request->email_id;
         $objEmployee->mobile_no = $request->mobile_no;

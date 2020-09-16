@@ -79,7 +79,7 @@
                 var category_id = $(this).val();
                 var sub_category_id = $(this).data('sub_category_id');
                 $.ajax({
-                    url:"/fill_sub_category",
+                    url:"/search-category",
                     method:"POST",
                     data:{"_token": "{{ csrf_token() }}",
                         "category_id":category_id},
