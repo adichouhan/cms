@@ -57,14 +57,14 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/invoice/delete/{invoice}', 'InvoiceController@destroy');
     Route::post('/invoice/update/{invoice}', 'InvoiceController@update');
 
-    Route::get('/delivery', 'ChallanController@index');
-    Route::get('/delivery/create', 'ChallanController@create');
-    Route::get('/delivery/view/{id}', 'ChallanController@viewPdf');
-    Route::get('/delivery/download/{id}', 'ChallanController@downloadPdf');
-    Route::post('/delivery/store', 'ChallanController@store');
-    Route::get('/delivery/edit/{invoice}', 'ChallanController@edit');
-    Route::post('/delivery/delete/{invoice}', 'ChallanController@destroy');
-    Route::post('/delivery/update/{invoice}', 'ChallanController@update');
+    Route::get('/delivery',                     'ChallanController@index');
+    Route::get('/delivery/create',              'ChallanController@create');
+    Route::get('/delivery/view/{id}',           'ChallanController@viewPdf');
+    Route::get('/delivery/download/{id}',       'ChallanController@downloadPdf');
+    Route::post('/delivery/store',              'ChallanController@store');
+    Route::get('/delivery/edit/{invoice}',      'ChallanController@edit');
+    Route::get('/delivery/delete/{invoice}',   'ChallanController@delete');
+    Route::post('/delivery/update/{invoice}', ' ChallanController@update');
 
     Route::get('/quote',                'QuoteController@index');
     Route::get('/quote/create',         'QuoteController@create');

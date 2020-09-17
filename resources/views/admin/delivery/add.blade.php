@@ -51,11 +51,15 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td><input type="text" name="challan[0][product]" class="form-control item_product search"
-                                           data-type="product" data-count="0" id="product0"                                    />
+                                <td><input type="hidden" name="challan[0][product]" class="form-control item_product search"
+                                           data-type="product" data-count="0" id="product0" />
+                                    <input type="text" name="challan[0][product]" class="form-control item_product search"
+                                           data-type="product" data-count="0" id="product_text0" />
                                     <div id="productList0"></div>
                                 </td>
-                                <td><input type="number" name="challan[0][unit]"  class="form-control item_unit calculate price" id="unit0"  /></td>
+                                <td>
+                                    <input type="number" name="challan[0][unit]" class="form-control item_unit calculate price" id="unit0"/>
+                                </td>
                                  <td>
                                    <button type="button" class="add btn btn-primary">Add</button>
                                     <button type="button" class="remove btn btn-danger">Remove</button>
@@ -77,12 +81,14 @@
     </div>
     <script>
         $(document).ready(function () {
-            var count = 1;
+            var count = 0;
             $(document).on('click', '.add', function () {
                 count++;
                 var html = '';
                 html += '<tr class="addedSection">';
-                html += '<td><input type="text" name="challan[' + count + '][product]" class="form-control item_product search" data-type="product" data-count="'+count+'" id="product'+count+'"><div id="productList'+count+'"></td>';
+                html += '<td><input type="hidden" name="challan[' + count + '][product]" class="form-control item_product search" data-type="product" data-count="'+count+'" id="product'+count+'">' +
+                    '<input type="text" name="challan[' + count + '][product]" class="form-control item_product search" data-type="product" data-count="'+count+'" id="product_text'+count+'">' +
+                    '<div id="productList'+count+'"></td>';
                 html += '<td><input type="number" name="challan[' + count + '][unit]"   class="form-control item_unit calculate price" id="unit'+count+'"/></td>';
                 html += '<td><button type="button" id="[' + count + ']" class="btn btn-primary add">Add</button><button type="button" class="btn btn-danger remove">Remove</button></td></tr>';
                 $('tbody').append(html);
@@ -123,7 +129,7 @@
                     $(productListId).fadeIn();
                     if(data.length>0){
                     data.forEach(function (product) {
-                        htmlComplaint += '<li class="product" data-id="' + product.id + '" data-unit="' + product.product_unit + '" data-cost="' + product.product_cost + '">' + product.product_name + '</li> ';
+                        htmlComplaint += '<li class="product"  data-id="' + product.id + '" data-unit="' + product.product_unit + '" data-cost="' + product.product_cost + '">' + product.product_name + '</li> ';
                     })
                     }else{
                             htmlComplaint +='<li class="product"><a href="/admin/product/create">Add Product</a></li> ';
@@ -136,8 +142,8 @@
                 if(type =='supplier'){
                     $('#supplierList').fadeIn();
                     if(data.length>0){
-                        data.forEach(function (product) {
-                            htmlComplaint += '<li class="supplier" data-id="' + supplier.id + '">' + supplier.name + '</li> ';
+                        data.forEach(function (supplier) {
+                            htmlComplaint += '<li class="supplier" data-id="'+ supplier.id + '">' + supplier.name + '</li> ';
                         })
                     }else{
                         htmlComplaint +='<li class="supplier"><a href="/admin/supplier/create">Add Supplier</a></li> ';
@@ -158,9 +164,16 @@
                 $('#supplierList').fadeOut();
             });
 
+            $(document).on('click', 'li.product' , function () {
+                $('#product_text'+dataCount).val($(this).text());
+                $('#product'+dataCount).val($(this).data('id'));
+                $('#productList'+dataCount).fadeOut();
+            });
+
             $('#item_table tbody').on('keyup change',function(){
                 calc();
             });
+
             $('#tax').on('keyup change',function(){
                 calc_total();
             });

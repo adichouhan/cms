@@ -39,18 +39,21 @@ class ChallanController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'challan_id'      => 'required',
             'challan_date'    => 'required',
-            'challan'          => 'required',
         ]);
-        $objChallan = new Challan();
-        $objChallan->challan_id=$request->challan_id;
-        $objChallan->challan_date=$request->challan_date;
-        $objChallan->supplier_id=$request->supplier;
-        $objChallan->challan=json_encode($request->challan);
+
+        $objChallan                     = new Challan();
+        $objChallan->challan_id         = $request->challan_id;
+        $objChallan->challan_date       = $request->challan_date;
+        $objChallan->supplier_id        = $request->supplier;
+        $objChallan->challan            = ($request->challan);
         $objChallan->save();
-        $this->createPdf($request);
+
+//        $this->viewPdf($objChallan->challan_id );
+
         return redirect('/admin/delivery/')->with('message', 'Challan Created Successfully.');
     }
 
@@ -60,18 +63,18 @@ class ChallanController extends Controller
         $arrMix=[];
         $arrMix['challan_id']       = $objChallan->challan_id;
         $arrMix['challan_date']     = $objChallan->challan_date;
-        $arrMix['challan']          = json_encode($objChallan->challan);
+        $arrMix['challan']          = ($objChallan->challan);
         $pdf = PDF::loadView('admin.delivery.delivery-pdf', ['arrMix'=>$arrMix]);
         return $pdf->download('Challan'.$request->challan_id.'.pdf');
     }
 
-    public function viewPdf($id,$type = 'stream')
+    public function viewPdf($id,  $type = 'stream')
     {
         $objChallan=Challan::findorfail($id);
         $arrMix=[];
         $arrMix['challan_id']       = $objChallan->challan_id;
         $arrMix['challan_date']     = $objChallan->challan_date;
-        $arrMix['challan']          = json_encode($objChallan->challan);
+        $arrMix['challan']          = ($objChallan->challan);
         return view('admin.delivery.delivery-pdf', ['arrMix'=>$arrMix]);
     }
 
@@ -94,8 +97,8 @@ class ChallanController extends Controller
      */
     public function edit($id,Challan $challan)
     {
-        $objInvoice=Challan::findorfail($id);
-        return view('admin.delivery.edit',['objInvoice'=>$objInvoice]);
+        $objChallan=Challan::findorfail($id);
+        return view('admin.delivery.edit',['objChallan'=>$objChallan]);
 
     }
 
@@ -127,13 +130,14 @@ class ChallanController extends Controller
             'challan_date'          => 'required',
             'challan'          => 'required',
         ]);
+
         $objChallan = Challan::findorfail($id);
         $objChallan->challan_id=$request->challan_id;
         $objChallan->challan_date=$request->challan_date;
         $objChallan->supplier_id=$request->supplier;
         $objChallan->challan=json_encode($request->challan);
         $objChallan->save();
-        $this->createPdf($request);
+//        $this->createPdf($request);
         return redirect('/admin/delivery/')->with('message', 'Challan Updated Successfully.');
     }
 

@@ -15,19 +15,19 @@
                         </ul>
                     </div>
                 @endif
-                <form method="post" autocomplete="off" action="{{ url('/delivery/update/'.$objInvoice->id) }}" enctype="multipart/form-data">
+                <form method="post" autocomplete="off" action="{{ url('/delivery/update/'.$objChallan->id) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="invoice_id">Product name</label>
                             <input type="text" class="form-control" name="challan_id"
-                                   id="invoice_id" required value="{{$objInvoice->challan_id}}">
+                                   id="invoice_id" required value="{{$objChallan->challan_id}}">
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="invoice-date">Invoice Date</label>
                             <input type="date" required class="form-control" name="challan_date"
-                                   id="invoice-date" value="{{isset($objInvoice->challan_date)?($objInvoice->challan_date):''}}" placeholder="">
+                                   id="invoice-date" value="{{isset($objChallan->challan_date)?($objChallan->challan_date):''}}" placeholder="">
                         </div>
 
                         <div class="form-group col-md-4" id="complaint" >
@@ -50,10 +50,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach(json_decode($objInvoice->challan) as $index => $invoice)
+                            @foreach(json_decode($objChallan->challan , true) as $index => $challan)
                                 <tr>
-                                    <td><input name="challan[{{$index}}][product]" class="form-control item_product" value="{{$invoice->product}}" data-sub_category_id="0"/></td>
-                                    <td><input type="number" name="challan[{{$index}}][unit]"  data-count="0"  value="{{$invoice->unit}}" class="form-control item_unit calculate price" id="item_sub_category0"  /></td>'
+                                    <td><input name="challan[{{$index}}][product]" class="form-control item_product" value="{{ $challan['product'] }}" /></td>
+                                    <td><input type="number" name="challan[{{$index}}][unit]"  data-count="0"  value="{{ $challan['product'] }}" class="form-control item_unit calculate price" id="item_sub_category0"  /></td>'
                                     <td><button type="button" class="add btn btn-primary">Add</button>
                                         <button type="button" class="remove btn btn-danger">Remove</button>
                                     </td>
@@ -63,9 +63,11 @@
                         </table>
                     </div>
                     <br>
+
                     <div class="form-group">
                         <button class="form_submit btn btn-primary" >Save</button>
                     </div>
+
                 </form>
             </div>
         </div>
@@ -75,7 +77,7 @@
 
     <script>
         $(document).ready(function () {
-            var count = {!! count(json_decode($objInvoice->challan))>0?count(json_decode($objInvoice->challan)):0 !!};
+            var count = {!! count(json_decode($objChallan->challan))>0?count(json_decode($objChallan->challan)):0 !!};
 
             $(document).on('click', '.add', function () {
                 count++;
