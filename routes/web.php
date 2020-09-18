@@ -46,6 +46,9 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::post('/update/complaint/{complaint}', 'AdminComplaintsController@update');
 
     Route::get('/employee/availability/create', 'EmployeeAvailabilityController@create');
+    Route::get('/employee/availability/edit', 'EmployeeAvailabilityController@edit');
+    Route::post('/employee/availability/edit', 'EmployeeAvailabilityController@update');
+    Route::get('/employee/availability/delete', 'EmployeeAvailabilityController@delete');
     Route::post('/employee/availability/store', 'EmployeeAvailabilityController@store');
 
     Route::get('/invoice', 'InvoiceController@index');
