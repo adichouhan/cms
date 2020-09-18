@@ -2,7 +2,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Complaints</h3>
+            <h3 class="card-title">Sub Category List</h3>
         </div>
         <div align="row">
             <div class="col-md-10 col-sm-10"></div>

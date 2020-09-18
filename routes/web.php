@@ -20,14 +20,14 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/category',              'CategoryController@indexCategory');
     Route::post('/category/store',       'CategoryController@storeCategory');
     Route::post('/category/edit/{id}',   'CategoryController@postCategoryEdit');
-    Route::post('/category/delete/{id}', 'CategoryController@categoryDelete');
+    Route::get('/category/delete/{id}', 'CategoryController@categoryDelete');
 
     Route::get('/subcategory/create',      'CategoryController@createSubCategory');
     Route::get('/subcategory',             'CategoryController@indexSubCategory');
     Route::get('/subcategory/edit/{id}',   'CategoryController@subCategoryEdit');
     Route::post('/subcategory/store',      'CategoryController@storeSubCategory');
     Route::post('/subcategory/edit/{id}',  'CategoryController@postSubCategoryEdit');
-    Route::post('/subcategory/delete/{id}','CategoryController@subCategoryDelete');
+    Route::get('/subcategory/delete/{id}','CategoryController@subCategoryDelete');
 
 
     Route::get('/user',                 'UserController@index');

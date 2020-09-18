@@ -2,11 +2,14 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Complaints</h3>
+            <h3 class="card-title">Category List</h3>
         </div>
+
         <div align="left">
             <a href="{{ url('admin/category/create') }}" class="btn btn-info">Add category</a>
-            <a href="{{ url('admin/subcategory/') }}" class="btn btn-info">SubCategory</a>
+            @if($arrObjCategory->count() !=0)
+              <a href="{{ url('admin/subcategory/') }}" class="btn btn-info">SubCategory</a>
+            @endif
         </div>
         <!-- /.card-header -->
         <div class="card-body">

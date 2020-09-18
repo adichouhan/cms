@@ -186,7 +186,10 @@
                 html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger remove">Remove</button></div></div>';
                 $('#addsection').append(html);
             });
-
+            $(document).on('click', '.remove', function () {
+                $(this).closest('.addedSection').remove();
+                // $("div.addedSection").first().remove()
+            });
             $(document).on('keyup', '.search', function () {
                 var type = $(this).data('type');
                 var query = $(this).val();

@@ -97,13 +97,17 @@ class CategoryController extends Controller
     }
 
     function categoryDelete($id){
-        $objCategory = Category::where('id', $id)->whereNull('parent_id')->get();
+        $objCategory = Category::findOrFail($id);
         $objCategory->delete();
-        return redirect('admin/category/')->with('message', 'Sub-Category deleted Successfully');
+        $arrSubCategory = Category::where('parent_id', $id)->get();
+        foreach ($arrSubCategory as $objSubCategory){
+            $objSubCategory->delete();
+        }
+        return redirect('admin/category/')->with('message', 'Category and related Sub-Category deleted Successfully');
     }
 
     function subCategoryDelete($id){
-        $objCategory = Category::where('id', $id)->whereNotNull('parent_id')->get();
+        $objCategory = Category::findOrFail($id);
         $objCategory->delete();
         return redirect('admin/subcategory/')->with('message', 'Sub-Category deleted Successfully');
     }

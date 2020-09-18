@@ -15,6 +15,7 @@ class UserController extends Controller
     public function index()
     {
         $arrObjUsers = User::all();
+
         return view('admin.user.list', ['arrObjUsers'=>$arrObjUsers]);
     }
 
@@ -51,7 +52,7 @@ class UserController extends Controller
             $objUser->activation_status     = $request->activation_status;
         }
         $objUser->save();
-        return redirect('/login')->with('message', 'Registered Successfully');
+        return redirect('/admin/user')->with('message', 'Registered Successfully');
     }
 
     /**
