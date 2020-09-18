@@ -15,7 +15,9 @@ class EmployeeAvailabilityController extends Controller
      */
     public function index()
     {
-        //
+      $objEmployeeAvailability =  EmployeeAvailability::all();
+        return view('admin.employee.availability.list', ['arrEmployee'=>$objEmployeeAvailability]);
+
     }
 
     /**
@@ -25,8 +27,8 @@ class EmployeeAvailabilityController extends Controller
      */
     public function create()
     {
-       $arrEmployee=Employee::all();
-       return view('admin.employee.availability_status', ['arrEmployee'=>$arrEmployee]);
+       $arrEmployee = Employee::all();
+       return view('admin.employee.availability.create', ['arrEmployee'=>$arrEmployee]);
     }
 
     /**

@@ -36,7 +36,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Availble Status</label>
+                    <label>Available Status</label>
                     <select class="form-control" name="available_status" required>
                         <option>Select Availability</option>
                         <option value=1>Available</option>
