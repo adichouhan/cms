@@ -62,9 +62,9 @@
                                             @endif
                                     </td>
                                     <td>
-                                        <a href="{{url('admin/category/edit/'.$objSubCategory->id)}}"
+                                        <a href="{{url('admin/subcategory/edit/'.$objSubCategory->id)}}"
                                            class="btn btn-primary">Edit</a>
-                                        <a href="{{url('admin/category/delete/'.$objSubCategory->id)}}"
+                                        <a href="{{url('admin/subcategory/delete/'.$objSubCategory->id)}}"
                                            class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>

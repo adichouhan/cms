@@ -77,9 +77,12 @@ class CategoryController extends Controller
     }
 
     function subCategoryEdit($id){
-        $objSubCategory = Category::where('id', $id)->whereNotNull('parent_id')->first();
+        $objSubCategory = Category::findOrFail($id)->whereNotNull('parent_id')->first();
+
         if($objSubCategory->count() > 0 ){
-            return view('admin.category.subcategory.edit', ['objSubCategory' => $objSubCategory]);
+            $objParentName = Category::findOrFail($objSubCategory->parent_id);
+
+            return view('admin.category.subcategory.edit', ['objSubCategory' => $objSubCategory,'objParentName'=>$objParentName]);
         }
         return view('admin.category.subcategory.create');
     }

@@ -19,12 +19,12 @@
                         @csrf
                         <div class="form-group">
                             <label for="name">SubCategory Name*</label>
-                            <input type="text"  id="name" class="form-control" required value="{{@isset($objSubCategory->category_title) ? $objSubCategory->category_title : ''}}" name="subcategory_name" >
+                            <input type="text"  id="name" class="form-control" required value="{{isset($objSubCategory->category_title) ? $objSubCategory->category_title : ''}}" name="subcategory_name" >
                         </div>
 
                         <div class="form-group">
                             <label for="category">Category</label>
-                            <input type="text" id="category" data-type="category" class="search form-control">
+                            <input type="text" id="category" data-type="category" value="{{isset($objParentName->category_title) ? $objParentName->category_title : ''}}"class="search form-control">
                             <input type="hidden" id="categoryId" class="search" name="parent_id">
                             <div id="categoryList"></div>
                         </div>
