@@ -35,11 +35,6 @@
                                 </th>
 
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending" style="width: 207px;">
-                                    Assets Unique ID
-                                </th>
-
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 183px;">
                                     Location
                                 </th>
@@ -57,7 +52,7 @@
                                     Material
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
+                                    aria-label="CSS grade: activate to sort column ascending" style="width: 200px;">
                                     Action
                                 </th>
                             </tr>
@@ -68,26 +63,12 @@
                                 <tr role="row" class="odd">
                                     <td class="sorting_1">{{$objasset->id}}</td>
                                     <td>
-                                        <?php
-
-                                        if($objasset->product){
-                                            foreach ($objasset->product as $product)
-                                                {
-                                                    $objAssetProduct= \App\AssetsProduct::findorfail('id',$product);
-                                                    echo $objAssetProduct->product_name;
-                                                }
-                                        }else{
-                                            echo 'NA';
-                                        }
-                                            ?>
-                                    </td>
-                                    <td>
-                                        {{isset($objasset->assets_unique)?$objasset->assets_unique:'NA'}}
+                                        {{$objasset->title}}
                                     </td>
                                     <td>{{$objasset->location}}</td>
                                     <td>{{$objasset->expected_date}}</td>
                                     <td>{{$objasset->priority}}</td>
-                                    <td>{{$objasset->maerials}}</td>
+                                    <td>{{$objasset->materials}}</td>
                                     <td>
                                         <a href="{{url('admin/assets/edit/'.$objasset->id)}}"
                                            class="btn btn-primary">Edit</a>

@@ -35,7 +35,7 @@
                                     Complaints Unique ID
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Platform(s): activate to sort column ascending" style="width: 183px;">
+                                    aria-label="Platform(s): activate to sort column ascending" style="width: 150px;">
                                     Location
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
@@ -43,7 +43,7 @@
                                     style="width: 135px;">Expected Date
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
+                                    aria-label="CSS grade: activate to sort column ascending" style="width: 80px;">
                                     Priority
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
@@ -51,7 +51,7 @@
                                     Material
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
+                                    aria-label="CSS grade: activate to sort column ascending" style="width: 250px;">
                                     Action
                                 </th>
                             </tr>
@@ -67,11 +67,12 @@
                                                     <ul>
                                                         <?php
                                                         $category = \App\Category::where('id', $objComplaint->main)->first();
-                                                        $subCategory = \App\SubCategory::where('id', $objComplaint->sub)
+                                                        $subCategory = \App\Category::where('id', $objComplaint->sub)
                                                             ->first();
                                                         ?>
                                                         <li>Category :{{isset($category->category_title)?$category->category_title:''}}</li>
                                                         <li>SubCategory :{{isset($subCategory->subcategory_title)?$subCategory->subcategory_title:''}}</li>
+                                                        @if($objComplaint->others)<li>Others :{{isset($objComplaint->others)?$subCategory->others:''}}</li> @endif
                                                     </ul>
                                                 @endforeach
                                             @endif
@@ -84,7 +85,7 @@
                                         <td>
                                             <a href="{{url('admin/complaints/edit/'.$objComplaints->id)}}"
                                                class="btn btn-primary">Edit</a>
-                                            <a href="{{url('admin/complaints/delete/'.$objComplaints->id)}}"
+                                            <a class="btn btn-danger"  href="{{url('admin/complaints/delete/'.$objComplaints->id)}}"
                                             >Delete</a>
                                         </td>
                                     </tr>

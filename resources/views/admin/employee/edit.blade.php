@@ -1,8 +1,8 @@
 @extends('admin.admin_template')
 @section('content')
     <div class="container ">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="justify-content-center">
+            <div class="">
                 <div class="card">
                     <div class="card-header">Edit Employee Availabilty</div>
                     <div class="card-body">

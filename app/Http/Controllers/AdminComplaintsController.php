@@ -30,7 +30,7 @@ class AdminComplaintsController extends Controller
     public function create()
     {
         $arrObjUser = User::where('activation_status','1')->get();
-        $data = Category::all();
+        $data = Category::all()->whereNull('parent_id');
         $output='';
         foreach ($data as $item){
             $output .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';
@@ -49,17 +49,19 @@ class AdminComplaintsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'title'     => 'required|unique:complaints',
             'expdate'   => 'required',
             'priority'  => 'required',
             'complaint'  => 'required',
         ]);
         $count = Complaint::all()->count();
         $objComplaints = new Complaint();
+        $objComplaints->title = $request->title;
         $objComplaints->location = $request->location;
         $objComplaints->expected_date = $request->expdate;
         $objComplaints->complaints_unique = 'comp_'.$count;
         $objComplaints->priority = $request->priority;
-        $objComplaints->maerials = $request->material;
+        $objComplaints->materials = $request->material;
         $objComplaints->user_id  = $request->user;
         $objComplaints->complaints = json_encode($request->get('complaint'));
         $objComplaints->image = $request->file('image')->store('complaint');
@@ -98,17 +100,21 @@ class AdminComplaintsController extends Controller
     public function update($id, Request $request)
     {
         $request->validate([
+            'title'     => 'required|unique:complaints,title,'.$id,
             'expdate'   => 'required',
             'priority' => 'required',
             'complaint' => 'required',
         ]);
 
         $objComplaints = Complaint::findOrFail($id);
+        $objComplaints->title   = $request->title;
         $objComplaints->location = $request->location;
         $objComplaints->expected_date = $request->expdate;
         $objComplaints->priority = $request->priority;
-        $objComplaints->maerials = $request->material;
+        $objComplaints->materials = $request->material;
+        $objComplaints->work_status = $request->work_status;
         $objComplaints->user_id  = $request->user;
+        $objComplaints->reject_reason  = $request->reject_reason;
         $objComplaints->employee_id  = $request->assignedto;
         $objComplaints->complaints = json_encode($request->get('complaint'));
         if($request->file('image')){

@@ -11,8 +11,8 @@
         }
     </script>
     <div class="container ">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="justify-content-center">
+            <div class="">
                 <div class="card">
                     <div class="card-header">Create Asset</div>
                     <div class="card-body">
@@ -34,12 +34,19 @@
                                     </ul>
                                 </div>
                             @endif
-                <form method="post" action="{{ url('/admin/edit/assets/') }}" autocomplete="off" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/admin/assets/edit/'.$objAssets->id) }}" autocomplete="off" enctype="multipart/form-data">
                     @csrf
+
+                    <div class="form-group">
+                        <label for="title">Title </label>
+                        <input type="text" class="form-control"
+                               name="title" value="{{ isset($objAssets->title)?$objAssets->title:''}}" id="title" required placeholder="">
+                    </div>
+
                     <div class="form-group">
                         <label for="user">Users</label>
-                        <input type="text" id="user" data-type="user" value="{{isset($objUser->name)??$objUser->name}}" class="form-control search">
-                        <input type="hidden" id="userId" class="form-control search" value="{{isset($objUser->id)??$objUser->id}}" name="user">
+                        <input type="text" id="user" data-type="user" value="{{isset($objUser->name)?$objUser->name:$objUser->name}}" class="form-control search">
+                        <input type="hidden" id="userId" class="form-control search" value="{{isset($objUser->id)?$objUser->id:$objUser->id}}" name="user">
                         <div id="userList"></div>
                     </div>
 
@@ -50,12 +57,15 @@
                         <?php
                         $objDetail=\App\AssetsProduct::find($objProduct);
                         ?>
+                            <div class="addedSection">
                         <div class="form-group">
                             <label for="product">Product</label>
                             <input type="text" id="product_{{$index}}" data-type="assetProduct" data-count="{{$index}}" class="form-control search" value="{{$objDetail->product_name}}">
                             <input type="hidden" id="productId_{{$index}}" class="form-control search" value="{{$objProduct}}" name="product[{{$index}}]">
                             <div id="assetProductList_{{$index}}"></div>
                         </div>
+                                <div class="form-group"><button type="button" name="remove" class="btn btn-danger remove">Remove</button></div>
+                            </div>
                     @endforeach
 
                     <div id="addsection">
@@ -95,7 +105,7 @@
                     <div class="form-group">
                         <label for="material">Material(if any)</label>
                         <input type="text" class="form-control"
-                               name="material" id="material" placeholder="" value="{{isset($objAssets->maerials)?$objAssets->maerials:''}}">
+                               name="material" id="material" placeholder="" value="{{ isset($objAssets->materials) ? $objAssets->materials:''}}">
                     </div>
 
                     <div class="form-group">
@@ -107,52 +117,50 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="button"  class="btn btn-primary" onclick="myFunction()">Accept</button>
-                    </div>
-                    <div class="form-group">
-                        <button type="button" class="btn btn-primary reject" onclick="reject()">Reject</button>
+                        <button type="button"  class="btn btn-primary" onclick="accept()">Accept</button>
+                        <button type="button" class="btn btn-danger reject" onclick="reject()">Reject</button>
                     </div>
 
                     <div class="form-group" id="reject" style="display:none">
                         <label for="rejectreason">Reject Reason</label>
                         <input type="text" class="form-control"
-                               value="{{isset($objAssets->rejectReason)?$objAssets->rejectReason:''}}"
+                               value="{{ isset($objAssets->reject_reason) ? $objAssets->reject_reason : ''}}"
                                name="rejectreason" id="rejectreason" placeholder="">
                     </div>
                     <div id="accept" style="display: none">
-                        <div class="form-group col-md-4">
+                        <div class="form-group ">
                             <label for="inputState">Status</label>
-                            <select id="inputState" class="form-control" name="status">
+                            <select id="inputState" class="form-control" name="work_status">
                                 <option
-                                    value="booked" {{(isset($objAssets->status) && $objAssets->priority=='booked')? 'selected':'' }}>
+                                    value="booked" {{(isset($objAssets->work_status) && $objAssets->work_status=='booked')? 'selected':'' }}>
                                     Booked
                                 </option>
                                 <option
-                                    value="processed" {{(isset($objAssets->priority) && $objAssets->priority=='processed')? 'selected':'' }}>
+                                    value="processed" {{(isset($objAssets->work_status) && $objAssets->work_status=='processed')? 'selected':'' }}>
                                     Processed
                                 </option>
                                 <option
-                                    value="ongoing" {{(isset($objAssets->priority) && $objAssets->priority=='ongoing')? 'selected':'' }}>
+                                    value="ongoing" {{(isset($objAssets->work_status) && $objAssets->work_status=='ongoing')? 'selected':'' }}>
                                     OnGoing
                                 </option>
                                 <option
-                                    value="completed" {{(isset($objAssets->priority) && $objAssets->priority=='completed')? 'selected':'' }}>
+                                    value="completed" {{(isset($objAssets->work_status) && $objAssets->work_status=='completed')? 'selected':'' }}>
                                     Completed
                                 </option>
                                 <option
-                                    value="rejected" {{(isset($objAssets->priority) && $objAssets->priority=='rejected')? 'selected':'' }}>
+                                    value="rejected" {{(isset($objAssets->work_status) && $objAssets->work_status=='rejected')? 'selected':'' }}>
                                     Rejected
                                 </option>
                             </select>
                         </div>
 
-                        <div class="form-group col-md-4">
+                        <div class="form-group">
                             <label for="inputState">Assigned To</label>
                             <select id="inputState" class="form-control" name="assignedto">
                                 @foreach($arrEmployees as $employees)
                                     <option
                                         value="employee" {{(isset($employees->id))? 'selected':'' }}>
-                                        {{isset($employees->employee->name)}}
+                                        {{ isset($employees->employee->name) ? $employees->employee->name : ''}}
                                     </option>
                                 @endforeach
                             </select>

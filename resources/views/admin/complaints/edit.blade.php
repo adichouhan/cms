@@ -38,6 +38,12 @@
                             <div class="box-body">
                                 @csrf
 
+                                <div class="form-group">
+                                    <label for="title">Title </label>
+                                    <input type="text" class="form-control"
+                                           name="title" value="{{ $objComplaints->title }}" id="title" required placeholder="">
+                                </div>
+
                                 @foreach($arrComplaint as $index=>$complaint)
                                     <?php
                                     $count++;
@@ -77,9 +83,8 @@
                                                                         id="item_sub_category{{$count}}">
                                                 <option value="">Select Sub Category</option>{!! $selectedSubCat !!}</select>
                                         </div>
-
-                                        <div class="form-group"><input type="text" name="complaint[{{$count}}][name]"
-                                                                       class="form-control item_name"/></div>
+                                        <div class="form-group"><input type="text" name="complaint[{{$count}}][others]"
+                                                                    value="{{  $complaint->others }}"   class="form-control item_name"/></div>
 
                                         <div class="form-group">
                                             <button type="button" name="remove" class="btn btn-danger remove">Remove
@@ -103,7 +108,7 @@
                             <div class="form-group">
                                 <label for="location">Location(Branch Name)*</label>
                                 <input type="text" class="form-control" id="location"
-                                       value="{{isset($objComplaints->location)?$objComplaints->location:''}}" name="location"
+                                       value="{{ isset($objComplaints->location) ? $objComplaints->location : ''}}" name="location"
                                        placeholder="">
                             </div>
 
@@ -135,7 +140,7 @@
                             <div class="form-group">
                                 <label for="material">Material(if any)</label>
                                 <input type="text" class="form-control"
-                                       value="{{isset($objComplaints->maerials)?$objComplaints->maerials:''}}"
+                                       value="{{ isset($objComplaints->materials)?$objComplaints->materials:''}}"
                                        name="material" id="material" placeholder="">
                             </div>
 
@@ -152,31 +157,26 @@
                             <div class="form-group" id="reject" style="display:none">
                                 <label for="rejectreason">Reject Reason</label>
                                 <input type="text" class="form-control"
-                                       value="{{isset($objComplaints->rejectReason)?$objComplaints->rejectReason:''}}"
+                                       value="{{ isset($objComplaints->reject_reason) ? $objComplaints->reject_reason : ''}}"
                                        name="rejectreason" id="rejectreason" placeholder="">
                             </div>
                             <div id="accept" style="display: none">
                                 <div class="form-group">
                                     <label for="inputState">Status</label>
-                                    <select id="inputState" class="form-control" name="status">
-                                        <option
-                                                value="booked" {{(isset($objComplaints->status) && $objComplaints->priority=='booked')? 'selected':'' }}>
+                                    <select id="inputState" class="form-control" name="work_status">
+                                        <option  value="booked" {{(isset($objComplaints->work_status) && $objComplaints->work_status=='booked')? 'selected':'' }}>
                                             Booked
                                         </option>
-                                        <option
-                                                value="processed" {{(isset($objComplaints->priority) && $objComplaints->priority=='processed')? 'selected':'' }}>
+                                        <option value="processed" {{(isset($objComplaints->work_status) && $objComplaints->work_status=='processed')? 'selected':'' }}>
                                             Processed
                                         </option>
-                                        <option
-                                                value="ongoing" {{(isset($objComplaints->priority) && $objComplaints->priority=='ongoing')? 'selected':'' }}>
+                                        <option value="ongoing" {{(isset($objComplaints->work_status) && $objComplaints->work_status=='ongoing')? 'selected':'' }}>
                                             OnGoing
                                         </option>
-                                        <option
-                                                value="completed" {{(isset($objComplaints->priority) && $objComplaints->priority=='completed')? 'selected':'' }}>
+                                        <option value="completed" {{(isset($objComplaints->work_status) && $objComplaints->work_status=='completed')? 'selected':'' }}>
                                             Completed
                                         </option>
-                                        <option
-                                                value="rejected" {{(isset($objComplaints->priority) && $objComplaints->priority=='rejected')? 'selected':'' }}>
+                                        <option value="rejected" {{(isset($objComplaints->work_status) && $objComplaints->work_status=='rejected')? 'selected':'' }}>
                                             Rejected
                                         </option>
                                     </select>
@@ -186,7 +186,7 @@
                                     <label for="inputState">Assigned To</label>
                                     <select id="inputState" class="form-control" name="assignedto">
                                         @foreach($arrEmployees as $employees)
-                                            <option value="{{$employees->id}}" {{(isset($objComplaints->employee_id) && $objComplaints->employee_id== $employees->id)? 'selected':'' }}>
+                                            <option value="{{$employees->id}}" {{(isset($objComplaints->employee_id) && $objComplaints->employee_id == $employees->id)? 'selected':'' }}>
                                                 {{$employees->employee->name}}
                                             </option>
                                         @endforeach
@@ -214,8 +214,8 @@
                 count++;
                 var html = '';
                 html += '<div class="addedSection"> <div class="form-group"><select required name="complaint[' + count + '][main]" class="form-control item_category" data-sub_category_id="' + count + '"><option value="">Select Category</option>{!! $output !!}</select></td></div>';
-                html += '<div class="form-group"><select required name="complaint[' + count + '][sub]" class="form-control item_sub_category" id="item_sub_category' + count + '"><option value="">Select Sub Category</option></select></div>';
-                html += '<div class="form-group"><input type="text" name="complaint[' + count + '][name]" class="form-control item_name" /></div>';
+                html += '<div class="form-group"><select name="complaint[' + count + '][sub]" class="form-control item_sub_category" id="item_sub_category' + count + '"><option value="">Select Sub Category</option></select></div>';
+                html += '<div class="form-group"><input type="text" name="complaint[' + count + '][others]" class="form-control item_name" /></div>';
                 html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger remove">Remove</button></div></div>';
                 $('#addsection').append(html);
             });
@@ -254,7 +254,7 @@
                 var htmlComplaint = '';
                 htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
 
-                if(type='user'){
+                if(type == 'user'){
                     if(data.length>0) {
                         data.forEach(function (user) {
                             htmlComplaint += '<li class="user" data-id="' + user.id + '">' + user.name + '</li> ';

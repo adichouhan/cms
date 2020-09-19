@@ -71,7 +71,8 @@
                                                         ->first();
                                                     ?>
                                                     <li>Category :{{isset($category->category_title)?$category->category_title:''}}</li>
-                                                        <li>SubCategory :{{isset($subCategory->category_title)?$subCategory->category_title:''}}</li>
+                                                    <li>SubCategory :{{isset($subCategory->category_title)?$subCategory->category_title:''}}</li>
+                                                    @if($objComplaint->others)<li>Others :{{isset($objComplaint->others)?$subCategory->others:''}}</li> @endif
                                                     </ul>
                                                 @endforeach
                                         @endif
@@ -80,7 +81,7 @@
                                     <td>{{$objComplaints->location}}</td>
                                     <td>{{$objComplaints->expected_date}}</td>
                                     <td>{{$objComplaints->priority}}</td>
-                                    <td>{{$objComplaints->maerials}}</td>
+                                    <td>{{$objComplaints->materials}}</td>
                                     <td>
                                         <a href="{{url('admin/complaints/edit/'.$objComplaints->id)}}"
                                            class="btn btn-primary">Edit</a>

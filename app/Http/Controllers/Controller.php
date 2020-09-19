@@ -54,7 +54,7 @@ class Controller extends BaseController
         }
 
         if($modelType == 'category'){
-            $objModel=Category::where('category_title', 'LIKE', '%' . $term . '%')->get();
+            $objModel=Category::where('category_title', 'LIKE', '%' . $term . '%')->whereNull('parent_id')->get();
         }
 
         if($modelType == 'supplier'){

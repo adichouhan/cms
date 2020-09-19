@@ -116,6 +116,7 @@ Route::group([ 'namespace' => '\App\Http\Controllers\Admin', 'prefix'=>'admin'],
     Route::get('/assets/create',                 'AssetsController@create');
     Route::post('/assets/store',                 'AssetsController@store');
     Route::get('/assets/edit/{asset}',           'AssetsController@edit');
+    Route::post('/assets/edit/{asset}',           'AssetsController@update');
     Route::get('/assets/delete/{asset}',         'AssetsController@destroy');
 
     Route::get('/employee',                      'EmployeeController@index');

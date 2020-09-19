@@ -1,8 +1,8 @@
 @extends('admin.admin_template')
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="justify-content-center">
+            <div class="">
                 <div class="card">
                     <div class="card-header">Create Asset</div>
                     <div class="card-body">
@@ -17,12 +17,20 @@
                         @endif
                         <form method="post" action="{{ url('/admin/assets/store') }}" autocomplete="off" enctype="multipart/form-data">
                             @csrf
+
+                            <div class="form-group">
+                                <label for="title">Title </label>
+                                <input type="text" class="form-control"
+                                       name="title" id="title" required placeholder="">
+                            </div>
+
                             <div class="form-group">
                                 <label for="user">Users</label>
                                 <input type="text" id="user" data-type="user" class="form-control search">
                                 <input type="hidden" id="userId" class="form-control search" name="user">
                                 <div id="userList"></div>
                             </div>
+
 
                             <div class="form-group">
                                 <label for="product">Product</label>

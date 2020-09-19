@@ -51,18 +51,20 @@ class AssetsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'location' => 'required',
+            'title'     => 'required|unique:assets',
+            'location'  => 'required',
             'expdate'   => 'required',
-            'priority' => 'required',
-            'product' => 'required',
+            'priority'  => 'required',
+            'product'   => 'required',
         ]);
         $count = Assets::all()->count();
         $objAssest = new Assets();
+        $objAssest->title = $request->title;
         $objAssest->location = $request->location;
         $objAssest->expected_date = $request->expdate;
         $objAssest->assets_unique = 'asset_'.$count;
         $objAssest->priority = $request->priority;
-        $objAssest->maerials = $request->material;
+        $objAssest->materials = $request->material;
         $objAssest->user_id = $request->user;
         $objAssest->products  = json_encode($request->product);
         $objAssest->image       = $request->file('image')->store('assets');
@@ -105,23 +107,28 @@ class AssetsController extends Controller
      * @param  \App\Assets  $assets
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request)
+    public function update($id, Request $request)
     {
         $request->validate([
+            'title'     => 'required|unique:assets,title,'.$id,
             'location' => 'required',
             'expdate'   => 'required',
             'priority' => 'required',
         ]);
-        $objAssest = Assets::findOrFail($request->id);;
+        $objAssest = Assets::findOrFail($id);
         $objAssest->location = $request->location;
+        $objAssest->reject_reason = $request->reject_reason;
+        $objAssest->work_status = $request->work_status;
         $objAssest->expected_date = $request->expdate;
         $objAssest->priority = $request->priority;
-        $objAssest->maerials = $request->material;
+        $objAssest->materials = $request->material;
         $objAssest->user_id = $request->user;
         $objAssest->products  = $request->product;
-        $objAssest->image       = $request->file('image')->store('assets');
+        if($request->file('image')) {
+            $objAssest->image = $request->file('image')->store('assets');
+        }
         $objAssest->save();
-        return redirect('/view/assets')->with('success', 'Data Added successfully.');
+        return redirect('admin/assets')->with('success', 'Data Added successfully.');
     }
 
     /**
