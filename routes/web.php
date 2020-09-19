@@ -45,10 +45,11 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/complaints/delete/{complaint}', 'AdminComplaintsController@destroy');
     Route::post('/update/complaint/{complaint}', 'AdminComplaintsController@update');
 
+    Route::get('/employee/availability/',       'EmployeeAvailabilityController@index');
     Route::get('/employee/availability/create', 'EmployeeAvailabilityController@create');
-    Route::get('/employee/availability/edit', 'EmployeeAvailabilityController@edit');
-    Route::post('/employee/availability/edit', 'EmployeeAvailabilityController@update');
-    Route::get('/employee/availability/delete', 'EmployeeAvailabilityController@delete');
+    Route::get('/employee/availability/edit/{id}', 'EmployeeAvailabilityController@edit');
+    Route::post('/employee/availability/edit/{id}', 'EmployeeAvailabilityController@update');
+    Route::get('/employee/availability/delete/{id}', 'EmployeeAvailabilityController@delete');
     Route::post('/employee/availability/store', 'EmployeeAvailabilityController@store');
 
     Route::get('/invoice', 'InvoiceController@index');
@@ -169,7 +170,7 @@ Route::get('assets/invoices/download/{$id}',  'AssetsController@invoicesDownload
 Route::get('assets/quotes',  'AssetsController@quotes');
 Route::get('assets/quotes/view/{$id}',  'AssetsController@quotesShow');
 Route::get('assets/quotes/download/{$id}',  'AssetsController@quotesDownload');
-Route::post('search-category', 'CategoryController@searchCategory');
+Route::post('search-category', 'CategoryController@searchSubCategory');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

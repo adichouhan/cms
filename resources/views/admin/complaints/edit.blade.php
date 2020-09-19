@@ -53,15 +53,15 @@
 
                                     }
 
-                                    $data = \App\SubCategory::where('parent_id', $complaint->main)->get();
+                                    $data = \App\Category::where('parent_id', $complaint->main)->get();
 
                                     $selectedSubCat = '';
                                     foreach ($data as $item) {
                                         $selectedSubCat .= '<option value="' . $item["id"] . '"';
                                         if ($complaint->sub == $item["id"]) {
-                                            $selectedSubCat .= 'selected >' . $item["subcategory_title"] . '</option>';
+                                            $selectedSubCat .= 'selected >' . $item["category_title"] . '</option>';
                                         } else {
-                                            $selectedSubCat .= '>' . $item["subcategory_title"] . '</option>';
+                                            $selectedSubCat .= '>' . $item["category_title"] . '</option>';
                                         }
 
                                     }
@@ -95,9 +95,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="user">Users</label>
-                                <input type="text" id="user" value="{{isset($objUser->name)??$objUser->name}}" readonly>
-                                <input type="hidden"  id="userId" value="{{isset($objUser->id)??$objUser->id}}"  name="user">
+                                <input type="text"  class="form-control search" id="user" value="{{isset($objUser->name) ? $objUser->name : $objUser->name}}" readonly>
+                                <input type="hidden" class="form-control search"  id="userId" value="{{isset($objUser->id) ? $objUser->id : $objUser->id}}"  name="user">
                                 <div id="userList"></div>
+
                             </div>
                             <div class="form-group">
                                 <label for="location">Location(Branch Name)*</label>

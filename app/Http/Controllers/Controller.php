@@ -70,9 +70,7 @@ class Controller extends BaseController
     public function displayImage($pathname, $filename)
     {
         $path = storage_path('app/'.$pathname.'/'.$filename);
-//        if (!File::exists($path)) {
-//            abort(404);
-//        }
+
         $file = File::get($path);
         $type = File::mimeType($path);
         $response = Response::make($file, 200);
@@ -85,8 +83,6 @@ class Controller extends BaseController
     {
             $objComplaint= Complaint::orderBy('id', 'desc')->take(10)->get();
             $objAsset= Assets::orderBy('id', 'desc')->take(10)->get();
-//            $objDocument=Document::whereBetween('expiry_date', [Carbon::today(), Carbon::today()->add(2)])->get();
-//            dd($objDocument);
         return view('admin.layout.dashboard', ['arrObjComplaints'=>$objComplaint, 'arrObjAssets'=>$objAsset,]);
     }
 

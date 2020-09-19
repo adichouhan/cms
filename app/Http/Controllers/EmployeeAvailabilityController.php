@@ -15,9 +15,8 @@ class EmployeeAvailabilityController extends Controller
      */
     public function index()
     {
-      $objEmployeeAvailability =  EmployeeAvailability::all();
-        return view('admin.employee.availability.list', ['arrEmployee'=>$objEmployeeAvailability]);
-
+        $objEmployeeAvailability =  EmployeeAvailability::all();
+        return view('admin.employee.availability.list', ['arrObjEmployee'=>$objEmployeeAvailability]);
     }
 
     /**
@@ -41,15 +40,13 @@ class EmployeeAvailabilityController extends Controller
     {
         $request->validate([
             'employee' => 'required',
-            'onwork_status' => 'required',
-            'available_status' => 'required',
         ]);
         $objAvailability = new EmployeeAvailability();
         $objAvailability->employee_id=$request->employee;
         $objAvailability->available_status=$request->available_status;
         $objAvailability->onWork=$request->onwork_status;
         $objAvailability->save();
-        return redirect('/admin/employee/availability/create')->with('message', 'Employee created successfully');
+        return redirect('/admin/employee/availability')->with('message', 'Employee Availability created successfully');
     }
 
     /**
@@ -71,7 +68,14 @@ class EmployeeAvailabilityController extends Controller
      */
     public function edit($id, EmployeeAvailability $employeeAvailability)
     {
-        //
+        $arrEmployee = Employee::all();
+        $objEmployeeAvailability =  EmployeeAvailability::where('id', $id)->first();
+
+        if(!$objEmployeeAvailability){
+            return redirect('/admin/employee/availability');
+        }
+
+        return view('admin.employee.availability.edit', ['arrEmployee'=>$arrEmployee, 'objEmployeeAvailability' => $objEmployeeAvailability]);
     }
 
     /**
@@ -81,9 +85,17 @@ class EmployeeAvailabilityController extends Controller
      * @param  \App\EmployeeAvailability  $employeeAvailability
      * @return \Illuminate\Http\Response
      */
-    public function update($id,Request $request)
+    public function update($id, Request $request)
     {
-
+        $objEmployeeAvailability =  EmployeeAvailability::where('id', $id)->first();
+        $request->validate([
+            'employee' => 'required',
+        ]);
+        $objEmployeeAvailability->employee_id=$request->employee;
+        $objEmployeeAvailability->available_status=$request->available_status;
+        $objEmployeeAvailability->onWork=$request->onwork_status;
+        $objEmployeeAvailability->save();
+        return redirect('/admin/employee/availability')->with('message', 'Employee Availability created successfully');
     }
 
     /**
@@ -92,8 +104,14 @@ class EmployeeAvailabilityController extends Controller
      * @param  \App\EmployeeAvailability  $employeeAvailability
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EmployeeAvailability $employeeAvailability)
+    public function delete($id, EmployeeAvailability $employeeAvailability)
     {
-        //
+        $objEmployeeAvailability =  EmployeeAvailability::where('id', $id)->first();
+        if(!$objEmployeeAvailability){
+            return redirect('/admin/employee/availability');
+        }
+
+        $objEmployeeAvailability->delete();
+
     }
 }

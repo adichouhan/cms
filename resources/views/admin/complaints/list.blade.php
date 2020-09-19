@@ -24,15 +24,15 @@
                                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-sort="ascending"
                                     aria-label="Rendering engine: activate to sort column descending"
-                                    style="width: 160px;">Compleint ID
+                                    style="width: 60px;">Complaint ID
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">
                                     Complaints
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending" style="width: 207px;">
-                                    Complaints Unique ID
+                                    aria-label="Browser: activate to sort column ascending" style="width:100px;">
+                                    UID
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 183px;">
@@ -43,15 +43,15 @@
                                     style="width: 135px;">Expected Date
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
+                                    aria-label="CSS grade: activate to sort column ascending" style="width: 80px;">
                                     Priority
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
+                                    aria-label="CSS grade: activate to sort column ascending" style="width: 80px;">
                                     Material
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
+                                    aria-label="CSS grade: activate to sort column ascending" style="width: 200px;">
                                     Action
                                 </th>
                             </tr>
@@ -67,11 +67,11 @@
                                                     <ul>
                                                     <?php
                                                     $category = \App\Category::where('id', $objComplaint->main)->first();
-                                                    $subCategory = \App\SubCategory::where('id', $objComplaint->sub)
+                                                    $subCategory = \App\Category::where('id', $objComplaint->sub)
                                                         ->first();
                                                     ?>
                                                     <li>Category :{{isset($category->category_title)?$category->category_title:''}}</li>
-                                                        <li>SubCategory :{{isset($subCategory->subcategory_title)?$subCategory->subcategory_title:''}}</li>
+                                                        <li>SubCategory :{{isset($subCategory->category_title)?$subCategory->category_title:''}}</li>
                                                     </ul>
                                                 @endforeach
                                         @endif
@@ -84,7 +84,7 @@
                                     <td>
                                         <a href="{{url('admin/complaints/edit/'.$objComplaints->id)}}"
                                            class="btn btn-primary">Edit</a>
-                                        <a href="{{url('admin/complaints/delete/'.$objComplaints->id)}}"
+                                        <a class="btn btn-danger m-2" href="{{url('admin/complaints/delete/'.$objComplaints->id)}}"
                                            >Delete</a>
                                     </td>
                                 </tr>

@@ -23,7 +23,7 @@
 
                             <!-- /.box-header -->
                             <!-- form start -->
-                            <form method="post" action="{{url('/admin/employee/availability/store')}}"
+                            <form method="post" action="{{url('/admin/employee/availability/edit/'.$objEmployeeAvailability->id)}}"
                                   enctype="multipart/form-data">
                                 @csrf
                                 <div class="box-body">
@@ -32,7 +32,7 @@
                                         <select class="form-control" name="employee" required>
                                             <option>Select Employee</option>
                                             @foreach($arrEmployee as $employee)
-                                                <option value={{$employee->id}}>{{$employee->name}}</option>
+                                                <option @if($objEmployeeAvailability->employee_id == $employee->id) selected="selected"  @endif value={{$employee->id}}>{{$employee->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -40,8 +40,8 @@
                                         <label for="available_status">Available Status</label>
                                         <select id="available_status" class="form-control" name="available_status" required>
                                             <option>Select Availability</option>
-                                            <option value=1>Available</option>
-                                            <option value=0>UnAvailable</option>
+                                            <option @if($objEmployeeAvailability->available_status == 1) selected="selected" @endif value=1>Available</option>
+                                            <option  @if($objEmployeeAvailability->available_status == 0) selected="selected" @endif value=0>UnAvailable</option>
                                         </select>
                                     </div>
 
@@ -49,8 +49,8 @@
                                         <label for="onwork_status">OnWork Status</label>
                                         <select class="form-control" id="onwork_status" name="onwork_status" required>
                                             <option>Select Employee is Onwork</option>
-                                            <option value=1>yes</option>
-                                            <option value=0>no</option>
+                                            <option  @if($objEmployeeAvailability->onWork == 1) selected="selected" @endif value=1 >yes</option>
+                                            <option @if($objEmployeeAvailability->onWork == 0) selected="selected" @endif value=0 >no</option>
                                         </select>
                                     </div>
 

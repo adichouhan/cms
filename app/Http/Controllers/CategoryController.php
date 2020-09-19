@@ -115,9 +115,9 @@ class CategoryController extends Controller
         return redirect('admin/subcategory/')->with('message', 'Sub-Category deleted Successfully');
     }
 
-    function searchCategory(Request $request){
-        $parentId=$request->category_id;
-        $subCategory=Category::where('id', $parentId)->whereNotNull('parent_id')->get();
+    function searchSubCategory(Request $request){
+        $parentId = $request->category_id;
+        $subCategory=Category::where('parent_id', $parentId)->get();
         $output='';
         foreach ($subCategory as $item){
             $output .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';

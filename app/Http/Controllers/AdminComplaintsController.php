@@ -18,7 +18,7 @@ class AdminComplaintsController extends Controller
     public function index()
     {
         $arrObjComplaints = Complaint::all();
-        return view('admin.complaints.complaint_view',['arrObjComplaints' => $arrObjComplaints]);
+        return view('admin.complaints.list',['arrObjComplaints' => $arrObjComplaints]);
     }
 
 
@@ -91,8 +91,8 @@ class AdminComplaintsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Complaint  $complaint
+     * @param $id
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id, Request $request)

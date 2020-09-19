@@ -50,10 +50,9 @@
                             @foreach($arrObjEmployee as $data)
                                 <tr role="row" class="odd">
                                     <td class="sorting_1">{{$data->id}}</td>
-                                    <td>{{$data->name}}</td>
-                                    <td>{{$data->role}}</td>
-                                    <td>{{$data->email_id}}</td>
-                                    <td>{{$data->mobile_no}}</td>
+                                    <td>{{$data->employee->name}}</td>
+                                    <td>{{$data->availableStatus()}}</td>
+                                    <td>{{$data->workStatus()}}</td>
                                     <td>
                                         <a href="{{url('admin/employee/availability/edit/'.$data->id)}}"
                                            class="btn btn-primary">Edit</a>

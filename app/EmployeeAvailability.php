@@ -13,4 +13,12 @@ class EmployeeAvailability extends Model
     public function employee(){
         return $this->belongsTo(new Employee(), 'employee_id', 'id');
     }
+
+    public function availableStatus(){
+        return $this->available_status == 1 ? "Available" : "UnAvailable";
+    }
+
+    public function workStatus(){
+        return $this->onWork == 1 ? "Yes" : "No";
+    }
 }
