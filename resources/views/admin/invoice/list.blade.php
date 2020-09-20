@@ -47,7 +47,7 @@
                             @foreach($arrObjInvoices as  $objInvoice)
                                 <tr>
                                     <td>{{$objInvoice->id}}</td>
-                                    <td>{{isset($objInvoice->complaint)?$objInvoice->complaint:'NA'}}</td>
+                                    <td>{{ isset($objInvoice->getcomplaint) ? $objInvoice->getcomplaint->title:'NA'}}</td>
                                     <td>{{isset($objInvoice->asset)?$objInvoice->asset:'NA'}}</td>
                                     <td>{{$objInvoice->invoice_date}}</td>
                                     <td>

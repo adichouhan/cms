@@ -39,7 +39,7 @@
                                     style="width: 135px;">File Name
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
+                                    aria-label="CSS grade: activate to sort column ascending" style="width:200px;">
                                     Action
                                 </th>
                             </tr>
@@ -57,6 +57,8 @@
                                     <td>
                                         <a href="{{url('admin/document/edit/'.$objDocument->id)}}"
                                            class="btn btn-primary">Edit</a>
+                                        <a href="{{url('admin/document/delete/'.$objDocument->id)}}"
+                                           class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -88,8 +88,10 @@ class DocumentController extends Controller
         $objDocument = Document::findOrFail($request->id);
         $objDocument->name = $request->title;
         $objDocument->expiry_date = $request->expirydate;
+ if($request->hasFile('file')){
+     $objDocument->file = $request->file('file')->store('document');
+ }
 
-        $objDocument->file = $request->file('file')->store('document');
         $objDocument->save();
         return redirect('/admin/documents')->with('message', 'Documents Updated successfully.');
     }
@@ -100,7 +102,7 @@ class DocumentController extends Controller
      * @param  \App\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function destroy($id)
     {
            $objDocument = Document::findOrFail($id);
            $objDocument->delete();

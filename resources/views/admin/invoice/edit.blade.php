@@ -13,8 +13,8 @@
         });
     </script>
     <div class="container ">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="justify-content-center">
+            <div class="">
                 <div class="card">
                     <div class="card-header">Create Delivery Challan</div>
                     <div class="card-body">
@@ -44,7 +44,7 @@
                         <div class="form-group col-md-4">
                             <label for="complaint">Complaint</label>
                             <input type="text" class="form-control search" data-type="complaint"
-                                   id="complaint_text" value="{{isset($objCompOrAsset)?$objCompOrAsset->complaints_unique:''}}"  placeholder="Complaint" />
+                                   id="complaint_text" value="{{isset($objCompOrAsset)?$objCompOrAsset->title:''}}"  placeholder="Complaint" />
                             <div id="complaintList"></div>
                             <input type="hidden" class="form-control"   name="complaint"
                                    id="complaintVal" value="{{isset($objCompOrAsset)?$objCompOrAsset->id:''}}" placeholder="Complaint" />

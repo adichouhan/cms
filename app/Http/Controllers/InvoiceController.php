@@ -108,7 +108,7 @@ class InvoiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Invoice  $invoice
+     * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
@@ -130,8 +130,8 @@ class InvoiceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Invoice  $invoice
+     * @param $id
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id, Request $request)
@@ -151,17 +151,16 @@ class InvoiceController extends Controller
         }
         $objInvoice->invoice=json_encode($request->invoice);
         $objInvoice->save();
-        $this->createPdf($request);
         return redirect('admin/invoice')->with('message', 'Invoice Updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Invoice  $invoice
+     * @param $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function delete($id)
+    public function destroy($id)
     {
         $objInvoice = Invoice::findorfail($id);
         $objInvoice->delete();

@@ -95,7 +95,7 @@ class EmployeeAvailabilityController extends Controller
         $objEmployeeAvailability->available_status=$request->available_status;
         $objEmployeeAvailability->onWork=$request->onwork_status;
         $objEmployeeAvailability->save();
-        return redirect('/admin/employee/availability')->with('message', 'Employee Availability created successfully');
+        return redirect('/admin/employee/availability')->with('message', 'Employee Availability Updated successfully');
     }
 
     /**
@@ -110,8 +110,8 @@ class EmployeeAvailabilityController extends Controller
         if(!$objEmployeeAvailability){
             return redirect('/admin/employee/availability');
         }
-
         $objEmployeeAvailability->delete();
+        return redirect('/admin/employee/availability')->with('message', 'Employee Availability Deleted successfully');
 
     }
 }

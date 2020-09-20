@@ -30,11 +30,11 @@ class Controller extends BaseController
         $term = $request['query'];
 
         if($modelType == 'complaint'){
-            $objModel=Complaint::where('complaints_unique', 'LIKE', '%' . $term . '%')->get();
+            $objModel=Complaint::where('title', 'LIKE', '%' . $term . '%')->get();
         }
 
         if($modelType == 'asset'){
-            $objModel=Assets::where('assets_unique', 'LIKE', '%' . $term . '%')->get();
+            $objModel=Assets::where('title', 'LIKE', '%' . $term . '%')->get();
         }
 
         if($modelType == 'assetProduct'){

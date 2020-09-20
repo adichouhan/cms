@@ -55,7 +55,7 @@
                                         <a href="{{url('admin/supplier/edit/'.$data->id)}}"
                                            class="btn btn-primary">Edit</a>
                                         <a href="{{url('admin/supplier/delete/'.$data->id)}}"
-                                           class="btn btn-dark">Delete</a>
+                                           class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

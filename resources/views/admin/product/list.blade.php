@@ -54,11 +54,8 @@
                                     <td>{{$assetProduct->product_cost}}</td>
                                     <td>
                                         <a href="{{url('admin/product/edit/'.$assetProduct->id)}}" class="m-2 btn btn-primary">Edit</a>
-                                        <form action="{{url('admin/product/delete/'.$assetProduct->id)}}" class="d-inline form-inline" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">Delete</button>
-                                        </form>
+                                        <a href="{{url('admin/product/delete/'.$assetProduct->id)}}" class="m-2 btn btn-danger">Delete</a>
+
                                     </td>
                                 </tr>
 

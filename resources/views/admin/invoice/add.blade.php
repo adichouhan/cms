@@ -185,7 +185,7 @@
                 if (type == 'complaint') {
                     if (data.length > 0) {
                         data.forEach(function (complaints) {
-                            htmlComplaint += '<li class="comp" data-id="' + complaints.id + '">' + complaints.complaints_unique + '</li> ';
+                            htmlComplaint += '<li class="comp" data-id="' + complaints.id + '">' + complaints.title + '</li> ';
                         })
                     } else {
                         htmlComplaint += '<li class="comp" ><a href="/admin/complaints/create">Create New Complaints </a> </li> ';
@@ -199,7 +199,7 @@
                 if (type == 'asset') {
                     if (data.length > 0) {
                         data.forEach(function (assets) {
-                            htmlComplaint += '<li class="asset" data-id="' + assets.id + '">' + assets.assets_unique + '</li> ';
+                            htmlComplaint += '<li class="asset" data-id="' + assets.id + '">' + assets.title + '</li> ';
                         })
                     } else {
                         htmlComplaint += '<li class="asset" data-id="' + assets.id + '"><a href="/admin/asset/create"> Create New Asset</a> </li> ';

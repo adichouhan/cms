@@ -82,16 +82,16 @@ Route::group([ 'prefix' => 'admin' ], function() {
     Route::get('/products',                   'ProductsController@index');
     Route::get('/product/create',            'ProductsController@create');
     Route::post('/product/store',            'ProductsController@store');
-    Route::get('/edit/product/{product}',    'ProductsController@edit');
-    Route::post('/delete/product/{product}', 'ProductsController@destroy');
-    Route::post('/edit/product/{product}',   'ProductsController@update');
+    Route::get('/product/edit/{product}',    'ProductsController@edit');
+    Route::get('/product/delete/{product}', 'ProductsController@destroy');
+    Route::post('/product/edit/{product}',   'ProductsController@update');
 
     Route::get('/boq', 'BoqController@index');
     Route::get('/boq/create',               'BoqController@create');
     Route::post('/boq/store',               'BoqController@store');
     Route::get('/boq/edit/{document}',      'BoqController@edit');
     Route::get('/boq/delete/{document}',    'BoqController@destroy');
-    Route::post('/boq/update/{document}',   'BoqController@update');
+    Route::post('/boq/edit/{document}',   'BoqController@update');
 
     Route::get('/supplier',                     'SupplierController@index');
     Route::get('/supplier/create',              'SupplierController@create');

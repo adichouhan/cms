@@ -9,9 +9,9 @@ class Invoice extends Model
 {
     use SoftDeletes;
 
-    public function complaint()
+    public function getcomplaint()
     {
-        return $this->hasOne(new Complaint(), 'complaint', 'id');
+        return $this->hasOne(new Complaint(), 'id','complaint' );
     }
 
     public function getUserComplaints()

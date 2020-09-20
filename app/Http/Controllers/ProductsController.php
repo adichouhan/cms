@@ -52,8 +52,8 @@ class ProductsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Products  $products
-     * @return \Illuminate\Http\Response
+     * @param  \App\Products $products
+     * @return void
      */
     public function show(Products $products)
     {
@@ -76,8 +76,8 @@ class ProductsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Products  $products
+     * @param $id
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update($id, Request $request)
@@ -95,11 +95,10 @@ class ProductsController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Products  $products
+     * @param $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function delete($id)
+    public function destroy($id)
     {
         $objProduct=Products::findorfail($id);
         $objProduct->delete();

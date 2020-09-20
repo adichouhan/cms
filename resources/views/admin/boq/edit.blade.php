@@ -15,7 +15,7 @@
                                 </ul>
                             </div>
                         @endif
-                <form method="post" action="{{ url('/admin/boq/edit'.$objBoq->id) }}" autocomplete="off" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/admin/boq/edit/'.$objBoq->id) }}" autocomplete="off" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="title">Product Name</label>

@@ -103,7 +103,7 @@ class SupplierController extends Controller
      * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function delete($id)
+    public function destroy($id)
     {
         $objEmployee = Supplier::findorfail($id);
         $objEmployee->delete();
