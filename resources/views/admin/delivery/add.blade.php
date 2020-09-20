@@ -167,6 +167,7 @@
             $(document).on('click', 'li.product' , function () {
                 $('#product_text'+dataCount).val($(this).text());
                 $('#product'+dataCount).val($(this).data('id'));
+                $('#unit'+dataCount).val($(this).data('unit'));
                 $('#productList'+dataCount).fadeOut();
             });
 

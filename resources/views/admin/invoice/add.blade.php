@@ -96,7 +96,7 @@
                                                    class="form-control item_total" id="total0" readonly/></td>
                                         <td>
                                             <button type="button" class="add m-2 btn btn-primary">Add</button>
-                                            <button type="button" class="remove m-2 btn btn-danger">Remove</button>
+                                            <button type="button" disabled class="remove  m-2 btn btn-danger">Remove</button>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -214,10 +214,10 @@
                     $(productListId).fadeIn();
                     if (data.length > 0) {
                         data.forEach(function (product) {
-                            htmlComplaint += '<li class="product" data-id="' + product.id + '" data-unit="' + product.product_unit + '" data-cost="' + product.product_cost + '">' + product.product_name + '</li> ';
+                            htmlComplaint += '<li class="product" data-id="' + product.id + '" data-unit="' + product.product_unit + '" data-cost="' + product.product_rate + '">' + product.product_name + '</li> ';
                         })
                     } else {
-                        htmlComplaint += '<li class="product" data-id="' + product.id + '" data-unit="' + product.product_unit + '" data-cost="' + product.product_cost + '"><a href="/admin/boq/creaete">Create Product</a></li> ';
+                        htmlComplaint += '<li class="product"><a href="/admin/boq/create"> Create New Boq</a> </li> ';
                     }
                     var listId = '#productList' + dataCount;
 

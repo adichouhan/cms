@@ -55,9 +55,9 @@
                             <div class="form-group col-md-4">
                             <label for="assets">Assets</label>
                             <input type="text" class="form-control"
-                                   id="assets_text" value="{{isset($objCompOrAsset)?$objCompOrAsset->assets_unique:''}}" placeholder="Assets" >
+                                   id="assets_text" value="{{ isset($objCompOrAsset)?$objCompOrAsset->title:''}}" placeholder="Assets" >
 
-                            <input type="hidden" class="form-control"  value="{{isset($objCompOrAsset)?$objCompOrAsset->id:''}}" name="assets"
+                            <input type="hidden" class="form-control"  value="{{ isset($objCompOrAsset)?$objCompOrAsset->id:''}}" name="assets"
                                    id="assets" placeholder="Assets">
                             </div>
                         @endif
@@ -82,7 +82,7 @@
                                 <td><input name="invoice[{{$index}}][product]" data-type="boq" class="form-control item_product search" value="{{$invoice->product}}" data-count="{{$index}}" id="product{{$index}}" />
                                     <div id="productList{{$index}}"></div>
                                 </td>
-                                <td><input type="number" name="invoice[{{$index}}][unit]"  data-count="{{$index}}"  value="{{$invoice->unit}}" class="form-control item_unit calculate price" id="unit{{$index}}"  /></td>'
+                                <td><input type="number" name="invoice[{{$index}}][unit]"  data-count="{{$index}}"  value="{{$invoice->unit}}" class="form-control item_unit calculate price" id="unit{{$index}}"  /></td>
                                 <td><input type="number" name="invoice[{{$index}}][quantity]" data-count="{{$index}}" id="quantity{{$index}}" value="{{$invoice->quantity}}" class="form-control qty item_quantity calculate" /></td>
                                 <td>
                                     <input type="number" name="invoice[{{$index}}][total]" class="form-control item_total" value="{{(int)$invoice->unit*(int)$invoice->quantity}}" id="total{{$index}}" readonly /></td>
@@ -175,7 +175,7 @@
                 if(type =='complaint'){
                     if(data.length>0){
                         data.forEach(function (complaints) {
-                            htmlComplaint += '<li class="comp" data-id="' + complaints.id + '">' + complaints.complaints_unique + '</li> ';
+                            htmlComplaint += '<li class="comp" data-id="' + complaints.id + '">' + complaints.title + '</li> ';
                         })
                     }else{
                         htmlComplaint += '<li class="comp" ><a href="/admin/complaints/create">Create New Complaints </a> </li> ';

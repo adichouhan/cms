@@ -49,7 +49,7 @@ class ChallanController extends Controller
         $objChallan->challan_id         = $request->challan_id;
         $objChallan->challan_date       = $request->challan_date;
         $objChallan->supplier_id        = $request->supplier;
-        $objChallan->challan            = ($request->challan);
+        $objChallan->challan            = json_encode($request->challan);
         $objChallan->save();
 
 //        $this->viewPdf($objChallan->challan_id );
