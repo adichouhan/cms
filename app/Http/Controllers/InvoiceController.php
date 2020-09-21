@@ -17,6 +17,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
+
        $arrObjInvoices=Invoice::all();
        return view('admin.invoice.list', ['arrObjInvoices'=>$arrObjInvoices]);
     }
@@ -83,10 +84,11 @@ class InvoiceController extends Controller
         $objInvoice = new Invoice();
         $objInvoice->invoice_id=$request->invoice_id;
         $objInvoice->invoice_date=$request->invoice_date;
-        if(isset($request->complaint)){
+
+        if($request->complaint != null){
             $objInvoice->complaint=$request->complaint;
-        }else{
-            $objInvoice->asset=$request->asset;
+        }else if($request->assets != null){
+            $objInvoice->asset=$request->assets;
         }
         $objInvoice->invoice=json_encode($request->invoice);
         $objInvoice->save();

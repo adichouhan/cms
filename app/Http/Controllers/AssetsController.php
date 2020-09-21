@@ -140,7 +140,7 @@ class AssetsController extends Controller
      */
     public function invoices()
     {
-        $arrObjInvoices=Invoice::all();
+        $arrObjInvoices=Invoice::whereNotNull('asset')->get();
         return view('front.assets.invoice.list', ['arrObjInvoices' => $arrObjInvoices]);
     }
 

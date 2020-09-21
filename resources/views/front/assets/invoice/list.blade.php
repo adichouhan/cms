@@ -36,7 +36,7 @@
                             <td>{{isset($objInvoice->asset)?$objInvoice->asset:'NA'}}</td>
                             <td>{{$objInvoice->invoice_date}}</td>
                             <td>
-                                <a href="{{url('assets/invoice/view/'.$objInvoice->id)}}" class="btn btn-primary">View</a>
+                                <a href="{{url('assets/invoice/view/'.$objInvoice->id)}}" target="_blank" class="btn btn-primary">View</a>
                             </td>
                         </tr>
                     @endforeach

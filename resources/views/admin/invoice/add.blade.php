@@ -241,7 +241,7 @@
             });
 
             $(document).on('click', 'li.asset', function () {
-                $('#asset_text').val($(this).text());
+                $('#assets_text').val($(this).text());
                 $('#asset').val($(this).data('id'));
                 $('#assetList').fadeOut();
             });
