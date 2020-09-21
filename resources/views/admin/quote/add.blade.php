@@ -203,10 +203,10 @@
                     $(productListId).fadeIn();
                     if(data.length>0) {
                         data.forEach(function (product) {
-                            htmlComplaint += '<li class="product" data-id="' + product.id + '" data-unit="' + product.product_unit + '" data-cost="' + product.product_cost + '">' + product.product_name + '</li> ';
+                            htmlComplaint += '<li class="product" data-id="' + product.id + '" data-unit="' + product.product_unit + '" data-cost="' + product.product_rate + '">' + product.product_name + '</li> ';
                         })
                     }else{
-                        htmlComplaint += '<li class="product" data-id="' + product.id + '" data-unit="' + product.product_unit + '" data-cost="' + product.product_cost + '"><a href="/admin/boq/creaete">Create Product</a></li> ';
+                        htmlComplaint += '<li class="product""><a href="/admin/boq/creaete">Create Product</a></li> ';
                     }
                     var listId = '#productList'+dataCount;
 
@@ -286,7 +286,6 @@
             $(document).on('click', '.remove', function () {
                 $(this).closest('.addedSection').remove();
             });
-
 
         });
     </script>

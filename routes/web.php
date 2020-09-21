@@ -12,7 +12,7 @@
 */
 
 
-Route::group([ 'prefix' => 'admin' ], function() {
+Route::group([ 'prefix' => 'admin' , 'middleware' => 'admin'], function() {
     Route::get('/', 'Controller@dashboard');
 
     Route::get('/category/create',       'CategoryController@createCategory');
@@ -116,7 +116,7 @@ Route::group([ 'namespace' => '\App\Http\Controllers\Admin', 'prefix'=>'admin'],
     Route::get('/assets/create',                 'AssetsController@create');
     Route::post('/assets/store',                 'AssetsController@store');
     Route::get('/assets/edit/{asset}',           'AssetsController@edit');
-    Route::post('/assets/edit/{asset}',           'AssetsController@update');
+    Route::post('/assets/edit/{asset}',          'AssetsController@update');
     Route::get('/assets/delete/{asset}',         'AssetsController@destroy');
 
     Route::get('/employee',                      'EmployeeController@index');
@@ -128,50 +128,52 @@ Route::group([ 'namespace' => '\App\Http\Controllers\Admin', 'prefix'=>'admin'],
     Route::get('/employee/delete/{id}',          'EmployeeController@destroy');
 });
 
-Route::get('/complaints', function () {
-    return view('complaints');
-})->middleware('auth');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/register/user/create',                 'RegisterController@create');
+    Route::post('/register/user/create',                'RegisterController@store');
+    Route::get('/complaints',                           function () { return view('complaints'); });
 
-Route::post('/fetch', 'Controller@fetch');
-Route::get('/images/{pathname}/{filename}', 'Controller@displayImage');
+    Route::post('/fetch', 'Controller@fetch');
+    Route::get('/images/{pathname}/{filename}',     'Controller@displayImage');
+    Route::get('/book',                             'CategoryController@bookForm');
 
-Route::get('/register/user/create', 'RegisterController@create')->middleware('auth');
+    Route::post('/register/complaint',              'ComplaintController@postComplaints');
+    Route::get('/register/complaint',               'ComplaintController@create');
+    Route::get('/complaints/',                      'ComplaintController@getViewComplaints');
+    Route::get('/complaints/edit/{complaint}',      'ComplaintController@getEditComplain');
+    Route::post('complaint/update/{complaint}',     'ComplaintController@update');
+    Route::get('complaints/delete/{complaint}',     'ComplaintController@destroy');
+    Route::get('/my-complaints',                    'ComplaintController@getComplaintsView');
+    Route::get('complaint/invoices',                'ComplaintController@invoices');
 
-Route::post('/register/user/create', 'RegisterController@store')->middleware('auth');
+    Route::get('complaint/invoice/download/{$id}', 'ComplaintController@invoicesDownload');
+    Route::get('complaint/quotes',                  'ComplaintController@quotes');
+    Route::get('complaint/quotes/view/{$id}',       'ComplaintController@quotesShow');
+    Route::get('complaint/quotes/download/{$id}',   'ComplaintController@quotesDownload');
 
-Route::get('/', function () {return view('service_book');})->middleware('auth');
+    Route::get('/assets',                           'AssetsController@index');
+    Route::get('/book-asset',                       'AssetsController@create');
+    Route::post('/register/asset',                  'AssetsController@store');
+    Route::get('/edit/asset/{asset}',               'AssetsController@edit');
+    Route::get('/delete/asset/{asset}',             'AssetsController@destroy');
+    Route::post('/update/asset',                    'AssetsController@update');
+    Route::get('/view/assets',                      'AssetsController@show');
+    Route::get('/my-assets',                        'AssetsController@getAssetView');
+    Route::get('assets/invoices',                   'AssetsController@invoices');
 
-Route::get('/book', 'CategoryController@bookForm')->middleware('auth');
+    Route::get('assets/invoice/view/{$id}',         'AssetsController@invoiceView');
+    Route::get('assets/invoices/download/{$id}',    'AssetsController@invoicesDownload');
+    Route::get('assets/quotes',                     'AssetsController@quotes');
+    Route::get('assets/quotes/view/{$id}',          'AssetsController@quotesShow');
+    Route::get('assets/quotes/download/{$id}',      'AssetsController@quotesDownload');
 
-Route::post('/register/complaint', 'ComplaintController@postComplaints')->middleware('auth');
-Route::get('/register/complaint', 'ComplaintController@create')->middleware('auth');
+    Route::post('search-category', 'CategoryController@searchSubCategory');
 
-Route::get('/complaints/', 'ComplaintController@getViewComplaints')->middleware('auth');
-Route::get('/complaints/edit/{complaint}', 'ComplaintController@getEditComplain')->middleware('auth');
-Route::post('complaint/update/{complaint}', 'ComplaintController@update')->middleware('auth');
-Route::get('/my-complaints', 'ComplaintController@getComplaintsView')->middleware('auth');
-Route::get('complaint/invoices',  'ComplaintController@invoices');
-Route::get('complaint/invoices/view/{$id}',  'ComplaintController@invoicesShow');
-Route::get('complaint/invoices/download/{$id}',  'ComplaintController@invoicesDownload');
-Route::get('complaint/quotes',  'ComplaintController@quotes');
-Route::get('complaint/quotes/view/{$id}',  'ComplaintController@quotesShow');
-Route::get('complaint/quotes/download/{$id}',  'ComplaintController@quotesDownload');
+});
 
-Route::get('/assets',               'AssetsController@index')->middleware('auth');
-Route::get('/book-asset',           'AssetsController@create')->middleware('auth');
-Route::post('/register/asset',      'AssetsController@store')->middleware('auth');
-Route::get('/edit/asset/{asset}',   'AssetsController@edit')->middleware('auth');
-Route::get('/delete/asset/{asset}', 'AssetsController@destroy')->middleware('auth');
-Route::post('/update/asset',            'AssetsController@update')->middleware('auth');
-Route::get('/view/assets',                'AssetsController@show')->middleware('auth');
-Route::get('/my-assets',                  'AssetsController@getAssetView')->middleware('auth');
-Route::get('assets/invoices',             'AssetsController@invoices');
-Route::get('assets/invoices/view/{$id}',  'AssetsController@invoicesShow');
-Route::get('assets/invoices/download/{$id}',  'AssetsController@invoicesDownload');
-Route::get('assets/quotes',  'AssetsController@quotes');
-Route::get('assets/quotes/view/{$id}',  'AssetsController@quotesShow');
-Route::get('assets/quotes/download/{$id}',  'AssetsController@quotesDownload');
-Route::post('search-category', 'CategoryController@searchSubCategory');
+Route::get('/', function () {return view('service_book');});
+Route::get('complaint/invoice/view/{$id}',      'ComplaintController@invoicesShow');
+
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

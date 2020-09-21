@@ -16,7 +16,7 @@ class Invoice extends Model
 
     public function getUserComplaints()
     {
-        return $this->complaint && $this->complaint->where('user_id', auth()->user()->id) ?? collect();
+        return $this->getcomplaint && $this->getcomplaint->where('user_id', auth()->user()->id) ?? collect();
     }
 
     public function asset()

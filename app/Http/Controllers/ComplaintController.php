@@ -6,6 +6,7 @@ use App\Category;
 use App\Complaint;
 use App\Invoice;
 use App\Quote;
+use App\User;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -19,7 +20,7 @@ class ComplaintController extends Controller
      */
     public function index()
     {
-        return view('complaints.view_complaints');
+        return view('complaints.front.list');
     }
 
     /**
@@ -29,12 +30,12 @@ class ComplaintController extends Controller
      */
     public function create()
     {
-        $data = Category::all();
+        $data = Category::all()->whereNull('parent_id');
         $output = '';
         foreach ($data as $item) {
             $output .= '<option value="' . $item["id"] . '">' . $item["category_title"] . '</option>';
         }
-        return view('Book_Complaint', ['output' => $output]);
+        return view('front.complaints.create', ['output' => $output]);
     }
 
     /**
@@ -46,20 +47,24 @@ class ComplaintController extends Controller
     public function postComplaints(Request $request)
     {
         $request->validate([
+            'title'     => 'required|unique:complaints',
             'location' => 'required',
             'expdate'   => 'required',
             'complaint'   => 'required',
         ]);
         $count = Complaint::all()->count();
         $objComplaints = new Complaint();
+        $objComplaints->title = $request->title;
         $objComplaints->location = $request->location;
         $objComplaints->complaints_unique = 'comp_'.$count;
         $objComplaints->expected_date = $request->expdate;
         $objComplaints->priority = $request->priority;
-        $objComplaints->maerials = $request->material;
+        $objComplaints->materials = $request->material;
         $objComplaints->user_id  = auth()->user()->id;
         $objComplaints->complaints = json_encode($request->get('complaint'));
-        $objComplaints->image = $request->file('image')->store('complaint');
+        if($request->hasFile('image')){
+            $objComplaints->image = $request->file('image')->store('complaint');
+        }
         $objComplaints->save();
         return redirect('/complaints')->with('message', 'Complaints Created Successfully.');
     }
@@ -72,9 +77,9 @@ class ComplaintController extends Controller
      */
     public function getViewComplaints()
     {
-        $userId=auth()->user()->id;
+        $userId = auth()->user()->id;
         $arrObjComplaints = Complaint::where('user_id', $userId)->get();
-        return view('complaints.view_complaint', ['arrObjComplaints' => $arrObjComplaints]);
+        return view('front.complaints.list', ['arrObjComplaints' => $arrObjComplaints]);
     }
 
     /**
@@ -91,7 +96,7 @@ class ComplaintController extends Controller
         foreach ($data as $item) {
             $output .= '<option value="' . $item["id"] . '">' . $item["category_title"] . '</option>';
         }
-        return view('complaints.edit', ['output' => $output, 'objComplaints' => $objComplaint, 'type' => 'edit']);
+        return view('front.complaints.edit', ['output' => $output, 'objComplaints' => $objComplaint, 'type' => 'edit']);
 
     }
 
@@ -105,6 +110,7 @@ class ComplaintController extends Controller
     public function update($id, Request $request)
     {
         $request->validate([
+            'title'     => 'required|unique:complaints,title,'.$id,
             'location' => 'required',
             'expdate'   => 'required',
             'complaint'   => 'required',
@@ -113,13 +119,14 @@ class ComplaintController extends Controller
         $objComplaints->location = $request->location;
         $objComplaints->expected_date = $request->expdate;
         $objComplaints->priority = $request->priority;
-        $objComplaints->maerials = $request->material;
+        $objComplaints->materials = $request->material;
         $objComplaints->user_id = auth()->user()->id;
         $objComplaints->complaints = json_encode($request->get('complaint'));
-//        dd($objComplaints);
-//        $objComplaints->image = $request->file('image')->store('complaint');
+        if($request->hasFile('image')){
+            $objComplaints->image = $request->file('image')->store('complaint');
+        }
         $objComplaints->save();
-        return redirect('complaint/')->with('message', 'Complaint Updated Successfully.');
+        return redirect('complaints/')->with('message', 'Complaint Updated Successfully.');
     }
 
     public function getComplaintsView()
@@ -133,11 +140,11 @@ class ComplaintController extends Controller
      * @param \App\Complaint $complaint
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function delete($id)
+    public function destroy($id)
     {
         $objComplaints = Complaint::findorfail($id);
         $objComplaints->delete();
-        return redirect('complaint/')->with('message', 'Complaint Deleted Successfully.');
+        return redirect('complaints/')->with('message', 'Complaint Deleted Successfully.');
     }
 
     /**
@@ -145,8 +152,10 @@ class ComplaintController extends Controller
      */
     public function invoices()
     {
-        $arrObjInvoices=Invoice::all();
-        return view('complaints.invoice.list', ['arrObjInvoices'=>$arrObjInvoices]);
+        $userId          = auth()->user()->id;
+        $objUser         = User::with('complaint.invoices')->where('id', $userId)->first();
+        $arrObjInvoices  = $objUser->complaint->invoices;
+        return view('front.complaints.invoice.list', ['arrObjInvoices'  =>  $arrObjInvoices]);
     }
 
     /**
@@ -173,7 +182,7 @@ class ComplaintController extends Controller
     /**
      *Invoices list
      */
-    public function invoiceView($id)
+    public function invoicesShow($id)
     {
         $arrObjInvoices=Invoice::findorfail($id);
         $arrMix=[];
@@ -196,7 +205,7 @@ class ComplaintController extends Controller
     public function quotes()
     {
         $arrObjQuotes=Quote::with('getUserComplaints')->get();
-        return view('complaints.quote.list', ['arrObjQuotes'=>$arrObjQuotes]);
+        return view('front.complaints.quote.list', ['arrObjQuotes'=>$arrObjQuotes]);
     }
 
     /**

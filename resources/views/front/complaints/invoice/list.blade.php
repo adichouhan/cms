@@ -30,13 +30,14 @@
                     </thead>
                     <tbody>
                     @if($arrObjInvoices->count() > 0)
+                        @dd();
                         @foreach($arrObjInvoices as  $objInvoice)
                             <tr>
                                 <td>{{$objInvoice->id}}</td>
                                 <td>{{isset($objInvoice->complaint)?$objInvoice->complaint:'NA'}}</td>
                                 <td>{{$objInvoice->invoice_date}}</td>
                                 <td>
-                                    <a href="{{url('invoice/view/'.$objInvoice->id)}}" class="btn btn-primary">View</a>
+                                    <a href="{{url('complaint/invoice/view/'.$objInvoice->id)}}" class="btn btn-primary">View</a>
                                 </td>
                             </tr>
                         @endforeach

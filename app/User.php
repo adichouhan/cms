@@ -42,6 +42,6 @@ class User extends Authenticatable
 
     public function complaint()
     {
-        $this->hasMany('App/Complaint', 'id', 'user_id');
+       return  $this->belongsTo(new Complaint(), 'id', 'user_id');
     }
 }

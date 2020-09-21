@@ -116,6 +116,7 @@ class AssetsController extends Controller
             'priority' => 'required',
         ]);
         $objAssest = Assets::findOrFail($id);
+        $objAssest->title = $request->title;
         $objAssest->location = $request->location;
         $objAssest->reject_reason = $request->reject_reason;
         $objAssest->work_status = $request->work_status;

@@ -21,7 +21,7 @@ class AssetsController extends Controller
     public function index()
     {
         $arrObjAssets = Assets::all();
-        return view('assets.view_assets',['arrObjAssets' => $arrObjAssets]);
+        return view('front.assets.list',['arrObjAssets' => $arrObjAssets]);
     }
 
     /**
@@ -32,7 +32,7 @@ class AssetsController extends Controller
     public function create()
     {
         $arrObjProduct= AssetsProduct::all();
-        return view('assets.book_asset',['type' => '', 'arrObjProduct'=>$arrObjProduct]);
+        return view('front.assets.create',['type' => '', 'arrObjProduct'=>$arrObjProduct]);
     }
 
     /**
@@ -44,19 +44,21 @@ class AssetsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'title'     => 'required|unique:assets',
             'location' => 'required',
             'expdate'   => 'required',
             'priority' => 'required',
         ]);
         $count = Assets::all()->count();
         $objAssest = new Assets();
+        $objAssest->title = $request->title;
         $objAssest->location = $request->location;
         $objAssest->assets_unique = 'asset_'.$count;
         $objAssest->expected_date = $request->expdate;
         $objAssest->priority = $request->priority;
-        $objAssest->maerials = $request->material;
+        $objAssest->materials = $request->material;
         $objAssest->user_id = auth()->user()->id;
-        $objAssest->products  = $request->product;
+        $objAssest->products  = json_encode($request->product);
         $objAssest->image       = $request->file('image')->store('assets');
         $objAssest->save();
         return redirect('assets')->with('message', 'Assets Created Successfully.');
@@ -71,7 +73,7 @@ class AssetsController extends Controller
     public function show(Assets $assets)
     {
         $arrObjAssets = Assets::all();
-        return view('assets.view_assets',['arrObjAssets' => $arrObjAssets]);
+        return view('front.assets.list',['arrObjAssets' => $arrObjAssets]);
     }
 
     /**
@@ -84,7 +86,7 @@ class AssetsController extends Controller
     {
         $objAssets = Assets::findOrFail($id);
         $arrObjProduct= AssetsProduct::all();
-        return view('assets.book_asset',['objAssets' => $objAssets ,'arrObjProduct' =>$arrObjProduct,'type' => 'edit']);
+        return view('front.assets.create',['objAssets' => $objAssets ,'arrObjProduct' =>$arrObjProduct,'type' => 'edit']);
     }
 
     /**
@@ -97,17 +99,21 @@ class AssetsController extends Controller
     public function update(Request $request)
     {
         $request->validate([
+            'title'     => 'required|unique:assets,title,'.$request->id,
             'expdate'   => 'required',
             'priority' => 'required',
             'product' => 'required',
         ]);
-        $objAssest = Assets::findOrFail($request->id);
-        $objAssest->location = $request->location;
-        $objAssest->expected_date = $request->expdate;
-        $objAssest->priority = $request->priority;
-        $objAssest->maerials = $request->material;
-        $objAssest->products  = $request->product;
-        $objAssest->image       = $request->file('image')->store('assets');
+        $objAssest                      = Assets::findOrFail($request->id);
+        $objAssest->title               = $request->title;
+        $objAssest->location            = $request->location;
+        $objAssest->expected_date       = $request->expdate;
+        $objAssest->priority            = $request->priority;
+        $objAssest->materials            = $request->material;
+        $objAssest->products            = $request->product;
+        if($request->file('image')) {
+            $objAssest->image = $request->file('image')->store('assets');
+        }
         $objAssest->save();
         return redirect('/assets')->with('message', 'Assets Added successfully.');
     }
@@ -118,7 +124,7 @@ class AssetsController extends Controller
      * @param  \App\Assets  $assets
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function delete($id)
+    public function destroy($id)
     {
         $data = Assets::findOrFail($id);
         $data->delete();
@@ -135,7 +141,7 @@ class AssetsController extends Controller
     public function invoices()
     {
         $arrObjInvoices=Invoice::all();
-        return view('assets.invoice.list', ['arrObjInvoices' => $arrObjInvoices]);
+        return view('front.assets.invoice.list', ['arrObjInvoices' => $arrObjInvoices]);
     }
 
     /**
@@ -177,6 +183,7 @@ class AssetsController extends Controller
         }else{
             $arrMix['asset'] = $arrObjInvoices->asset;
         }
+
         return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
     }
 
@@ -186,7 +193,7 @@ class AssetsController extends Controller
     public function quotes()
     {
         $arrObjQuotes=Quote::with('getUserAssets')->get();
-        return view('assets.quote.list', ['arrObjQuotes'=>$arrObjQuotes]);
+        return view('front.assets.quote.list', ['arrObjQuotes'=>$arrObjQuotes]);
     }
 
     /**

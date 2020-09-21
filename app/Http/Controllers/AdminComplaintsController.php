@@ -121,7 +121,15 @@ class AdminComplaintsController extends Controller
             $objComplaints->image = $request->file('image')->store('complaint');
         }
         $objComplaints->save();
+
         return redirect('admin/complaints')->with('message','Complaints Updated Successfully');
     }
 
+
+
+    public function destroy($id){
+        $objAssetProduct=Complaint::findOrFail($id);
+        $objAssetProduct->delete();
+        return  redirect('/admin/assets')->with('message', 'Complaints  deleted successfully');
+    }
 }

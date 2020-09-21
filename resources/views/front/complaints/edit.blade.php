@@ -24,14 +24,20 @@
                 ?>
                     <form method="post" action="{{ url('complaint/update/'.$objComplaints->id) }}" enctype="multipart/form-data">
                         @csrf
+
+                        <div class="form-group">
+                            <label for="title">Title </label>
+                            <input type="text" class="form-control"
+                                   name="title" value="{{ $objComplaints->title }}" id="title" required placeholder="">
+                        </div>
+
                         <div class="box-body">
-                            <div id="addsection">
 
                             @foreach($arrComplaint as $index=>$complaint)
                                 <?php
 
                                 $count++;
-                                $data = \App\Category::all();
+                                $data = \App\Category::all()->whereNull('parent_id');
                                 $selectedCat = '';
                                 foreach ($data as $item) {
                                     $selectedCat .= '<option value="' . $item["id"] . '"';
@@ -43,43 +49,40 @@
 
                                 }
 
-                                $data = \App\SubCategory::where('parent_id', $complaint->main)->get();
-
+                                $data = \App\Category::where('parent_id', $complaint->main)->get();
                                 $selectedSubCat = '';
                                 foreach ($data as $item) {
                                     $selectedSubCat .= '<option value="' . $item["id"] . '"';
                                     if ($complaint->sub == $item["id"]) {
-                                        $selectedSubCat .= 'selected >' . $item["subcategory_title"] . '</option>';
+                                        $selectedSubCat .= 'selected >' . $item["category_title"] . '</option>';
                                     } else {
-                                        $selectedSubCat .= '>' . $item["subcategory_title"] . '</option>';
+                                        $selectedSubCat .= '>' . $item["category_title"] . '</option>';
                                     }
                                 }
 
                                 ?>
-                            <div class="addedSection">
-                                    <div class="form-group">
-                                    <select name="complaint[{{$count}}][main]"
-                                            class="form-control item_category"
-                                            data-sub_category_id="{{$count}}">
-                                        <option value="">Select Category</option>{!! $selectedCat !!}</select>
-                                    </div>
-                                    <div class="form-group"><select name="complaint[{{$count}}][sub]" class="form-control item_sub_category"
-                                                 id="item_sub_category{{$count}}">
-                                            <option value="">Select Sub Category</option>{!! $selectedSubCat !!}</select>
-                                    </div>
+                                    <div class="addedSection">
+                                        <div class="form-group"><select  required name="complaint[{{$count}}][main]"
+                                                                         class="form-control item_category"
+                                                                         data-sub_category_id="{{$count}}">
+                                                <option value="">Select Category</option>{!! $selectedCat !!}</select>
+                                        </div>
+                                        <div class="form-group"><select name="complaint[{{$count}}][sub]" class="form-control item_sub_category"
+                                                                        id="item_sub_category{{$count}}">
+                                                <option value="">Select Sub Category</option>{!! $selectedSubCat !!}</select>
+                                        </div>
+                                        <div class="form-group"><input type="text" name="complaint[{{$count}}][others]"
+                                                                       value="{{  $complaint->others }}"   class="form-control item_name"/></div>
 
-                                    <div class="form-group"><input type="text" name="complaint[{{$count}}][name]"
-                                                class="form-control item_name"/></div>
-                                    <div>
-                                    <div class="form-group">
-                                        <button type="button"  class="btn btn-danger btn-xs remove">Remove
-                                        </button>
+                                        <div class="form-group">
+                                            <button type="button" name="remove" class="btn btn-danger remove">Remove
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
                             @endforeach
 
-                            </div>
+                                <div id="addsection">
+                                </div>
 
                             <button type="button" class="btn btn-dark add" >Add Issue</button>
 
@@ -99,13 +102,13 @@
 
                             <div class="form-group">
                                 <label for="date">Expected Date</label>
-                                <input class="form-control" id="date" name="expdate" placeholder="" type="datetime"
-                                       value="{{date("m/d/Y h:i:s A ",strtotime($objComplaints->expected_date))}}">
+                                <input class="form-control" id="date" name="expdate" placeholder="" type="datetime-local"
+                                       value="{{\Carbon\Carbon::parse($objComplaints->expected_date)->format('Y-m-d\TH:i')}}">
                             </div>
 
                             <div class="form-group">
                                 <label for="material">Materials</label>
-                                <input type="text" class="form-control"  name="material" id="material" placeholder="" value="{{$objComplaints->maerials}}">
+                                <input type="text" class="form-control"  name="material" id="material" placeholder="" value="{{$objComplaints->materials}}">
                             </div>
 
 
@@ -132,16 +135,17 @@
             $(document).on('click', '.add', function(){
                 count++;
                 var html = '';
-                html += '<div  class="form-group"><select name="complaint['+count+'][main]" class="form-control item_category" data-sub_category_id="'+count+'"><option value="">Select Category</option>{!! $output !!}</select></td> </div>';
+                html += '<div class="addedSection"><div  class="form-group"><select name="complaint['+count+'][main]" class="form-control item_category" data-sub_category_id="'+count+'"><option value="">Select Category</option>{!! $output !!}</select></td> </div>';
                 html += '<div  class="form-group"><select name="complaint['+count+'][sub]" class="form-control item_sub_category" id="item_sub_category'+count+'"><option value="">Select Sub Category</option></select></div>';
-                html += '<div class="addedSection"> <div  class="form-group"><input type="text" name="complaint['+count+'][name]" class="form-control item_name" /> </div>';
+                html += '<div  class="form-group"><input type="text" name="complaint['+count+'][others]" class="form-control item_name" /> </div>';
                 html += '<div  class="form-group"><button type="button" name="remove" class="btn btn-danger btn-xs remove">Remove</button></div></div>';
                 $('#addsection').append(html);
             });
 
-            $(document).on('click', '.remove', function(){
-                // $(this).closest('.addedSection').remove();
-                $("div.addedSection").first().remove()
+
+            $(document).on('click', '.remove', function () {
+                $(this).closest('.addedSection').remove();
+                // $("div.addedSection").first().remove()
             });
             $(document).on('change', '.item_category', function(){
                 var category_id = $(this).val();

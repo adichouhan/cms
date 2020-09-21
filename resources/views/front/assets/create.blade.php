@@ -30,19 +30,34 @@
                             @csrf
                             <input type="hidden"  id="id" name="id"  value="{{$objAssets->id}}">
                             <div class="form-group">
-                                <button type="button" class="btn btn-dark add">Add Product</button>
+                                <label for="title">Title </label>
+                                <input type="text" class="form-control"
+                                       name="title" value="{{ $objAssets->title }}" id="title" required placeholder="">
                             </div>
+
                             @foreach($arrProduct as $index=>$objProduct)
+
                                 <?php
-                                $objDetail=\App\AssetsProduct::find($objProduct);
+                                    $objDetail=\App\AssetsProduct::find($objProduct);
                                 ?>
-                                <div class="form-group">
+
+                                <div class="addedSection">
+                                    <div class="form-group">
                                     <label for="product">Product</label>
                                     <input type="text" id="product_{{$index}}" data-type="assetProduct" data-count="{{$index}}" class="form-control search" value="{{$objDetail->product_name}}">
                                     <input type="hidden" id="productId_{{$index}}" class="form-control search" value="{{$objProduct}}" name="product[{{$index}}]">
                                     <div id="assetProductList_{{$index}}"></div>
+                                    </div>
+                                    <div class="form-group"><button type="button" name="remove" class="btn btn-danger remove">Remove</button></div>
                                 </div>
                             @endforeach
+
+                            <div id="addsection">
+                            </div>
+
+                            <div class="form-group">
+                                <button type="button" class="btn btn-dark add">Add Product</button>
+                            </div>
 
                             <div class="form-group">
                                 <label for="location">Location(Branch Name)*</label>
@@ -69,19 +84,19 @@
 
                             <div class="form-group">
                                 <label for="date">Expected Date</label>
-                                <input type="datetime" class="form-control" name="expdate"
-                                       id="date" placeholder="" value="{{date("m-d-Y h:i:s",strtotime(isset($objAssets->expected_date)?$objAssets->expected_date:''))}}">
+                                <input type="datetime-local" class="form-control" name="expdate"
+                                       id="date" placeholder="" value="{{\Carbon\Carbon::parse($objAssets->expected_date)->format('Y-m-d\TH:i')}}">
                             </div>
 
                             <div class="form-group">
                                 <label for="material">Material(if any)</label>
                                 <input type="text" class="form-control"
-                                       name="material" id="material" placeholder="" value="{{isset($objAssets->maerials)?$objAssets->maerials:''}}">
+                                       name="material" id="material" placeholder="" value="{{isset($objAssets->materials)?$objAssets->materials:''}}">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleFormControlFile1">photo upload</label>
-                                <input type="file" name="image" value="{{ isset($objAssets->image)?$objAssets->image:'' }}"/>
+                                <input type="file" name="image" value="{{ isset($objAssets->image) ? $objAssets->image:'' }}"/>
                                 @if($objAssets->image)
                                     <img src="{{url('/images/'.$objAssets->image)}}" class="img-thumbnail" width="100"/>
                                 @endif
@@ -90,15 +105,24 @@
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </form>
+
                 @else
+
                     <form method="post"  autocomplete="off" action="{{ url('register/asset') }}" enctype="multipart/form-data">
                         <div class="box-body">
                             @csrf
+
                             <div class="form-group">
-                                <label for="product">Product</label>
-                                <input type="text" id="product" data-type="assetProduct" class="form-control search">
-                                <input type="hidden" id="productId" class="form-control search" name="product">
-                                <div id="assetProductList"></div>
+                                <label for="title">Title </label>
+                                <input type="text" class="form-control"
+                                       name="title"  id="title" required placeholder="">
+                            </div>
+
+                            <div id="addsection">
+                            </div>
+
+                            <div class="form-group">
+                                <button type="button" class="btn btn-dark add">Add Product</button>
                             </div>
 
                             <div class="form-group">
@@ -146,10 +170,10 @@
             $(document).on('click', '.add', function () {
                 count++
                 var html = '';
-                html += '<div class="form-group addedSection"><label for="product">Product</label><input type="text" id="product_'+count+'" data-type="assetProduct"  data-count="'+count+'"  class="form-control search">'
+                html += '<div class="addedSection"><div class="form-group"><label for="product">Product</label><input type="text" id="product_'+count+'" data-type="assetProduct"  data-count="'+count+'"  class="form-control search">'
                 html += '<input type="hidden" id="productId_'+count+'" class="form-control search" name="product['+count+']">'
-                html += '<div id="assetProductList_'+count+'"></div>';
-                html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger btn-xs remove">Remove</button></div></div>';
+                html += '<div id="assetProductList_'+count+'"></div></div>';
+                html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger remove">Remove</button></div></div>';
                 $('#addsection').append(html);
             });
 
@@ -190,11 +214,10 @@
                     })
                 }
                 if (type == 'assetProduct') {
-
                     data.forEach(function (product) {
                         htmlComplaint += '<li class="product" data-id="' + product.id + '">' + product.product_name + '</li> ';
-                        $('#assetProductList').children().remove();
-                        $('#assetProductList').append(htmlComplaint);
+                        $('#assetProductList_'+countList).children().remove();
+                        $('#assetProductList_'+countList).append(htmlComplaint);
                     })
                 }
             }
@@ -205,12 +228,17 @@
                 $('#userList').fadeOut();
             });
 
+            $(document).on('click', '.remove', function () {
+                $(this).closest('.addedSection').remove();
+                // $("div.addedSection").first().remove()
+            });
+
             $(document).on('click', 'li.product', function () {
                 var productcont="#product_"+count;
                 var productIdcont="#productId_"+count;
                 $(productcont).val($(this).text());
                 $(productIdcont).val($(this).data('id'));
-                $(productId).fadeOut();
+                $('#assetProductList_'+countList).fadeOut();
             });
         });
     </script>

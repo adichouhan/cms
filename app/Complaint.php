@@ -12,6 +12,16 @@ class Complaint extends Model
 
     public function user()
     {
-        $this->hasOne('App/User', 'user_id', 'id');
+        return $this->hasOne('App/User', 'user_id', 'id');
     }
+
+    public function invoices()
+    {
+        return $this->hasMany(new Invoice(), 'complaint', 'id');
+    }
+
+    public function getUserInvoices(){
+        return $this->where('user_id', auth()->user()->id)->invoices;
+    }
+
 }

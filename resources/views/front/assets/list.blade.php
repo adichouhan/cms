@@ -32,7 +32,7 @@
                             <td>{{$objAsset->location}}</td>
                             <td>{{$objAsset->expected_date}}</td>
                             <td>{{$objAsset->priority}}</td>
-                            <td>{{$objAsset->maerials}}</td>
+                            <td>{{$objAsset->materials}}</td>
                             <td>
                                 <a href="{{url('edit/asset',$objAsset->id)}}" class="btn btn-primary">Edit</a>
                                 <a href="{{url('delete/asset',$objAsset->id)}}" class="btn btn-danger">Delete</a>

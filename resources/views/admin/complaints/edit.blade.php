@@ -47,7 +47,7 @@
                                 @foreach($arrComplaint as $index=>$complaint)
                                     <?php
                                     $count++;
-                                    $data = \App\Category::all();
+                                    $data = \App\Category::all()->whereNull('parent_id');
                                     $selectedCat = '';
                                     foreach ($data as $item) {
                                         $selectedCat .= '<option value="' . $item["id"] . '"';

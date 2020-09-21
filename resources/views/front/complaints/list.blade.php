@@ -3,9 +3,8 @@
         <div class="text-center">
                 <div class="text-center"><h3>View Booked Complaints</h3></div>
             </div>
-        <div class="row pt-5">
-            <div class="col-2"></div>
-            <div class="col-8">
+        <div class="container pt-5">
+
 
                 <table id="example2" class="table table-bordered table-striped dataTable" role="grid"
                        aria-describedby="example1_info">
@@ -28,28 +27,25 @@
                                     <td>
                                         @if(json_decode($objComplaint->complaints) != NULL || json_decode($objComplaint->complaints) != '')
                                             @foreach(json_decode($objComplaint->complaints) as $index =>$objComplain)
-
+                                                <ul>
                                                 <?php
                                                 $category = \App\Category::where('id', $objComplain->main)->first();
-                                                $subCategory = \App\SubCategory::where('id', $objComplain->sub)
-                                                    ->first();
+                                                $subCategory = \App\Category::where('id', $objComplain->sub)->first();
                                                 ?>
-                                                <div>{{$index}}.<span>Category :</span>{{isset($category->category_title)?$category->category_title:''}}</div>
-                                                <div><span>Sub Category :</span>{{isset($subCategory->subcategory_title)?$subCategory->subcategory_title:''}}</div>
+                                               {{$index}}. Category :</span>{{ isset($category->category_title)?$category->category_title:''}}
+                                                  <div>SubCategory : {{ isset($subCategory->category_title)?$subCategory->category_title:''}} </div>
+                                                @if($objComplaint->others)Others :{{isset($objComplaint->others)?$subCategory->others:''}}@endif
+                                                </ul>
                                             @endforeach
                                         @endif
                                     </td>
                                     <td>{{$objComplaint->location}}</td>
                                     <td>{{$objComplaint->expected_date}}</td>
                                     <td>{{$objComplaint->priority}}</td>
-                                    <td>{{$objComplaint->maerials}}</td>
+                                    <td>{{$objComplaint->materials}}</td>
                                     <td>
                                         <a href="/complaints/edit/{{$objComplaint->id}}" class="btn btn-primary">Edit</a>
-                                        <form action="" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">Delete</button>
-                                        </form>
+                                        <a href="/complaints/delete/{{$objComplaint->id}}" class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
