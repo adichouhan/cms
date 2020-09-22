@@ -71,8 +71,8 @@
                                                             ->first();
                                                         ?>
                                                         <li>Category :{{isset($category->category_title)?$category->category_title:''}}</li>
-                                                        <li>SubCategory :{{isset($subCategory->subcategory_title)?$subCategory->subcategory_title:''}}</li>
-                                                        @if($objComplaint->others)<li>Others :{{isset($objComplaint->others)?$subCategory->others:''}}</li> @endif
+                                                        <li>SubCategory :{{isset($subCategory->category_title)?$subCategory->category_title:''}}</li>
+                                                        @if($objComplaint->others)<li>Others :{{isset($objComplaint->others) ? $objComplaint->others:''}}</li> @endif
                                                     </ul>
                                                 @endforeach
                                             @endif
@@ -81,7 +81,7 @@
                                         <td>{{$objComplaints->location}}</td>
                                         <td>{{$objComplaints->expected_date}}</td>
                                         <td>{{$objComplaints->priority}}</td>
-                                        <td>{{$objComplaints->maerials}}</td>
+                                        <td>{{$objComplaints->materials}}</td>
                                         <td>
                                             <a href="{{url('admin/complaints/edit/'.$objComplaints->id)}}"
                                                class="btn btn-primary">Edit</a>
@@ -102,47 +102,47 @@
                 </div>
             </div>
 
-            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-12">
-                            <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
-                                   aria-describedby="example1_info">
+                            <table id="example2" class="table table-bordered table-striped dataTable" role="grid"
+                                   aria-describedby="example2_info">
                                 <thead>
                                 <tr role="row">
-                                    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                                         aria-sort="ascending"
                                         aria-label="Rendering engine: activate to sort column descending"
                                         style="width: 160px;">Assets ID
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                                         aria-label="Browser: activate to sort column ascending" style="width: 207px;">
                                         Assets
                                     </th>
 
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                                         aria-label="Browser: activate to sort column ascending" style="width: 207px;">
                                         Assets Unique ID
                                     </th>
 
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                                         aria-label="Platform(s): activate to sort column ascending" style="width: 183px;">
                                         Location
                                     </th>
 
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                                         aria-label="Engine version: activate to sort column ascending"
                                         style="width: 135px;">Expected Date
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                                         aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
                                         Priority
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                                         aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
                                         Material
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                        aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="CSS grade: activate to sort column ascending" style="width:200px;">
                                         Action
                                     </th>
                                 </tr>
@@ -172,12 +172,12 @@
                                             <td>{{$objasset->location}}</td>
                                             <td>{{$objasset->expected_date}}</td>
                                             <td>{{$objasset->priority}}</td>
-                                            <td>{{$objasset->maerials}}</td>
+                                            <td>{{$objasset->materials}}</td>
                                             <td>
                                                 <a href="{{url('admin/assets/edit/'.$objasset->id)}}"
                                                    class="btn btn-primary">Edit</a>
                                                 <a href="{{url('admin/assets/delete/'.$objasset->id)}}"
-                                                   class="btn btn-primary">Delete</a>
+                                                   class="btn btn-danger">Delete</a>
 
                                             </td>
                                         </tr>
@@ -196,7 +196,6 @@
                 </div>
         </div>
         <!-- /.card-body -->
-
 
     </div>
 @endsection

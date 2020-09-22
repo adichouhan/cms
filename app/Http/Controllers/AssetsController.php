@@ -72,7 +72,8 @@ class AssetsController extends Controller
      */
     public function show(Assets $assets)
     {
-        $arrObjAssets = Assets::all();
+        $userId          = auth()->user()->id;
+        $arrObjAssets = Assets::where('user_id', $userId)->get();
         return view('front.assets.list',['arrObjAssets' => $arrObjAssets]);
     }
 
@@ -140,7 +141,7 @@ class AssetsController extends Controller
      */
     public function invoices()
     {
-        $arrObjInvoices=Invoice::all();
+        $arrObjInvoices=Invoice::whereNotNull('asset')->get();
         return view('front.assets.invoice.list', ['arrObjInvoices' => $arrObjInvoices]);
     }
 

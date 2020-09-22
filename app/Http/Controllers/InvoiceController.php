@@ -17,6 +17,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
+
        $arrObjInvoices=Invoice::all();
        return view('admin.invoice.list', ['arrObjInvoices'=>$arrObjInvoices]);
     }
@@ -36,10 +37,10 @@ class InvoiceController extends Controller
     {
         $objInvoice=Invoice::findorfail($id);
         $arrMix=[];
-        $arrMix['invoice_id'] = $objInvoice->invoice_id;
+        $arrMix['invoice_id']   = $objInvoice->invoice_id;
         $arrMix['invoice_date'] = $objInvoice->invoice_date;
-        $arrMix['invoice']      = json_encode($objInvoice->invoice);
-        $arrMix['sub_total']      = $objInvoice->sub_total;
+        $arrMix['invoice']      = ($objInvoice->invoice);
+        $arrMix['sub_total']    = $objInvoice->sub_total;
 
         if($objInvoice->complaint){
             $arrMix['complaint'] = $objInvoice->complaint;
@@ -54,10 +55,10 @@ class InvoiceController extends Controller
     {
         $objInvoice=Invoice::findorfail($id);
         $arrMix=[];
-        $arrMix['invoice_id'] = $objInvoice->invoice_id;
-        $arrMix['invoice_date'] = $objInvoice->invoice_date;
-        $arrMix['invoice']      = json_encode($objInvoice->invoice);
-        $arrMix['sub_total']      = $objInvoice->sub_total;
+        $arrMix['invoice_id']       = $objInvoice->invoice_id;
+        $arrMix['invoice_date']     = $objInvoice->invoice_date;
+        $arrMix['invoice']          = ($objInvoice->invoice);
+        $arrMix['sub_total']         = $objInvoice->sub_total;
 
         if($objInvoice->complaint){
             $arrMix['complaint'] = $objInvoice->complaint;
@@ -76,19 +77,20 @@ class InvoiceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'invoice_id' => 'required',
-            'invoice_date' => 'required',
-            'invoice' => 'required',
+            'invoice_id'    => 'required',
+            'invoice_date'  => 'required',
+            'invoice'       => 'required',
         ]);
-        $objInvoice = new Invoice();
-        $objInvoice->invoice_id=$request->invoice_id;
-        $objInvoice->invoice_date=$request->invoice_date;
-        if(isset($request->complaint)){
-            $objInvoice->complaint=$request->complaint;
-        }else{
-            $objInvoice->asset=$request->asset;
+        $objInvoice                 = new Invoice();
+        $objInvoice->invoice_id     = $request->invoice_id;
+        $objInvoice->invoice_date   = $request->invoice_date;
+
+        if($request->complaint != null){
+            $objInvoice->complaint  = $request->complaint;
+        }else if($request->assets   != null){
+            $objInvoice->asset      = $request->assets;
         }
-        $objInvoice->invoice=json_encode($request->invoice);
+        $objInvoice->invoice        = json_encode($request->invoice);
         $objInvoice->save();
         return redirect('admin/invoice')->with('message', 'Invoice Created Successfully');
 
@@ -114,8 +116,8 @@ class InvoiceController extends Controller
     public function edit($id)
     {
 
-        $objInvoice=Invoice::findorfail($id);
-        $objCompOrAsset ='';
+        $objInvoice         =   Invoice::findorfail($id);
+        $objCompOrAsset     =   '';
         if($objInvoice->complaint){
             $objCompOrAsset =  Complaint::where('id', $objInvoice->complaint)->first();
         }
@@ -137,20 +139,22 @@ class InvoiceController extends Controller
     public function update($id, Request $request)
     {
         $request->validate([
-            'invoice_id' => 'required',
-            'invoice_date' => 'required',
-            'invoice' => 'required',
+            'invoice_id'    => 'required',
+            'invoice_date'  => 'required',
+            'invoice'       => 'required',
         ]);
-        $objInvoice = Invoice::findorfail($id);
-        $objInvoice->invoice_id=$request->invoice_id;
-        $objInvoice->invoice_date=$request->invoice_date;
+        $objInvoice                     = Invoice::findorfail($id);
+
+        $objInvoice->invoice_id         = $request->invoice_id;
+        $objInvoice->invoice_date       = $request->invoice_date;
         if(isset($request->complaint)){
-            $objInvoice->complaint=$request->complaint;
+            $objInvoice->complaint      = $request->complaint;
         }else{
-            $objInvoice->asset=$request->asset;
+            $objInvoice->asset          = $request->asset;
         }
-        $objInvoice->invoice=json_encode($request->invoice);
+        $objInvoice->invoice            = ($request->invoice);
         $objInvoice->save();
+
         return redirect('admin/invoice')->with('message', 'Invoice Updated Successfully');
     }
 
@@ -164,6 +168,7 @@ class InvoiceController extends Controller
     {
         $objInvoice = Invoice::findorfail($id);
         $objInvoice->delete();
+
         return redirect('admin/invoice')->with('message', 'Invoice Deleted Successfully');
     }
 }

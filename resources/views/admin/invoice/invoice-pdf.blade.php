@@ -71,7 +71,7 @@ Status: Paid
 
             </td>
             <td align="center">
-                <img src="/path/to/logo.png" alt="Logo" width="64" class="logo"/>
+                <img src="{{asset('img/invoice.png')}}" alt="Logo" width="64" class="logo"/>
             </td>
             <td align="right" style="width: 40%;">
 
@@ -125,7 +125,7 @@ Status: Paid
         </tr>
         </thead>
         <tbody>
-        @foreach( json_decode(json_decode($arrMix['invoice'])) as $index => $invoice)
+        @foreach( json_decode(($arrMix['invoice'])) as $index => $invoice)
             <tr>
                 <td scope="row">{{ $invoice->product }}</td>
                 <td>{{$invoice->unit}}</td>
@@ -133,7 +133,7 @@ Status: Paid
                 <td>{{$invoice->total}}</td>
                 <?php
                 $subtotal ='';
-                $subtotal=+$invoice->total;
+                $subtotal= +$invoice->total;
                 ?>
             </tr>
         @endforeach
