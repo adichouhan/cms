@@ -129,11 +129,11 @@ Route::group([ 'namespace' => '\App\Http\Controllers\Admin', 'prefix'=>'admin'],
 });
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::get('/register/user/create',                 'RegisterController@create');
-    Route::post('/register/user/create',                'RegisterController@store');
-    Route::get('/complaints',                           function () { return view('complaints'); });
+    Route::get('/register/user/create',             'RegisterController@create');
+    Route::post('/register/user/create',            'RegisterController@store');
+    Route::get('/complaints',                       function () { return view('complaints'); });
 
-    Route::post('/fetch', 'Controller@fetch');
+    Route::post('/fetch',                           'Controller@fetch');
     Route::get('/images/{pathname}/{filename}',     'Controller@displayImage');
     Route::get('/book',                             'CategoryController@bookForm');
 
@@ -145,11 +145,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('complaints/delete/{complaint}',     'ComplaintController@destroy');
     Route::get('/my-complaints',                    'ComplaintController@getComplaintsView');
     Route::get('complaint/invoices',                'ComplaintController@invoices');
+    Route::get('complaint/invoice/view/{id}',      'ComplaintController@invoicesShow');
 
-    Route::get('complaint/invoice/download/{$id}', 'ComplaintController@invoicesDownload');
+    Route::get('complaint/invoice/download/{id}',   'ComplaintController@invoicesDownload');
     Route::get('complaint/quotes',                  'ComplaintController@quotes');
-    Route::get('complaint/quotes/view/{$id}',       'ComplaintController@quotesShow');
-    Route::get('complaint/quotes/download/{$id}',   'ComplaintController@quotesDownload');
+    Route::get('complaint/quotes/view/{id}',        'ComplaintController@quotesShow');
+    Route::get('complaint/quotes/download/{id}',    'ComplaintController@quotesDownload');
 
     Route::get('/assets',                           'AssetsController@index');
     Route::get('/book-asset',                       'AssetsController@create');
@@ -161,18 +162,18 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/my-assets',                        'AssetsController@getAssetView');
     Route::get('assets/invoices',                   'AssetsController@invoices');
 
-    Route::get('assets/invoice/view/{$id}',         'AssetsController@invoiceView');
-    Route::get('assets/invoices/download/{$id}',    'AssetsController@invoicesDownload');
+    Route::get('assets/invoice/view/{id}',         'AssetsController@invoiceView');
+    Route::get('assets/invoices/download/{id}',    'AssetsController@invoicesDownload');
     Route::get('assets/quotes',                     'AssetsController@quotes');
-    Route::get('assets/quotes/view/{$id}',          'AssetsController@quotesShow');
-    Route::get('assets/quotes/download/{$id}',      'AssetsController@quotesDownload');
+    Route::get('assets/quotes/view/{id}',          'AssetsController@quotesShow');
+    Route::get('assets/quotes/download/{id}',      'AssetsController@quotesDownload');
 
     Route::post('search-category', 'CategoryController@searchSubCategory');
 
 });
 
 Route::get('/', function () {return view('service_book');});
-Route::get('complaint/invoice/view/{$id}',      'ComplaintController@invoicesShow');
+
 
 
 Auth::routes();

@@ -181,6 +181,7 @@
                 var type = $(this).data('type');
                 var query = $(this).val();
                 countList = $(this).data('count');
+                $('#assetProductList_'+countList).fadeIn();
 
                 if (query != '') {
                     $.ajax({
