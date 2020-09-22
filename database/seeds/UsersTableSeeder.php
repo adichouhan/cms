@@ -14,6 +14,8 @@ class UsersTableSeeder extends Seeder
         DB::statement("SET FOREIGN_KEY_CHECKS=0;");
         \DB::table('users')->truncate();
         // insert
+        $arrMix          = [];
+        $arrMix['admin'] = '1';
         DB::table('users')->insert([
             'id' => 1,
             'name' => 'Admin',

@@ -125,7 +125,6 @@ Status: Paid
         </tr>
         </thead>
         <tbody>
-
         @foreach( json_decode(($arrMix['invoice'])) as $index => $invoice)
             <tr>
                 <td scope="row">{{ $invoice->product }}</td>
@@ -133,8 +132,8 @@ Status: Paid
                 <td >{{$invoice->quantity}}</td>
                 <td>{{$invoice->total}}</td>
                 <?php
-                    $subtotal ='';
-                $subtotal=+$invoice->total;
+                $subtotal ='';
+                $subtotal= +$invoice->total;
                 ?>
             </tr>
         @endforeach

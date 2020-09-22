@@ -20,8 +20,17 @@ class Complaint extends Model
         return $this->hasMany(new Invoice(), 'complaint', 'id');
     }
 
+    public function quotes()
+    {
+        return $this->hasMany(new Quote(), 'complaint', 'id');
+    }
+
     public function getUserInvoices(){
         return $this->where('user_id', auth()->user()->id)->invoices;
+    }
+
+    public function getUserQuotes(){
+        return $this->where('user_id', auth()->user()->id)->quotes;
     }
 
 }

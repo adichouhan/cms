@@ -85,7 +85,7 @@ class ComplaintController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Complaint $complaint
+     * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getEditComplain($id)
@@ -103,8 +103,8 @@ class ComplaintController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param $id
      * @param \Illuminate\Http\Request $request
-     * @param \App\Complaint $complaint
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update($id, Request $request)
@@ -137,7 +137,7 @@ class ComplaintController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Complaint $complaint
+     * @param $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
@@ -226,6 +226,7 @@ class ComplaintController extends Controller
             $arrMix['asset']     = $arrObjQuotes->asset;
         }
         $pdf = PDF::loadView('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
+
         return $pdf->download('Quote'.$arrObjQuotes->quote_id.'.pdf');
     }
 

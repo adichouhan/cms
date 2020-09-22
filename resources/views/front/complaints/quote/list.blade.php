@@ -15,7 +15,7 @@
                     <tr role="row">
                         <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                             aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
-                            style="width: 160px;">Invoice ID
+                            style="width: 160px;">Quote ID
                         </th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                             aria-label="Browser: activate to sort column ascending" style="width: 207px;">Complaint
@@ -24,10 +24,10 @@
                             aria-label="Browser: activate to sort column ascending" style="width: 207px;">Asset
                         </th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                            aria-label="Browser: activate to sort column ascending" style="width: 207px;">Invoice Date
+                            aria-label="Browser: activate to sort column ascending" style="width: 207px;">Quote Date
                         </th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                            aria-label="Browser: activate to sort column ascending" style="width: 207px;">Action
+                            aria-label="Browser: activate to sort column ascending" style="width: 200px;">Action
                         </th>
                     </tr>
                     </thead>
@@ -36,7 +36,8 @@
                     @foreach($arrObjQuotes as  $objQuotes)
                         <tr>
                             <td>{{$objQuotes->id}}</td>
-                            <td>{{isset($objQuotes->complaint)?$objQuotes->complaint:'NA'}}</td>
+                            <td>{{isset($objQuotes->complaint)  ?   $objQuotes->complaint   :   'NA'    }}</td>
+                            <td>{{isset($objQuotes->asset)  ?   $objQuotes->complaint   :   'NA'    }}</td>
                             <td>{{$objQuotes->quote_date}}</td>
                             <td>
                                 <a href="{{url('quotes/view/'.$objQuotes->id)}}" class="btn btn-primary">View</a>

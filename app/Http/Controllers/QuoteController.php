@@ -18,7 +18,8 @@ class QuoteController extends Controller
      */
     public function index()
     {
-        $arrObjQuotes=Quote::all();
+        $arrObjQuotes   =   Quote::all();
+
         return view('admin.quote.list', ['arrObjQuotes'=>$arrObjQuotes]);
     }
 
@@ -42,19 +43,19 @@ class QuoteController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'quote_id' => 'required',
-            'quote_date' => 'required',
-            'quote' => 'required',
+            'quote_id'      => 'required',
+            'quote_date'    => 'required',
+            'quote'         => 'required',
         ]);
-        $objQuote = new Quote();
-        $objQuote->quote_id=$request->quote_id;
-        $objQuote->quote_date=$request->quote_date;
+        $objQuote               = new Quote();
+        $objQuote->quote_id     =$request->quote_id;
+        $objQuote->quote_date   =$request->quote_date;
         if($request->complaint){
             $objQuote->complaint=$request->complaint;
         }else{
-            $objQuote->asset=$request->asset;
+            $objQuote->asset    =$request->asset;
         }
-        $objQuote->quote=json_encode($request->quote);
+        $objQuote->quote        = json_encode($request->quote);
         $objQuote->save();
         return redirect('admin/quote')->with('message', 'Quotes Created Successfully');
     }
@@ -76,7 +77,7 @@ class QuoteController extends Controller
         $arrMix=[];
         $arrMix['quote_id']     = $objQuote->quote_id;
         $arrMix['quote_date']   = $objQuote->quote_date;
-        $arrMix['quote']        = json_encode($objQuote->quote);
+        $arrMix['quote']        = ($objQuote->quote);
         $arrMix['sub_total']    = $objQuote->sub_total;
 
         if($objQuote->complaint){
@@ -84,24 +85,24 @@ class QuoteController extends Controller
         }else{
             $arrMix['asset']     = $objQuote->asset;
         }
-        $pdf = PDF::loadView('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
+        $pdf                     = PDF::loadView('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
         return $pdf->download('Quote'.$objQuote->quote_id.'.pdf');
 
     }
 
-    public function viewPdf($id,$type = 'stream')
+    public function viewPdf($id,    $type = 'stream')
     {
         $objQuote=Quote::findorfail($id);
         $arrMix=[];
         $arrMix['quote_id']       = $objQuote->quote_id;
         $arrMix['quote_date']     = $objQuote->quote_date;
-        $arrMix['quote']          = json_encode($objQuote->quote);
-        $arrMix['sub_total']        = $objQuote->sub_total;
+        $arrMix['quote']          = ($objQuote->quote);
+        $arrMix['sub_total']      = $objQuote->sub_total;
 
         if($objQuote->complaint){
-            $arrMix['complaint'] = $objQuote->complaint;
+            $arrMix['complaint']    = $objQuote->complaint;
         }else{
-            $arrMix['asset'] = $objQuote->asset;
+            $arrMix['asset']        = $objQuote->asset;
         }
         return view('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
     }
@@ -114,13 +115,13 @@ class QuoteController extends Controller
      */
     public function edit($id)
     {
-        $objQuote=Quote::findorfail($id);
-        $objCompOrAsset ='';
+        $objQuote               = Quote::findorfail($id);
+        $objCompOrAsset         ='';
         if($objQuote->complaint){
-            $objCompOrAsset =  Complaint::where('id',$objQuote->complaint)->get();
+            $objCompOrAsset     =  Complaint::where('id',$objQuote->complaint)->get();
         }
         if($objQuote->asset){
-            $objCompOrAsset = Assets::where('id',$objQuote->asset)->get();
+            $objCompOrAsset     = Assets::where('id',$objQuote->asset)->get();
         }
         return view('admin.quote.edit',['objQuote'=>$objQuote, 'objCompOrAsset'=> $objCompOrAsset]);
     }
@@ -135,20 +136,21 @@ class QuoteController extends Controller
     public function update($id, Request $request)
     {
         $request->validate([
-            'quote_id' => 'required',
-            'quote_date' => 'required',
-            'quote' => 'required',
+            'quote_id'      => 'required',
+            'quote_date'    => 'required',
+            'quote'         => 'required',
         ]);
-        $objQuote = Quote::findorfail($id);
-        $objQuote->quote_id=$request->quote_id;
-        $objQuote->quote_date=$request->quote_date;
+        $objQuote               = Quote::findorfail($id);
+        $objQuote->quote_id     =   $request->quote_id;
+        $objQuote->quote_date   =$request->quote_date;
         if($request->complaint){
             $objQuote->complaint=$request->complaint;
         }else{
-            $objQuote->asset=$request->asset;
+            $objQuote->asset    =$request->asset;
         }
-        $objQuote->quote=json_encode($request->quote);
+        $objQuote->quote        =json_encode($request->quote);
         $objQuote->save();
+
         return redirect('admin/quotes')->with('message', 'Quotes Updated Successfully');
     }
 
@@ -162,6 +164,7 @@ class QuoteController extends Controller
     {
         $objQuote = Quote::findorfail($id);
         $objQuote->delete();
+
         return redirect('admin/quotes')->with('message', 'Quotes Deleted Successfully');
     }
 }

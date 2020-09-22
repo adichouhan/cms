@@ -30,13 +30,15 @@ class AdminComplaintsController extends Controller
     public function create()
     {
         $arrObjUser = User::where('activation_status','1')->get();
-        $data = Category::all()->whereNull('parent_id');
-        $output='';
+        $data       = Category::all()->whereNull('parent_id');
+        $output     =   '';
+
         foreach ($data as $item){
             $output .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';
         }
 
-        $arrObjEmployee=EmployeeAvailability::with('employee')->where('available_status','=', 1)->get();
+        $arrObjEmployee =   EmployeeAvailability::with('employee')->where('available_status','=', 1)->get();
+
         return view('admin.complaints.create',['arrObjUser' => $arrObjUser, 'arrObjEmployees'=>$arrObjEmployee, 'output'=>$output]);
     }
 
@@ -52,20 +54,21 @@ class AdminComplaintsController extends Controller
             'title'     => 'required|unique:complaints',
             'expdate'   => 'required',
             'priority'  => 'required',
-            'complaint'  => 'required',
+            'complaint' => 'required',
         ]);
-        $count = Complaint::all()->count();
-        $objComplaints = new Complaint();
-        $objComplaints->title = $request->title;
-        $objComplaints->location = $request->location;
-        $objComplaints->expected_date = $request->expdate;
-        $objComplaints->complaints_unique = 'comp_'.$count;
-        $objComplaints->priority = $request->priority;
-        $objComplaints->materials = $request->material;
-        $objComplaints->user_id  = $request->user;
-        $objComplaints->complaints = json_encode($request->get('complaint'));
-        $objComplaints->image = $request->file('image')->store('complaint');
+        $count                              = Complaint::all()->count();
+        $objComplaints                      = new Complaint();
+        $objComplaints->title               = $request->title;
+        $objComplaints->location            = $request->location;
+        $objComplaints->expected_date       = $request->expdate;
+        $objComplaints->complaints_unique   = 'comp_'.$count;
+        $objComplaints->priority            = $request->priority;
+        $objComplaints->materials           = $request->material;
+        $objComplaints->user_id             = $request->user;
+        $objComplaints->complaints          = json_encode($request->get('complaint'));
+        $objComplaints->image               = $request->file('image')->store('complaint');
         $objComplaints->save();
+
         return redirect('admin/complaints')->with('message', 'Complaints Created Successfully');
     }
 
@@ -79,13 +82,13 @@ class AdminComplaintsController extends Controller
     {
         $data = Category::all();
 
-        $output='';
+        $output         =   '';
         foreach ($data as $item){
-            $output .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';
+            $output     .= '<option value="'.$item["id"].'">'.$item["category_title"].'</option>';
         }
-        $objUser=User::where('id', "$complaint->user_id")->first();
+        $objUser        =   User::where('id', "$complaint->user_id")->first();
 
-        $arrEmployees=EmployeeAvailability::with('employee')->where('available_status', '1')->where('onWork', '!=', '1')->get();
+        $arrEmployees   =   EmployeeAvailability::with('employee')->where('available_status', '1')->where('onWork', '!=', '1')->get();
 
         return view('admin.complaints.edit', ['objComplaints' => $complaint, 'output' =>$output, 'arrEmployees'=>$arrEmployees, 'objUser'=>$objUser]);
     }
@@ -102,24 +105,26 @@ class AdminComplaintsController extends Controller
         $request->validate([
             'title'     => 'required|unique:complaints,title,'.$id,
             'expdate'   => 'required',
-            'priority' => 'required',
+            'priority'  => 'required',
             'complaint' => 'required',
         ]);
 
-        $objComplaints = Complaint::findOrFail($id);
-        $objComplaints->title   = $request->title;
-        $objComplaints->location = $request->location;
-        $objComplaints->expected_date = $request->expdate;
-        $objComplaints->priority = $request->priority;
-        $objComplaints->materials = $request->material;
-        $objComplaints->work_status = $request->work_status;
-        $objComplaints->user_id  = $request->user;
-        $objComplaints->reject_reason  = $request->reject_reason;
-        $objComplaints->employee_id  = $request->assignedto;
-        $objComplaints->complaints = json_encode($request->get('complaint'));
+        $objComplaints                  = Complaint::findOrFail($id);
+        $objComplaints->title           = $request->title;
+        $objComplaints->location        = $request->location;
+        $objComplaints->expected_date   = $request->expdate;
+        $objComplaints->priority        = $request->priority;
+        $objComplaints->materials       = $request->material;
+        $objComplaints->work_status     = $request->work_status;
+        $objComplaints->user_id         = $request->user;
+        $objComplaints->reject_reason   = $request->reject_reason;
+        $objComplaints->employee_id     = $request->assignedto;
+        $objComplaints->complaints      = json_encode($request->get('complaint'));
+
         if($request->file('image')){
             $objComplaints->image = $request->file('image')->store('complaint');
         }
+
         $objComplaints->save();
 
         return redirect('admin/complaints')->with('message','Complaints Updated Successfully');
@@ -128,8 +133,9 @@ class AdminComplaintsController extends Controller
 
 
     public function destroy($id){
-        $objAssetProduct=Complaint::findOrFail($id);
+        $objAssetProduct    =   Complaint::findOrFail($id);
         $objAssetProduct->delete();
+
         return  redirect('/admin/assets')->with('message', 'Complaints  deleted successfully');
     }
 }
