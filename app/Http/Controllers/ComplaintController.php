@@ -30,7 +30,7 @@ class ComplaintController extends Controller
      */
     public function create()
     {
-        $data = Category::all()->whereNull('parent_id');
+        $data = Category::all()->where('parent_id', '==', NULL);
         $output = '';
         foreach ($data as $item) {
             $output .= '<option value="' . $item["id"] . '">' . $item["category_title"] . '</option>';
