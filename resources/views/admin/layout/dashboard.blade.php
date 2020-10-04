@@ -24,15 +24,11 @@
                                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-sort="ascending"
                                     aria-label="Rendering engine: activate to sort column descending"
-                                    style="width: 160px;">Compleint ID
+                                    style="width: 100px;">Complaint ID
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">
                                     Complaints
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending" style="width: 207px;">
-                                    Complaints Unique ID
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 150px;">
@@ -62,22 +58,8 @@
                                     <tr role="row" class="odd">
                                         <td class="sorting_1">{{$objComplaints->id}}</td>
                                         <td>
-                                            @if(json_decode($objComplaints->complaints) != NULL || json_decode($objComplaints->complaints) != '')
-                                                @foreach(json_decode($objComplaints->complaints) as $index =>$objComplaint)
-                                                    <ul>
-                                                        <?php
-                                                        $category = \App\Category::where('id', $objComplaint->main)->first();
-                                                        $subCategory = \App\Category::where('id', $objComplaint->sub)
-                                                            ->first();
-                                                        ?>
-                                                        <li>Category :{{isset($category->category_title)?$category->category_title:''}}</li>
-                                                        <li>SubCategory :{{isset($subCategory->category_title)?$subCategory->category_title:''}}</li>
-                                                        @if($objComplaint->others)<li>Others :{{isset($objComplaint->others) ? $objComplaint->others:''}}</li> @endif
-                                                    </ul>
-                                                @endforeach
-                                            @endif
+                                         {{$objComplaints->title}}
                                         </td>
-                                        <td>{{$objComplaints->complaints_unique}}</td>
                                         <td>{{$objComplaints->location}}</td>
                                         <td>{{$objComplaints->expected_date}}</td>
                                         <td>{{$objComplaints->priority}}</td>
@@ -112,16 +94,11 @@
                                     <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                                         aria-sort="ascending"
                                         aria-label="Rendering engine: activate to sort column descending"
-                                        style="width: 160px;">Assets ID
+                                        style="width: 100px;">Assets ID
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                                         aria-label="Browser: activate to sort column ascending" style="width: 207px;">
                                         Assets
-                                    </th>
-
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                                        aria-label="Browser: activate to sort column ascending" style="width: 207px;">
-                                        Assets Unique ID
                                     </th>
 
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
@@ -153,21 +130,7 @@
                                         <tr role="row" class="odd">
                                             <td class="sorting_1">{{$objasset->id}}</td>
                                             <td>
-                                                <?php
-
-                                                if($objasset->product){
-                                                    foreach ($objasset->product as $product)
-                                                    {
-                                                        $objAssetProduct= \App\AssetsProduct::findorfail('id',$product);
-                                                        echo $objAssetProduct->product_name;
-                                                    }
-                                                }else{
-                                                    echo 'NA';
-                                                }
-                                                ?>
-                                            </td>
-                                            <td>
-                                                {{isset($objasset->assets_unique)?$objasset->assets_unique:'NA'}}
+                                                {{$objasset->title}}
                                             </td>
                                             <td>{{$objasset->location}}</td>
                                             <td>{{$objasset->expected_date}}</td>

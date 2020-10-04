@@ -122,7 +122,7 @@ Status: Paid
         </tr>
         </thead>
         <tbody>
-        @foreach( json_decode(json_decode($arrMix['quote'])) as $index => $quote)
+        @foreach( (json_decode($arrMix['quote'])) as $index => $quote)
             <tr>
                 <td scope="row">{{$quote->product}}</td>
                 <td>{{$quote->unit}}</td>

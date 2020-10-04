@@ -35,17 +35,17 @@
                                        name="title" value="{{ $objAssets->title }}" id="title" required placeholder="">
                             </div>
 
-                            @foreach($arrProduct as $index=>$objProduct)
-
+                            @foreach($arrProduct as $index => $objProduct)
                                 <?php
+                                $count++;
                                     $objDetail=\App\AssetsProduct::find($objProduct);
                                 ?>
 
                                 <div class="addedSection">
                                     <div class="form-group">
                                     <label for="product">Product</label>
-                                    <input type="text" id="product_{{$index}}" data-type="assetProduct" data-count="{{$index}}" class="form-control search" value="{{$objDetail->product_name}}">
-                                    <input type="hidden" id="productId_{{$index}}" class="form-control search" value="{{$objProduct}}" name="product[{{$index}}]">
+                                    <input type="text" id="product_{{$index}}" data-type="assetProduct" data-count="{{$count}}" class="form-control search" value="{{$objDetail->product_name}}">
+                                    <input type="hidden" id="productId_{{$index}}" class="form-control search" value="{{$objProduct}}" name="product[{{$count}}]">
                                     <div id="assetProductList_{{$index}}"></div>
                                     </div>
                                     <div class="form-group"><button type="button" name="remove" class="btn btn-danger remove">Remove</button></div>

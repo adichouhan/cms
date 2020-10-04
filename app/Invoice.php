@@ -9,19 +9,19 @@ class Invoice extends Model
 {
     use SoftDeletes;
 
-    public function getcomplaint()
+    public function complaints()
     {
-        return $this->hasOne(new Complaint(), 'id','complaint' );
+        return  $this->hasOne(new Complaint(), 'id', 'complaint' );
     }
 
-    public function getUserComplaints()
-    {
-        return $this->getcomplaint && $this->getcomplaint->where('user_id', auth()->user()->id) ?? collect();
+    public function getUserComplaints(){
+        return  $this->complaints()->where('user_id', auth()->user()->id);
     }
+
 
     public function asset()
     {
-        return $this->hasOne('App/Assets', 'asset', 'id');
+        return $this->hasOne(new Assets(), 'id', 'asset');
     }
 
     public function getUserAssets(){

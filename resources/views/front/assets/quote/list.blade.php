@@ -15,13 +15,13 @@
                     <tr role="row">
                         <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                             aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
-                            style="width: 160px;">Invoice ID
+                            style="width: 160px;">Quotes ID
                         </th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                            aria-label="Browser: activate to sort column ascending" style="width: 207px;">Asset
+                            aria-label="Browser: activate to sort column ascending" style="width: 207px;">Quotes
                         </th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                            aria-label="Browser: activate to sort column ascending" style="width: 207px;">Invoice Date
+                            aria-label="Browser: activate to sort column ascending" style="width: 207px;">Quotes Date
                         </th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                              style="width: 207px;">Action
@@ -33,10 +33,10 @@
                         @foreach($arrObjQuotes as  $objQuotes)
                             <tr>
                                 <td>{{$objQuotes->id}}</td>
-                                <td>{{isset($objQuotes->asset)?$objQuotes->asset:'NA'}}</td>
-                                <td>{{$objQuotes->invoice_date}}</td>
+                                <td>{{ $objQuotes->getUserAssets()->first('title')->title }}</td>
+                                <td>{{$objQuotes->quote_date}}</td>
                                 <td>
-                                    <a href="{{url('quotes/view/'.$objQuotes->id)}}" class="btn btn-primary">View</a>
+                                    <a href="{{url('assets/quotes/view/'.$objQuotes->id)}}" class="btn btn-primary">View</a>
                                 </td>
                             </tr>
                         @endforeach

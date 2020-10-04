@@ -20,7 +20,7 @@ class QuoteController extends Controller
     {
         $arrObjQuotes   =   Quote::all();
 
-        return view('admin.quote.list', ['arrObjQuotes'=>$arrObjQuotes]);
+        return view('admin.quote.list', ['arrObjQuotes' => $arrObjQuotes]);
     }
 
     /**
@@ -85,7 +85,7 @@ class QuoteController extends Controller
         }else{
             $arrMix['asset']     = $objQuote->asset;
         }
-        $pdf                     = PDF::loadView('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
+        $pdf                     = PDF::loadView('admin.quote.quote-pdf', ['arrMix'=>$arrMix]);
         return $pdf->download('Quote'.$objQuote->quote_id.'.pdf');
 
     }
@@ -104,7 +104,7 @@ class QuoteController extends Controller
         }else{
             $arrMix['asset']        = $objQuote->asset;
         }
-        return view('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
+        return view('admin.quote.quote-pdf', ['arrMix'=>$arrMix]);
     }
 
     /**
@@ -118,12 +118,14 @@ class QuoteController extends Controller
         $objQuote               = Quote::findorfail($id);
         $objCompOrAsset         ='';
         if($objQuote->complaint){
-            $objCompOrAsset     =  Complaint::where('id',$objQuote->complaint)->get();
+            $objCompOrAsset     =  Complaint::where('id',$objQuote->complaint)->first();
         }
+
         if($objQuote->asset){
-            $objCompOrAsset     = Assets::where('id',$objQuote->asset)->get();
+            $objCompOrAsset     = Assets::where('id',$objQuote->asset)->first();
         }
-        return view('admin.quote.edit',['objQuote'=>$objQuote, 'objCompOrAsset'=> $objCompOrAsset]);
+
+        return view('admin.quote.edit', ['objQuote'=>$objQuote, 'objCompOrAsset'=> $objCompOrAsset]);
     }
 
     /**

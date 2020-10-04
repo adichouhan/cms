@@ -152,9 +152,7 @@ class ComplaintController extends Controller
      */
     public function invoices()
     {
-        $userId          = auth()->user()->id;
-        $objUser         = User::with('complaint.invoices')->where('id', $userId)->first();
-        $arrObjInvoices  = $objUser->complaint->invoices;
+        $arrObjInvoices  = Invoice::whereHas('getUserComplaints')->get();
         return view('front.complaints.invoice.list', ['arrObjInvoices'  =>  $arrObjInvoices]);
     }
 
@@ -204,7 +202,7 @@ class ComplaintController extends Controller
      */
     public function quotes()
     {
-        $arrObjQuotes=Quote::with('getUserComplaints')->get();
+        $arrObjQuotes=Quote::whereHas('getUserComplaints')->get();
         return view('front.complaints.quote.list', ['arrObjQuotes'=>$arrObjQuotes]);
     }
 
@@ -225,7 +223,7 @@ class ComplaintController extends Controller
         }else{
             $arrMix['asset']     = $arrObjQuotes->asset;
         }
-        $pdf = PDF::loadView('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
+        $pdf = PDF::loadView('admin.quote.quote-pdf', ['arrMix'=>$arrMix]);
 
         return $pdf->download('Quote'.$arrObjQuotes->quote_id.'.pdf');
     }
@@ -234,7 +232,7 @@ class ComplaintController extends Controller
     /**
      *Invoices list
      */
-    public function quotesView($id)
+    public function quotesShow($id)
     {
         $arrObjQuotes=Quote::findorfail($id);
         $arrMix=[];
@@ -248,7 +246,7 @@ class ComplaintController extends Controller
         }else{
             $arrMix['asset']     = $arrObjQuotes->asset;
         }
-        return view('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
+        return view('admin.quote.quote-pdf', ['arrMix'=>$arrMix]);
     }
 
 }

@@ -80,7 +80,7 @@
                             <input type="file" name="image" />
                         </div>
 
-                        <div id="accept" >Others :
+                        <div id="accept" >
                             <div class="form-group">
                                 <label for="inputState">Status</label>
                                 <select id="inputState" class="form-control" name="status">

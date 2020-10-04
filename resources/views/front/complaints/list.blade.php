@@ -25,19 +25,7 @@
                                 <tr>
                                     <td>{{$objComplaint->id}}</td>
                                     <td>
-                                        @if(json_decode($objComplaint->complaints) != NULL || json_decode($objComplaint->complaints) != '')
-                                            @foreach(json_decode($objComplaint->complaints) as $index =>$objComplain)
-                                                <ul>
-                                                <?php
-                                                $category = \App\Category::where('id', $objComplain->main)->first();
-                                                $subCategory = \App\Category::where('id', $objComplain->sub)->first();
-                                                ?>
-                                               {{$index}}. Category :</span>{{ isset($category->category_title)?$category->category_title:''}}
-                                                  <div>SubCategory : {{ isset($subCategory->category_title)?$subCategory->category_title:''}} </div>
-                                                @if($objComplaint->others)Others :{{isset($objComplaint->others)?$subCategory->others:''}}@endif
-                                                </ul>
-                                            @endforeach
-                                        @endif
+                                      {{$objComplaint->title}}
                                     </td>
                                     <td>{{$objComplaint->location}}</td>
                                     <td>{{$objComplaint->expected_date}}</td>

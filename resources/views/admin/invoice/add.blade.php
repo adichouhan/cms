@@ -96,7 +96,6 @@
                                                    class="form-control item_total" id="total0" readonly/></td>
                                         <td>
                                             <button type="button" class="add m-2 btn btn-primary">Add</button>
-                                            <button type="button" disabled class="remove  m-2 btn btn-danger">Remove</button>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -183,6 +182,7 @@
                 htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
 
                 if (type == 'complaint') {
+                    $('#complaintList').fadeIn();
                     if (data.length > 0) {
                         data.forEach(function (complaints) {
                             htmlComplaint += '<li class="comp" data-id="' + complaints.id + '">' + complaints.title + '</li> ';
@@ -197,12 +197,13 @@
                 }
 
                 if (type == 'asset') {
+                    $('#assetList').fadeIn();
                     if (data.length > 0) {
                         data.forEach(function (assets) {
                             htmlComplaint += '<li class="asset" data-id="' + assets.id + '">' + assets.title + '</li> ';
                         })
                     } else {
-                        htmlComplaint += '<li class="asset" data-id="' + assets.id + '"><a href="/admin/asset/create"> Create New Asset</a> </li> ';
+                        htmlComplaint += '<li class="asset" data-id="' + assets.id + '"><a href="/admin/assets/create"> Create New Asset</a> </li> ';
                     }
                     $('#assetList').children().remove();
                     $('#assetList').append(htmlComplaint);

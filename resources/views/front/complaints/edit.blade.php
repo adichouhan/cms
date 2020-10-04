@@ -33,7 +33,7 @@
 
                         <div class="box-body">
 
-                            @foreach($arrComplaint as $index=>$complaint)
+                            @foreach($arrComplaint as $index => $complaint)
                                 <?php
 
                                 $count++;
@@ -62,7 +62,7 @@
 
                                 ?>
                                     <div class="addedSection">
-                                        <div class="form-group"><select  required name="complaint[{{$count}}][main]"
+                                        <div class="form-group"><select required name="complaint[{{$count}}][main]"
                                                                          class="form-control item_category"
                                                                          data-sub_category_id="{{$count}}">
                                                 <option value="">Select Category</option>{!! $selectedCat !!}</select>

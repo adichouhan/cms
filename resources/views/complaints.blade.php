@@ -8,14 +8,13 @@
         <div class="row pt-5">
             <div class="col-3"></div>
             <div class="col-6">
-                <button type="button" class="btn btn-primary btn-lg btn-block"><a href="/register/complaint" class="text-white">Book Complaint/Maintenance call</a></button>
-                <button type="button" class="btn btn-secondary btn-lg btn-block"><a href="/complaints" class="text-white">View booked complaints</a></button>
-        <button type="button" class="btn btn-primary btn-lg btn-block"><a href="/complaint/invoices"  class="text-white">View Bills/Invoices</a></button>
-                <button type="button" class="btn btn-secondary btn-lg btn-block"><a href="/complaint/quotes"  class="text-white">View Quotation </a></button>
-        <button type="button" class="btn btn-primary btn-lg btn-block">Other Request</button>
-        <button type="button" class="btn btn-secondary btn-lg btn-block">Bulk order</button>
-               </div>
+                <a href="/register/complaint" class="text-white btn btn-primary btn-lg btn-block">Book Complaint/Maintenance call</a>
+                <a href="/complaints" class="text-white btn btn-secondary btn-lg btn-block">View booked complaints</a>
+                <a href="/complaint/invoices"  class="text-white btn btn-primary btn-lg btn-block">View Bills/Invoices</a>
+                <a href="/complaint/quotes"  class="text-white btn btn-secondary btn-lg btn-block">View Quotation </a>
+                <a href=""  class="text-white btn btn-primary btn-lg btn-block">Other Request</a>
+                <a href=""  class="text-white btn btn-secondary btn-lg btn-block">Bulk order</a>
+            </div>
             <div class="col-3"></div>
         </div>
-
 @stop

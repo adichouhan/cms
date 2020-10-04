@@ -31,10 +31,6 @@
                                     Complaints
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending" style="width:100px;">
-                                    UID
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 183px;">
                                     Location
                                 </th>
@@ -45,10 +41,6 @@
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="CSS grade: activate to sort column ascending" style="width: 80px;">
                                     Priority
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending" style="width: 80px;">
-                                    Material
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="CSS grade: activate to sort column ascending" style="width: 200px;">
@@ -62,26 +54,11 @@
                                 <tr role="row" class="odd">
                                     <td class="sorting_1">{{$objComplaints->id}}</td>
                                     <td>
-                                        @if(json_decode($objComplaints->complaints) != NULL || json_decode($objComplaints->complaints) != '')
-                                                @foreach(json_decode($objComplaints->complaints) as $index =>$objComplaint)
-                                                    <ul>
-                                                    <?php
-                                                    $category = \App\Category::where('id', $objComplaint->main)->first();
-                                                    $subCategory = \App\Category::where('id', $objComplaint->sub)
-                                                        ->first();
-                                                    ?>
-                                                    <li>Category :{{isset($category->category_title)?$category->category_title:''}}</li>
-                                                    <li>SubCategory :{{isset($subCategory->category_title)?$subCategory->category_title:''}}</li>
-                                                    @if($objComplaint->others)<li>Others :{{isset($objComplaint->others)?$subCategory->others:''}}</li> @endif
-                                                    </ul>
-                                                @endforeach
-                                        @endif
+                                        {{$objComplaints->title}}
                                     </td>
-                                    <td>{{$objComplaints->complaints_unique}}</td>
                                     <td>{{$objComplaints->location}}</td>
                                     <td>{{$objComplaints->expected_date}}</td>
                                     <td>{{$objComplaints->priority}}</td>
-                                    <td>{{$objComplaints->materials}}</td>
                                     <td>
                                         <a href="{{url('admin/complaints/edit/'.$objComplaints->id)}}"
                                            class="btn btn-primary">Edit</a>

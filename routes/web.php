@@ -129,8 +129,6 @@ Route::group([ 'namespace' => '\App\Http\Controllers\Admin', 'prefix'=>'admin'],
 });
 
 Route::group(['middleware' => 'auth'],              function() {
-    Route::get('/register/user/create',             'RegisterController@create');
-    Route::post('/register/user/create',            'RegisterController@store');
     Route::get('/complaints',                       function () { return view('complaints'); });
 
     Route::post('/fetch',                           'Controller@fetch');
@@ -170,8 +168,11 @@ Route::group(['middleware' => 'auth'],              function() {
     Route::get('assets/quotes/download/{id}',      'AssetsController@quotesDownload');
 
     Route::post('search-category',                  'CategoryController@searchSubCategory');
+    Route::get('/', function () {return view('service_book');});
 
 });
-Route::get('/', function () {return view('service_book');});
+
+
 Auth::routes();
+
 Route::get('/home', 'HomeController@index')->name('home');

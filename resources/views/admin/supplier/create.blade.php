@@ -36,7 +36,7 @@
 
                 <div class="form-group">
                     <label for="mobile_no">Supplier Mobile Number</label>
-                    <input type="text" class="form-control" name="mobile_no"
+                    <input type="tel" class="form-control" name="mobile_no"
                            id="mobile_no" placeholder="Enter mobile no here...">
                 </div>
                 <br>

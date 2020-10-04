@@ -9,21 +9,21 @@ class Quote extends Model
 {
     use SoftDeletes;
 
-    public function complaint()
+    public function complaints()
     {
-        $this->hasOne('App/Complaint', 'complaint', 'id');
+       return  $this->hasOne(new Complaint(), 'id', 'complaint' );
     }
 
     public function getUserComplaints(){
-        return $this->complaint()->where('user_id', auth()->user()->id);
+        return  $this->complaints()->where('user_id', auth()->user()->id);
     }
 
     public function asset()
     {
-        $this->hasOne('App/Assets', 'asset', 'id');
+        return $this->hasOne(new Assets(), 'id', 'asset' );
     }
 
     public function getUserAssets(){
-        return $this->asset()->where('user_id', auth()->user()->id);
+        return  $this->asset()->where('user_id', auth()->user()->id);
     }
 }

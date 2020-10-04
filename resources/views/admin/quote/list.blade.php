@@ -47,8 +47,8 @@
                             @foreach($arrObjQuotes as  $objQuotes)
                                 <tr>
                                     <td>{{$objQuotes->id}}</td>
-                                    <td>{{isset($objQuotes->complaint)?$objInvoice->complaint:'NA'}}</td>
-                                    <td>{{isset($objQuotes->asset)?$objInvoice->asset:'NA'}}</td>
+                                    <td>{{isset($objQuotes->complaints) ? $objQuotes->complaints->title:'NA'}}</td>
+                                    <td>{{isset($objQuotes->asset)?$objQuotes->asset:'NA'}}</td>
                                     <td>{{$objQuotes->quote_date}}</td>
                                     <td>
                                         <a href="{{url("/admin/quote/view/".$objQuotes->id)}}" class="btn btn-primary">View</a>

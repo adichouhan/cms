@@ -21,9 +21,6 @@
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">Complaint
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Browser: activate to sort column ascending" style="width: 207px;">Asset
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column ascending" style="width: 207px;">Invoice Date
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
@@ -36,9 +33,8 @@
                                 @foreach($arrObjInvoices as  $objInvoice)
                                     <tr>
                                         <td>{{$objInvoice->id}}</td>
-                                        <td>{{isset($objInvoice->complaint)  ?   $objInvoice->complaint  :    'NA' }}</td>
-                                        <td>{{isset($objInvoice->asset)      ?   $objInvoice->asset      :    'NA' }}</td>
-                                        <td>{{$objInvoice    ->  updated_at}}</td>
+                                        <td>{{ $objInvoice->getUserComplaints()->first('title')->title }}</td>
+                                        <td>{{$objInvoice->updated_at}}</td>
                                         <td>
                                             <a href="{{url('complaint/invoice/view/'.$objInvoice->id)}}" class="btn btn-primary">View</a>
                                         </td>

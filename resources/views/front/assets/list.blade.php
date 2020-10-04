@@ -28,7 +28,7 @@
                     @foreach($arrObjAssets as $objAsset)
                         <tr>
                             <td>{{$objAsset->id}}</td>
-                            <td>{{$objAsset->product}} </td>
+                            <td>{{$objAsset->title}} </td>
                             <td>{{$objAsset->location}}</td>
                             <td>{{$objAsset->expected_date}}</td>
                             <td>{{$objAsset->priority}}</td>

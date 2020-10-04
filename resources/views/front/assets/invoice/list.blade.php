@@ -33,7 +33,7 @@
                     @foreach($arrObjInvoices as  $objInvoice)
                         <tr>
                             <td>{{$objInvoice->id}}</td>
-                            <td>{{isset($objInvoice->asset)?$objInvoice->asset:'NA'}}</td>
+                            <td>{{ $objInvoice->getUserAssets()->first('title')->title }}</td>
                             <td>{{$objInvoice->invoice_date}}</td>
                             <td>
                                 <a href="{{url('assets/invoice/view/'.$objInvoice->id)}}" target="_blank" class="btn btn-primary">View</a>

@@ -47,10 +47,7 @@
                                     aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
                                     Priority
                                 </th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending" style="width: 95px;">
-                                    Material
-                                </th>
+
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="CSS grade: activate to sort column ascending" style="width: 200px;">
                                     Action
@@ -68,7 +65,6 @@
                                     <td>{{$objasset->location}}</td>
                                     <td>{{$objasset->expected_date}}</td>
                                     <td>{{$objasset->priority}}</td>
-                                    <td>{{$objasset->materials}}</td>
                                     <td>
                                         <a href="{{url('admin/assets/edit/'.$objasset->id)}}"
                                            class="btn btn-primary">Edit</a>

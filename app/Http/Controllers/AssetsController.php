@@ -141,7 +141,7 @@ class AssetsController extends Controller
      */
     public function invoices()
     {
-        $arrObjInvoices=Invoice::whereNotNull('asset')->get();
+        $arrObjInvoices=Invoice::whereHas('getUserAssets')->get();
         return view('front.assets.invoice.list', ['arrObjInvoices' => $arrObjInvoices]);
     }
 
@@ -193,7 +193,7 @@ class AssetsController extends Controller
      */
     public function quotes()
     {
-        $arrObjQuotes=Quote::with('getUserAssets')->get();
+        $arrObjQuotes=Quote::whereHas('getUserAssets')->get();
         return view('front.assets.quote.list', ['arrObjQuotes'=>$arrObjQuotes]);
     }
 
@@ -215,7 +215,7 @@ class AssetsController extends Controller
             $arrMix['asset']     = $arrObjQuotes->asset;
         }
 //        return view('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
-        $pdf = PDF::loadView('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
+        $pdf = PDF::loadView('admin.quote.quote-pdf', ['arrMix'=>$arrMix]);
         return $pdf->download('Quote'.$arrObjQuotes->quote_id.'.pdf');
     }
 
@@ -236,6 +236,6 @@ class AssetsController extends Controller
         }else{
             $arrMix['asset']     = $arrObjQuotes->asset;
         }
-        return view('admin.quote.invoice-pdf', ['arrMix'=>$arrMix]);
+        return view('admin.quote.quote-pdf', ['arrMix'=>$arrMix]);
     }
 }
