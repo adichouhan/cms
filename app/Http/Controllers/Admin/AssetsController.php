@@ -59,7 +59,6 @@ class AssetsController extends Controller
             'product'   => 'required',
         ]);
         $arrMixProductId = collect(Arr::pluck($request->product, 'id'))->filter()->toArray();
-        dd($request->all());
         $count = Assets::all()->count();
         $objAssest = new Assets();
         $objAssest->title = $request->title;
