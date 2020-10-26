@@ -34,8 +34,8 @@
 
                             <div class="form-group">
                                 <label for="product">Product</label>
-                                <input type="text" id="product_0" data-type="assetProduct" data-count="0" class="form-control search">
-                                <input type="hidden" id="productId_0" class="form-control search" name="product[0]">
+                                <input type="text" id="product_0" data-type="assetProduct" name="product[0][name]" data-count="0" class="form-control search">
+                                <input type="hidden" id="productId_0" class="form-control search" name="product[0][id]">
                                 <div id="assetProductList_0"></div>
                             </div>
 
@@ -150,22 +150,29 @@
         $(document).ready(function () {
             var count= 0;
             var countList='';
-            var productId=';'
+            var productId = ''
+            var productcont='';
+            var productIdcont='';
+
             $(document).on('click', '.add', function () {
                 count++
                 var html = '';
-                html += '<div class="form-group addedSection"><label for="product">Product</label><input type="text" id="product_'+count+'" data-type="assetProduct"  data-count="'+count+'"  class="form-control search">'
-                html += '<input type="hidden" id="productId_'+count+'" class="form-control search" name="product['+count+']">'
-                html += '<div id="assetProductList_'+count+'"></div>';
+                html += '<div class="addedSection"><div class="form-group"><label for="product">Product</label><input type="text" id="product_'+count+'" name="product['+count+'][name]"  data-type="assetProduct"  data-count="'+count+'"  class="form-control search">'
+                html += '<input type="hidden" id="productId_'+count+'" class="form-control search" name="product['+count+'][id]">'
+                html += '<div id="assetProductList_'+count+'"></div></div>';
                 html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger remove">Remove</button></div></div>';
                 $('#addsection').append(html);
             });
 
-            $(document).on('keyup click blur', '.search', function () {
+            $(document).on('keyup click', '.search', function () {
                 var type = $(this).data('type');
                 var query = $(this).val();
                 countList = $(this).data('count');
+                 productcont="#product_"+countList;
+                 productIdcont="#productId_"+countList;
+                $(productIdcont).val('');
 
+                productId='#assetProductList_'+countList
                 if (query != '') {
                     $.ajax({
                         url: "/fetch",
@@ -187,6 +194,7 @@
             });
 
             $(document).on('click', '.remove', function () {
+                count--
                 $(this).closest('.addedSection').remove();
                 // $("div.addedSection").first().remove()
             });
@@ -196,6 +204,7 @@
                 htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
 
                 if (type == 'user') {
+                    $('#userList').fadeIn();
                     if(data.length>0) {
                         data.forEach(function (user) {
                             htmlComplaint += '<li class="user" data-id="' + user.id + '">' + user.name + '</li> ';
@@ -207,20 +216,29 @@
                     $('#userList').append(htmlComplaint);
                 }
                 if (type == 'assetProduct') {
+                    $(productId).fadeIn();
                     if(data.length>0) {
                         data.forEach(function (product) {
                             htmlComplaint += '<li class="product" data-id="' + product.id + '">' + product.product_name + '</li> ';
+
                         })
                     }else{
                         htmlComplaint += '<li class="product"><a href="/admin/asset/product/create">Add New Asset Product</a></li> ';
                     }
-                    productId='#assetProductList_'+countList
-                    $(productId).children().remove();
-                    $(productId).append(htmlComplaint);
+                    $('#assetProductList_'+countList).children().remove();
+                    $('#assetProductList_'+countList).append(htmlComplaint);
 
                 }
             }
 
+
+            $(document).on('blur', productcont, function () {
+               $(productId).fadeOut();
+            });
+
+            $(document).on('blur', '#user', function () {
+                $('#userList').fadeOut();
+            });
             $(document).on('click', 'li.user', function () {
                 $('#user').val($(this).text());
                 $('#userId').val($(this).data('id'));
@@ -228,11 +246,11 @@
             });
 
             $(document).on('click', 'li.product', function () {
-                var productcont="#product_"+count;
-                var productIdcont="#productId_"+count;
+                var productcont="#product_"+countList;
+                var productIdcont="#productId_"+countList;
                 $(productcont).val($(this).text());
                 $(productIdcont).val($(this).data('id'));
-                $(productId).fadeOut();
+                $('#assetProductList_'+countList).fadeOut();
             });
         });
     </script>

@@ -58,12 +58,12 @@
                         $objDetail=\App\AssetsProduct::find($objProduct);
                         ?>
                             <div class="addedSection">
-                        <div class="form-group">
-                            <label for="product">Product</label>
-                            <input type="text" id="product_{{$index}}" data-type="assetProduct" data-count="{{$index}}" class="form-control search" value="{{$objDetail->product_name}}">
-                            <input type="hidden" id="productId_{{$index}}" class="form-control search" value="{{$objProduct}}" name="product[{{$index}}]">
-                            <div id="assetProductList_{{$index}}"></div>
-                        </div>
+                                <div class="form-group">
+                                    <label for="product">Product</label>
+                                    <input type="text" id="product_{{$index}}" data-type="assetProduct" data-count="{{$index}}" name="product[{{$index}}]['name'] class="form-control search" value="{{$objDetail->product_name}}">
+                                    <input type="hidden" id="productId_{{$index}}" class="form-control search" value="{{$objProduct}}" name="product[{{$index}}][id]">
+                                    <div id="assetProductList_{{$index}}"></div>
+                                </div>
                                 <div class="form-group"><button type="button" name="remove" class="btn btn-danger remove">Remove</button></div>
                             </div>
                     @endforeach
@@ -188,8 +188,8 @@
             $(document).on('click', '.add', function () {
                 count++
                 var html = '';
-                html += '<div class="form-group addedSection"><label for="product">Product</label><input type="text" id="product_'+count+'" data-type="assetProduct"  data-count="'+count+'"  class="form-control search">'
-                html += '<input type="hidden" id="productId_'+count+'" class="form-control search" name="product['+count+']">'
+                html += '<div class="form-group addedSection"><label for="product">Product</label><input type="text" id="product_'+count+'" name="product['+count+']['+'name'+']" data-type="assetProduct"  data-count="'+count+'"  class="form-control search">'
+                html += '<input type="hidden" id="productId_'+count+'" class="form-control search" name="product['+count+']['+'id'+']">'
                 html += '<div id="assetProductList_'+count+'"></div>';
                 html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger remove">Remove</button></div></div>';
                 $('#addsection').append(html);
@@ -228,6 +228,7 @@
                 htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
 
                 if (type == 'user') {
+                    $('#userList').fadeIn();
                     data.forEach(function (user) {
                         htmlComplaint += '<li class="user" data-id="' + user.id + '">' + user.name + '</li> ';
                         $('#userList').children().remove();
@@ -235,7 +236,7 @@
                     })
                 }
                 if (type == 'assetProduct') {
-
+                    $(productId).fadeIn();
                     data.forEach(function (product) {
                         htmlComplaint += '<li class="product" data-id="' + product.id + '">' + product.product_name + '</li> ';
                         $('#assetProductList').children().remove();
@@ -243,6 +244,17 @@
                     })
                 }
             }
+
+            var productcont="#product_"+count;
+            var productIdcont="#productId_"+count;
+
+            $(document).on('blur', productcont, function () {
+                $(productId).fadeOut();
+            });
+
+            $(document).on('blur', '#user', function () {
+                $('#userList').fadeOut();
+            });
 
             $(document).on('click', 'li.user', function () {
                 $('#user').val($(this).text());

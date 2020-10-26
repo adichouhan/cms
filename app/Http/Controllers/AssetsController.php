@@ -49,6 +49,7 @@ class AssetsController extends Controller
             'expdate'   => 'required',
             'priority' => 'required',
         ]);
+dd('sdf');
         $count = Assets::all()->count();
         $objAssest = new Assets();
         $objAssest->title = $request->title;
@@ -59,7 +60,9 @@ class AssetsController extends Controller
         $objAssest->materials = $request->material;
         $objAssest->user_id = auth()->user()->id;
         $objAssest->products  = json_encode($request->product);
-        $objAssest->image       = $request->file('image')->store('assets');
+        if($request->hasFile('image')) {
+            $objAssest->image = $request->file('image')->store('assets');
+        }
         $objAssest->save();
         return redirect('assets')->with('message', 'Assets Created Successfully.');
     }
@@ -105,24 +108,24 @@ class AssetsController extends Controller
             'priority' => 'required',
             'product' => 'required',
         ]);
-        $objAssest                      = Assets::findOrFail($request->id);
-        $objAssest->title               = $request->title;
-        $objAssest->location            = $request->location;
-        $objAssest->expected_date       = $request->expdate;
-        $objAssest->priority            = $request->priority;
-        $objAssest->materials            = $request->material;
-        $objAssest->products            = $request->product;
+        $objAsset                      = Assets::findOrFail($request->id);
+        $objAsset->title               = $request->title;
+        $objAsset->location            = $request->location;
+        $objAsset->expected_date       = $request->expdate;
+        $objAsset->priority            = $request->priority;
+        $objAsset->materials           = $request->material;
+        $objAsset->products            = $request->product;
         if($request->file('image')) {
-            $objAssest->image = $request->file('image')->store('assets');
+            $objAsset->image = $request->file('image')->store('assets');
         }
-        $objAssest->save();
+        $objAsset->save();
         return redirect('/assets')->with('message', 'Assets Added successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Assets  $assets
+     * @param $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)

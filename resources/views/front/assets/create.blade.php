@@ -230,13 +230,14 @@
             });
 
             $(document).on('click', '.remove', function () {
+                count--
                 $(this).closest('.addedSection').remove();
                 // $("div.addedSection").first().remove()
             });
 
             $(document).on('click', 'li.product', function () {
-                var productcont="#product_"+count;
-                var productIdcont="#productId_"+count;
+                var productcont="#product_"+countList;
+                var productIdcont="#productId_"+countList;
                 $(productcont).val($(this).text());
                 $(productIdcont).val($(this).data('id'));
                 $('#assetProductList_'+countList).fadeOut();

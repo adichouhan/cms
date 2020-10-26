@@ -185,6 +185,7 @@
                 htmlComplaint += '<ul class="dropdown-menu" style="display:block; position:relative">';
 
                 if(type='user'){
+                    $('#userList').fadeIn();
                     if(data.length>0) {
                         data.forEach(function (user) {
                             htmlComplaint += '<li class="user" data-id="' + user.id + '">' + user.name + '</li> ';

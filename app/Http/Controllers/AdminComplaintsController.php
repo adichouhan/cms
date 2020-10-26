@@ -30,7 +30,7 @@ class AdminComplaintsController extends Controller
     public function create()
     {
         $arrObjUser = User::where('activation_status','1')->get();
-        $data       = Category::all()->whereNull('parent_id');
+        $data       = Category::all()->where('parent_id',  '==', NULL);
         $output     =   '';
 
         foreach ($data as $item){

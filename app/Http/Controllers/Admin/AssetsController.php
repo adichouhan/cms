@@ -10,6 +10,7 @@ use App\EmployeeAvailability;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class AssetsController extends Controller
 {
@@ -57,6 +58,8 @@ class AssetsController extends Controller
             'priority'  => 'required',
             'product'   => 'required',
         ]);
+        $arrMixProductId = collect(Arr::pluck($request->product, 'id'))->filter()->toArray();
+        dd($request->all());
         $count = Assets::all()->count();
         $objAssest = new Assets();
         $objAssest->title = $request->title;
@@ -67,7 +70,9 @@ class AssetsController extends Controller
         $objAssest->materials = $request->material;
         $objAssest->user_id = $request->user;
         $objAssest->products  = json_encode($request->product);
-        $objAssest->image       = $request->file('image')->store('assets');
+        if($request->hasFile('image')) {
+            $objAssest->image = $request->file('image')->store('assets');
+        }
         $objAssest->save();
         return redirect('admin/assets')->with('success', 'Asset created successfully.');
     }

@@ -13,6 +13,7 @@
 
 
 Route::group([ 'prefix' => 'admin' , 'middleware' => 'admin'], function() {
+
     Route::get('/', 'Controller@dashboard');
 
     Route::get('/category/create',       'CategoryController@createCategory');
@@ -28,7 +29,6 @@ Route::group([ 'prefix' => 'admin' , 'middleware' => 'admin'], function() {
     Route::post('/subcategory/store',      'CategoryController@storeSubCategory');
     Route::post('/subcategory/edit/{id}',  'CategoryController@postSubCategoryEdit');
     Route::get('/subcategory/delete/{id}','CategoryController@subCategoryDelete');
-
 
     Route::get('/user',                 'UserController@index');
     Route::get('/user/create',          'UserController@create');
