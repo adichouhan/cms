@@ -10,6 +10,8 @@ use App\Invoice;
 use App\Quote;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Validator;
 
 class AssetsController extends Controller
 {
@@ -43,6 +45,7 @@ class AssetsController extends Controller
      */
     public function store(Request $request)
     {
+
         $objAssetProduct = '';
         $arrMixProduct = $request->product;
         $request->validate([
@@ -50,6 +53,7 @@ class AssetsController extends Controller
             'location' => 'required',
             'expdate'   => 'required',
             'priority' => 'required',
+            'image'     => 'image|max:2048',
         ]);
 
         foreach ($arrMixProduct  as $key => $product){
@@ -118,6 +122,7 @@ class AssetsController extends Controller
             'expdate'   => 'required',
             'priority' => 'required',
             'product' => 'required',
+            'image'     => 'image|max:2048',
         ]);
 
         foreach ($arrMixProduct  as $key => $product){

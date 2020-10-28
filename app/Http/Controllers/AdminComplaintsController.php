@@ -55,6 +55,7 @@ class AdminComplaintsController extends Controller
             'expdate'   => 'required',
             'priority'  => 'required',
             'complaint' => 'required',
+            'image'     => 'jpeg,bmp,png,jpg'
         ]);
         $count                              = Complaint::all()->count();
         $objComplaints                      = new Complaint();

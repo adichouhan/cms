@@ -59,6 +59,7 @@ class AssetsController extends Controller
             'expdate'   => 'required',
             'priority'  => 'required',
             'product'   => 'required',
+            'image'     => 'image|max:2048',
         ]);
 
 
@@ -130,6 +131,7 @@ class AssetsController extends Controller
             'location' => 'required',
             'expdate'   => 'required',
             'priority' => 'required',
+            'image'     => 'image|max:2048',
         ]);
 
         foreach ($arrMixProduct  as $key => $product){
