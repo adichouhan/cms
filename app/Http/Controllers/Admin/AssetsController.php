@@ -51,6 +51,8 @@ class AssetsController extends Controller
      */
     public function store(Request $request)
     {
+        $objAssetProduct = '';
+        $arrMixProduct = $request->product;
         $request->validate([
             'title'     => 'required|unique:assets',
             'location'  => 'required',
@@ -58,7 +60,15 @@ class AssetsController extends Controller
             'priority'  => 'required',
             'product'   => 'required',
         ]);
-        $arrMixProductId = collect(Arr::pluck($request->product, 'id'))->filter()->toArray();
+
+
+        foreach ($arrMixProduct  as $key => $product){
+            if(!$product['id']){
+                $objAssetProduct = AssetsProduct::create(['product_name'=> $product['name']]);
+                $arrMixProduct[$key]['id'] = ''.$objAssetProduct->id. '';
+            }
+        }
+
         $count = Assets::all()->count();
         $objAssest = new Assets();
         $objAssest->title = $request->title;
@@ -68,7 +78,7 @@ class AssetsController extends Controller
         $objAssest->priority = $request->priority;
         $objAssest->materials = $request->material;
         $objAssest->user_id = $request->user;
-        $objAssest->products  = json_encode($request->product);
+        $objAssest->products  = json_encode(collect($arrMixProduct)->pluck('id'));
         if($request->hasFile('image')) {
             $objAssest->image = $request->file('image')->store('assets');
         }
@@ -113,12 +123,22 @@ class AssetsController extends Controller
      */
     public function update($id, Request $request)
     {
+        $objAssetProduct = '';
+        $arrMixProduct = $request->product;
         $request->validate([
             'title'     => 'required|unique:assets,title,'.$id,
             'location' => 'required',
             'expdate'   => 'required',
             'priority' => 'required',
         ]);
+
+        foreach ($arrMixProduct  as $key => $product){
+            if(!$product['id']){
+                $objAssetProduct = AssetsProduct::create(['product_name'=> $product['name']]);
+                $arrMixProduct[$key]['id'] = ''.$objAssetProduct->id. '';
+            }
+        }
+
         $objAssest = Assets::findOrFail($id);
         $objAssest->title = $request->title;
         $objAssest->location = $request->location;
@@ -128,7 +148,7 @@ class AssetsController extends Controller
         $objAssest->priority = $request->priority;
         $objAssest->materials = $request->material;
         $objAssest->user_id = $request->user;
-        $objAssest->products  = $request->product;
+        $objAssest->products  = json_encode(collect($arrMixProduct)->pluck('id'));
         if($request->file('image')) {
             $objAssest->image = $request->file('image')->store('assets');
         }

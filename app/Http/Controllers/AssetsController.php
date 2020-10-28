@@ -43,27 +43,36 @@ class AssetsController extends Controller
      */
     public function store(Request $request)
     {
+        $objAssetProduct = '';
+        $arrMixProduct = $request->product;
         $request->validate([
             'title'     => 'required|unique:assets',
             'location' => 'required',
             'expdate'   => 'required',
             'priority' => 'required',
         ]);
-dd('sdf');
-        $count = Assets::all()->count();
-        $objAssest = new Assets();
-        $objAssest->title = $request->title;
-        $objAssest->location = $request->location;
-        $objAssest->assets_unique = 'asset_'.$count;
-        $objAssest->expected_date = $request->expdate;
-        $objAssest->priority = $request->priority;
-        $objAssest->materials = $request->material;
-        $objAssest->user_id = auth()->user()->id;
-        $objAssest->products  = json_encode($request->product);
-        if($request->hasFile('image')) {
-            $objAssest->image = $request->file('image')->store('assets');
+
+        foreach ($arrMixProduct  as $key => $product){
+            if(!$product['id']){
+                $objAssetProduct = AssetsProduct::create(['product_name'=> $product['name']]);
+                $arrMixProduct[$key]['id'] = ''.$objAssetProduct->id. '';
+            }
         }
-        $objAssest->save();
+
+        $count = Assets::all()->count();
+        $objAsset = new Assets();
+        $objAsset->title = $request->title;
+        $objAsset->location = $request->location;
+        $objAsset->assets_unique = 'asset_'.$count;
+        $objAsset->expected_date = $request->expdate;
+        $objAsset->priority = $request->priority;
+        $objAsset->materials = $request->material;
+        $objAsset->user_id = auth()->user()->id;
+        $objAsset->products  = json_encode(collect($arrMixProduct)->pluck('id'));
+        if($request->hasFile('image')) {
+            $objAsset->image = $request->file('image')->store('assets');
+        }
+        $objAsset->save();
         return redirect('assets')->with('message', 'Assets Created Successfully.');
     }
 
@@ -102,19 +111,29 @@ dd('sdf');
      */
     public function update(Request $request)
     {
+        $objAssetProduct = '';
+        $arrMixProduct = $request->product;
         $request->validate([
             'title'     => 'required|unique:assets,title,'.$request->id,
             'expdate'   => 'required',
             'priority' => 'required',
             'product' => 'required',
         ]);
+
+        foreach ($arrMixProduct  as $key => $product){
+            if(!$product['id']){
+                $objAssetProduct = AssetsProduct::create(['product_name'=> $product['name']]);
+                $arrMixProduct[$key]['id'] = ''.$objAssetProduct->id. '';
+            }
+        }
+
         $objAsset                      = Assets::findOrFail($request->id);
         $objAsset->title               = $request->title;
         $objAsset->location            = $request->location;
         $objAsset->expected_date       = $request->expdate;
         $objAsset->priority            = $request->priority;
         $objAsset->materials           = $request->material;
-        $objAsset->products            = $request->product;
+        $objAsset->products  = json_encode(collect($arrMixProduct)->pluck('id'));
         if($request->file('image')) {
             $objAsset->image = $request->file('image')->store('assets');
         }

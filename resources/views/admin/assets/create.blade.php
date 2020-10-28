@@ -158,7 +158,7 @@
                 count++
                 var html = '';
                 html += '<div class="addedSection"><div class="form-group"><label for="product">Product</label><input type="text" id="product_'+count+'" name="product['+count+'][name]"  data-type="assetProduct"  data-count="'+count+'"  class="form-control search">'
-                html += '<input type="hidden" id="productId_'+count+'" class="form-control search" name="product['+count+'][id]">'
+                html += '<input type="hidden" id="productId_'+count+'" class="form-control search" nname="product['+count+'][name]">'
                 html += '<div id="assetProductList_'+count+'"></div></div>';
                 html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger remove">Remove</button></div></div>';
                 $('#addsection').append(html);
