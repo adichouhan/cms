@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -43,5 +44,10 @@ class User extends Authenticatable
     public function complaint()
     {
        return  $this->belongsTo(new Complaint(), 'id', 'user_id');
+    }
+
+    public function isAdmin()
+    {
+        return json_decode($this->extra_data, true)['admin'] == 1;
     }
 }

@@ -195,6 +195,7 @@
                 $('#addsection').append(html);
             });
             $(document).on('click', '.remove', function () {
+                count--
                 $(this).closest('.addedSection').remove();
                 // $("div.addedSection").first().remove()
             });

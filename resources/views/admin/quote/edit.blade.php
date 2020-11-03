@@ -15,7 +15,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <form method="post" autocomplete="off" action="{{ url('/admin/quote/update'.$objQuote->id) }}"
+                        <form method="post" autocomplete="off" action="{{ url('/admin/quote/update/'.$objQuote->id) }}"
                               enctype="multipart/form-data">
                             @csrf
                             <div class="row">

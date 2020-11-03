@@ -44,8 +44,13 @@ class InvoiceController extends Controller
 
         if($objInvoice->complaint){
             $arrMix['complaint'] = $objInvoice->complaint;
+            $userId = $objInvoice->complaint->user->id;
         }else{
             $arrMix['asset'] = $objInvoice->asset;
+            $userId = $objInvoice->asset->user->id;
+        }
+        if( auth()->check() && ($userId == auth()->user()->id) || !auth()->user()->isAdmin){
+            redirect()->back()->with('message', 'Unauthorized action');
         }
         $pdf = PDF::loadView('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
         return $pdf->download('Invoice'.$objInvoice->invoice_id.'.pdf');
@@ -62,8 +67,13 @@ class InvoiceController extends Controller
 
         if($objInvoice->complaint){
             $arrMix['complaint'] = $objInvoice->complaint;
+            $userId = $objInvoice->complaint->user->id;
         }else{
             $arrMix['asset'] = $objInvoice->asset;
+            $userId = $objInvoice->asset->user->id;
+        }
+        if( auth()->check() && ($userId == auth()->user()->id) || !auth()->user()->isAdmin){
+            redirect()->back()->with('message', 'Unauthorized action');
         }
         return view('admin.invoice.invoice-pdf', ['arrMix'=>$arrMix]);
     }

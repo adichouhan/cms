@@ -77,7 +77,7 @@ Route::group([ 'prefix' => 'admin' , 'middleware' => 'admin'], function() {
     Route::post('/quote/store',                 'QuoteController@store');
     Route::get('/quote/edit/{id}',              'QuoteController@edit');
     Route::post('/quote/delete/{id}',           'QuoteController@destroy');
-    Route::post('/quote/edit/{id}',             'QuoteController@update');
+    Route::post('/quote/update/{id}',             'QuoteController@update');
 
     Route::get('/products',                     'ProductsController@index');
     Route::get('/product/create',               'ProductsController@create');

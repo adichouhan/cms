@@ -44,8 +44,8 @@
                                 <div class="addedSection">
                                     <div class="form-group">
                                     <label for="product">Product</label>
-                                    <input type="text" id="product_{{$index}}" data-type="assetProduct" data-count="{{$count}}" name="product[{{$count}}][name]" class="form-control search" value="{{$objDetail->product_name}}">
-                                    <input type="hidden" id="productId_{{$index}}" class="form-control search" value="{{$objProduct}}" name="product[{{$count}}][id]">
+                                    <input type="text" id="product_{{$index}}" data-type="assetProduct" data-count="{{$index}}" name="product[{{$index}}][name]" class="form-control search" value="{{$objDetail->product_name}}">
+                                    <input type="hidden" id="productId_{{$index}}" class="form-control search" value="{{$objProduct}}" name="product[{{$index}}][id]">
                                     <div id="assetProductList_{{$index}}"></div>
                                     </div>
                                     <div class="form-group"><button type="button" name="remove" class="btn btn-danger remove">Remove</button></div>
@@ -167,11 +167,13 @@
             var count= {!! count($arrProduct) !!};
             var countList='';
             var productId='';
+            var productcont = '';
+            var productIdcont = '';
             $(document).on('click', '.add', function () {
                 count++
                 var html = '';
                 html += '<div class="addedSection"><div class="form-group"><label for="product">Product</label><input type="text" name="product['+count+'][name]" id="product_'+count+'" data-type="assetProduct"  data-count="'+count+'"  class="form-control search">'
-                html += '<input type="hidden" id="productId_'+count+'" class="form-control search" name="product['+count+'][name]">'
+                html += '<input type="hidden" id="productId_'+count+'" class="form-control search" name="product['+count+'][id]">'
                 html += '<div id="assetProductList_'+count+'"></div></div>';
                 html += '<div class="form-group"><button type="button" name="remove" class="btn btn-danger remove">Remove</button></div></div>';
                 $('#addsection').append(html);
@@ -181,6 +183,8 @@
                 var type = $(this).data('type');
                 var query = $(this).val();
                 countList = $(this).data('count');
+                 productcont="#product_"+countList;
+                productIdcont="#productId_"+countList;
                 $('#assetProductList_'+countList).fadeIn();
 
                 if (query != '') {
@@ -228,6 +232,9 @@
                 $('#userId').val($(this).data('id'));
                 $('#userList').fadeOut();
             });
+            $(document).on('blur', productcont, function () {
+                $(productId).fadeOut();
+            });
 
             $(document).on('click', '.remove', function () {
                 count--
@@ -235,9 +242,10 @@
                 // $("div.addedSection").first().remove()
             });
 
+            $(document).on('blur', '.search', function () {
+                $('#assetProductList_'+countList).fadeOut();
+            });
             $(document).on('click', 'li.product', function () {
-                var productcont="#product_"+countList;
-                var productIdcont="#productId_"+countList;
                 $(productcont).val($(this).text());
                 $(productIdcont).val($(this).data('id'));
                 $('#assetProductList_'+countList).fadeOut();

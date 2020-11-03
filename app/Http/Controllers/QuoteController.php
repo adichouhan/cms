@@ -82,10 +82,15 @@ class QuoteController extends Controller
 
         if($objQuote->complaint){
             $arrMix['complaint'] = $objQuote->complaint;
+            $userId = $objQuote->complaint->user->id;
         }else{
             $arrMix['asset']     = $objQuote->asset;
+            $userId = $objQuote->asset->user->id;
         }
-        $pdf                     = PDF::loadView('admin.quote.quote-pdf', ['arrMix'=>$arrMix]);
+        if( auth()->check() && ($userId == auth()->user()->id) || !auth()->user()->isAdmin){
+            redirect()->back()->with('message', 'Unauthorized action');
+        }
+        $pdf  = PDF::loadView('admin.quote.quote-pdf', ['arrMix'=>$arrMix]);
         return $pdf->download('Quote'.$objQuote->quote_id.'.pdf');
 
     }
@@ -100,9 +105,14 @@ class QuoteController extends Controller
         $arrMix['sub_total']      = $objQuote->sub_total;
 
         if($objQuote->complaint){
-            $arrMix['complaint']    = $objQuote->complaint;
+            $arrMix['complaint'] = $objQuote->complaint;
+            $userId = $objQuote->complaint->user->id;
         }else{
-            $arrMix['asset']        = $objQuote->asset;
+            $arrMix['asset']     = $objQuote->asset;
+            $userId = $objQuote->asset->user->id;
+        }
+        if( auth()->check() && ($userId == auth()->user()->id) || !auth()->user()->isAdmin){
+            redirect()->back()->with('message', 'Unauthorized action');
         }
         return view('admin.quote.quote-pdf', ['arrMix'=>$arrMix]);
     }
@@ -153,7 +163,7 @@ class QuoteController extends Controller
         $objQuote->quote        =json_encode($request->quote);
         $objQuote->save();
 
-        return redirect('admin/quotes')->with('message', 'Quotes Updated Successfully');
+        return redirect('admin/quote')->with('message', 'Quotes Updated Successfully');
     }
 
     /**

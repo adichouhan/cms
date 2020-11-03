@@ -239,6 +239,7 @@
             $(document).on('blur', '#user', function () {
                 $('#userList').fadeOut();
             });
+
             $(document).on('click', 'li.user', function () {
                 $('#user').val($(this).text());
                 $('#userId').val($(this).data('id'));

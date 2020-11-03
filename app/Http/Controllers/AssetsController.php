@@ -124,14 +124,13 @@ class AssetsController extends Controller
             'product' => 'required',
             'image'     => 'image|max:2048',
         ]);
-
         foreach ($arrMixProduct  as $key => $product){
+
             if(!$product['id']){
                 $objAssetProduct = AssetsProduct::create(['product_name'=> $product['name']]);
                 $arrMixProduct[$key]['id'] = ''.$objAssetProduct->id. '';
             }
         }
-
         $objAsset                      = Assets::findOrFail($request->id);
         $objAsset->title               = $request->title;
         $objAsset->location            = $request->location;
