@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+}
+.form-container{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.form-container .signUpbtn{
+        border-radius: 25px;
+        outline: none;
+        border: none;
+        background: #3BAFA8;
+        font-size: 1.2rem;
+        color: #fff;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-weight: normal;
+}
+.submitbtn{
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    background: #3BAFA8;
+    font-size: 1.2rem;
+    color: #fff;
+    padding: 10px 30px;
+    cursor: pointer;
+    font-weight: normal;
+}
+.register_btn{
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    background: #3BAFA8;
+    font-size: 1.2rem;
+    color: #fff;
+    padding: 10px 30px;
+    cursor: pointer;
+    font-weight: normal;
+    text-decoration: none;
+}
+.send_msg_btn{
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    background: #3BAFA8;
+    font-size: 1.2rem;
+    color: #fff;
+    padding: 10px 30px;
+    cursor: pointer;
+    font-weight: normal;
+    text-decoration: none;
+}
+.send_msg_btn:hover{
+    color: #fff;
+}
+.register_btn:hover{
+    color: #fff;
+}
+.form-container .submitbtn:hover {
+    color: #fff;
+}
+.form-container .signUpbtn:hover {
+    color: #fff;
+}
+.form-container label{
+    color: #000;
+    font-weight: 500;
+}
+.form-container .form-control:focus{
+    border-color: #3BAFA8;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.form-container .no-outline{
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    border-bottom-style: 2px solid #000!important;
+    border-color: #000;
+    border-radius: 0;
+  }
+  .form-container .no-outline:focus {
+    outline: none;
+  }
+  .forgotpass{
+    margin-top: 10px;
+  }
+
+  .forgotpass a{
+      color: #000;
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+  }
+
+  .navbar-light{
+      background-color: #EDF7F6;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      padding-left: 10px;
+      padding-right: 10px;
+  }
+  .navbar-light .navbar-nav .nav-link{
+      color: #000;
+      font-size: 1.4rem;
+  }
+
+#tabs{
+    padding-top: 50px;
+}
+#tabs a{
+color: #000;
+font-size: 1.2rem;
+font-weight: 400;
+padding: 10px 18px;
+background: #fff;
+border: 1px solid rgb(44, 42, 42);
+border-radius: 10px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+width: 100%;
+}
+
+#maintain_img{
+    background-color:#3BAFA8;
+    padding: 30px 20px 30px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+#asset_img{
+    background-color:#3BAFA8;
+    padding: 30px 20px 30px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+#contact_img{
+    background-color:#3BAFA8;
+    padding: 30px 20px 30px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+.service_book p{
+    padding-top: 20px;
+    font-size: 14px;
+}
+#backbtn{
+    padding: 14px 18px;
+    background-color: #FDBF42;
+    border-radius: 50px;
+    text-decoration: none;
+    color: #000;
+}
+.addissueBtn{
+    border-radius: 25px;
+    outline: none;
+    border: 1px solid #000;
+    background: #fff;
+    font-size: 1.2rem;
+    color: #000;
+    padding: 10px 30px;
+    cursor: pointer;
+    font-weight: normal;
+    margin-top: 85px;
+    margin-bottom: 20px;
+}
+.addissueBtn:hover{
+    border: 1px solid #3BAFA8;
+    background: #3BAFA8;
+    color: #fff;
+}
+.backbtnCol{
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .backbtnCol{
+        text-align: justify;
+    }
+  }
+
+  @media only screen and (max-width: 570px) {
+  .addissueBtn{
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+  }
